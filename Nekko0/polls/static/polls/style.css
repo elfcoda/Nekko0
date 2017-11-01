@@ -24,3 +24,36 @@ li a {
   width:10%;
   background:rgba(70, 70, 70, 0.5);
 }
+
+.navul {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+
+.navli {
+	display:inline;
+	float:left;
+}
+
+.containermenu0 {
+	left:10%;
+}
+
+.containermenu1 {
+	left:20%;
+}
+
+.containermenu2 {
+	left:30%;
+}
+
+.containermenu3 {
+	left:40%;
+}
+
+.containermenu4 {
+	left:50%;
+}
+

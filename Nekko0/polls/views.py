@@ -28,7 +28,7 @@ def results(request, question_id):
 
 ## class
 class IndexView(generic.ListView):
-    template_name = 'polls/nav.html'
+    template_name = 'polls/header.html'
     # template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
 

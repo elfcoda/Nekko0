@@ -76,7 +76,7 @@ header {
 #main {
   width:1200px;
   height:1000px;
-  background:blue;
+  background:rgba(0, 0, 0, 0);
   position:relative;
   top:700px;
   margin:auto;
@@ -86,7 +86,7 @@ header {
   width:70%;
   height:100%;
   left:0%;
-  background:rgba(30, 30, 30, 0.6);
+  background:rgba(30, 30, 30, 0);
   float:left;
 }
 
@@ -100,10 +100,13 @@ aside {
 
 #context article {
   width:100%;
-  height:200px;
+  min-height:200px;
+  height:auto;
+  margin-bottom:50px;
   background:rgba(100, 100, 100, 0.6);
 }
 
+/* date */
 #context article div {
   width:70px;
   height:70px;
@@ -111,7 +114,78 @@ aside {
   top:-35px;
   left:-35px;
   text-align:center;
-  color:#00FFFF;
+  color:#FFF;
+  border-radius:50%;
+  box-shadow:1px 1px 1px #888888;
+  background:rgba(0, 90, 120, 1);
+}
+
+/* decorate for div */
+#context article div div {
+  border-radius:0%;
+  width:120px;
+  height:28px;
+  position:relatve;
+  top:85px;
+  left:15px
+}
+
+#context article div div div {
+  width:0;
+  height:0;
+  border-top:12px solid rgba(150, 150, 150, 1);
+  border-left:20px solid transparent;
+  position:relative;
+  top:1;
+  left:0;
+  box-shadow:0 0 0 #000;
+  background:rgba(0, 0, 0, 0);
+}
+
+.post-title {
+  background:red;
+}
+
+#context article span .post-title {
+  color:#233;
+  font-size:35px;
+  font-weight:600;
+  width:100%;
+  left:0;
+  top:-50;
+  border-radius:0;
+  height:50px;
+  background:rgba(0, 0, 0, 0);
+  box-shadow:0 0 0 #000;
+}
+
+#context article span .post-subtitle {
+  color:#344;
+  font-size:20px;
+  width:100%;
+  left:0;
+  top:-50px;
+  border-radius:0;
+  height:30px;
+  background:rgba(0, 0, 0, 0);
+  box-shadow:0 0 0 #000;
+}
+
+#context article span {
+}
+
+#context article span p {
+  margin:30px;
+}
+
+#context article span .post-readmore {
+  border-radius:0;
+  height:20px;
+  width:100px;
+  background:grey;
+  padding:3px;
+  margin-top:50px;
+  left:689px;
 }
 
 #findme {
@@ -135,17 +209,5 @@ aside {
 }
 
 /* Main */
-
-
-
-
-
-
-
-
-
-
-
-
 
 

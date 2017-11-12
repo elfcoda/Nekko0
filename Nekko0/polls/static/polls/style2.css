@@ -348,6 +348,7 @@ aside {
 }
 
 .click-like-me {
+  font-family:fontello;
   display:inline-flex;
   justify-content:space-around;
   width:60%;
@@ -360,14 +361,15 @@ aside {
   background:red;
   width:50px;
   height:50px;
+  position:relative;
 }
 
 .like-me-1:before {
-
+  content:"\e800";
 }
 .like-me-1:after {
   content:"Yes!";
-  transform:translate(25px, 50px);
+  top:10px;
 }
 
 .like-me-0 {

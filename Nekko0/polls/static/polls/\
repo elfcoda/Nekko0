@@ -74,7 +74,7 @@
 
 
 /* Header */
-.cls-header {
+header {
   width:100%;
   height:700px;
   background: url('images/bg2.png');
@@ -109,7 +109,7 @@
 
 aside {
   width:25%;
-  height:1000px;
+  height:500px;
   right:0%;
   background:rgba(30, 30, 30, 0.6);
   float:right;
@@ -407,19 +407,7 @@ aside {
 }
 
 .latest-update {
-  margin-top:20px;
-	width:100%;
-	height:200px;
-  background:blue;
-}
 
-.la-update {
-  width:92%;
-	margin-left:4%;
-	background:red;
-	margin-top:10px;
-	height:30px;;
-  box-shadow:0 1px 1px rgba(100, 100, 100, 1);
 }
 
 .talktome {

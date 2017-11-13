@@ -64,6 +64,11 @@
 	left:10%;
 	background:rgba(30, 30, 30, 0.0);
 }
+
+.sign-in-up {
+
+}
+
 .test1 {
 	width:70px;
 	height:1500px;
@@ -109,10 +114,10 @@
 
 aside {
   width:25%;
-  height:1000px;
+  height:auto;
   right:0%;
-  background:rgba(30, 30, 30, 0.6);
   float:right;
+  border-radius:3px;
 }
 
 #context article {
@@ -121,6 +126,7 @@ aside {
   height:auto;
   margin-bottom:50px;
   background:rgba(100, 100, 100, 0.6);
+  border-radius:3px;
 }
 
 /* date */
@@ -144,7 +150,7 @@ aside {
   height:28px;
   position:relatve;
   top:85px;
-  left:15px
+  left:15px;
 }
 
 #context article div div div {
@@ -155,6 +161,33 @@ aside {
   position:absolute;
   top:28px;
   left:0;
+  box-shadow:0 0 0 #000;
+  background:rgba(0, 0, 0, 0);
+}
+
+.de-header {
+  width:100%;
+  height:70px;
+  position:relative;
+}
+
+.decorate-header {
+  border-radius:0%;
+  width:120px;
+  height:28px;
+  position:relative;
+  top:20px;
+  left:-19px;
+  background:green;
+}
+.decorate-header-shadow {
+  width:0;
+  height:0;
+  border-top:12px solid green;
+  border-left:20px solid transparent;
+  position:relative;
+  top:20px;
+  left:-19px;
   box-shadow:0 0 0 #000;
   background:rgba(0, 0, 0, 0);
 }
@@ -213,10 +246,12 @@ aside {
   padding:2%;
   box-shadow:0 0 0 rgba(0, 0, 0, 1);
   transition:box-shadow 0.1s;
+  border-radius:3px;
+  background:rgba(30, 30, 30, 0.6);
 }
 
 .findme:hover {
-  box-shadow:3px 3px 3px rgba(100, 100, 100, 1);
+  box-shadow:2px 2px 2px rgba(100, 100, 100, 1);
 }
 
 .my-avatar {
@@ -340,11 +375,11 @@ aside {
   margin-top:20px;
   box-shadow:0 0 0 rgba(0, 0, 0, 1);
   transition:box-shadow 0.1s;
-
+  border-radius:3px;
 }
 
 .likeme:hover {
-  box-shadow:3px 3px 3px rgba(100, 100, 100, 1);
+  box-shadow:2px 2px 2px rgba(100, 100, 100, 1);
 }
 
 .like-me-text {
@@ -394,7 +429,7 @@ aside {
   width:60%;
   margin-top:3px;
   margin-left:20%;
-  height:20px; 
+  height:20px;
 	text-align:center;
 	font-size:12px;
 }
@@ -409,29 +444,97 @@ aside {
 .latest-update {
   margin-top:20px;
 	width:100%;
-	height:200px;
-  background:blue;
+	height:auto;
+  background:rgba(100, 100, 100, 0.3);
+  box-shadow:0 0 0 rgba(0, 0, 0, 1);
+  transition:box-shadow 0.1s;
+  border-radius:3px;
+}
+
+.latest-update:hover {
+  box-shadow:2px 2px 2px rgba(100, 100, 100, 1);
 }
 
 .la-update {
   width:92%;
 	margin-left:4%;
-	background:red;
-	margin-top:10px;
-	height:30px;;
-  box-shadow:0 1px 1px rgba(100, 100, 100, 1);
+	margin-bottom:10px;
+	min-height:40px;
+  border-radius:0px;
+  height:auto;
+  box-shadow:0 1px 0px rgba(200, 200, 200, 0.3);
+  transition:background 0.3s;
+}
+
+.cls-margin-bottom {
+  width:100%;
+  height:15px;
+}
+
+.la-update:hover {
+  background:rgba(180, 230, 0, 0.2);
+  border-radius:5px;
 }
 
 .talktome {
+  margin-top:20px;
+	width:100%;
+	height:auto;
+  background:rgba(100, 100, 100, 0.3);
+  box-shadow:0 0 0 rgba(0, 0, 0, 1);
+  transition:box-shadow 0.1s;
+  border-radius:3px;
+}
 
+.talktome:hover {
+  box-shadow:2px 2px 2px rgba(100, 100, 100, 1);
+}
+
+.la-talk {
+  width:92%;
+	margin-left:4%;
+	margin-bottom:10px;
+	min-height:40px;
+  border-radius:0px;
+  height:auto;
+  box-shadow:0 1px 0px rgba(200, 200, 200, 0.3);
+  transition:background 0.3s;
+}
+.la-talk:hover {
+  background:rgba(180, 230, 0, 0.2);
+  border-radius:5px;
 }
 
 .read {
-
+  margin-top:20px;
+	width:100%;
+	height:auto;
+  background:rgba(100, 100, 100, 0.3);
+  box-shadow:0 0 0 rgba(0, 0, 0, 1);
+  transition:box-shadow 0.1s;
+  border-radius:3px;
+}
+.read:hover {
+  box-shadow:2px 2px 2px rgba(100, 100, 100, 1);
+}
+.la-read {
+  width:92%;
+	margin-left:4%;
+	margin-bottom:10px;
+	min-height:40px;
+  border-radius:0px;
+  height:auto;
+  box-shadow:0 1px 0px rgba(200, 200, 200, 0.3);
+  transition:background 0.3s;
+}
+.la-read:hover {
+  background:rgba(180, 230, 0, 0.2);
+  border-radius:5px;
 }
 
 .closeaside {
-
+  margin-top:50px;
+  border-radius:3px;
 }
 
 /* Main */

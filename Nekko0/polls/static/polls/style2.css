@@ -540,3 +540,31 @@ aside {
 /* Main */
 
 
+/* message */
+.message-board {
+  width:1200px;
+	height:1000px;
+	background:rgba(200, 200, 200, 0.3);
+}
+.message-item {
+  width:96%;
+	margin-left:2%;
+	margin-top:20px;
+  background:red;
+	border-radius:3px;
+	height:70px;
+
+}
+
+/* avatar */
+.message-item-left {
+  width:50px;
+	height:50px;
+	text-align:center;
+
+}
+.message-item-right {
+  
+}
+
+/* message */

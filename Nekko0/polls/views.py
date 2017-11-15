@@ -7,6 +7,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .models import Question, Choice
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import F
+from django.views.generic.list import ListView
+from models import Article
 from django.urls import reverse
 from django.views import generic
 
@@ -62,4 +66,19 @@ def results(request, question_id):
     return render(request, 'polls/results.html', {'question': question})
 
 
+class ArticleListView(ListView):
+    template_name = 'polls/blog_index.html'
+
+    def get_queryset(self, **kwargs):
+        object_list = Article.objects.all().order_by(F('created').desc())
+        paginator = Paginator(object_list, 10)
+        page = self.request.GET.get('page')
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(paginator.num_pages)
+
+        return object_list
 

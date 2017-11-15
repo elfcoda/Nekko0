@@ -10,7 +10,7 @@ from django.utils import timezone
 
 @python_2_unicode_compatible
 class Question(models.Model):
-    question_text = models.CharField(max_length=200)
+    question_text = models.CharField(max_length=201)
     pub_date = models.DateTimeField('date published')
     def __str__(self):
         return self.question_text
@@ -27,3 +27,19 @@ class Choice(models.Model):
     def __str__(self):
         return self.choice_text
 
+
+@python_2_unicode_compatible
+class Article(models.Model):
+    url = models.URLField()
+    title = models.CharField(max_length=50)
+    title_zh = models.CharField(max_length=50)
+    author = models.CharField(max_length=30)
+    content_md = models.TextField()
+    content_html = models.TextField()
+    tags = models.CharField(max_length=30)
+    views = models.IntegerField()
+    created = models.DateTimeField()
+    updated = models.DateTimeField()
+
+    def __str__(self):
+        return self.title_zh

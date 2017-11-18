@@ -13,6 +13,8 @@ from django.views.generic.list import ListView
 from models import Article
 from django.urls import reverse
 from django.views import generic
+from django.views.generic.edit import FormView
+from forms import ArticlePublishForm
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -81,4 +83,13 @@ class ArticleListView(ListView):
             object_list = paginator.page(paginator.num_pages)
 
         return object_list
+
+class ArticlePublishView(FormView):
+    template_name = 'polls/article_publish.html'
+    form_class = ArticlePublishForm
+    success_url = '/polls/'
+
+    def form_valid(self, form):
+        form.save(self.request.user.username)
+        return super(ArticlePublishView, self).form_valid(form)
 

@@ -36,13 +36,13 @@ class ArticlePublishForm(forms.Form):
         content_md = cd['content']
         content_html = markdown.markdown(cd['content'])
         re_title = '<h\d>(.+)</h\d>'
-        date = content_html.split('\n')
+        data = content_html.split('\n')
         for line in data:
             title_info = re.findall(re_title, line)
             if title_info:
                 title_zh = title_info[0]
                 break
-        url = '/article/%s' % (title)
+        url = 'article/%s' % (title)
         tags = cd['tags']
         article = Article(
             url=url,

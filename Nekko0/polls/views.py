@@ -11,9 +11,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import F
 from django.views.generic.list import ListView
 from models import Article
-from django.urls import reverse
+# from django.urls import reverse
+from django.core.urlresolvers import reverse
 from django.views import generic
 from django.views.generic.edit import FormView
+from django.views.generic.detail import DetailView
 from forms import ArticlePublishForm
 
 def index(request):
@@ -61,7 +63,7 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        # return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -87,9 +89,55 @@ class ArticleListView(ListView):
 class ArticlePublishView(FormView):
     template_name = 'polls/article_publish.html'
     form_class = ArticlePublishForm
-    success_url = '/polls/'
+    success_url = '..'
 
     def form_valid(self, form):
         form.save(self.request.user.username)
         return super(ArticlePublishView, self).form_valid(form)
+
+class ArticleDetailView(DetailView):
+    template_name = 'polls/article_detail.html'
+
+    def get_object(self, **kwargs):
+        title = self.kwargs.get('title')
+        try:
+            article = Article.objects.get(title=title)
+            article.views += 1
+            article.save()
+            article.tags = article.tags.split()
+        except Article.DoesNotExist:
+            raise Http404("Article does not exist")
+        return article
+
+class ArticleEditView(FormView):
+    template_name = 'polls/article_publish.html'
+    form_class = ArticlePublishForm
+    article = None
+
+    def get_initial(self, **kwargs):
+        title = self.kwargs.get('title')
+        try:
+            self.article = Article.objects.get(title=title)
+            initial = {
+                'title': title,
+                'content': self.article.content_md,
+                'tags': self.article.tags,
+            }
+            return initial
+        except Article.DoesNotExist:
+            raise Http404("Article does not exist")
+
+
+
+    def form_valid(self, form):
+        form.save(self.request, self.article)
+        return super(ArticleEditView, self).form_valid(form)
+
+    def get_success_url(self):
+        title = self.request.POST.get('title')
+        success_url = reverse('article_detail', args=(title,))
+        print success_url, "  111111111111"
+        return success_url
+
+
 

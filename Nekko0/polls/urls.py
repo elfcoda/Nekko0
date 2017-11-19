@@ -4,10 +4,14 @@
 from django.conf.urls import url
 
 from . import views
-from views import ArticlePublishView, ArticleDetailView, ArticleEditView
+from views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
+    RegisterView, LoginView
 
 app_name = 'polls'
 urlpatterns = [
+    url(r'^register/$', RegisterView.as_view(), name='register'),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+
     url(r'^$', views.ArticleListView.as_view(), name='blog_index'),
     url(r'^article/publish$', ArticlePublishView.as_view(), name='article_publish'),
     url(r'^article/(?P<title>\w+\.?\w+)$', ArticleDetailView.as_view(), name='article_detail'),

@@ -12,11 +12,11 @@ from django.db.models import F
 from django.views.generic.list import ListView
 from models import Article
 # from django.urls import reverse
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, reverse_lazy
 from django.views import generic
 from django.views.generic.edit import FormView
 from django.views.generic.detail import DetailView
-from forms import ArticlePublishForm
+from forms import ArticlePublishForm, RegisterForm, LoginForm
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -135,9 +135,32 @@ class ArticleEditView(FormView):
 
     def get_success_url(self):
         title = self.request.POST.get('title')
-        success_url = reverse('article_detail', args=(title,))
-        print success_url, "  111111111111"
+        success_url = reverse('polls:article_detail', args=(title,))
         return success_url
+
+class RegisterView(FormView):
+    template_name = 'polls/register.html'
+    form_class = RegisterForm
+    success_url = reverse_lazy('polls:blog_index')
+
+    def form_valid(self, form):
+        form.save()
+        email = form.cleaned_data.get('email')
+        password = form.cleaned_data.get('password')
+        print email, password
+        # login
+        #########
+
+        return super(RegisterView, self).form_valid(form)
+
+class LoginView(FormView):
+    template_name = 'polls/login.html'
+    form_class = LoginForm
+    success_url = reverse_lazy('polls:blog_index')
+
+    def form_valid(self, form):
+        return super(LoginView, self).form_valid(form)
+
 
 
 

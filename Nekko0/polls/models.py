@@ -43,3 +43,22 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title_zh
+
+
+@python_2_unicode_compatible
+class Userinfo(models.Model):
+    nickname = models.CharField(max_length=20)
+    passwd = models.CharField(max_length=500)
+    email = models.CharField(max_length=100)
+    sex = models.CharField(max_length=2)
+    created_date = models.DateTimeField()
+    level = models.CharField(max_length=1)
+    level_tag = models.CharField(max_length=20)
+    birthday = models.DateTimeField()
+    introduce = models.CharField(max_length=100)
+    avatar_url = models.URLField()
+
+    def __str__(self):
+        return self.nickname
+
+

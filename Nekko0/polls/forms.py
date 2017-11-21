@@ -88,7 +88,7 @@ class LoginForm(forms.Form):
         cleaned_data = super(LoginForm, self).clean()
         email = cleaned_data.get('email')
         password = cleaned_data.get('password')
-        res = Userinfo.objects.filter(email=email, passwd=password)
+        res = Userinfo.objects.filter(email=email, password=password)
         if (len(res) == 0):
             raise forms.ValidationError(u'邮箱或密码错误')
 
@@ -157,13 +157,13 @@ class RegisterForm(forms.Form):
         email = self.cleaned_data['email']
         password = self.cleaned_data['password']
         userinfo = Userinfo(
-            nickname = username,
-            passwd = password,
+            username = username,
+            password = password,
             email = email,
             sex = "1",
             created_date = datetime.datetime.now(),
             level = "0",
-            level_tag = "无能力者",
+            level_tag = u"无能力者",
             birthday = datetime.datetime.now(),
             introduce = "",
             avatar_url = "")

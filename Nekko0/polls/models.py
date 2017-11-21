@@ -47,8 +47,8 @@ class Article(models.Model):
 
 @python_2_unicode_compatible
 class Userinfo(models.Model):
-    nickname = models.CharField(max_length=20)
-    passwd = models.CharField(max_length=500)
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=500)
     email = models.CharField(max_length=100)
     sex = models.CharField(max_length=2)
     created_date = models.DateTimeField()
@@ -59,6 +59,6 @@ class Userinfo(models.Model):
     avatar_url = models.URLField()
 
     def __str__(self):
-        return self.nickname
+        return self.username
 
 

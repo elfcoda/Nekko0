@@ -1,23 +1,22 @@
 {% if form.errors %}
 <p>Your Username and Passwd didn't match</p>
 {% endif %}
+{% load static %}
+<link href="{% static 'polls/sign.css' %}" rel="stylesheet" type="text/css" />
 
-<form method="post" action="">
-  {% csrf_token %}
-  <table>
-    <tr>
-      <td>{{ form.email.label_tag }}</td>
-      <td>{{ form.email }}</td>
-    </tr>
-
-    <tr>
-      <td>{{ form.password.label_tag }}</td>
-      <td>{{ form.password }}</td>
-    </tr>
-  </table>
-
-  <input type="submit" value="login" />
-</form>
-
-
-
+<div class=outer-align-main>
+  <div class="sign-main">
+    <form method="post" action="">
+      {% csrf_token %}
+      <div class="form-div">
+        <div class="form-label">{{ form.email.label }}</div>
+        <div class="form-input">{{ form.email }}</div>
+        <div class="form-label">{{ form.password.label }}</div>
+        <div class="form-input">{{ form.password }}</div>
+        <div class="form-btn">
+          <input type="submit" value="login" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

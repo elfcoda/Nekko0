@@ -95,14 +95,16 @@ class LoginForm(forms.Form):
 
 class RegisterForm(forms.Form):
     username = forms.CharField(
+        required = False,
         label = u'昵称',
         help_text = u'昵称可用于登录',
         max_length = 20,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control'}),
+        widget = forms.TextInput(attrs={'class': 'form-control my-form-control'}),
     )
 
     email = forms.EmailField(
+        required = False,
         label = u'邮箱',
         help_text = u'可用于找回密码',
         max_length = 50,
@@ -111,6 +113,7 @@ class RegisterForm(forms.Form):
     )
 
     password = forms.CharField(
+        required = False,
         label = u'密码',
         help_text = u'请输入密码',
         min_length = 6,
@@ -119,19 +122,22 @@ class RegisterForm(forms.Form):
     )
 
     confirm_password = forms.CharField(
+        required = False,
         label = u'确认密码',
         min_length = 6,
         max_length = 18,
         widget = forms.PasswordInput(attrs={'class': 'form-control'}),
     )
 
+
+
     def clean_username(self):
         username = self.cleaned_data['username']
         if ' ' in username or '@' in username:
-            raise forms.ValidationError(u'昵称中不能包含@和空格字符')
+            raise forms.ValidationError('" " and "@" are invalid.')
         res = Userinfo.objects.filter(username=username)
         if (len(res) != 0):
-            raise forms.ValidationError(u'此昵称已经被注册，请重新输入')
+            raise forms.ValidationError(u'Nickname has been registered.')
 
         return username
 
@@ -139,7 +145,7 @@ class RegisterForm(forms.Form):
         email = self.cleaned_data['email']
         res = Userinfo.objects.filter(email=email)
         if (len(res) != 0):
-            raise forms.ValidationError(u'此邮箱已经被注册，请重新输入')
+            raise forms.ValidationError(u'Email has been registered.')
 
         return email
 
@@ -149,7 +155,7 @@ class RegisterForm(forms.Form):
         confirm_password = cleaned_data.get('confirm_password')
         if password and confirm_password:
             if password != confirm_password:
-                raise forms.ValidationError(u'两次输入密码不一致，请重新输入')
+                raise forms.ValidationError('Password error.')
 
 
     def save(self):

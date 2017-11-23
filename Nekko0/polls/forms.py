@@ -3,7 +3,6 @@
 
 import datetime
 import re
-import markdown
 
 from django import forms
 

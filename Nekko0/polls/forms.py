@@ -102,6 +102,13 @@ class RegisterForm(forms.Form):
         widget = forms.TextInput(attrs={'class': 'form-control my-form-control'}),
     )
 
+    sex = forms.ChoiceField(
+        required = False,
+        label = u'性别',
+        help_text = u'',
+        choices=[('sqlserver', 'SQlServer'), ('oracle', 'Oracle')],
+    )
+
     email = forms.EmailField(
         required = False,
         label = u'邮箱',

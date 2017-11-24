@@ -33,6 +33,14 @@
             {{ form.username }}
             <p class="text-muted">{{ form.username.help_text }}</p>
           </div>
+          <div class="form-group {% if form.sex.errors %} has-error {% endif %}">
+            <label for="">{{ form.sex.label }}</label>
+            {% if form.sex.errors %}
+            <span class="text-danger pull-right">{{ form.sex.errors }}</span>
+            {% endif %}
+            {{ form.sex }}
+            <p class="text-muted">{{ form.sex.help_text }}</p>
+          </div>
           <div class="form-group {% if form.email.errors %} has-error {% endif %}">
             <label for="">{{ form.email.label }}</label>
             {% if form.email.errors %}

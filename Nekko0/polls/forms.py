@@ -106,6 +106,7 @@ class RegisterForm(forms.Form):
         required = False,
         label = u'性别',
         help_text = u'',
+        initial = 'oracle',
         choices=[('sqlserver', 'SQlServer'), ('oracle', 'Oracle')],
     )
 

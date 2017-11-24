@@ -106,8 +106,8 @@ class RegisterForm(forms.Form):
         required = False,
         label = u'性别',
         help_text = u'',
-        initial = 'oracle',
-        choices=[('sqlserver', 'SQlServer'), ('oracle', 'Oracle')],
+        widget = forms.Select(attrs={'class': 'form-control sex_select'}),
+        choices=[('0', '小哥哥'), ('1', '萌妹子')],
     )
 
     email = forms.EmailField(

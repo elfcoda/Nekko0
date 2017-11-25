@@ -102,12 +102,12 @@ class RegisterForm(forms.Form):
         widget = forms.TextInput(attrs={'class': 'form-control my-form-control'}),
     )
 
-    sex = forms.ChoiceField(
+    sex = forms.CharField(
         required = False,
         label = u'性别',
         help_text = u'',
-        widget = forms.Select(attrs={'class': 'form-control sex_select'}),
-        choices=[('0', '小哥哥'), ('1', '萌妹子')],
+        initial = '',
+        widget = forms.TextInput(attrs={'class': 'form-control'}),
     )
 
     email = forms.EmailField(
@@ -140,6 +140,8 @@ class RegisterForm(forms.Form):
 
     def clean_username(self):
         username = self.cleaned_data['username']
+        if username == "" or username is None:
+            raise forms.ValidationError('Empty username.')
         if ' ' in username or '@' in username:
             raise forms.ValidationError('" " and "@" are invalid.')
         res = Userinfo.objects.filter(username=username)
@@ -148,13 +150,39 @@ class RegisterForm(forms.Form):
 
         return username
 
+    def clean_sex(self):
+        sex = self.cleaned_data['sex']
+        if sex == "" or sex is None:
+            raise forms.ValidationError('Empty sex.')
+        if not (sex == "0" or sex == "1" or sex == "2" or sex == "3" or sex == "4" or sex == "5" or sex == "6" or sex == "7" or sex == "8" or sex == "9" or sex == "10"):
+            raise forms.ValidationError('Code eror!')
+
+        return sex
+
     def clean_email(self):
         email = self.cleaned_data['email']
+        if email == "" or email is None:
+            raise forms.ValidationError('Empty email.')
         res = Userinfo.objects.filter(email=email)
         if (len(res) != 0):
             raise forms.ValidationError(u'Email has been registered.')
 
         return email
+
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        if password == "" or password is None:
+            raise forms.ValidationError('Empty password.')
+
+        return password
+
+
+    def clean_confirm_password(self):
+        confirm_password = self.cleaned_data['confirm_password']
+        if confirm_password == "" or confirm_password is None:
+            raise forms.ValidationError('Empty confirm_password.')
+
+        return confirm_password
 
     def clean(self):
         cleaned_data = super(RegisterForm, self).clean()

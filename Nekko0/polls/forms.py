@@ -13,19 +13,19 @@ class ArticlePublishForm(forms.Form):
     title = forms.CharField(
         label=u'Article Title',
         max_length=50,
-        widget=forms.TextInput(attrs={'class': '', 'placeholder': u'title, add ".html" at the end.'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': u'title, add ".html" at the end.'}),
     )
 
     content = forms.CharField(
         label=u'content',
         min_length=10,
-        widget=forms.Textarea(),
+        widget=forms.Textarea(attrs={'class': 'form-control'}),
     )
 
     tags = forms.CharField(
         label=u'tags',
         max_length=30,
-        widget=forms.TextInput(attrs={'class': '', 'placeholder': u'article Title, split with space.'}),
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': u'article Title, split with space.'}),
     )
 
     def save(self, username, article=None):
@@ -34,7 +34,7 @@ class ArticlePublishForm(forms.Form):
         title_zh = title
         now = datetime.datetime.now()
         content_md = cd['content']
-        content_html = markdown.markdown(cd['content'])
+        content_html = cd['content']
         re_title = '<h\d>(.+)</h\d>'
         data = content_html.split('\n')
         for line in data:
@@ -68,28 +68,42 @@ class ArticlePublishForm(forms.Form):
 
 class LoginForm(forms.Form):
     email = forms.EmailField(
+        required = False,
         label = u'邮箱',
         help_text = u'邮箱登录',
         max_length = 50,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control'}),
+        widget = forms.TextInput(attrs={'class': 'form-control my-form-control'}),
     )
 
     password = forms.CharField(
+        required = False,
         label = u'密码',
         help_text = u'请输入密码',
-        min_length = 6,
-        max_length = 18,
-        widget = forms.PasswordInput(attrs={'class': 'form-control'}),
+        max_length = 20,
+        widget = forms.PasswordInput(attrs={'class': 'form-control my-form-control'}),
     )
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        if email == "" or email is None:
+            raise forms.ValidationError('Empty email.')
+        return email
+
+    def clean_password(self):
+        password = self.cleaned_data['password']
+        if password == "" or password is None:
+            raise forms.ValidationError('Empty Password.')
+        return password
+
 
     def clean(self):
         cleaned_data = super(LoginForm, self).clean()
         email = cleaned_data.get('email')
         password = cleaned_data.get('password')
         res = Userinfo.objects.filter(email=email, password=password)
-        if (len(res) == 0):
-            raise forms.ValidationError(u'邮箱或密码错误')
+        if (len(res) == 0 and (not (password == "" or password is None))):
+            raise forms.ValidationError(u'Error email or password.')
 
 
 class RegisterForm(forms.Form):
@@ -99,7 +113,7 @@ class RegisterForm(forms.Form):
         help_text = u'昵称可用于登录',
         max_length = 20,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control my-form-control'}),
+        widget = forms.TextInput(attrs={'class': 'form-control'}),
     )
 
     sex = forms.CharField(
@@ -197,11 +211,12 @@ class RegisterForm(forms.Form):
         username = self.cleaned_data['username']
         email = self.cleaned_data['email']
         password = self.cleaned_data['password']
+        sex = self.cleaned_data['sex']
         userinfo = Userinfo(
             username = username,
             password = password,
             email = email,
-            sex = "1",
+            sex = sex,
             created_date = datetime.datetime.now(),
             level = "0",
             level_tag = u"无能力者",
@@ -211,6 +226,5 @@ class RegisterForm(forms.Form):
 
         userinfo.save()
 
-
-
-
+class MsgBoardForm(forms.Form):
+    pass

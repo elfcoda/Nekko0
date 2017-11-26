@@ -17,6 +17,7 @@ from django.views import generic
 from django.views.generic.edit import FormView
 from django.views.generic.detail import DetailView
 from forms import ArticlePublishForm, RegisterForm, LoginForm
+from django.contrib import messages
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -89,7 +90,7 @@ class ArticleListView(ListView):
 class ArticlePublishView(FormView):
     template_name = 'polls/article_publish.html'
     form_class = ArticlePublishForm
-    success_url = '..'
+    success_url = reverse_lazy('polls:blog_index')
 
     def form_valid(self, form):
         form.save(self.request.user.username)
@@ -146,10 +147,8 @@ class RegisterView(FormView):
     def form_valid(self, form):
         form.save()
         email = form.cleaned_data.get('email')
-        password = form.cleaned_data.get('password')
-        print email, password
-        # login
-        #########
+        # password = form.cleaned_data.get('password')
+        self.request.session['email'] = email
 
         return super(RegisterView, self).form_valid(form)
 
@@ -159,8 +158,38 @@ class LoginView(FormView):
     success_url = reverse_lazy('polls:blog_index')
 
     def form_valid(self, form):
+        # email = self.request.POST.get('email')
+        # messages.success(self.request, 'hreljh')
+        email = form.cleaned_data.get('email')
+        # password = form.cleaned_data.get('password')
+        self.request.session['email'] = email
+
         return super(LoginView, self).form_valid(form)
 
+def Logout(request):
+    try:
+        del request.session['email']
+    except KeyError:
+        pass
 
+    # messages.success(request, "logout!")
+    return render(request, "polls/blog_index.html")
 
+class MsgBoardListView(ListView):
+    template_name = 'polls/msgboard.html'
 
+    def get_queryset(self, **kwargs):
+        object_list = cle.objects.all().order_by(F('created').desc())
+        paginator = Paginator(object_list, 10)
+        page = self.request.GET.get('page') request 的数据kan url
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(paginator.num_pages)
+
+        return object_list
+
+class MsgBoardFormView(FormView):
+    pass

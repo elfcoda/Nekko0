@@ -1,1 +1,16 @@
 Blog List
+{% if request.session.email %}
+{{ request.session.email }}
+{% endif %}
+
+
+--------
+
+{% if messages %}
+  {% for msg in messages %}
+    {% if msg.tags %}
+      {{ msg.tags }}
+    {% endif %}
+    {{ msg }}
+  {% endfor %}
+{% endif %}

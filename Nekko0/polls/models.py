@@ -49,7 +49,7 @@ class Article(models.Model):
 class Userinfo(models.Model):
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=500)
-    email = models.CharField(max_length=100)
+    email = models.CharField(max_length=50)
     sex = models.CharField(max_length=2)
     created_date = models.DateTimeField()
     level = models.CharField(max_length=1)
@@ -60,5 +60,20 @@ class Userinfo(models.Model):
 
     def __str__(self):
         return self.username
+
+
+@python_2_unicode_compatible
+class SingleMsgBoard(models.Model):
+    msger_id = models.IntegerField()
+    msger_email = models.CharField(max_length=50)
+    msger_pub_date = models.DateTimeField()
+    msger_pub_content = models.CharField(max_length=1000)
+    msger_liked = models.IntegerField()
+
+    is_reply = models.BooleanField()
+    reply_to_username = models.CharField(max_length=20)
+
+
+
 
 

@@ -1,0 +1,17 @@
+对于评论区:
+
+文章Id(从1开始)
+留言板Id=1000
+投食区Id=1001
+
+每条评论是个序列化的字符串，格式:
+[{}, {}, {}...]
+ |
+ |
+ submsger_id
+ submsger_email
+ submsger_pub_date
+ submsger_pub_content
+ submsger_liked
+ reply_to_username(如果空，说明不是回复，否则是回复某个人)
+

@@ -179,9 +179,9 @@ class MsgBoardListView(ListView):
     template_name = 'polls/msgboard.html'
 
     def get_queryset(self, **kwargs):
-        object_list = cle.objects.all().order_by(F('created').desc())
+        object_list = []#cle.objects.all().order_by(F('created').desc())
         paginator = Paginator(object_list, 10)
-        page = self.request.GET.get('page') request 的数据kan url
+        page = self.request.GET.get('page')
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:

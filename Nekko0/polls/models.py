@@ -64,14 +64,18 @@ class Userinfo(models.Model):
 
 @python_2_unicode_compatible
 class SingleMsgBoard(models.Model):
-    msger_id = models.IntegerField()
-    msger_email = models.CharField(max_length=50)
-    msger_pub_date = models.DateTimeField()
-    msger_pub_content = models.CharField(max_length=1000)
-    msger_liked = models.IntegerField()
+    article_id = models.IntegerField()
+    msg_pickle_str = models.CharField(max_length=100000)
 
-    is_reply = models.BooleanField()
-    reply_to_username = models.CharField(max_length=20)
+    # msger_id = models.IntegerField()
+    # msger_email = models.CharField(max_length=50)
+    # msger_pub_date = models.DateTimeField()
+    # msger_pub_content = models.CharField(max_length=1000)
+    # msger_liked = models.IntegerField()
+    # reply_to_username = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.article_id
 
 
 

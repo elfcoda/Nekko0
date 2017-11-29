@@ -227,4 +227,22 @@ class RegisterForm(forms.Form):
         userinfo.save()
 
 class MsgBoardForm(forms.Form):
-    pass
+    content = forms.CharField(
+        required = False,
+        label = u'',
+        help_text = u'',
+        max_length = 2000,
+        initial = '',
+        widget = forms.TextInput(attrs={'class': 'form-control', 'id': 'reply-msg'}),
+    )
+
+    def clean_content(self):
+        content = self.cleaned_data['content']
+        if content == "" or content is None:
+            raise forms.ValidationError('Empty content.')
+
+        return content
+
+    def save(self):
+        pass
+

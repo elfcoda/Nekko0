@@ -1,54 +1,64 @@
 {% load static %}
-<link href="{% static 'polls/msgboard.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/msgboard1.css' %}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <div class="msg-board-page">
   <div class="msg-board-list">
     <div class="msg-item">
-				<div class="msg-item-left">
-				</div>
-				<div class="msg-item-right">
-						<div class="msg-item-right-main-content">
-								<div class="msg-title">
-                  <div class="msg-name">Helllloooooooo!!!</div>
-                  <div class="msg-level-head"></div>
-                  <div class="msg-level-body"></div>
-                </div>
-								<div class="msg-content">hhhhhhhhhhhhhhhh</div>
-								<div class="msg-addition">This is Addition.</div>
-						</div>
-						<div class="msg-item-reply">
-								<div class="msg-reply-left"></div>
-								<div class="msg-reply-right">
-								  <div class="msg-title">
+		<div class="msg-item-left">
+		</div>
+		<div class="msg-item-right">
+			<div class="msg-item-right-main-content">
+				<div class="msg-title">
                     <div class="msg-name">Helllloooooooo!!!</div>
                     <div class="msg-level-head"></div>
                     <div class="msg-level-body"></div>
-                  </div>
-								  <div class="msg-content">this is content</div>
-								  <div class="msg-addition">this is addi</div>
-								</div>
+                </div>
+				<div class="msg-content">hhhhhhhhhhhhhhhh</div>
+					<div class="msg-addition">This is Addition.</div>
+					</div>
+					<div class="msg-item-reply">
+						<div class="msg-reply-left"></div>
+							<div class="msg-reply-right">
+						        <div class="msg-title">
+                                    <div class="msg-name">Helllloooooooo!!!</div>
+                                    <div class="msg-level-head"></div>
+                                    <div class="msg-level-body"></div>
+                                </div>
+								    <div class="msg-content">this is content</div>
+                                    <div class="msg-addition">this is addi<a href="">回复</a></div>
+							</div>
 						</div>
 
 						<div class="msg-item-reply">
-								<div class="msg-reply-left"></div>
+							<div class="msg-reply-left"></div>
 								<div class="msg-reply-right">
-								  <div class="msg-title">
-                    <div class="msg-name">Helllloooooooo!!!</div>
-                    <div class="msg-level-head"></div>
-                    <div class="msg-level-body"></div>
-                  </div>
-								  <div class="msg-content">this is content</div>
-								  <div class="msg-addition">this is addi</div>
+								    <div class="msg-title">
+                                        <div class="msg-name">Helllloooooooo!!!</div>
+                                        <div class="msg-level-head"></div>
+                                        <div class="msg-level-body"></div>
+                                    </div>
+								    <div class="msg-content">this is content</div>
+								    <div class="msg-addition">this is addi</div>
 								</div>
 						</div>
-				</div>
-		</div>
-    <div class="msg-item">
-		</div>
-    <div class="leave-margin-bottom">
+                        <!-- 最后一条回复后面 -->
+                            <form class="reply-display" id="reply-form" method="post" action="">{% csrf_token %}
+                                <div class="form-group">
+                                    {{ form.content }}
+                                    <input type="submit" value="ok">
+                                </div>
+                            </form>
+        			</div>
+		        </div>
+                <div class="msg-item">
+        		</div>
+                <div class="leave-margin-bottom">
+                </div>
+        </div>
+    <div class="">
     </div>
-  </div>
-	<div class="">
-	</div>
 </div>
+
 

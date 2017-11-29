@@ -10,13 +10,13 @@ from .models import Question, Choice
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import F
 from django.views.generic.list import ListView
-from models import Article
+from models import Article, SingleMsgBoard
 # from django.urls import reverse
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views import generic
 from django.views.generic.edit import FormView
 from django.views.generic.detail import DetailView
-from forms import ArticlePublishForm, RegisterForm, LoginForm
+from forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm
 from django.contrib import messages
 
 def index(request):
@@ -175,11 +175,13 @@ def Logout(request):
     # messages.success(request, "logout!")
     return render(request, "polls/blog_index.html")
 
-class MsgBoardListView(ListView):
+class MsgBoardListView(ListView, FormView):
     template_name = 'polls/msgboard.html'
+    form_class = MsgBoardForm
+    success_url = reverse_lazy('polls:msgboard', kwargs={"page":0})
 
     def get_queryset(self, **kwargs):
-        object_list = []#cle.objects.all().order_by(F('created').desc())
+        object_list = SingleMsgBoard.objects.all().order_by(F('article_id').desc())
         paginator = Paginator(object_list, 10)
         page = self.request.GET.get('page')
         try:
@@ -190,6 +192,9 @@ class MsgBoardListView(ListView):
             object_list = paginator.page(paginator.num_pages)
 
         return object_list
+
+    def form_valid(self, form):
+        return FormView.form_valid(self, form)
 
 class MsgBoardFormView(FormView):
     pass

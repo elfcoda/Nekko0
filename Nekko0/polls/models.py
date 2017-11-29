@@ -65,7 +65,7 @@ class Userinfo(models.Model):
 @python_2_unicode_compatible
 class SingleMsgBoard(models.Model):
     article_id = models.IntegerField()
-    msg_pickle_str = models.CharField(max_length=100000)
+    msg_pickle_str = models.CharField(max_length=20000)
 
     # msger_id = models.IntegerField()
     # msger_email = models.CharField(max_length=50)
@@ -76,7 +76,6 @@ class SingleMsgBoard(models.Model):
 
     def __str__(self):
         return self.article_id
-
 
 
 

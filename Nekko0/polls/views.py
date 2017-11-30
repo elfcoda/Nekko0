@@ -194,6 +194,7 @@ class MsgBoardListView(ListView, FormView):
         return object_list
 
     def form_valid(self, form):
+        form.save()
         return FormView.form_valid(self, form)
 
 class MsgBoardFormView(FormView):

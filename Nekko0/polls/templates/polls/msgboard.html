@@ -1,10 +1,18 @@
 {% load static %}
-<link href="{% static 'polls/msgboard1.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/msgboard2.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <div class="msg-board-page">
   <div class="msg-board-list">
+      <div class="msg-item">
+        <form class="reply-display-comment" name="reply-form-comment" method="post" action="">{% csrf_token %}
+            <div class="form-group">
+                {{ form.content }}
+                <input type="submit" value="ok">
+            </div>
+        </form>
+      </div>
     <div class="msg-item">
 		<div class="msg-item-left">
 		</div>
@@ -44,7 +52,7 @@
 								</div>
 						</div>
                         <!-- 最后一条回复后面 -->
-                            <form class="reply-display" id="reply-form" method="post" action="">{% csrf_token %}
+                            <form class="reply-display" name="reply-form" method="post" action="">{% csrf_token %}
                                 <div class="form-group">
                                     {{ form.content }}
                                     <input type="submit" value="ok">

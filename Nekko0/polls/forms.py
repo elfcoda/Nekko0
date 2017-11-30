@@ -3,10 +3,11 @@
 
 import datetime
 import re
+import pickle
 
 from django import forms
 
-from models import Article, Userinfo
+from models import Article, Userinfo, SingleMsgBoard
 
 
 class ArticlePublishForm(forms.Form):
@@ -233,7 +234,7 @@ class MsgBoardForm(forms.Form):
         help_text = u'',
         max_length = 2000,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control', 'id': 'reply-msg'}),
+        widget = forms.TextInput(attrs={'class': 'form-control', 'name': 'reply-msg'}),
     )
 
     def clean_content(self):
@@ -244,5 +245,18 @@ class MsgBoardForm(forms.Form):
         return content
 
     def save(self):
-        pass
+        # 评论
+        content = self.cleaned_data['content']
+        msg_list = [[101, "1@q.com", "2017-2-21", content, 21, ""]]
+        sMsgList = pickle.dumps(msg_list)
+        iArticleId = 1001
+
+        single_msg_board = SingleMsgBoard(
+            article_id = iArticleId,
+            msg_pickle_str = sMsgList
+        )
+        single_msg_board.save()
+
+        # 回复...
+
 

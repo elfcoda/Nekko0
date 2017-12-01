@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+import pickle
 
 # Create your views here.
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -181,7 +182,7 @@ class MsgBoardListView(ListView, FormView):
     success_url = reverse_lazy('polls:msgboard', kwargs={"page":0})
 
     def get_queryset(self, **kwargs):
-        object_list = SingleMsgBoard.objects.all().order_by(F('article_id').desc())
+        object_list = SingleMsgBoard.objects.filter(article_id=1001).order_by(F('id').desc())
         paginator = Paginator(object_list, 10)
         page = self.request.GET.get('page')
         try:
@@ -191,7 +192,11 @@ class MsgBoardListView(ListView, FormView):
         except EmptyPage:
             object_list = paginator.page(paginator.num_pages)
 
-        return object_list
+        ret_object_list = []
+        for pickled_msg in object_list:
+            ret_object_list.append([pickled_msg.id, pickle.loads(pickled_msg.msg_pickle_str)])
+            # print pickle.loads(pickled_msg.msg_pickle_str)
+        return ret_object_list
 
     def form_valid(self, form):
         form.save()

@@ -244,19 +244,35 @@ class MsgBoardForm(forms.Form):
 
         return content
 
-    def save(self):
+    # replyId: message id in the model
+    def save(self, replyId):
         # 评论
-        content = self.cleaned_data['content']
-        msg_list = [[101, "1@q.com", "2017-2-21", content, 21, ""]]
-        sMsgList = pickle.dumps(msg_list)
-        iArticleId = 1001
+        if replyId == -1:
+            content = self.cleaned_data['content']
+            msg_list = [[3, "1@q.com", "2017-2-21", content, 21, ""]]
+            sMsgList = pickle.dumps(msg_list)
+            iArticleId = 1001
 
-        single_msg_board = SingleMsgBoard(
-            article_id = iArticleId,
-            msg_pickle_str = sMsgList
-        )
-        single_msg_board.save()
+            single_msg_board = SingleMsgBoard(
+                article_id = iArticleId,
+                msg_pickle_str = sMsgList
+            )
+            single_msg_board.save()
 
         # 回复...
+        else:
+            content = self.cleaned_data['content']
+            reply_item = [5, "105@q.com", "2017-2-11", content, 1, "3"]
+            comment_msg = SingleMsgBoard.objects.get(id=replyId)
+            # print comment_msg
+            list_item = pickle.loads(comment_msg.msg_pickle_str)
+            print list_item
+            list_item.append(reply_item)
+            print list_item
+            sMsgList = pickle.dumps(list_item)
+            comment_msg.msg_pickle_str = sMsgList
+            comment_msg.save()
+
+
 
 

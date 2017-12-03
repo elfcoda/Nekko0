@@ -8,10 +8,14 @@
 [[], [], []...]
  |
  |
- submsger_id
- submsger_email
- submsger_pub_date
- submsger_pub_content
- submsger_liked
- reply_to_username(如果空，说明不是回复，否则是回复某个人)
+ 0 submsger_id
+ 1 submsger_email
+ 2 submsger_pub_date
+ 3 submsger_pub_content
+ 4 submsger_liked
+ 5 reply_to_username(如果空，说明不是回复，否则是回复某个人)
 
+
+append_list =
+[userInfo.username, userInfo.sex, userInfo.level, userInfo.level_tag, userInfo.avatar_url]
+ 6                  7               8               9                   10

@@ -11,7 +11,7 @@ from .models import Question, Choice
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import F
 from django.views.generic.list import ListView
-from models import Article, SingleMsgBoard
+from models import Article, SingleMsgBoard, Userinfo
 # from django.urls import reverse
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.views import generic
@@ -194,12 +194,22 @@ class MsgBoardListView(ListView, FormView):
 
         ret_object_list = []
         for pickled_msg in object_list:
-            ret_object_list.append([pickled_msg.id, pickle.loads(pickled_msg.msg_pickle_str)])
+            pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
+            # get userinfo by userid
+            for pickle_reply_list_item in pickle_reply_list:
+                userid = pickle_reply_list_item[0]
+                userInfo = Userinfo.objects.get(id=userid)
+                # 加入username, sex, level, level_tag, avatar_url
+                append_list = [userInfo.username, userInfo.sex, userInfo.level, \
+                               userInfo.level_tag, userInfo.avatar_url]
+                pickle_reply_list_item += append_list
+
+            ret_object_list.append([pickled_msg.id, pickle_reply_list[0], pickle_reply_list[1:]])
             # print pickle.loads(pickled_msg.msg_pickle_str)
         return ret_object_list
 
     def form_valid(self, form):
-        form.save()
+        form.save(8)
         return FormView.form_valid(self, form)
 
 class MsgBoardFormView(FormView):

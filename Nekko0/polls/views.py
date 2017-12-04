@@ -148,8 +148,9 @@ class RegisterView(FormView):
     def form_valid(self, form):
         form.save()
         email = form.cleaned_data.get('email')
+        userId = Userinfo.objects.get(email=email).id
+        self.request.session['userId'] = userId
         # password = form.cleaned_data.get('password')
-        self.request.session['email'] = email
 
         return super(RegisterView, self).form_valid(form)
 
@@ -163,13 +164,14 @@ class LoginView(FormView):
         # messages.success(self.request, 'hreljh')
         email = form.cleaned_data.get('email')
         # password = form.cleaned_data.get('password')
-        self.request.session['email'] = email
+        userId = Userinfo.objects.get(email=email).id
+        self.request.session['userId'] = userId
 
         return super(LoginView, self).form_valid(form)
 
 def Logout(request):
     try:
-        del request.session['email']
+        del request.session['userId']
     except KeyError:
         pass
 
@@ -204,12 +206,19 @@ class MsgBoardListView(ListView, FormView):
                                userInfo.level_tag, userInfo.avatar_url]
                 pickle_reply_list_item += append_list
 
-            ret_object_list.append([pickled_msg.id, pickle_reply_list[0], pickle_reply_list[1:]])
+            ret_object_list.append([pickled_msg.id, pickled_msg.article_id, pickle_reply_list[0], pickle_reply_list[1:]])
             # print pickle.loads(pickled_msg.msg_pickle_str)
         return ret_object_list
 
     def form_valid(self, form):
-        form.save(8)
+        commentId = int(self.request.POST.get('reply-form-commentid'))
+        replyToName = self.request.POST.get('reply-form-replyto-name')
+        articleId = 1001
+        try:
+            userId = self.request.session['userId']
+        except KeyError:
+            userId = -1
+        form.save(userId, articleId, commentId, replyToName)
         return FormView.form_valid(self, form)
 
 class MsgBoardFormView(FormView):

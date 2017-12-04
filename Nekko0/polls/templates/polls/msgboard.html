@@ -4,8 +4,24 @@
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-    function reply(reply_id){
-        getElementsByName("reply-form").style.display = "none";
+    function reply(comment_id, reply_id){
+        var reply_forms = document.getElementsByName("reply-form");
+        var iCount = reply_forms.length;
+        for (var i = 0; i < iCount; ++i)
+        {
+            reply_forms[i].style.display = "none";
+        }
+        document.getElementById("reply-form-" + comment_id).style.display = "block";
+        var reply_name = "";
+        if (reply_id == "-1")
+        {
+            reply_name = document.getElementById("comment-name-" + comment_id).innerHTML;
+        }
+        else
+        {
+            reply_name = document.getElementById("reply-name-" + comment_id  + "-" + reply_id).innerHTML;
+        }
+        document.getElementById("reply-form-name-" + comment_id).value = reply_name;
     }
 </script>
 
@@ -13,9 +29,11 @@
   <div class="msg-board-list">
       <div class="msg_item-outer-margin">
       <div class="msg-item">
-        <form class="reply-display-comment" name="reply-form-comment" method="post" action="">{% csrf_token %}
+        <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">{% csrf_token %}
             <div class="form-group">
                 {{ form.content }}
+                <input type="text" name="reply-form-replyto-name" value="" id="reply-form-comment-name"></input>
+                <input type="text" name="reply-form-commentid" value="-1"></input>
                 <input type="submit" value="ok">
             </div>
         </form>
@@ -30,32 +48,35 @@
 		<div class="msg-item-right">
 			<div class="msg-item-right-main-content">
 				<div class="msg-title">
-                    <div class="msg-name">Helllloooooooo!!!</div>
+                    <div class="msg-name" id="comment-name-{{ object.0 }}">Helllloooooooo!!!</div>
                     <div class="msg-level-head"></div>
                     <div class="msg-level-body"></div>
                 </div>
-                <div class="msg-content">{{ object.1.3 }}</div>
-                <div class="msg-addition">This is Addition.{{ object.1.0.0 }}</div>
+                <div class="msg-content">{{ object.2.3 }}</div>
+                <div class="msg-addition">This is Addition.<a onclick="reply({{ object.0 }}, -1)">回复</a></div>
 			</div>
-                    {% for reply_item in object.2 %}
+                    {% for reply_item in object.3 %}
 					<div class="msg-item-reply">
 						<div class="msg-reply-left"></div>
 						<div class="msg-reply-right">
 					        <div class="msg-title">
-                                <div class="msg-name">{{ reply_item.id }}回复{{ reply_item.5 }}</div>
+                                <div class="msg-name" id="reply-name-{{ object.0 }}-{{ forloop.counter }}">{{ reply_item.6 }}</div>
+                                <div class="msg-name">回复{{ reply_item.5 }}</div>
                                 <div class="msg-level-head">Lv{{ reply_item.8 }}</div>
                                 <div class="msg-level-body"></div>
                             </div>
                             <div class="msg-content">{{ reply_item.3 }}</div>
-                            <div class="msg-addition">this is addi<a onclick="reply()">回复</a></div>
+                            <div class="msg-addition">this is addi<a onclick="reply({{ object.0 }}, {{ forloop.counter }})">回复</a></div>
 						</div>
 					</div>
                     {% endfor %}
-                        <form class="reply-display" id="" name="reply-form" method="post" action="">
+                    <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
                             {% csrf_token %}
                             <div class="form-group">
                                 {{ form.content }}
-                                <input type="submit" value="ok">
+                                <input type="text" name="reply-form-replyto-name" value="" id="reply-form-name-{{ object.0 }}"></input>
+                                <input type="text" name="reply-form-commentid" value="{{ object.0 }}"></input>
+                                <input type="submit" value="ok"></input>
                             </div>
                         </form>
                         <!-- 最后一条回复后面 -->

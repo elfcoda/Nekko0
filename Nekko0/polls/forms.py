@@ -244,14 +244,16 @@ class MsgBoardForm(forms.Form):
 
         return content
 
-    # replyId: message id in the model
-    def save(self, replyId):
+    # commentId: message id in the model
+    def save(self, userId, iArticleId, commentId, replyToName):
+        if userId == -1:
+            return
         # 评论
-        if replyId == -1:
+        if commentId == -1:
             content = self.cleaned_data['content']
-            msg_list = [[3, "1@q.com", "2017-2-21", content, 21, ""]]
+            msg_list = [[userId, "", str(datetime.datetime.now()), content, 0, replyToName]]
             sMsgList = pickle.dumps(msg_list)
-            iArticleId = 1001
+            iArticleId = iArticleId
 
             single_msg_board = SingleMsgBoard(
                 article_id = iArticleId,
@@ -262,8 +264,8 @@ class MsgBoardForm(forms.Form):
         # 回复...
         else:
             content = self.cleaned_data['content']
-            reply_item = [5, "105@q.com", "2017-2-11", content, 1, "3"]
-            comment_msg = SingleMsgBoard.objects.get(id=replyId)
+            reply_item = [userId, "", str(datetime.datetime.now()), content, 0, replyToName]
+            comment_msg = SingleMsgBoard.objects.get(id=commentId)
             # print comment_msg
             list_item = pickle.loads(comment_msg.msg_pickle_str)
             print list_item

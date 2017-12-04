@@ -218,8 +218,12 @@ class MsgBoardListView(ListView, FormView):
             userId = self.request.session['userId']
         except KeyError:
             userId = -1
+            # modify success url
         form.save(userId, articleId, commentId, replyToName)
         return FormView.form_valid(self, form)
 
 class MsgBoardFormView(FormView):
     pass
+
+
+

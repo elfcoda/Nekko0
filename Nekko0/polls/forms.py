@@ -268,9 +268,9 @@ class MsgBoardForm(forms.Form):
             comment_msg = SingleMsgBoard.objects.get(id=commentId)
             # print comment_msg
             list_item = pickle.loads(comment_msg.msg_pickle_str)
-            print list_item
+            # print list_item
             list_item.append(reply_item)
-            print list_item
+            # print list_item
             sMsgList = pickle.dumps(list_item)
             comment_msg.msg_pickle_str = sMsgList
             comment_msg.save()

@@ -182,11 +182,16 @@ class MsgBoardListView(ListView, FormView):
     template_name = 'polls/msgboard.html'
     form_class = MsgBoardForm
     success_url = reverse_lazy('polls:msgboard', kwargs={"page":0})
+    # articleId = -1
+    # 如果是留言板，id必须传1001过来
 
     def get_queryset(self, **kwargs):
+        page = self.request.GET.get('page')
+        print page
+        # self.articleId = 1001   # self.request.GET.get('articleId')
+        # print self.articleId
         object_list = SingleMsgBoard.objects.filter(article_id=1001).order_by(F('id').desc())
         paginator = Paginator(object_list, 10)
-        page = self.request.GET.get('page')
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -216,9 +221,11 @@ class MsgBoardListView(ListView, FormView):
         articleId = 1001
         try:
             userId = self.request.session['userId']
+            print userId
         except KeyError:
             userId = -1
             # modify success url
+            self.success_url = reverse('polls:login')
         form.save(userId, articleId, commentId, replyToName)
         return FormView.form_valid(self, form)
 

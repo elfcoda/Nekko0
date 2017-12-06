@@ -22,6 +22,7 @@
                 var e = document.getElementById(id);
                 e.style.display = "inline-block";
                 e.innerHTML = i;
+                e.href = "{% url 'polls:login' %}";
             }
         }
         else

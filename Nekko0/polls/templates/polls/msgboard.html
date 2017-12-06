@@ -1,9 +1,80 @@
+<!DOCTYPE html>
+<html>
 {% load static %}
-<link href="{% static 'polls/msgboard4.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/msgboard5.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+    function load(){
+        //固定显示7页
+        var show_max = 7;
+        var msg = document.getElementById("hidden-messages").firstElementChild.innerHTML;
+        var all_page_num = msg.split('_')[0];
+        var cur_page = msg.split('_')[1];
+        document.getElementById('previous').style.display = "inline-block";
+        document.getElementById('next').style.display = "inline-block";
+        if (all_page_num <= show_max)
+        {
+            for (var i = 1; i <= all_page_num; ++i)
+            {
+                var id = "page" + i;
+                var e = document.getElementById(id);
+                e.style.display = "inline-block";
+                e.innerHTML = i;
+            }
+        }
+        else
+        {
+            //判断当前页和总页
+            //1 2 3 4 5 6 7 8 9 10
+            var half = Math.round(show_max / 2);
+            if (cur_page <= half)
+            {
+                //显示前面showmnax页
+                for (var p_n = 1; p_n <= show_max; p_n ++)
+                {
+                    var p_id = "page" + p_n;
+                    var p_e = document.getElementById(p_id);
+                    p_e.style.display = "inline-block";
+                    p_e.innerHTML = p_n;
+                }
+            }
+            else if (cur_page > all_page_num-half)
+            {
+                //显示后面showmax页
+                for (var b_n = all_page_num-show_max+1, b_i = 1; b_n <= all_page_num, b_i <= show_max; b_n ++, b_i ++)
+                {
+                    var b_id = "page" + b_i;
+                    var b_e = document.getElementById(b_id);
+                    b_e.style.display = "inline-block";
+                    b_e.innerHTML = b_n;
+                }
+            }
+            else
+            {
+                // eg:5 6, 显示前三 当前 后三
+                for (var m1_i = 1, m1_n = cur_page-half+1; m1_i <= half-1, m1_n < cur_page; m1_i ++, m1_n ++)
+                {
+                    var m1_id = "page" + m1_i;
+                    var m1_e = document.getElementById(m1_id);
+                    m1_e.style.display = "inline-block";
+                    m1_e.innerHTML = m1_n;
+                }
+                var m2_e = document.getElementById("page4");
+                m2_e.style.display = "inline-block";
+                m2_e.innerHTML = cur_page;
+                for (var m3_i = show_max-half+2, m3_n = cur_page+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
+                {
+                    var m3_id = "page" + m3_i;
+                    var m3_e = document.getElementById(m3_id);
+                    m3_e.style.display = "inline-block";
+                    m3_e.innerHTML = m3_n;
+                }
+            }
+        }
+    }
+
     function reply(comment_id, reply_id){
         var reply_forms = document.getElementsByName("reply-form");
         var iCount = reply_forms.length;
@@ -26,6 +97,7 @@
     }
 </script>
 
+<body onload="load()">
 <div class="msg-board-page">
   <div class="msg-board-list">
       <div class="msg_item-outer-margin">
@@ -85,6 +157,20 @@
 		        </div>
                 <!-- one comment end -->
                 {% endfor %}
+                <div class="pag-center">
+                    <div class="pagination">
+                        <a href="#" id="previous">&laquo;</a>
+                        <a href="#" id="page1">1</a>
+                        <a href="#" id="page2"class="active">2</a>
+                        <a href="#" id="page3">3</a>
+                        <a href="#" id="page4">4</a>
+                        <a href="#" id="page5">5</a>
+                        <a href="#" id="page6">6</a>
+                        <a href="#" id="page7">7</a>
+                        <a href="#" id="next">&raquo;</a>
+                    </div>
+                </div>
+
                 </div>
                 <div class="leave-margin-bottom">
                 </div>
@@ -93,4 +179,10 @@
     </div>
 </div>
 
-
+<div class="hidden-messages" id="hidden-messages">
+    {% for m in messages %}
+    <div>{{ m }}</div>
+    {% endfor %}
+</div>
+</body>
+</html>

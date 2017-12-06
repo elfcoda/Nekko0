@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^article/(?P<title>\w+\.?\w+)/edit$', ArticleEditView.as_view(), name='article_edit'),
 
     # 留言板
-    url(r'^msgboard/(?P<page>[0-9]+)$', MsgBoardListView.as_view(), name='msgboard'),
+    url(r'^msgboard/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', MsgBoardListView.as_view(), name='msgboard'),
     # url(r'^msgboard/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', MsgBoardListView.as_view(), name='msgboard'),
 
     # url(r'^)

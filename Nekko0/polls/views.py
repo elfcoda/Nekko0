@@ -181,17 +181,18 @@ def Logout(request):
 class MsgBoardListView(ListView, FormView):
     template_name = 'polls/msgboard.html'
     form_class = MsgBoardForm
-    success_url = reverse_lazy('polls:msgboard', kwargs={"page":0})
-    # articleId = -1
+    success_url = reverse_lazy('polls:msgboard',\
+                               kwargs={"page":0, "articleId":1001})
+    articleId = -1
     # 如果是留言板，id必须传1001过来
 
     def get_queryset(self, **kwargs):
-        page = self.request.GET.get('page')
-        print page
-        # self.articleId = 1001   # self.request.GET.get('articleId')
+        page = self.kwargs.get('page')
+        # print page
+        self.articleId = self.kwargs.get('articleId')
         # print self.articleId
-        object_list = SingleMsgBoard.objects.filter(article_id=1001).order_by(F('id').desc())
-        paginator = Paginator(object_list, 10)
+        object_list = SingleMsgBoard.objects.filter(article_id=self.articleId).order_by(F('id').desc())
+        paginator = Paginator(object_list, 2)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -200,6 +201,11 @@ class MsgBoardListView(ListView, FormView):
             object_list = paginator.page(paginator.num_pages)
 
         ret_object_list = []
+        # message: cur Page && all page num
+        # print paginator.num_pages
+        # print page
+        messages.info(self.request, str(paginator.num_pages) + '_' + str(page))
+
         for pickled_msg in object_list:
             pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
             # get userinfo by userid
@@ -218,7 +224,7 @@ class MsgBoardListView(ListView, FormView):
     def form_valid(self, form):
         commentId = int(self.request.POST.get('reply-form-commentid'))
         replyToName = self.request.POST.get('reply-form-replyto-name')
-        articleId = 1001
+        articleId = self.articleId
         try:
             userId = self.request.session['userId']
             print userId

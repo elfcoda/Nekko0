@@ -182,15 +182,16 @@ class MsgBoardListView(ListView, FormView):
     template_name = 'polls/msgboard.html'
     form_class = MsgBoardForm
     success_url = reverse_lazy('polls:msgboard',\
-                               kwargs={"page":0, "articleId":1001})
+                               kwargs={"page":1, "articleId":1001})
     articleId = -1
     # 如果是留言板，id必须传1001过来
 
     def get_queryset(self, **kwargs):
+        print "233"
         page = self.kwargs.get('page')
         # print page
         self.articleId = self.kwargs.get('articleId')
-        # print self.articleId
+        print self.articleId
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId).order_by(F('id').desc())
         paginator = Paginator(object_list, 2)
         try:
@@ -204,7 +205,8 @@ class MsgBoardListView(ListView, FormView):
         # message: cur Page && all page num
         # print paginator.num_pages
         # print page
-        messages.info(self.request, str(paginator.num_pages) + '_' + str(page))
+        messages.info(self.request, str(paginator.num_pages) + '_' + str(page) + \
+                      '_' + str(self.articleId))
 
         for pickled_msg in object_list:
             pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
@@ -224,10 +226,13 @@ class MsgBoardListView(ListView, FormView):
     def form_valid(self, form):
         commentId = int(self.request.POST.get('reply-form-commentid'))
         replyToName = self.request.POST.get('reply-form-replyto-name')
-        articleId = self.articleId
+        articleId = int(self.request.POST.get('get-article-id'))
+        pageId = int(self.request.POST.get('get-page'))
         try:
             userId = self.request.session['userId']
             print userId
+            self.success_url = reverse('polls:msgboard',\
+                                       kwargs={"page":pageId, "articleId":articleId})
         except KeyError:
             userId = -1
             # modify success url

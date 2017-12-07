@@ -240,8 +240,10 @@ class MsgBoardForm(forms.Form):
     def clean_content(self):
         content = self.cleaned_data['content']
         if content == "" or content is None:
+            # print "Empty"
             raise forms.ValidationError('Empty content.')
 
+        # print "Not Empty"
         return content
 
     # commentId: message id in the model

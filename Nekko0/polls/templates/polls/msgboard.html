@@ -12,6 +12,23 @@
         var msg = document.getElementById("hidden-messages").firstElementChild.innerHTML;
         var all_page_num = msg.split('_')[0];
         var cur_page = msg.split('_')[1];
+        var article_id = msg.split('_')[2];
+        //回传ArticleId(用于表单提交)
+        var getArticleIds = document.getElementsByName("get-article-id");
+        var iFormSize = getArticleIds.length;
+        for (var ar_i = 0; ar_i < iFormSize; ar_i ++)
+        {
+            getArticleIds[ar_i].value = article_id;
+        }
+        //回传page(用于表单提交)
+        var getPageReplys = document.getElementsByName("get-page");
+        var iPageReplySize = getPageReplys.length;
+        for (var gPareply_i = 0; gPareply_i < iPageReplySize; gPareply_i ++)
+        {
+            getPageReplys[gPareply_i].value = cur_page;
+        }
+        document.getElementById("get-page-comment").value = "1";
+
         document.getElementById('previous').style.display = "inline-block";
         document.getElementById('next').style.display = "inline-block";
         if (all_page_num <= show_max)
@@ -22,7 +39,12 @@
                 var e = document.getElementById(id);
                 e.style.display = "inline-block";
                 e.innerHTML = i;
-                e.href = "{% url 'polls:login' %}";
+                //e.href = "{% url 'polls:msgboard' page=1 articleId=1001 %}";
+                e.href = "/polls/msgboard/" + article_id + "/" + i;
+                if (i == cur_page)
+                {
+                    e.setAttribute('class', 'active');
+                }
             }
         }
         else
@@ -39,6 +61,11 @@
                     var p_e = document.getElementById(p_id);
                     p_e.style.display = "inline-block";
                     p_e.innerHTML = p_n;
+                    p_e.href = "/polls/msgboard/" + article_id + "/" + p_n;
+                    if (cur_page == p_n)
+                    {
+                        p_e.setAttribute('class', 'active');
+                    }
                 }
             }
             else if (cur_page > all_page_num-half)
@@ -50,6 +77,11 @@
                     var b_e = document.getElementById(b_id);
                     b_e.style.display = "inline-block";
                     b_e.innerHTML = b_n;
+                    b_e.href = "/polls/msgboard/" + article_id + "/" + b_n;
+                    if (cur_page == b_n)
+                    {
+                        b_e.setAttribute('class', 'active');
+                    }
                 }
             }
             else
@@ -61,16 +93,20 @@
                     var m1_e = document.getElementById(m1_id);
                     m1_e.style.display = "inline-block";
                     m1_e.innerHTML = m1_n;
+                    m1_e.href = "/polls/msgboard/" + article_id + "/" + m1_n;
                 }
                 var m2_e = document.getElementById("page4");
                 m2_e.style.display = "inline-block";
                 m2_e.innerHTML = cur_page;
+                m2_e.setAttribute('class', 'active');
+                m2_e.href = "/polls/msgboard/" + article_id + "/" + cur_page;
                 for (var m3_i = show_max-half+2, m3_n = cur_page+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
                 {
                     var m3_id = "page" + m3_i;
                     var m3_e = document.getElementById(m3_id);
                     m3_e.style.display = "inline-block";
                     m3_e.innerHTML = m3_n;
+                    m3_e.href = "/polls/msgboard/" + article_id + "/" + m3_n;
                 }
             }
         }
@@ -104,10 +140,15 @@
       <div class="msg_item-outer-margin">
       <div class="msg-item">
         <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">{% csrf_token %}
-            <div class="form-group">
+            <div class="form-group {% if form.content.errors %} has-error {% endif %}">
+                {% if form.content.errors %}
+                <span class="text-danger pull-right">{{ form.content.errors }}</span>
+                {% endif %}
                 {{ form.content }}
                 <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-comment-name"></input>
                 <input type="hidden" name="reply-form-commentid" value="-1"></input>
+                <input type="hidden" name="get-article-id" value=""></input>
+                <input type="hidden" name="get-page" id="get-page-comment" value="1"></input>
                 <input type="submit" value="ok">
             </div>
         </form>
@@ -146,10 +187,15 @@
                     {% endfor %}
                     <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
                             {% csrf_token %}
-                            <div class="form-group">
+                            <div class="form-group {% if form.content.errors %} has-error {% endif %}">
+                                {% if form.content.errors %}
+                                <span class="text-danger pull-right">{{ form.content.errors }}</span>
+                                {% endif %}
                                 {{ form.content }}
                                 <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-name-{{ object.0 }}"></input>
                                 <input type="hidden" name="reply-form-commentid" value="{{ object.0 }}"></input>
+                                <input type="hidden" name="get-article-id" value=""></input>
+                                <input type="hidden" name="get-page" value=""></input>
                                 <input type="submit" value="ok"></input>
                             </div>
                     </form>
@@ -162,7 +208,7 @@
                     <div class="pagination">
                         <a href="#" id="previous">&laquo;</a>
                         <a href="#" id="page1">1</a>
-                        <a href="#" id="page2"class="active">2</a>
+                        <a href="#" id="page2">2</a>
                         <a href="#" id="page3">3</a>
                         <a href="#" id="page4">4</a>
                         <a href="#" id="page5">5</a>

@@ -4,14 +4,21 @@
 .msg-board-page {
   width:1200px;
 	height:auto;
-	background:rgba(200, 200, 200, 0.3);
+	background:rgba(200, 200, 200, 0.9);
+  top:30px;
+  position:relative;
+  margin:auto;
 }
 
 .msg-board-list {
-  width:75%;
+  width:80%;
   height:auto;
-  background:#FaF;
-  border-radius:3px;
+  margin-left:10%;
+  margin-bottom:30px;
+  background:#Fa5;
+  border-radius:6px;
+  top:10px;
+  position:relative;
   float:left;
 }
 
@@ -24,8 +31,8 @@
   width:100%;
 	margin-left:0%;
 	margin-top:20px;
-  background:red;
-	border-radius:3px;
+  background:rgba(200, 0, 0, 0.3);
+	border-radius:6px;
   float:left;
 	height:auto;
 
@@ -87,7 +94,7 @@
 }
 
 .msg-addition {
-  background:#cc3;
+  background:rgba(125, 125, 125, 0.1);
   width:100%;
   height:auto;
 }
@@ -108,12 +115,13 @@
 }
 
 .msg-reply-right {
-  background:#aaa;
+  background:#a39;
   height:auto;
   width:90%;
   float:right;
   display:flex;
   flex-direction:column;
+  border-radius:10px;
 }
 
 .reply-display {
@@ -149,7 +157,13 @@
   border: 1px solid #4CAF50;
 }
 
-.pagination a:hover:not(.active) {background-color:#ddd;}
+.pagination a:hover:not(.active) {
+  background-color:#ddd;
+}
+
+.pagination a:hover {
+  text-decoration: none;
+}
 
 .hidden-messages {
   display:none;
@@ -158,3 +172,8 @@
 .pagination a {
   display:none;
 }
+
+.hidden-span {
+  display:none;
+}
+

@@ -193,7 +193,7 @@ class MsgBoardListView(ListView, FormView):
         self.articleId = self.kwargs.get('articleId')
         print self.articleId
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId).order_by(F('id').desc())
-        paginator = Paginator(object_list, 2)
+        paginator = Paginator(object_list, 7)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:

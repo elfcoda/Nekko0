@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
-<link href="{% static 'polls/msgboard5.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/msgboard6.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -29,8 +29,11 @@
         }
         document.getElementById("get-page-comment").value = "1";
 
-        document.getElementById('previous').style.display = "inline-block";
-        document.getElementById('next').style.display = "inline-block";
+        document.getElementById('first-page').style.display = "inline-block";
+        document.getElementById('first-page').href = "/polls/msgboard/" + article_id + "/1";
+        document.getElementById('last-page').style.display = "inline-block";
+        document.getElementById('last-page').href = "/polls/msgboard/" + article_id + "/" + all_page_num;
+
         if (all_page_num <= show_max)
         {
             for (var i = 1; i <= all_page_num; ++i)
@@ -39,7 +42,6 @@
                 var e = document.getElementById(id);
                 e.style.display = "inline-block";
                 e.innerHTML = i;
-                //e.href = "{% url 'polls:msgboard' page=1 articleId=1001 %}";
                 e.href = "/polls/msgboard/" + article_id + "/" + i;
                 if (i == cur_page)
                 {
@@ -100,7 +102,8 @@
                 m2_e.innerHTML = cur_page;
                 m2_e.setAttribute('class', 'active');
                 m2_e.href = "/polls/msgboard/" + article_id + "/" + cur_page;
-                for (var m3_i = show_max-half+2, m3_n = cur_page+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
+                //cur_page-0+1: 先转str为int
+                for (var m3_i = show_max-half+2, m3_n = cur_page-0+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
                 {
                     var m3_id = "page" + m3_i;
                     var m3_e = document.getElementById(m3_id);
@@ -132,6 +135,27 @@
         document.getElementById("reply-form-name-" + comment_id).value = reply_name;
         document.getElementById("reply-form-name-" + comment_id).previousElementSibling.placeholder = "回复 " + reply_name + ": ";
     }
+
+    function submit_form(form_id){
+        var e;
+        if (form_id == "-1")
+        {
+            e = document.getElementById("reply-form-comment");
+        }
+        else
+        {
+            e = document.getElementById("reply-form-" + form_id);
+        }
+        if (e.lastElementChild.lastElementChild.previousElementSibling.value)
+        {
+            e.submit();
+        }
+        else
+        {
+            e.lastElementChild.firstElementChild.style.display = "inline-block";
+            e.lastElementChild.setAttribute('class', 'form-group has-error');
+        }
+    }
 </script>
 
 <body onload="load()">
@@ -139,17 +163,19 @@
   <div class="msg-board-list">
       <div class="msg_item-outer-margin">
       <div class="msg-item">
-        <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">{% csrf_token %}
-            <div class="form-group {% if form.content.errors %} has-error {% endif %}">
-                {% if form.content.errors %}
-                <span class="text-danger pull-right">{{ form.content.errors }}</span>
-                {% endif %}
-                {{ form.content }}
+        <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
                 <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-comment-name"></input>
                 <input type="hidden" name="reply-form-commentid" value="-1"></input>
                 <input type="hidden" name="get-article-id" value=""></input>
                 <input type="hidden" name="get-page" id="get-page-comment" value="1"></input>
-                <input type="submit" value="ok">
+                {{ form.content }}
+                <input type="button" value="ok" onclick="submit_form(-1)"></input>
+                <!--
+                    <input type="submit" value="ok">
+                -->
             </div>
         </form>
       </div>
@@ -187,16 +213,17 @@
                     {% endfor %}
                     <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
                             {% csrf_token %}
-                            <div class="form-group {% if form.content.errors %} has-error {% endif %}">
-                                {% if form.content.errors %}
-                                <span class="text-danger pull-right">{{ form.content.errors }}</span>
-                                {% endif %}
-                                {{ form.content }}
+                            <div class="form-group">
+                                <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
                                 <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-name-{{ object.0 }}"></input>
                                 <input type="hidden" name="reply-form-commentid" value="{{ object.0 }}"></input>
                                 <input type="hidden" name="get-article-id" value=""></input>
                                 <input type="hidden" name="get-page" value=""></input>
+                                {{ form.content }}
+                                <input type="button" value="ok" onclick="submit_form({{ object.0 }})"></input>
+                                <!--
                                 <input type="submit" value="ok"></input>
+                                -->
                             </div>
                     </form>
                     <!-- 最后一条回复后面 -->
@@ -206,7 +233,7 @@
                 {% endfor %}
                 <div class="pag-center">
                     <div class="pagination">
-                        <a href="#" id="previous">&laquo;</a>
+                        <a href="#" id="first-page">&laquo;</a>
                         <a href="#" id="page1">1</a>
                         <a href="#" id="page2">2</a>
                         <a href="#" id="page3">3</a>
@@ -214,7 +241,7 @@
                         <a href="#" id="page5">5</a>
                         <a href="#" id="page6">6</a>
                         <a href="#" id="page7">7</a>
-                        <a href="#" id="next">&raquo;</a>
+                        <a href="#" id="last-page">&raquo;</a>
                     </div>
                 </div>
 

@@ -227,6 +227,14 @@ class RegisterForm(forms.Form):
 
         userinfo.save()
 
+# class UploadAvatarForm(forms.Form):
+#     # alternative
+#     avatar = forms.ImageField(
+#         required = False
+#     )
+#     def save(self):
+#         pass
+
 class MsgBoardForm(forms.Form):
     content = forms.CharField(
         required = False,
@@ -234,7 +242,7 @@ class MsgBoardForm(forms.Form):
         help_text = u'',
         max_length = 2000,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control', 'name': 'reply-msg'}),
+        widget = forms.Textarea(attrs={'class': 'form-control form-comment-margin-top', 'name':'reply-msg'}),
     )
 
     def clean_content(self):

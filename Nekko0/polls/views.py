@@ -178,6 +178,20 @@ def Logout(request):
     # messages.success(request, "logout!")
     return render(request, "polls/blog_index.html")
 
+def UploadUserImage(request):
+    print "-------------------"
+    pass
+
+def UploadAvatar(request):
+    print request.POST.get('x')
+    print request.POST.get('y')
+    print request.POST.get('w')
+    print request.POST.get('h')
+    print request.POST.get('scale-w')
+    print request.POST.get('scale-h')
+    return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
+
+
 class MsgBoardListView(ListView, FormView):
     template_name = 'polls/msgboard.html'
     form_class = MsgBoardForm
@@ -187,11 +201,10 @@ class MsgBoardListView(ListView, FormView):
     # 如果是留言板，id必须传1001过来
 
     def get_queryset(self, **kwargs):
-        print "233"
         page = self.kwargs.get('page')
         # print page
         self.articleId = self.kwargs.get('articleId')
-        print self.articleId
+        # print self.articleId
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId).order_by(F('id').desc())
         paginator = Paginator(object_list, 7)
         try:
@@ -215,7 +228,8 @@ class MsgBoardListView(ListView, FormView):
                 userid = pickle_reply_list_item[0]
                 userInfo = Userinfo.objects.get(id=userid)
                 # 加入username, sex, level, level_tag, avatar_url
-                append_list = [userInfo.username, userInfo.sex, userInfo.level, \
+                # com_power是算力值，需要换算成level
+                append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
                                userInfo.level_tag, userInfo.avatar_url]
                 pickle_reply_list_item += append_list
 
@@ -239,9 +253,5 @@ class MsgBoardListView(ListView, FormView):
             self.success_url = reverse('polls:login')
         form.save(userId, articleId, commentId, replyToName)
         return FormView.form_valid(self, form)
-
-class MsgBoardFormView(FormView):
-    pass
-
 
 

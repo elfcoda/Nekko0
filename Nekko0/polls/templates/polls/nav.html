@@ -1,37 +1,118 @@
-  <script type="text/javascript">
-  function displaySubMenu(li) {
-  	var subMenu = li.getElementsByTagName("ul")[0];
-  	subMenu.style.display = "block";
-  }
-  function hideSubMenu(li) {
-  	var subMenu = li.getElementsByTagName("ul")[0];
-  	subMenu.style.display = "none";
-  }
-  </script>
+{% load static %}
+<link href="{% static 'polls/nav2.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/jcrop/css/jquery.Jcrop.css' %}" rel="stylesheet" type="text/css" />
+<script src="{% static 'polls/jcrop/js/jquery.min.js' %}"></script>
+<script src="{% static 'polls/jcrop/js/jquery.Jcrop.min.js' %}"></script>
 
-<div class="navbar">
-	<nav class="container">
-		<ul id="navigation">
-			<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)">
-				<a href="#">栏目1</a>
-				<ul>
-					<li><a href="#">栏目1->菜单1</a></li>
-					<li><a href="#">栏目1->菜单2</a></li>
-					<li><a href="#">栏目1->菜单3</a></li>
-					<li><a href="#">栏目1->菜单4</a></li>
-				</ul>
-			</li>
-			<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)">
-				<a href="#">栏目2</a>
-				<ul>
-					<li><a href="#">栏目2->菜单1</a></li>
-					<li><a href="#">栏目2->菜单2</a></li>
-					<li><a href="#">栏目2->菜单3</a></li>
-					<li><a href="#">栏目2->菜单4</a></li>
-					<li><a href="#">栏目2->菜单5</a></li>
-				</ul>
-			</li>
-		</ul>
+<!-- 模态框 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<!-- 模态框 -->
+
+
+<script language="Javascript">
+			$(function(){
+
+				$('#avatar-target').Jcrop({
+					aspectRatio: 1,
+					onSelect: updateCoords
+				});
+
+			});
+
+			function updateCoords(c)
+			{
+				$('#x').val(c.x);
+				$('#y').val(c.y);
+				$('#w').val(c.w);
+				$('#h').val(c.h);
+			};
+
+			function checkCoords()
+			{
+                var e = document.getElementById("avatar-target");
+                document.getElementById("scale-w").value = e.style.width;
+                document.getElementById("scale-h").value = e.style.height;
+                //判断是否裁剪
+				if (parseInt($('#w').val()))
+                {
+                    document.getElementById('avatar-form').submit();
+                }
+                else
+                {
+				    alert('Please select a crop region then press submit.');
+                }
+			};
+
+            function submit_image(){
+                //alert(document.getElementById('input-image').value);
+                document.getElementById('upload-user-image').submit();
+            }
+
+            function change_input_file(){
+                var v = document.getElementById('input-image').value;
+                document.getElementById('select-image-text').innerHTML = v;
+            }
+</script>
+
+<div class="navbar_notexist">
+	<nav class="container_notexist">
+    <ul class="nav_ul">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li style="float:right"><a href="#about">About</a></li>
+    </ul>
+
+
+    <div class="up-image">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            选择头像
+        </button>
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" id="upload-user-image" action="{% url 'polls:upload-image' %}">
+                            {% csrf_token %}
+                            <div class="select-image">选择文件
+                                <input type="file" onchange="change_input_file()" name="input-image" id="input-image"></input>
+                            </div>
+                            <div class="select-img-text-outer">
+                                <div class="form-control" id="select-image-text"></div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-info" onclick="submit_image()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="crop-avatar">
+        <div class="uploaded-avatar" align="center">
+            <img class="uploaded-image" src="{% static 'polls/images/avatar.jpeg' %}" id="avatar-target" />
+        </div>
+        <form action="{% url 'polls:upload-avatar' %}" method="post" id="avatar-form">
+                {% csrf_token %}
+	    		<input type="hidden" id="x" name="x" />
+	    		<input type="hidden" id="y" name="y" />
+	    		<input type="hidden" id="w" name="w" />
+	    		<input type="hidden" id="h" name="h" />
+                <input type="hidden" id="scale-w" name="scale-w"></input>
+                <input type="hidden" id="scale-h" name="scale-h"></input>
+	    		<input type="button" onclick="checkCoords()" value="Crop Image" />
+	    </form>
+    </div>
     <div class="sign-in-up">
     </div>
 	</nav>

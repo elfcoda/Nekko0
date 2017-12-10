@@ -52,7 +52,9 @@ class Userinfo(models.Model):
     email = models.CharField(max_length=50)
     sex = models.CharField(max_length=2)
     created_date = models.DateTimeField()
-    level = models.CharField(max_length=1)
+    com_power = models.IntegerField(default=0)
+    # 算力值决定level，所以去掉level字段
+    # level = models.CharField(max_length=1)
     level_tag = models.CharField(max_length=20)
     birthday = models.DateTimeField()
     introduce = models.CharField(max_length=100)

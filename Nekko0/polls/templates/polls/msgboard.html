@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 {% load static %}
-<link href="{% static 'polls/msgboard6.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/msgboard7.css' %}" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -33,6 +35,9 @@
         document.getElementById('first-page').href = "/polls/msgboard/" + article_id + "/1";
         document.getElementById('last-page').style.display = "inline-block";
         document.getElementById('last-page').href = "/polls/msgboard/" + article_id + "/" + all_page_num;
+        var comment_e = document.getElementById('reply-form-comment').lastElementChild.lastElementChild.previousElementSibling;
+        comment_e.placeholder = "说点什么吧...";
+        comment_e.setAttribute('rows', '3');
 
         if (all_page_num <= show_max)
         {
@@ -122,7 +127,9 @@
         {
             reply_forms[i].style.display = "none";
         }
-        document.getElementById("reply-form-" + comment_id).style.display = "block";
+        var e = document.getElementById("reply-form-" + comment_id);
+        e.style.display = "block";
+        e.lastElementChild.lastElementChild.previousElementSibling.setAttribute('rows', '3');
         var reply_name = "";
         if (reply_id == "-1")
         {
@@ -132,8 +139,9 @@
         {
             reply_name = document.getElementById("reply-name-" + comment_id  + "-" + reply_id).innerHTML;
         }
-        document.getElementById("reply-form-name-" + comment_id).value = reply_name;
-        document.getElementById("reply-form-name-" + comment_id).previousElementSibling.placeholder = "回复 " + reply_name + ": ";
+        var e2 = document.getElementById("reply-form-name-" + comment_id)
+        e2.value = reply_name;
+        e2.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.placeholder = "回复 " + reply_name + ": ";
     }
 
     function submit_form(form_id){
@@ -158,7 +166,8 @@
     }
 </script>
 
-<body onload="load()">
+<body onload="load()" class="body">
+{% include 'polls/nav.html' %}
 <div class="msg-board-page">
   <div class="msg-board-list">
       <div class="msg_item-outer-margin">
@@ -172,7 +181,7 @@
                 <input type="hidden" name="get-article-id" value=""></input>
                 <input type="hidden" name="get-page" id="get-page-comment" value="1"></input>
                 {{ form.content }}
-                <input type="button" value="ok" onclick="submit_form(-1)"></input>
+                <input class="button" type="button" value="哔~" onclick="submit_form(-1)"></input>
                 <!--
                     <input type="submit" value="ok">
                 -->
@@ -190,11 +199,11 @@
 			<div class="msg-item-right-main-content">
 				<div class="msg-title">
                     <div class="msg-name" id="comment-name-{{ object.0 }}">{{ object.2.6 }}</div>
-                    <div class="msg-level-head"></div>
-                    <div class="msg-level-body"></div>
+                    <div class="msg-level-head">Lv{{ object.2.8 }}</div>
+                    <div class="msg-level-body">{{ object.2.9 }}</div>
                 </div>
-                <div class="msg-content">{{ object.2.3 }}</div>
-                <div class="msg-addition">This is Addition.<a onclick="reply({{ object.0 }}, -1)">回复</a></div>
+                <div class="msg-content new-line">{{ object.2.3 }}</div>
+                <div class="msg-addition">This is Addition.<a class="reply-link-style" onclick="reply({{ object.0 }}, -1)">回复</a></div>
 			</div>
                     {% for reply_item in object.3 %}
 					<div class="msg-item-reply">
@@ -202,12 +211,12 @@
 						<div class="msg-reply-right">
 					        <div class="msg-title">
                                 <div class="msg-name" id="reply-name-{{ object.0 }}-{{ forloop.counter }}">{{ reply_item.6 }}</div>
-                                <div class="msg-name">回复{{ reply_item.5 }}</div>
+                                <div class="msg-name">&nbsp;回复 {{ reply_item.5 }}</div>
                                 <div class="msg-level-head">Lv{{ reply_item.8 }}</div>
-                                <div class="msg-level-body"></div>
+                                <div class="msg-level-body">{{ reply_item.9 }}</div>
                             </div>
-                            <div class="msg-content">{{ reply_item.3 }}</div>
-                            <div class="msg-addition">this is addi<a onclick="reply({{ object.0 }}, {{ forloop.counter }})">回复</a></div>
+                            <div class="msg-content new-line">{{ reply_item.3 }}</div>
+                            <div class="msg-addition">this is addi<a class="reply-link-style" onclick="reply({{ object.0 }}, {{ forloop.counter }})">回复</a></div>
 						</div>
 					</div>
                     {% endfor %}
@@ -220,7 +229,7 @@
                                 <input type="hidden" name="get-article-id" value=""></input>
                                 <input type="hidden" name="get-page" value=""></input>
                                 {{ form.content }}
-                                <input type="button" value="ok" onclick="submit_form({{ object.0 }})"></input>
+                                <input type="button" class="button" value="哔～" onclick="submit_form({{ object.0 }})"></input>
                                 <!--
                                 <input type="submit" value="ok"></input>
                                 -->

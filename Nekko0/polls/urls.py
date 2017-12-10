@@ -5,13 +5,16 @@ from django.conf.urls import url
 
 from . import views
 from views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
-    RegisterView, LoginView, Logout, MsgBoardListView, MsgBoardFormView
+    RegisterView, LoginView, Logout, MsgBoardListView,  UploadAvatar, \
+    UploadUserImage
 
 app_name = 'polls'
 urlpatterns = [
     url(r'^register/$', RegisterView.as_view(), name='register'),
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', Logout, name='logout'),
+    url(r'^upload-avatar$', UploadAvatar, name='upload-avatar'),
+    url(r'^upload-image$', UploadUserImage, name='upload-image'),
 
     url(r'^$', views.ArticleListView.as_view(), name='blog_index'),
     url(r'^article/publish$', ArticlePublishView.as_view(), name='article_publish'),

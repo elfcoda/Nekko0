@@ -17,5 +17,5 @@
 
 
 append_list =
-[userInfo.username, userInfo.sex, userInfo.level, userInfo.level_tag, userInfo.avatar_url]
+[userInfo.username, userInfo.sex, userInfo.com_power, userInfo.level_tag, userInfo.avatar_url]
  6                  7               8               9                   10

@@ -1,5 +1,5 @@
 {% load static %}
-<link href="{% static 'polls/nav2.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/nav3.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'polls/jcrop/css/jquery.Jcrop.css' %}" rel="stylesheet" type="text/css" />
 <script src="{% static 'polls/jcrop/js/jquery.min.js' %}"></script>
 <script src="{% static 'polls/jcrop/js/jquery.Jcrop.min.js' %}"></script>
@@ -66,7 +66,6 @@
       <li style="float:right"><a href="#about">About</a></li>
     </ul>
 
-
     <div class="up-image">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
             选择头像
@@ -75,23 +74,23 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Modal Heading</h4>
+                        <h4 class="modal-title">设置头像</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" id="upload-user-image" action="{% url 'polls:upload-image' %}">
+                        <form method="post" id="upload-user-image" action="{% url 'polls:upload-image' %}" enctype="multipart/form-data">
                             {% csrf_token %}
-                            <div class="select-image">选择文件
+                            <div class="select-image">搜索图像
                                 <input type="file" onchange="change_input_file()" name="input-image" id="input-image"></input>
                             </div>
                             <div class="select-img-text-outer">
-                                <div class="form-control" id="select-image-text"></div>
+                                <div style="color:#1E88C7;font-size:14px;vertical-align:middle" class="form-control select-image-text" id="select-image-text">未发现目标...</div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-info" onclick="submit_image()">OK</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">中断传输</button>
+                        <button type="button" class="btn upload-image-btn" onclick="submit_image()">开始传输</button>
                     </div>
                 </div>
             </div>

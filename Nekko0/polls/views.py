@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 import pickle
+from PIL import Image
 
 # Create your views here.
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -17,7 +18,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from django.views import generic
 from django.views.generic.edit import FormView
 from django.views.generic.detail import DetailView
-from forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm
+from forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm, UploadAvatarForm
 from django.contrib import messages
 
 def index(request):
@@ -179,8 +180,21 @@ def Logout(request):
     return render(request, "polls/blog_index.html")
 
 def UploadUserImage(request):
-    print "-------------------"
-    pass
+    if request.method == 'POST':
+        img = request.FILES.get('input-image')
+        name = str(img)
+        img_type = name.split('.')[-1]
+        try:
+            userId = str(request.session['userId'])
+        except KeyError:
+            userId = "noUser"
+        avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
+        avatar_path = avatar_path_head + userId + "." + img_type
+        with open(avatar_path, 'wb+') as dst:
+            for chunk in img.chunks():
+                dst.write(chunk)
+
+    return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
 
 def UploadAvatar(request):
     print request.POST.get('x')

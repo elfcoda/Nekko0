@@ -227,13 +227,13 @@ class RegisterForm(forms.Form):
 
         userinfo.save()
 
-# class UploadAvatarForm(forms.Form):
-#     # alternative
-#     avatar = forms.ImageField(
-#         required = False
-#     )
-#     def save(self):
-#         pass
+class UploadAvatarForm(forms.Form):
+    title = forms.CharField(max_length=50)
+    file = forms.FileField(
+        required = False
+    )
+    def save(self):
+        pass
 
 class MsgBoardForm(forms.Form):
     content = forms.CharField(

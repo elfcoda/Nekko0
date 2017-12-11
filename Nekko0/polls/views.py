@@ -194,6 +194,9 @@ def UploadUserImage(request):
             for chunk in img.chunks():
                 dst.write(chunk)
 
+    # try msg: cropImage
+    messages.success(request, userId + "." + img_type)
+
     return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
 
 def UploadAvatar(request):
@@ -216,9 +219,7 @@ class MsgBoardListView(ListView, FormView):
 
     def get_queryset(self, **kwargs):
         page = self.kwargs.get('page')
-        # print page
         self.articleId = self.kwargs.get('articleId')
-        # print self.articleId
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId).order_by(F('id').desc())
         paginator = Paginator(object_list, 7)
         try:

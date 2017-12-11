@@ -11,7 +11,7 @@
     function load(){
         //固定显示7页
         var show_max = 7;
-        var msg = document.getElementById("hidden-messages").firstElementChild.innerHTML;
+        var msg = document.getElementById("info").innerHTML;
         var all_page_num = msg.split('_')[0];
         var cur_page = msg.split('_')[1];
         var article_id = msg.split('_')[2];
@@ -118,6 +118,11 @@
                 }
             }
         }
+        var img_name = "8.jpg"; //document.getElementById("success").innerHTML;
+        var img_path = '/static/polls/userAvatar/' + img_name;
+        alert(img_path);
+        document.getElementById("avatar-target").setAttribute('src', img_path);
+        document.getElementById("select-image-modal").click();
     }
 
     function reply(comment_id, reply_id){
@@ -240,6 +245,8 @@
 		        </div>
                 <!-- one comment end -->
                 {% endfor %}
+                    <a href="#" id="first-page98">&laquo;</a>
+                    <!-- 怎么回事 -->
                 <div class="pag-center">
                     <div class="pagination">
                         <a href="#" id="first-page">&laquo;</a>
@@ -264,7 +271,7 @@
 
 <div class="hidden-messages" id="hidden-messages">
     {% for m in messages %}
-    <div>{{ m }}</div>
+    <div id="{{ m.tags }}">{{ m }}</div>
     {% endfor %}
 </div>
 </body>

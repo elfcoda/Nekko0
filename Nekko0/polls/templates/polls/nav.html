@@ -53,6 +53,10 @@
                 var v = document.getElementById('input-image').value;
                 document.getElementById('select-image-text').innerHTML = v;
             }
+
+            function clk(){
+                document.getElementById("avatar-target").src = '/static/polls/userAvatar/8.png';
+            }
 </script>
 
 <div class="navbar_notexist">
@@ -93,7 +97,7 @@
                     <!-- 裁剪头像 -->
                     <div class="crop-avatar" align="center">
                         <div class="uploaded-avatar" align="center">
-                            <img class="uploaded-image" src="{% static 'polls/images/avatar.jpeg' %}" id="avatar-target" />
+                            <img class="uploaded-image" src="" id="avatar-target">
                         </div>
                         <form action="{% url 'polls:upload-avatar' %}" method="post" id="avatar-form">
                                 {% csrf_token %}
@@ -117,6 +121,7 @@
     </div>
 
 
+    <button onclick="clk()">cl</button>
 
     <div class="sign-in-up">
     </div>

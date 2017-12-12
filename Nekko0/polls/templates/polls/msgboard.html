@@ -118,11 +118,11 @@
                 }
             }
         }
-        var img_name = "8.jpg"; //document.getElementById("success").innerHTML;
+        var img_name = "8.png"; //document.getElementById("success").innerHTML;
         var img_path = '/static/polls/userAvatar/' + img_name;
-        alert(img_path);
-        document.getElementById("avatar-target").setAttribute('src', img_path);
-        document.getElementById("select-image-modal").click();
+        document.getElementById("avatar-target").src = img_path;
+        //alert(img_path);
+        //document.getElementById("select-image-modal").click();
     }
 
     function reply(comment_id, reply_id){

@@ -20,6 +20,7 @@ from django.views.generic.edit import FormView
 from django.views.generic.detail import DetailView
 from forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm, UploadAvatarForm
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -156,7 +157,8 @@ class RegisterView(FormView):
         return super(RegisterView, self).form_valid(form)
 
 class LoginView(FormView):
-    template_name = 'polls/login.html'
+    # template_name = 'polls/login.html'
+    template_name = 'polls/test-ava.html'
     form_class = LoginForm
     success_url = reverse_lazy('polls:blog_index')
 
@@ -179,10 +181,12 @@ def Logout(request):
     # messages.success(request, "logout!")
     return render(request, "polls/blog_index.html")
 
+@csrf_exempt
 def UploadUserImage(request):
     if request.method == 'POST':
-        img = request.FILES.get('input-image')
-        name = str(img)
+        img = request.POST.get('image')
+        print img
+        name = '8.png'
         img_type = name.split('.')[-1]
         try:
             userId = str(request.session['userId'])
@@ -191,11 +195,7 @@ def UploadUserImage(request):
         avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
         avatar_path = avatar_path_head + userId + "." + img_type
         with open(avatar_path, 'wb+') as dst:
-            for chunk in img.chunks():
-                dst.write(chunk)
-
-    # try msg: cropImage
-    messages.success(request, userId + "." + img_type)
+            dst.write(img)
 
     return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
 

@@ -1,47 +1,19 @@
 {% load static %}
 <link href="{% static 'polls/nav4.css' %}" rel="stylesheet" type="text/css" />
-<link href="{% static 'polls/jcrop/css/jquery.Jcrop.css' %}" rel="stylesheet" type="text/css" />
-<script src="{% static 'polls/jcrop/js/jquery.min.js' %}"></script>
-<script src="{% static 'polls/jcrop/js/jquery.Jcrop.min.js' %}"></script>
 
 <!-- 模态框 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <!-- 模态框 -->
 
 
 <script language="Javascript">
-			$(function(){
-				$('#avatar-target').Jcrop({
-					aspectRatio: 1,
-					onSelect: updateCoords
-				});
 
-			});
-
-			function updateCoords(c)
-			{
-				$('#x').val(c.x);
-				$('#y').val(c.y);
-				$('#w').val(c.w);
-				$('#h').val(c.h);
-			};
 
 			function checkCoords()
 			{
-                var e = document.getElementById("avatar-target");
-                document.getElementById("scale-w").value = e.style.width;
-                document.getElementById("scale-h").value = e.style.height;
-                //判断是否裁剪
-				if (parseInt($('#w').val()))
-                {
-                    document.getElementById('avatar-form').submit();
-                }
-                else
-                {
-				    alert('Please select a crop region then press submit.');
-                }
 			};
 
             function submit_image(){
@@ -55,7 +27,7 @@
             }
 
             function clk(){
-                document.getElementById("avatar-target").src = '/static/polls/userAvatar/8.png';
+                document.getElementById("avatar-target").src = '/static/polls/userAvatar/8.jpg';
             }
 </script>
 
@@ -97,17 +69,11 @@
                     <!-- 裁剪头像 -->
                     <div class="crop-avatar" align="center">
                         <div class="uploaded-avatar" align="center">
-                            <img class="uploaded-image" src="" id="avatar-target">
+                            <img class="uploaded-image" src="/static/polls/userAvatar/8.jpg" id="avatar-target">
                         </div>
                         <form action="{% url 'polls:upload-avatar' %}" method="post" id="avatar-form">
                                 {% csrf_token %}
-	                    		<input type="hidden" id="x" name="x" />
-	                    		<input type="hidden" id="y" name="y" />
-	                    		<input type="hidden" id="w" name="w" />
-	                    		<input type="hidden" id="h" name="h" />
-                                <input type="hidden" id="scale-w" name="scale-w"></input>
-                                <input type="hidden" id="scale-h" name="scale-h"></input>
-	                    		<input type="button" onclick="checkCoords()" value="Crop Image" />
+	                    		<input type="button" value="Crop Image" />
 	                    </form>
                     </div>
 

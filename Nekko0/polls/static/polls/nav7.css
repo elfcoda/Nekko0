@@ -1,3 +1,7 @@
+.leave-margin-top {
+  margin-top:15px;
+}
+
 .nav_ul {
     list-style-type: none;
     margin: 0;
@@ -75,11 +79,32 @@
 
 .select-img-text-outer {
     display: inline-block;
-    width:80%;
-    float:right;
+    width:77%;
+    float:left;
+    margin-left:22px;
 }
 
 .upload-image-btn {
   color:white;
   background:#1E88C7;
+}
+
+.set-upload-preview-border {
+  border-radius:50%;
+}
+
+.srh-btn-style {
+  color:white;
+  background:#1E88C7;
+  border-radius:5px;
+}
+
+.alert-info-beauty {
+  background:#C1FFC1;
+  border-radius:7px;
+  border:1px;
+  border-style:solid;
+  border-color:#9AFF9A;
+  width:300px;
+  height:64px;
 }

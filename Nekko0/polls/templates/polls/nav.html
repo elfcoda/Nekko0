@@ -1,97 +1,10 @@
-{% load static %}
-<link href="{% static 'polls/nav4.css' %}" rel="stylesheet" type="text/css" />
-
-<!-- 模态框 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-<!-- 模态框 -->
 
 
-<script language="Javascript">
 
 
-			function checkCoords()
-			{
-			};
-
-            function submit_image(){
-                //alert(document.getElementById('input-image').value);
-                document.getElementById('upload-user-image').submit();
-            }
-
-            function change_input_file(){
-                var v = document.getElementById('input-image').value;
-                document.getElementById('select-image-text').innerHTML = v;
-            }
-
-            function clk(){
-                //document.getElementById("avatar-target").src = '/static/polls/userAvatar/8.jpg';
-            }
-</script>
-
-<div class="navbar_notexist">
-	<nav class="container_notexist">
-    <ul class="nav_ul">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li style="float:right"><a href="#about">About</a></li>
-    </ul>
 
 
-    <div class="up-image">
-        <button id="select-image-modal" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            选择头像
-        </button>
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="">设置头像</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- 上传头像 -->
-                    <div class="modal-body">
-                        <form method="post" id="upload-user-image" action="{% url 'polls:upload-image' %}" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="select-image">搜索图像
-                                <input type="file" onchange="change_input_file()" name="input-image" id="input-image"></input>
-                            </div>
-                            <div class="select-img-text-outer">
-                                <div style="color:#1E88C7;font-size:14px;vertical-align:middle" class="form-control select-image-text" id="select-image-text">未发现目标...</div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- 裁剪头像 -->
-                    <div class="crop-avatar" align="center">
-                        <div class="uploaded-avatar" align="center">
-                            <img class="uploaded-image" src="/static/polls/userAvatar/8.jpg" id="avatar-target">
-                        </div>
-                        <form action="{% url 'polls:upload-avatar' %}" method="post" id="avatar-form">
-                                {% csrf_token %}
-	                    		<input type="button" value="Crop Image" />
-	                    </form>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">中断传输</button>
-                        <button type="button" class="btn upload-image-btn" onclick="submit_image()">开始传输</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
-    <button id="tet2" onclick="clk()">cl</button>
-
-    <div class="sign-in-up">
-    </div>
-	</nav>
-</div>
 
 

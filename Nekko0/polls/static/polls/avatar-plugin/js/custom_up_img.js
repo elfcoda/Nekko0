@@ -92,7 +92,8 @@ $(function() {
                 data: {"image":data.toString()},
                 success: function(data, textStatus){
                 	$modal.modal('close');
-                	set_alert_info(data.result);
+                	//set_alert_info(data.result);
+                	set_alert_info("图像已提交到数据中心!");
                 	$modal_alert.modal();
                 	if(data.result=="ok"){
                 		$("#up-img-touch img").attr("src",data.file);
@@ -100,7 +101,6 @@ $(function() {
                 		var img_name=data.file.split('/')[2];
                 		console.log(img_name);
                 		$("#pic").text(img_name);
-                    //window.location.reload();
                 	}
                 },
                 error: function(){

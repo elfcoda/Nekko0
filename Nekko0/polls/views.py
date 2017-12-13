@@ -191,13 +191,13 @@ def UploadUserImage(request):
             userId = str(request.session['userId'])
         except KeyError:
             userId = "noUser"
-        # avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
-        avatar_path_head = "/root/Nekko0/Nekko0/Nekko0/polls/static/polls/userAvatar/"
+        avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
+        # avatar_path_head = "/root/Nekko0/Nekko0/Nekko0/polls/static/polls/userAvatar/"
         avatar_path = avatar_path_head + userId + ".png"
         with open(avatar_path, 'wb+') as dst:
             dst.write(img)
 
-    ret_json = {'result': 'ok'}
+    ret_json = {'result': '图像已提交到数据中心！'}
     return JsonResponse(ret_json)
     # return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
 

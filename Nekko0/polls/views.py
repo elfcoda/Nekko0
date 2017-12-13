@@ -6,7 +6,7 @@ import pickle
 from PIL import Image
 
 # Create your views here.
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Question, Choice
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -197,7 +197,9 @@ def UploadUserImage(request):
         with open(avatar_path, 'wb+') as dst:
             dst.write(img)
 
-    return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
+    ret_json = {'result': 'ok'}
+    return JsonResponse(ret_json)
+    # return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
 
 def UploadAvatar(request):
     print request.POST.get('x')

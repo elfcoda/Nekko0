@@ -21,6 +21,7 @@ from django.views.generic.detail import DetailView
 from forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm, UploadAvatarForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+import base64
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -184,16 +185,15 @@ def Logout(request):
 @csrf_exempt
 def UploadUserImage(request):
     if request.method == 'POST':
-        img = request.POST.get('image')
-        print img
-        name = '8.png'
-        img_type = name.split('.')[-1]
+        base64_img = request.POST.get('image').split(',', 1)[1]
+        img = base64.b64decode(base64_img)
         try:
             userId = str(request.session['userId'])
         except KeyError:
             userId = "noUser"
-        avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
-        avatar_path = avatar_path_head + userId + "." + img_type
+        # avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
+        avatar_path_head = "/root/Nekko0/Nekko0/Nekko0/polls/static/polls/userAvatar/"
+        avatar_path = avatar_path_head + userId + ".png"
         with open(avatar_path, 'wb+') as dst:
             dst.write(img)
 

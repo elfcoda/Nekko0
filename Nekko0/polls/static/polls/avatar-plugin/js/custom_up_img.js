@@ -100,7 +100,7 @@ $(function() {
                 		var img_name=data.file.split('/')[2];
                 		console.log(img_name);
                 		$("#pic").text(img_name);
-                    //$("#tet2").click();
+                    //window.location.reload();
                 	}
                 },
                 error: function(){

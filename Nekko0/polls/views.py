@@ -22,6 +22,7 @@ from forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm, Upl
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 import base64
+import random
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -151,15 +152,22 @@ class RegisterView(FormView):
     def form_valid(self, form):
         form.save()
         email = form.cleaned_data.get('email')
-        userId = Userinfo.objects.get(email=email).id
-        self.request.session['userId'] = userId
+        rand_github_id = random.randint(1, 28)
+        rand_github_avatar = "github" + str(rand_github_id) + ".png"
+
+        userInfo = Userinfo.objects.get(email=email)
+        userInfo.avatar_url = rand_github_avatar
+        userInfo.save()
+
+        self.request.session['userId'] = userInfo.id
+        self.request.session['avatar'] = "/static/polls/userAvatar/" + rand_github_avatar
         # password = form.cleaned_data.get('password')
 
         return super(RegisterView, self).form_valid(form)
 
 class LoginView(FormView):
     # template_name = 'polls/login.html'
-    template_name = 'polls/test-ava.html'
+    template_name = 'polls/login.html'
     form_class = LoginForm
     success_url = reverse_lazy('polls:blog_index')
 
@@ -168,14 +176,18 @@ class LoginView(FormView):
         # messages.success(self.request, 'hreljh')
         email = form.cleaned_data.get('email')
         # password = form.cleaned_data.get('password')
-        userId = Userinfo.objects.get(email=email).id
+        userInfo = Userinfo.objects.get(email=email)
+        userId = userInfo.id
+        userAvatar = userInfo.avatar_url
         self.request.session['userId'] = userId
+        self.request.session['avatar'] = "/static/polls/userAvatar/" + userAvatar
 
         return super(LoginView, self).form_valid(form)
 
 def Logout(request):
     try:
         del request.session['userId']
+        del request.session['avatar']
     except KeyError:
         pass
 
@@ -197,9 +209,12 @@ def UploadUserImage(request):
         with open(avatar_path, 'wb+') as dst:
             dst.write(img)
 
-    ret_json = {'result': '图像已提交到数据中心！'}
-    return JsonResponse(ret_json)
-    # return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
+        set_ava_user = Userinfo.objects.get(id=userId)
+        set_ava_user.avatar_url = userId + ".png"
+        set_ava_user.save()
+        request.session['avatar'] = "/static/polls/userAvatar/" + userId + ".png"
+        ret_json = {'result': '图像已提交到数据中心！'}
+        return JsonResponse(ret_json)
 
 def UploadAvatar(request):
     print request.POST.get('x')
@@ -243,6 +258,7 @@ class MsgBoardListView(ListView, FormView):
             # get userinfo by userid
             for pickle_reply_list_item in pickle_reply_list:
                 userid = pickle_reply_list_item[0]
+                pickle_reply_list_item[2] = pickle_reply_list_item[2].split('.')[0]
                 userInfo = Userinfo.objects.get(id=userid)
                 # 加入username, sex, level, level_tag, avatar_url
                 # com_power是算力值，需要换算成level

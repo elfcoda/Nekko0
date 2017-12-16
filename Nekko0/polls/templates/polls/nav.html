@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="{% static 'polls/avatar-plugin/css/amazeui.cropper.css' %}">
         <link rel="stylesheet" href="{% static 'polls/avatar-plugin/css/custom_up_image.css' %}">
         <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
-        <link href="{% static 'polls/nav8.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/nav9.css' %}" rel="stylesheet" type="text/css" />
         <style type="text/css">
      		.up-img-cover {width: 45px;height: 45px;}
      		.up-img-cover img{width: 100%;}
@@ -23,16 +23,22 @@
         </script>
 
 
-        <div class="navbar_notexist">
-            <nav class="container_notexist">
+        <div class="">
+            <nav class="">
                 <ul class="nav_ul">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li style="float:right"><a href="#about">About</a></li>
+                    <li><a class="nav_ul-li-a-l" href="#home">Home</a></li>
+                    <li><a class="nav_ul-li-a-l" href="#news">News</a></li>
+                    <li><a class="nav_ul-li-a-l" href="#contact">Contact</a></li>
+                    <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
+                    {% if request.session.userId %}
+                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:logout' %}">断开</a></li>
+                    <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
     	            <li style="float:right;margin-top:4px;" class="up-img-cover"  id="up-img-touch" >
-                        <img class="am-circle" alt="点击图片上传" src="{% static 'polls/avatar-plugin/img/hu.jpg' %}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
+                        <img class="am-circle" alt="点击图片上传" src="{{ request.session.avatar }}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" >
         	        </li>
+                    {% else %}
+                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:login' %}">接入</a></li>
+                    {% endif %}
                 </ul>
 
 
@@ -45,6 +51,7 @@
 		               <label>修改头像</label>
 		              <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
 		            </div>
+                            <a class="btn">随机头像</a>
 		            <div class="am-modal-bd  up-frame-body">
 		              <div class="am-g am-fl">
 		              	<div class="am-form-group am-form-file">

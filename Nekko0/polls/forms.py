@@ -219,7 +219,7 @@ class RegisterForm(forms.Form):
             email = email,
             sex = sex,
             created_date = datetime.datetime.now(),
-            level = "0",
+            com_power = 0,
             level_tag = u"无能力者",
             birthday = datetime.datetime.now(),
             introduce = "",

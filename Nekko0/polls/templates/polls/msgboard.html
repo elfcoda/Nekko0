@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 {% load static %}
-<link href="{% static 'polls/msgboard7.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'polls/msgboard8.css' %}" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
     function load(){
@@ -201,7 +201,7 @@
                     <div class="msg-level-body">{{ object.2.9 }}</div>
                 </div>
                 <div class="msg-content new-line">{{ object.2.3 }}</div>
-                <div class="msg-addition">This is Addition.<a class="reply-link-style" onclick="reply({{ object.0 }}, -1)">回复</a></div>
+                <div class="msg-addition">{{ object.2.2 }}&nbsp;&nbsp;<a class="reply-link-style" onclick="reply({{ object.0 }}, -1)">回复</a></div>
 			</div>
                     {% for reply_item in object.3 %}
 					<div class="msg-item-reply">
@@ -214,7 +214,7 @@
                                 <div class="msg-level-body">{{ reply_item.9 }}</div>
                             </div>
                             <div class="msg-content new-line">{{ reply_item.3 }}</div>
-                            <div class="msg-addition">this is addi<a class="reply-link-style" onclick="reply({{ object.0 }}, {{ forloop.counter }})">回复</a></div>
+                            <div class="msg-addition">{{ reply_item.2 }}&nbsp;&nbsp;<a class="reply-link-style" onclick="reply({{ object.0 }}, {{ forloop.counter }})">回复</a></div>
 						</div>
 					</div>
                     {% endfor %}

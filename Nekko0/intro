@@ -12,7 +12,7 @@
  1 submsger_email
  2 submsger_pub_date
  3 submsger_pub_content
- 4 submsger_liked
+ 4 submsger_liked(set(id1, id2, ...) , -> [likedNum, isCurUserLikedThis=(0, 1))]
  5 reply_to_username(如果空，说明不是回复，否则是回复某个人)
 
 

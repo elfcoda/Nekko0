@@ -1,16 +1,22 @@
 @font-face {
   font-family:fontello;
-  src:url('images/font/fontello.eot'),
-  url('images/font/fontello.svg'),
-  url('images/font/fontello.ttf'),
-  url('images/font/fontello.woff'),
-  url('images/font/fontello.woff2');
+  src:url('myfont-ello/font/fontello.eot'),
+  url('myfont-ello/font/fontello.svg'),
+  url('myfont-ello/font/fontello.ttf'),
+  url('myfont-ello/font/fontello.woff'),
+  url('myfont-ello/font/fontello.woff2');
 }
 
 * {
   margin:0;
   padding:0;
 }
+
+.inline-block-style {
+  display:inline-block;
+  float:left;
+}
+
 /* NavBar */
 .navbar {
 	width:100%;

@@ -194,6 +194,30 @@ def Logout(request):
     # messages.success(request, "logout!")
     return render(request, "polls/blog_index.html")
 
+def MsgLike(request):
+    # -1--评论 1 2 3--回复
+    # 使用get没问题的
+    commentId = int(request.GET.get('commentId'))
+    replyId = int(request.GET.get('replyId'))
+    userId = request.session['userId']
+    msg = SingleMsgBoard.objects.get(id=commentId)
+    msg_list = pickle.loads(msg.msg_pickle_str)
+    if (replyId == -1):
+        replyId = 0
+
+    # 处理数据
+    like_set = msg_list[replyId][4]
+    if userId in like_set:
+        like_set.remove(userId)
+        ret_json = {'likedNum':len(like_set), 'isLiked': 0}
+    else:
+        like_set.add(userId)
+        ret_json = {'likedNum':len(like_set), 'isLiked': 1}
+    msg.msg_pickle_str = pickle.dumps(msg_list)
+    msg.save()
+
+    return JsonResponse(ret_json)
+
 @csrf_exempt
 def UploadUserImage(request):
     if request.method == 'POST':
@@ -238,7 +262,7 @@ class MsgBoardListView(ListView, FormView):
         page = self.kwargs.get('page')
         self.articleId = self.kwargs.get('articleId')
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId).order_by(F('id').desc())
-        paginator = Paginator(object_list, 7)
+        paginator = Paginator(object_list, 2)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -254,9 +278,21 @@ class MsgBoardListView(ListView, FormView):
                       '_' + str(self.articleId))
 
         for pickled_msg in object_list:
+            # 这是一整条评论
             pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
             # get userinfo by userid
             for pickle_reply_list_item in pickle_reply_list:
+                # 处理点赞数据
+                # 判断是否登录
+                like_set = pickle_reply_list_item[4]
+                likedNum = len(like_set)
+                userId = self.request.session['userId']
+                if userId and userId in like_set:
+                    isLiked = 1
+                else:
+                    isLiked = 0
+                pickle_reply_list_item[4] = [likedNum, isLiked]
+
                 userid = pickle_reply_list_item[0]
                 pickle_reply_list_item[2] = pickle_reply_list_item[2].split('.')[0]
                 userInfo = Userinfo.objects.get(id=userid)

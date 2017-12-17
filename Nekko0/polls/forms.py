@@ -261,7 +261,7 @@ class MsgBoardForm(forms.Form):
         # 评论
         if commentId == -1:
             content = self.cleaned_data['content']
-            msg_list = [[userId, "", str(datetime.datetime.now()), content, 0, replyToName]]
+            msg_list = [[userId, "", str(datetime.datetime.now()), content, set(), replyToName]]
             sMsgList = pickle.dumps(msg_list)
             iArticleId = iArticleId
 
@@ -274,7 +274,7 @@ class MsgBoardForm(forms.Form):
         # 回复...
         else:
             content = self.cleaned_data['content']
-            reply_item = [userId, "", str(datetime.datetime.now()), content, 0, replyToName]
+            reply_item = [userId, "", str(datetime.datetime.now()), content, set(), replyToName]
             comment_msg = SingleMsgBoard.objects.get(id=commentId)
             # print comment_msg
             list_item = pickle.loads(comment_msg.msg_pickle_str)

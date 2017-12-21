@@ -167,7 +167,7 @@ class RegisterView(FormView):
 
 class LoginView(FormView):
     # template_name = 'polls/login.html'
-    template_name = 'polls/login.html'
+    template_name = 'polls/footer.html'
     form_class = LoginForm
     success_url = reverse_lazy('polls:blog_index')
 

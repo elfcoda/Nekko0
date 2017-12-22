@@ -1,0 +1,54 @@
+.leave-margin-top, .leave-margin-bottom {
+  height:15px;
+}
+
+.ft-style {
+  background:#404040;
+  width:100%;
+  height:auto;
+}
+
+.ft-center {
+  text-align:center;
+}
+
+.ft-fontclr-nor {
+  color:#999999;
+}
+
+.ft-link {
+  text-decoration:none;
+  color:#b33b00;
+}
+
+.ft-link:hover {
+  text-decoration:none;
+  color:#e64d00;
+}
+
+.cute-font {
+  position:relative;
+  top:0px;
+  -webkit-animation-name:cute_style_1;
+  -webkit-animation-duration:3s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+  animation-name:cute_style_1;
+  animation-duration:0.5s;
+  animation-iteration-count:infinite;
+  animation-timing-function:linear;
+}
+
+@-webkit-keyframes cute_style_1 {
+  0%    {top:0px;}
+  50%   {top:-5px;}
+  100%  {top:0px;}
+}
+
+@keyframes cute_style_1 {
+  0%    {top:0px;}
+  50%   {top:-5px;}
+  100%  {top:0px;}
+}
+
+

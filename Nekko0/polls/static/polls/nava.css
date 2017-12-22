@@ -1,0 +1,154 @@
+.leave-margin-top {
+  margin-top:15px;
+}
+
+.nav-outer {
+    width:100%;
+}
+
+.nav_ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background:rgba(50, 50, 50, 0.5);
+}
+
+.nav_ul li {
+    float: left;
+}
+
+.nav_ul-li-a-l {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav_ul-li-a-l:hover {
+    text-decoration: none;
+    color:#ff8080;
+}
+
+.nav_ul-li-a-r {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 2px;
+    text-decoration: none;
+}
+
+.nav_ul-li-a-r:hover {
+    color: #ff8080;
+    text-decoration: none;
+}
+
+.crop-avatar {
+}
+
+.up-image-div {
+}
+
+.uploaded-avatar {
+  width:468px;
+  height:360px;
+  background:#BBB;
+  border-radius:5px;
+  vertical-align:middle;
+  display:table-cell;
+}
+
+.uploaded-image {
+  max-width:440px;
+  max-height:340px;
+}
+
+
+.select-image {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 23px;
+}
+.select-image input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.select-image:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+
+.select-image-text {
+}
+
+.select-img-text-outer {
+    display: inline-block;
+    width:77%;
+    float:left;
+    margin-left:22px;
+}
+
+.btn-secondary-my {
+  color:white;
+  background:rgba(120, 120, 120, 1);
+}
+
+.btn-secondary-my:hover {
+  background:rgba(120, 120, 120, 0.85);
+}
+
+.upload-image-btn {
+  color:white;
+  background:rgba(31, 136, 199, 1);
+}
+
+.upload-image-btn:hover {
+  background:rgba(31, 136, 199, 0.85);
+}
+
+.set-upload-preview-border {
+  border-radius:50%;
+}
+
+.srh-btn-style {
+  color:white;
+  background:#1E88C7;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.srh-btn-style:hover {
+}
+
+.alert-info-beauty {
+  background:rgba(193, 255, 193, 0.8);
+  border-radius:3px;
+  border:1px;
+  border-style:solid;
+  border-color:#9AFF9A;
+  width:300px;
+  height:64px;
+}
+.am-modal-btn-color-confirn {
+  color:#008000;
+  -webkit-transition:color 0.3s;
+  transition:color 0.3s;
+}
+.am-modal-btn-color-confirn:hover {
+  color:rgba(0, 128, 0, 0.7);
+}
+

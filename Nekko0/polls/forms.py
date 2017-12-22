@@ -122,7 +122,7 @@ class RegisterForm(forms.Form):
         label = u'性别',
         help_text = u'',
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control'}),
+        widget = forms.TextInput(attrs={'class': 'form-control select-hidden'}),
     )
 
     email = forms.EmailField(

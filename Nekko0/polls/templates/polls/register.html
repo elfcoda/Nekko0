@@ -4,7 +4,7 @@
   {% load static %}
   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
   <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <link href="{% static 'polls/sign3.css' %}" rel="stylesheet" type="text/css" />
+  <link href="{% static 'polls/sign4.css' %}" rel="stylesheet" type="text/css" />
 
 <div class="outer-align-main">
 <div class="sign-main">
@@ -29,6 +29,32 @@
             <span class="text-danger pull-right">{{ form.sex.errors }}</span>
             {% endif %}
             {{ form.sex }}
+
+            <script language="Javascript">
+                function selectContentNone(e){
+                    document.getElementById("dropdown-content-select").style.display = "none";
+                }
+                function selectContentTog(){
+                    var e = document.getElementById("dropdown-content-select");
+                    if (e.style.display == "block")
+                    {
+                        e.style.display = "none";
+                    }
+                    else
+                    {
+                        e.style.display = "block";
+                    }
+                }
+            </script>
+            <div class="dropdown-select">
+                <div class="dropdiv-select form-control" id="dropdiv-select" onclick="selectContentTog()">Dropdown</div>
+                <div class="dropdown-content-select" id="dropdown-content-select">
+                    <a class="select-a" onclick="selectContentNone(self)">Link 1</a>
+                    <a class="select-a" onclick="selectContentNone(self)">Link 2</a>
+                    <a class="select-a" onclick="selectContentNone(self)">Link 3</a>
+                </div>
+            </div>
+
             <p class="text-muted">{{ form.sex.help_text }}</p>
           </div>
           <div class="form-group {% if form.email.errors %} has-error {% endif %}">

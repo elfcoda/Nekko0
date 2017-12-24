@@ -12,6 +12,27 @@
   height:15px;
 }
 
+.form-control-color {
+  color:rgba(51, 216, 255, 1);
+}
+
+.body-img {
+  /*background:url("images/wall-paper/imouto-sae.jpg");*/
+  opacity:0.92;
+}
+
+.outest-layer {
+  position:absolute;
+  width:auto;
+  height:auto;
+  background:red;
+}
+
+.bg-img {
+  width:100%;
+  height:auto;
+}
+
 .outer-align-main {
   width:350px;
   height:600px;
@@ -60,8 +81,23 @@
 
 /* div 2 select */
 .dropdiv-select {
-  color: white;
+  color:rgba(51, 216, 255, 1);
   cursor: pointer;
+}
+
+.dropdiv-select:before {
+  font-family:fontello;
+  content:"\F222";
+}
+
+.elloicon-dpdown {
+  float:right;
+  color:#999;
+}
+
+.elloicon-dpdown:before {
+  font-family:fontello;
+  content:"\E823";
 }
 
 .dropdown-select {
@@ -72,15 +108,42 @@
 .dropdown-content-select {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: rgba(250, 250, 250, 1);
   width: 100%;
+  height:283px;
+  overflow:auto;
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
+/*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
+.dropdown-content-select::-webkit-scrollbar{
+  width: 16px;
+  height: 16px;
+  background-color: #f5f5f5;
+}
+/*定义滚动条的轨道，内阴影及圆角*/
+.dropdown-content-select::-webkit-scrollbar-track{
+  -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,.3);
+  border-radius: 10px;
+  background-color: rgba(250, 250, 250, 1);
+}
+
+.dropdown-content-select::-webkit-scrollbar-thumb {
+  height:20px;
+  border-radius:10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0 0, .3);
+  background-color: #DDD;
+}
+
+#dropdown-content-select span {
+  float:right;
+  margin-right:5px;
+}
+
 .select-a {
   color: black;
-  padding: 12px 16px;
+  padding: 9px 16px;
   text-decoration: none;
   display: block;
   cursor:pointer;
@@ -89,6 +152,10 @@
 
 .select-a:hover {
   text-decoration: none;
+}
+
+.select-hidden {
+  display:none;
 }
 
 /* 1-3 */
@@ -111,6 +178,7 @@
 
 .select-a-2 {
   color:rgba(237, 133, 166, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-2:hover {
@@ -127,6 +195,7 @@
 
 .select-a-3 {
   color:rgba(26, 200, 41, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-3:hover {
@@ -143,6 +212,7 @@
 /* 4-6 */
 .select-a-4 {
   color:rgba(213, 238, 26, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-4:hover {
@@ -159,6 +229,7 @@
 
 .select-a-5 {
   color:rgba(197, 23, 234, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-5:hover {
@@ -175,6 +246,7 @@
 
 .select-a-6 {
   color:rgba(23, 33, 234, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-6:hover {
@@ -191,6 +263,7 @@
 /* 7-9 */
 .select-a-7 {
   color:rgba(234, 23, 62, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-7:hover {
@@ -207,6 +280,7 @@
 
 .select-a-8 {
   color:rgba(234, 23, 204, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-8:hover {
@@ -223,6 +297,7 @@
 
 .select-a-9 {
   color:rgba(234, 121, 23, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-9:hover {
@@ -239,6 +314,7 @@
 /* 10-12 */
 .select-a-10 {
   color:rgba(134, 23, 234, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-10:hover {
@@ -255,6 +331,7 @@
 
 .select-a-11 {
   color:rgba(127, 234, 23, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-11:hover {
@@ -271,6 +348,7 @@
 
 .select-a-12 {
   color:rgba(75, 245, 197, 0.5);
+  transition: background-color .3s;
 }
 
 .select-a-12:hover {
@@ -284,4 +362,16 @@
   content:"\F224";
 }
 
+
+/* signin signup btn */
+.sign-btn-style {
+  color:white;
+  background:rgba(0, 175, 223, 1);
+  border:1px solid #0381aa;
+}
+
+.sign-btn-style:hover {
+  color:white;
+  background:rgba(0, 175, 223, 0.85);
+}
 

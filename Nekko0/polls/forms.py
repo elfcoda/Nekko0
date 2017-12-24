@@ -74,7 +74,7 @@ class LoginForm(forms.Form):
         help_text = u'邮箱登录',
         max_length = 50,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control my-form-control'}),
+        widget = forms.TextInput(attrs={'class': 'form-control my-form-control form-control-color'}),
     )
 
     password = forms.CharField(
@@ -82,7 +82,7 @@ class LoginForm(forms.Form):
         label = u'密码',
         help_text = u'请输入密码',
         max_length = 20,
-        widget = forms.PasswordInput(attrs={'class': 'form-control my-form-control'}),
+        widget = forms.PasswordInput(attrs={'class': 'form-control my-form-control form-control-color'}),
     )
 
     def clean_email(self):
@@ -111,27 +111,27 @@ class RegisterForm(forms.Form):
     username = forms.CharField(
         required = False,
         label = u'昵称',
-        help_text = u'昵称可用于登录',
+        help_text = u'',
         max_length = 20,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control'}),
+        widget = forms.TextInput(attrs={'class': 'form-control form-control-color'}),
     )
 
     sex = forms.CharField(
         required = False,
         label = u'性别',
-        help_text = u'',
-        initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control select-hidden'}),
+        help_text = u'翻译君已阵亡',
+        initial = '1',
+        widget = forms.TextInput(attrs={'class': 'form-control select-hidden', 'id': 'form-sex-hidden-text'}),
     )
 
     email = forms.EmailField(
         required = False,
         label = u'邮箱',
-        help_text = u'可用于找回密码',
+        help_text = u'用于找回密码与登录',
         max_length = 50,
         initial = '',
-        widget = forms.TextInput(attrs={'class': 'form-control'}),
+        widget = forms.TextInput(attrs={'class': 'form-control form-control-color'}),
     )
 
     password = forms.CharField(
@@ -140,7 +140,7 @@ class RegisterForm(forms.Form):
         help_text = u'请输入密码',
         min_length = 6,
         max_length = 18,
-        widget = forms.PasswordInput(attrs={'class': 'form-control'}),
+        widget = forms.PasswordInput(attrs={'class': 'form-control form-control-color'}),
     )
 
     confirm_password = forms.CharField(
@@ -148,7 +148,7 @@ class RegisterForm(forms.Form):
         label = u'确认密码',
         min_length = 6,
         max_length = 18,
-        widget = forms.PasswordInput(attrs={'class': 'form-control'}),
+        widget = forms.PasswordInput(attrs={'class': 'form-control form-control-color'}),
     )
 
 
@@ -169,7 +169,7 @@ class RegisterForm(forms.Form):
         sex = self.cleaned_data['sex']
         if sex == "" or sex is None:
             raise forms.ValidationError('Empty sex.')
-        if not (sex == "0" or sex == "1" or sex == "2" or sex == "3" or sex == "4" or sex == "5" or sex == "6" or sex == "7" or sex == "8" or sex == "9" or sex == "10"):
+        if not (sex == "1" or sex == "2" or sex == "3" or sex == "4" or sex == "5" or sex == "6" or sex == "7" or sex == "8" or sex == "9" or sex == "10" or sex == "11" or sex == "12"):
             raise forms.ValidationError('Code eror!')
 
         return sex

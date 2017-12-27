@@ -9,7 +9,7 @@
  |
  |
  0 submsger_id
- 1 submsger_email
+ 1 submsger_isExist   # 是否未删除(存在)
  2 submsger_pub_date
  3 submsger_pub_content
  4 submsger_liked(set(id1, id2, ...) , -> [likedNum, isCurUserLikedThis=(0, 1))]
@@ -18,4 +18,10 @@
 
 append_list =
 [userInfo.username, userInfo.sex, userInfo.com_power, userInfo.level_tag, userInfo.avatar_url]
- 6                  7               8               9                   10
+ 6                  7               8                 9                   10
+
+# 拥有者是否是当前用户
+isCurrentUser
+11
+
+

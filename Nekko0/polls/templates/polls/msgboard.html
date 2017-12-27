@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
-    <link href="{% static 'polls/msgboarda.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'polls/msgboardd.css' %}" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
         function load(){
@@ -185,6 +185,11 @@ function like(commentId, replyId){
     alert(2);
     {% endif %}
 }
+
+function deleteMsg(msgId, replyId){
+    $.get("{% url 'polls:deleteMsg' %}", {'msgId':msgId, 'replyId':replyId}, function(ret){
+    })
+}
     </script>
 
     <body onload="load()" class="body">
@@ -212,20 +217,23 @@ function like(commentId, replyId){
                 </div>
                 <div class="msg_item-outer-margin">
                     {% for object in object_list %}
+                    {% if object.2.1 %}
                     <!-- one comment begin -->
                     <div class="msg-item">
                         <div class="msg-item-left">
+                            <img class="avatar-style" src="/static/polls/userAvatar/{{ object.2.10 }}"></img>
                         </div>
                         <div class="msg-item-right">
                             <div class="msg-item-right-main-content">
                                 <div class="msg-title">
                                     <div class="msg-name" id="comment-name-{{ object.0 }}">{{ object.2.6 }}</div>
-                                    <div class="msg-level-head">Lv{{ object.2.8 }}</div>
-                                    <div class="msg-level-body">{{ object.2.9 }}</div>
+                                    <div class="msg-level-head"><span class="msg-level-body-font">Lv{{ object.2.8 }}</span></div>
+                                    <div class="msg-level-body"><span class="msg-level-body-font">{{ object.2.9 }}</span></div>
+                                    <div class="sex-adjust select-a-{{ object.2.7 }}">&nbsp;&nbsp;</div>
                                 </div>
                                 <div class="msg-content new-line">{{ object.2.3 }}</div>
                                 <div class="msg-addition">
-                                    <span class="float-left-msgb">{{ object.2.2 }}&nbsp;&nbsp;&nbsp;</span>
+                                    <span class="date-beau-style float-left-msgb">{{ object.2.2 }}&nbsp;&nbsp;&nbsp;</span>
                                     <form action="{% url 'polls:msglike' %}" method="get">
                                         {% if object.2.4.1 %}
                                         <span class="float-left-msgb like-webfont" style="color:#FF4500" onclick="like({{ object.0 }}, -1)" id="msglike-{{ object.0 }}--1">&nbsp;{{ object.2.4.0 }}</span>
@@ -238,22 +246,29 @@ function like(commentId, replyId){
                                         {% endif %}
                                     </form>
                                     <span class="float-left-msgb">&nbsp;&nbsp;&nbsp;</span>
-                                    <a class="reply-link-style" onclick="reply({{ object.0 }}, -1)">回复</a>
+                                    <a class="reply-link-style" onclick="reply({{ object.0 }}, -1)"><span class="reply-beau-style">回复</span></a>
+                                    {% if object.2.11 %}
+                                    <span onclick="deleteMsg({{ object.0 }}, 0)" class="delete-link-style">&nbsp;&nbsp;删除</span>
+                                    {% endif %}
                                 </div>
                             </div>
                             {% for reply_item in object.3 %}
+                            {% if reply_item.1 %}
                             <div class="msg-item-reply">
-                                <div class="msg-reply-left"></div>
+                                <div class="msg-reply-left">
+                                    <img class="avatar-style" src="/static/polls/userAvatar/{{ reply_item.10 }}"></img>
+                                </div>
                                 <div class="msg-reply-right">
                                     <div class="msg-title">
                                         <div class="msg-name" id="reply-name-{{ object.0 }}-{{ forloop.counter }}">{{ reply_item.6 }}</div>
-                                        <div class="msg-name">&nbsp;回复 {{ reply_item.5 }}</div>
-                                        <div class="msg-level-head">Lv{{ reply_item.8 }}</div>
-                                        <div class="msg-level-body">{{ reply_item.9 }}</div>
+                                        <div class="msg-name">&nbsp;回复 <span class="color-pink1">{{ reply_item.5 }}</span></div>
+                                        <div class="msg-level-head"><span class="msg-level-body-font">Lv{{ reply_item.8 }}</span></div>
+                                        <div class="msg-level-body"><span class="msg-level-body-font">{{ reply_item.9 }}</span></div>
+                                        <div class="sex-adjust select-a-{{ reply_item.7 }}">&nbsp;&nbsp;</div>
                                     </div>
                                     <div class="msg-content new-line">{{ reply_item.3 }}</div>
                                     <div class="msg-addition">
-                                        <span class="float-left-msgb">{{ reply_item.2 }}&nbsp;&nbsp;&nbsp;</span>
+                                        <span class="date-beau-style float-left-msgb">{{ reply_item.2 }}&nbsp;&nbsp;&nbsp;</span>
                                         <form action="{% url 'polls:msglike' %}" method="get">
                                             {% if reply_item.4.1 %}
                                             <span class="float-left-msgb like-webfont" style="color:#FF4500" onclick="like({{ object.0 }}, {{ forloop.counter }})" id="msglike-{{ object.0 }}-{{ forloop.counter }}">&nbsp;{{ reply_item.4.0 }}</span>
@@ -266,11 +281,16 @@ function like(commentId, replyId){
                                             {% endif %}
                                         </form>
                                         <span class="float-left-msgb">&nbsp;&nbsp;&nbsp;</span>
-                                        <a class="reply-link-style float-left-msgb" onclick="reply({{ object.0 }}, {{ forloop.counter }})">回复</a>
+                                        <a class="reply-link-style float-left-msgb" onclick="reply({{ object.0 }}, {{ forloop.counter }})"><span class="reply-beau-style">回复</span></a>
+                                        {% if reply_item.11 %}
+                                        <span onclick="deleteMsg({{ object.0 }}, {{ forloop.counter }})" class="delete-link-style">&nbsp;&nbsp;删除</span>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             {% endfor %}
+
                             <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
                                 {% csrf_token %}
                                 <div class="form-group">
@@ -290,6 +310,7 @@ function like(commentId, replyId){
                         </div>
                     </div>
                     <!-- one comment end -->
+                    {% endif %}
                     {% endfor %}
                     <div>&nbsp;</div>
                     <div class="pag-center">

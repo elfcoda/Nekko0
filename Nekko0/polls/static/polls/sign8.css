@@ -17,11 +17,12 @@
 }
 
 .body-img {
-  /*background:url("images/wall-paper/imouto-sae.jpg");*/
+  background:url("images/wall-paper/imouto-sae.jpg") no-repeat fixed center;
+  background-size:cover;
   opacity:0.92;
 }
 
-.outest-layer {
+.outest-layer0 {
   position:absolute;
   width:auto;
   height:auto;

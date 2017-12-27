@@ -218,6 +218,20 @@ def MsgLike(request):
 
     return JsonResponse(ret_json)
 
+# 删除某条评论及所有子回复  或者  删除某条子回复
+def DeleteMsg(request):
+    msgId = int(request.GET.get('msgId'))
+    replyId = int(request.GET.get('replyId'))
+    msg = SingleMsgBoard.objects.get(id=msgId)
+    reply_list = pickle.loads(msg.msg_pickle_str)
+    reply_list[replyId][1] = 0
+    msg.msg_pickle_str = pickle.dumps(reply_list)
+    msg.save()
+
+    ret_json = {'retVal': 0}
+    return JsonResponse(ret_json)
+
+
 @csrf_exempt
 def UploadUserImage(request):
     if request.method == 'POST':
@@ -248,7 +262,6 @@ def UploadAvatar(request):
     print request.POST.get('scale-w')
     print request.POST.get('scale-h')
     return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
-
 
 class MsgBoardListView(ListView, FormView):
     template_name = 'polls/msgboard.html'
@@ -301,6 +314,13 @@ class MsgBoardListView(ListView, FormView):
                 append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
                                userInfo.level_tag, userInfo.avatar_url]
                 pickle_reply_list_item += append_list
+                # 判断子评论的所属者是否是当前用户
+                if userId and userId == userid:
+                    isCurrentUser = 1
+                    # isCurrentUser = 0
+                else:
+                    isCurrentUser = 0
+                pickle_reply_list_item.append(isCurrentUser)
 
             ret_object_list.append([pickled_msg.id, pickled_msg.article_id, pickle_reply_list[0], pickle_reply_list[1:]])
             # print pickle.loads(pickled_msg.msg_pickle_str)

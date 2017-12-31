@@ -168,7 +168,7 @@ class RegisterView(FormView):
 
 class LoginView(FormView):
     # template_name = 'polls/login.html'
-    template_name = 'polls/login.html'
+    template_name = 'polls/avatar.html'
     form_class = LoginForm
     success_url = reverse_lazy('polls:blog_index')
 
@@ -300,6 +300,10 @@ def AddOrReplyMsg(request):
     return JsonResponse(ret_json)
 
 
+def newAvatar(request):
+    context = {}
+    return render(request, "polls/avatar.html", context)
+
 @csrf_exempt
 def UploadUserImage(request):
     if request.method == 'POST':
@@ -343,7 +347,7 @@ class MsgBoardListView(ListView, FormView):
         page = self.kwargs.get('page')
         self.articleId = self.kwargs.get('articleId')
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
-        paginator = Paginator(object_list, 2)
+        paginator = Paginator(object_list, 10)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:

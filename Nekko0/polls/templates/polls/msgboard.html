@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
-    <link href="{% static 'polls/msgboardi.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'polls/msgboardj.css' %}" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript">
         function load(){
@@ -343,7 +343,10 @@ function deleteMsg(msgId, replyId){
     <body onload="load()" class="body">
         {% include 'polls/nav.html' %}
 
-        <!-- i -->
+        <!-- css可以从include里加载，但是js不行
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <!-- Modal -->
@@ -369,7 +372,7 @@ function deleteMsg(msgId, replyId){
 
                     <!-- Modal footer -->
                     <div class="modal-footer-customer">
-                        <div id="modal-ok-btn" class="btn delete-msg-ok-modal" data-dismiss="modal"><h2>(｡・`ω´･)</h2></div>
+                        <div id="modal-ok-btn" class="btn delete-msg-ok-modal" data-dismiss="modal"><div class="del-msg-ok-facefont">(｡・`ω´･)</div></div>
                     </div>
 
                 </div>

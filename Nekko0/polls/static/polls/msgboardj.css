@@ -499,6 +499,12 @@
   background:rgba(253, 126, 20, 0.8);
 }
 
+.del-msg-ok-facefont {
+  position:relative;
+  top:-8px;
+  left:-4px;
+}
+
 .modal-footer-customer {
   width:100%;
   height:40px;

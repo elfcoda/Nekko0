@@ -23,6 +23,7 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 import base64
 import random
+import datetime
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -225,10 +226,77 @@ def DeleteMsg(request):
     msg = SingleMsgBoard.objects.get(id=msgId)
     reply_list = pickle.loads(msg.msg_pickle_str)
     reply_list[replyId][1] = 0
+    if replyId == 0:
+        msg.is_exist = 0
     msg.msg_pickle_str = pickle.dumps(reply_list)
     msg.save()
 
     ret_json = {'retVal': 0}
+    return JsonResponse(ret_json)
+
+def generateRandomString10():
+    sRet = ""
+    for _ in range(10):
+        sRet += random.choice('0123456789abcdefghijklmnopqrstuvwxyz')
+
+    return sRet
+
+
+def AddOrReplyMsg(request):
+    # page = int(request.GET.get(page))
+    articleId = int(request.GET.get('articleId'))
+    commentId = int(request.GET.get('commentId'))
+    replyToName = request.GET.get('replyToName')
+    content = request.GET.get('content')
+
+    try:
+        userId = request.session['userId']
+        print userId
+    except KeyError:
+        userId = -1
+        return
+
+    timeNow = str(datetime.datetime.now())
+
+    if commentId == -1:
+        msg_list = [[userId, 1, timeNow, content, set(), replyToName]]
+        sMsgList = pickle.dumps(msg_list)
+        sHashString = generateRandomString10()
+
+        single_msg_board = SingleMsgBoard(
+            article_id = articleId,
+            msg_pickle_str = sMsgList,
+            is_exist = 1,
+            hash_value = sHashString
+        )
+        single_msg_board.save()
+        # use hash_value to get CommentId
+        iCId = SingleMsgBoard.objects.get(hash_value=sHashString).id
+        iRId = 0
+
+    else:
+        reply_item = [userId, 1, timeNow, content, set(), replyToName]
+        comment_msg = SingleMsgBoard.objects.get(id=commentId)
+        list_item = pickle.loads(comment_msg.msg_pickle_str)
+        # print list_item
+        list_item.append(reply_item)
+        # print list_item
+        sMsgList = pickle.dumps(list_item)
+        comment_msg.msg_pickle_str = sMsgList
+        comment_msg.save()
+        iCId = commentId
+        iRId = len(list_item) - 1
+
+    # return dict
+    # 包含基本的list 和 commentId && replyId
+    userInfo = Userinfo.objects.get(id=userId)
+    infoList = [userInfo.username, userInfo.sex, userInfo.com_power, userInfo.level_tag, \
+                userInfo.avatar_url]
+    ret_json = {'userId': userId, 'date': timeNow.split('.')[0], \
+                'username': infoList[0], 'sex': infoList[1], 'power': infoList[2], \
+                'level_tag': infoList[3], 'avatar_url': infoList[4], 'commentId': iCId, \
+                'replyId': iRId}
+
     return JsonResponse(ret_json)
 
 
@@ -274,7 +342,7 @@ class MsgBoardListView(ListView, FormView):
     def get_queryset(self, **kwargs):
         page = self.kwargs.get('page')
         self.articleId = self.kwargs.get('articleId')
-        object_list = SingleMsgBoard.objects.filter(article_id=self.articleId).order_by(F('id').desc())
+        object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
         paginator = Paginator(object_list, 2)
         try:
             object_list = paginator.page(page)

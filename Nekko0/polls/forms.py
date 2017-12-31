@@ -254,6 +254,7 @@ class MsgBoardForm(forms.Form):
         # print "Not Empty"
         return content
 
+    # 已弃用，改用Ajax，见AddOrReplyMsg
     # commentId: message id in the model
     def save(self, userId, iArticleId, commentId, replyToName):
         if userId == -1:

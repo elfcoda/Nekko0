@@ -1,3 +1,5 @@
+create database nekko default charset utf8 collate utf8_general_ci;
+
 对于评论区:
 
 文章Id(从1开始)

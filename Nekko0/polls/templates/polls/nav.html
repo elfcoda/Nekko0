@@ -6,6 +6,7 @@
         <style type="text/css">
      		.up-img-cover {width: 45px;height: 45px;}
      		.up-img-cover img{width: 100%;}
+            .border-radius-circle {border-radius:50%;}
         </style>
         <script language="Javascript">
         function reload_page() {
@@ -26,7 +27,7 @@
                     <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
     	            <li style="float:right;margin-top:4px;" class="up-img-cover"  id="up-img-touch" >
                         <a href="{% url 'polls:newAvatar' %}" target="_blank">
-                            <img class="am-circle" alt="点击图片上传" src="{{ request.session.avatar }}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" ></img>
+                            <img class="am-circle border-radius-circle" alt="点击图片上传" src="{{ request.session.avatar }}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" ></img>
                         </a>
         	        </li>
                     {% else %}

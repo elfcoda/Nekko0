@@ -78,7 +78,8 @@ def results(request, question_id):
 
 
 class ArticleListView(ListView):
-    template_name = 'polls/blog_index.html'
+    # template_name = 'polls/blog_index.html'
+    template_name = 'polls/main.html'
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.all().order_by(F('created').desc())
@@ -168,7 +169,7 @@ class RegisterView(FormView):
 
 class LoginView(FormView):
     # template_name = 'polls/login.html'
-    template_name = 'polls/avatar.html'
+    template_name = 'polls/login.html'
     form_class = LoginForm
     success_url = reverse_lazy('polls:blog_index')
 

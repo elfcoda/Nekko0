@@ -12,6 +12,11 @@
   padding:0;
 }
 
+.body-img-main {
+  background:url("images/wall-paper/wallhaven-539405.png") no-repeat fixed center;
+  background-size:cover;
+}
+
 .inline-block-style {
   display:inline-block;
   float:left;
@@ -209,7 +214,6 @@ aside {
 }
 
 .findme {
-  background:rgba(200, 200, 200, 0.1);
   width:96%;
   poosition:relative;
   height:320px;
@@ -217,7 +221,7 @@ aside {
   box-shadow:0 0 0 rgba(0, 0, 0, 1);
   transition:box-shadow 0.1s;
   border-radius:3px;
-  background:rgba(30, 30, 30, 0.6);
+  background:rgba(50, 50, 50, 0.5);
 }
 
 .findme:hover {
@@ -245,16 +249,14 @@ aside {
 }
 
 .catch-me div div {
-  background:#0bb;
-  color:rgba(200, 200, 200, 1);
+  background:rgba(200, 200, 200, 0.2);
   border-radius:50%;
   transition:background 0.5s, color 0.5s;
   -webkit-transition:background 0.5s, color 0.5s;
 }
 
 .catch-me div div:hover {
-  background:#0b0;
-  color:rgba(100, 100, 200, 1);
+  color:#DDD;
 }
 
 .catch-me-1 {
@@ -269,27 +271,39 @@ aside {
 .catch-me-1-1 {
   height:35px;
   width:35px;
+  color:#DF0D2A;
+}
+.catch-me-1-1:hover {
+  background:#DF0D2A;
 }
 
-.catch-me-1-1:after {
+.catch-me-1-1-none:after {
   content:"\f1d6";
 }
 
 .catch-me-1-2 {
   height:35px;
   width:35px;
+  color:#DFAC0D;
+}
+.catch-me-1-2:hover {
+  background:#DFAC0D;
 }
 
-.catch-me-1-2:after {
-  content:"\f1d7";
+.catch-me-1-2-none:after {
+  content:"\f600";
 }
 
 .catch-me-1-3 {
   height:35px;
   width:35px;
+  color:#C760AB;
+}
+.catch-me-1-3:hover {
+  background:#C760AB;
 }
 
-.catch-me-1-3:after {
+.catch-me-1-3-none:after {
   content:"\f18a";
 }
 
@@ -305,43 +319,60 @@ aside {
 .catch-me-2-1 {
   height:35px;
   width:35px;
+  color:#31A013;
+}
+.catch-me-2-1:hover {
+  background:#31A013;
 }
 
-.catch-me-2-1:after {
+.catch-me-2-1-none:after {
   content:"\f300";
 }
 
 .catch-me-2-2 {
   height:35px;
   width:35px;
+  color:#28DCE8;
+}
+.catch-me-2-2:hover {
+  background:#28DCE8;
 }
 
-.catch-me-2-2:after {
+.catch-me-2-2-none:after {
   content:"\f09e";
 }
 
 .catch-me-2-3 {
   height:35px;
   width:35px;
+  color:#E87128;
+}
+.catch-me-2-3:hover {
+  background:#E87128;
 }
 
-.catch-me-2-3:after {
+
+.catch-me-2-3-none:after {
   content:"\e801";
 }
 
 .catch-me-2-4 {
   height:35px;
   width:35px;
+  color:#2370DF;
+}
+.catch-me-2-4:hover {
+  background:#2370DF;
 }
 
-.catch-me-2-4:after {
+.catch-me-2-4-none:after {
   content:"\e802";
 }
 
 .likeme {
   width:100%;
   height:90px;
-  background:#0bb;
+  background:rgba(222,222,222,0.9);
   margin-top:20px;
   box-shadow:0 0 0 rgba(0, 0, 0, 1);
   transition:box-shadow 0.1s;
@@ -353,10 +384,11 @@ aside {
 }
 
 .like-me-text {
-  color:pink;
+  color:red;
   text-align:center;
-  font-size:20px;
+  font-size:17px;
   height:20px;
+  margin-bottom:7px;
 }
 
 .click-like-me {
@@ -379,25 +411,25 @@ aside {
 
 .like-me-1:before {
 	line-height:40px;
-  content:"\e800";
+  /*content:"\e800";*/
 }
 
 .like-me-0 {
   width:40px;
   height:40px;
-
+  color:grey;
 }
 
 .like-me-0:before {
   line-height:40px;
-	content:"\e800";
+	/*content:"\e800";*/
 }
 
 .click-like-me-text {
   display:inline-flex;
   justify-content:space-around;
   width:60%;
-  margin-top:3px;
+  margin-top:0px;
   margin-left:20%;
   height:20px;
 	text-align:center;
@@ -406,9 +438,11 @@ aside {
 
 .like-me-text-1 {
 	width:40px;
+  color:red;
 }
 .like-me-text-0 {
 	width:40px;
+  color:grey;
 }
 
 .latest-update {
@@ -536,3 +570,8 @@ aside {
 .message-item-right {}
 
 /* message */
+
+.color-red {
+  color:red;
+}
+

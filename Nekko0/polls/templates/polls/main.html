@@ -2,8 +2,11 @@
 <html>
     <head>
         {% load static %}
-        <link href="{% static 'polls/style5.css' %}" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_rag8juck30tnvcxr.js"></script>
+        <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <!--
+        -->
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_6bstx8i79l0rizfr.js">
+        </script>
         <style type="text/css">
             .icon {
                 width: 1em; height: 1em;
@@ -12,78 +15,179 @@
                 overflow: hidden;
             }
         </style>
+
+        <script type="text/javascript">
+            function load(){
+                //固定显示7页
+                var show_max = 7;
+                var all_page_num = {{ object_list.0.1 }};
+                var cur_page = {{ object_list.0.0 }};
+                document.getElementById('first-page').style.display = "inline-block";
+                document.getElementById('first-page').href = "/polls/1";
+                document.getElementById('last-page').style.display = "inline-block";
+                document.getElementById('last-page').href = "/polls/" + all_page_num;
+
+                if (all_page_num <= show_max)
+                {
+                    for (var i = 1; i <= all_page_num; ++i)
+                    {
+                        var id = "page" + i;
+                        var e = document.getElementById(id);
+                        e.style.display = "inline-block";
+                        e.innerHTML = i;
+                        e.href = "/polls/" + i;
+                        if (i == cur_page)
+                        {
+                            e.setAttribute('class', 'active');
+                        }
+                    }
+                }
+                else
+                {
+                    //判断当前页和总页
+                    //1 2 3 4 5 6 7 8 9 10
+                    var half = Math.round(show_max / 2);
+                    if (cur_page <= half)
+                    {
+                        //显示前面showmnax页
+                        for (var p_n = 1; p_n <= show_max; p_n ++)
+                        {
+                            var p_id = "page" + p_n;
+                            var p_e = document.getElementById(p_id);
+                            p_e.style.display = "inline-block";
+                            p_e.innerHTML = p_n;
+                            p_e.href = "/polls/" + p_n;
+                            if (cur_page == p_n)
+                            {
+                                p_e.setAttribute('class', 'active');
+                            }
+                        }
+                    }
+                    else if (cur_page > all_page_num-half)
+                    {
+                        //显示后面showmax页
+                        for (var b_n = all_page_num-show_max+1, b_i = 1; b_n <= all_page_num, b_i <= show_max; b_n ++, b_i ++)
+                        {
+                            var b_id = "page" + b_i;
+                            var b_e = document.getElementById(b_id);
+                            b_e.style.display = "inline-block";
+                            b_e.innerHTML = b_n;
+                            b_e.href = "/polls/" + b_n;
+                            if (cur_page == b_n)
+                            {
+                                b_e.setAttribute('class', 'active');
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // eg:5 6, 显示前三 当前 后三
+                        for (var m1_i = 1, m1_n = cur_page-half+1; m1_i <= half-1, m1_n < cur_page; m1_i ++, m1_n ++)
+                        {
+                            var m1_id = "page" + m1_i;
+                            var m1_e = document.getElementById(m1_id);
+                            m1_e.style.display = "inline-block";
+                            m1_e.innerHTML = m1_n;
+                            m1_e.href = "/polls/" + m1_n;
+                        }
+                        var m2_e = document.getElementById("page4");
+                        m2_e.style.display = "inline-block";
+                        m2_e.innerHTML = cur_page;
+                        m2_e.setAttribute('class', 'active');
+                        m2_e.href = "/polls/" + cur_page;
+                        //cur_page-0+1: 先转str为int
+                        for (var m3_i = show_max-half+2, m3_n = cur_page-0+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
+                        {
+                            var m3_id = "page" + m3_i;
+                            var m3_e = document.getElementById(m3_id);
+                            m3_e.style.display = "inline-block";
+                            m3_e.innerHTML = m3_n;
+                            m3_e.href = "/polls/" + m3_n;
+                        }
+                    }
+                }
+            }
+        </script>
     </head>
-    <body class="body-img-main">
+    <body class="body-img-main" onload="load()">
+        <!--
+        -->
+        {% include 'polls/nav.html' %}
+
         <div class="outer-align-main">
             <div id="main">
                 <div id="context">
-                    <article id="post-2000">
-                        <div>
-                            <p>&nbsp;</p>
-                            <p>9 MON</p>
-                            <h2>20</h2>
-                            <div>
-                                <h2>Hello</h2>
-                                <div></div>
+                    {% for object in object_list.1 %}
+                    <!-- one article begin -->
+                    <article id="post-{{ object.id }}" class="context-article">
+                        <div class="">
+                            <div class="div-date-decor">
+                                <div class="leave-margin-top"></div>
+                                <div class="article-mon">{{ object.cr_mon }} MON</div>
+                                <div class="article-day">{{ object.cr_day }}</div>
+                            </div>
+                            <div class="article-side-decorate-div-outer">
+                                <div class="tags-font">{{ object.tags.0 }}</div>
+                                <div class="article-side-decorate-div"></div>
                             </div>
                         </div>
-                        <span>
-                            <div class="post-title">Title</div>
-                            <div class="post-subtitle">SubTitle</div>
-                            <p>eswfesafreagteshrehytertrfgesre
-                            eswfesafreagteshrehytertrfgesredsfarewargearsdfae</p>
-                            <p>区域中可容纳无限数量的文本，其中的文本的默认字体是等宽字体（通常是 Courier）。
-                            可以通过 cols 和 rows 属性来规定 textarea 的尺寸大小，不过更好的办法是使用 CSS 的</p>
-                            <p>区域中可容纳无限数量的文本，其中的文本的默认字体是等宽字体（通常是 Courier）。
-                            可以通过 cols 和 rows 属性来规定 textarea 的尺寸大小，不过更好的办法是使用 CSS 的</p>
-                            <p>区域中可容纳无限数量的文本，其中的文本的默认字体是等宽字体（通常是 Courier）。
-                            可以通过 cols 和 rows 属性来规定 textarea 的尺寸大小，不过更好的办法是使用 CSS 的</p>
-                            <div class="post-readmore">read more >></div>
-                        </span>
-                    </article>
-                    <article id="post-2001">
-                        <div>
-                            <p>&nbsp;</p>
-                            <p>10 MON</p>
-                            <h2>01</h2>
-                            <div>
-                                <h2>Hii</h2>
-                                <div></div>
-                            </div>
+                        <div class="art">
+                            <div class="post-title">{{ object.title }}</div>
+                            <div class="post-subtitle">{{ object.created }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ object.views }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ object.author }}</div>
+							<div class="post-content"><div class="article-p">
+                                    {{ object.content_html }}
+                            </div></div>
+                                <div class="post-readmore">
+                                    <a class="readmore" href="{% url 'polls:article_detail' articleId=object.id %}">read more
+                                    <svg class="icon shuangyou" aria-hidden="true">
+                                        <use xlink:href="#icon-shuangyou"></use>
+                                    </svg>
+                                    </a>
+                                </div>
                         </div>
                     </article>
-                    <article id="post-2002">
-                        <div>
-                            <p>&nbsp;</p>
-                            <p>11 MON</p>
-                            <h2>01</h2>
-                            <div>
-                                <h2>Hll</h2>
-                                <div></div>
-                            </div>
+                    <!-- one article end -->
+                    {% endfor %}
+                    <div class="main-pagination">
+                    <div class="pag-center">
+                        <div class="pagination">
+                            <a href="#" id="first-page" class="pagination-first"></a>
+                            <a href="#" id="page1">1</a>
+                            <a href="#" id="page2">2</a>
+                            <a href="#" id="page3">3</a>
+                            <a href="#" id="page4">4</a>
+                            <a href="#" id="page5">5</a>
+                            <a href="#" id="page6">6</a>
+                            <a href="#" id="page7">7</a>
+                            <a href="#" id="last-page" class="pagination-last"></a>
                         </div>
-                    </article>
+                    </div>
+                    </div>
                 </div>
 
                 <aside>
                     <div class="findme">
-                        <div class="my-avatar"></div>
+                        <div class="my-avatar-outer">
+                            <div class="my-avatar"></div>
+                        </div>
                         <div class="catch-me">
                             <div class="catch-me-1">
                                 <a href="http://music.163.com/#/user/home?id=68362002">
-                                    <div class="catch-me-1-1">
+                                    <div class="catch-me-1-1 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-musiccloud-copy"></use>
                                         </svg>
                                     </div>
                                 </a>
-                                <div class="catch-me-1-2">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-lol"></use>
-                                    </svg>
-                                </div>
                                 <a href="">
-                                    <div class="catch-me-1-3">
+                                    <div class="catch-me-1-2 cur-pointer">
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-lol"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="catch-me-1-3 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-bili"></use>
                                         </svg>
@@ -91,26 +195,37 @@
                                 </a>
                             </div>
                             <div class="catch-me-2">
-                                <div class="catch-me-2-1">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-we_chat_l"></use>
-                                    </svg>
-                                </div>
-                                <div class="catch-me-2-2">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-QQ"></use>
-                                    </svg>
-                                </div>
-                                <div class="catch-me-2-3">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-gongzhonghao"></use>
-                                    </svg>
-                                </div>
-                                <div class="catch-me-2-4">
-                                    <svg class="icon" aria-hidden="true">
-                                        <use xlink:href="#icon-github"></use>
-                                    </svg>
-                                </div>
+                                <a href="">
+                                    <div class="catch-me-2-1 cur-pointer">
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-we_chat_l"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                                <a href="https://user.qzone.qq.com/707935952">
+                                    <div class="catch-me-2-2 cur-pointer">
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-QQ"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="catch-me-2-3 cur-pointer">
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-gongzhonghao"></use>
+                                        </svg>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="catch-me-2-4 cur-pointer">
+                                        <div class="tooltip">
+                                            <span class="tooltiptext">&nbsp;>_<&nbsp;</span>
+                                        </div>
+                                        <svg class="icon" aria-hidden="true">
+                                            <use xlink:href="#icon-github"></use>
+                                        </svg>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -119,7 +234,7 @@
                         <div class="click-like-me">
                             <div class="like-me-1">
                                 <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-like1"></use>
+                                    <use xlink:href="#icon-aixinshixin"></use>
                                 </svg>
                             </div>
                             <div class="like-me-0">

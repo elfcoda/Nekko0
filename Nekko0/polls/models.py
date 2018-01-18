@@ -30,11 +30,11 @@ class Choice(models.Model):
 
 @python_2_unicode_compatible
 class Article(models.Model):
-    url = models.URLField()
+    url = models.URLField()                     # 暂时不用
     title = models.CharField(max_length=50)
-    title_zh = models.CharField(max_length=50)
+    title_zh = models.CharField(max_length=50)  # 暂时不用
     author = models.CharField(max_length=30)
-    content_md = models.TextField()
+    content_md = models.TextField()             # 暂时不用
     content_html = models.TextField()
     tags = models.CharField(max_length=30)
     views = models.IntegerField()

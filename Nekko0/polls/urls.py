@@ -18,9 +18,13 @@ urlpatterns = [
     url(r'^newAvatar$', newAvatar, name='newAvatar'),
 
     url(r'^$', views.ArticleListView.as_view(), name='blog_index'),
+    url(r'^(?P<page>\w+)$', views.ArticleListView.as_view(), name='blog_index_page'),
     url(r'^article/publish$', ArticlePublishView.as_view(), name='article_publish'),
-    url(r'^article/(?P<title>\w+\.?\w+)$', ArticleDetailView.as_view(), name='article_detail'),
-    url(r'^article/(?P<title>\w+\.?\w+)/edit$', ArticleEditView.as_view(), name='article_edit'),
+    # url(r'^article/(?P<articleId>\w+\.?\w+)$', ArticleDetailView.as_view(), name='article_detail'),
+    # url(r'^article/(?P<articleId>\w+\.?\w+)/edit$', ArticleEditView.as_view(), name='article_edit'),
+
+    url(r'^article/(?P<articleId>\w+)$', ArticleDetailView.as_view(), name='article_detail'),
+    url(r'^article/(?P<articleId>\w+)/edit$', ArticleEditView.as_view(), name='article_edit'),
 
     # 留言板
     url(r'^msgboard/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', MsgBoardListView.as_view(), name='msgboard'),

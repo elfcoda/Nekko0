@@ -83,8 +83,10 @@ class ArticleListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.all().order_by(F('created').desc())
-        paginator = Paginator(object_list, 10)
-        page = self.request.GET.get('page')
+        paginator = Paginator(object_list, 3)
+        page = self.kwargs.get('page')
+        if page is None:
+            page = 1
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -92,7 +94,25 @@ class ArticleListView(ListView):
         except EmptyPage:
             object_list = paginator.page(paginator.num_pages)
 
-        return object_list
+        for ob in object_list:
+            ob.tags = ob.tags.split()
+            ob.created = str(ob.created).split(' ')[0]
+            ob.updated = str(ob.updated).split(' ')[0]
+            date_list = ob.created.split(' ')[0].split('-')
+            ob.cr_mon = date_list[1]
+            if ob.cr_mon[0] == '0':
+                ob.cr_mon = ob.cr_mon[1]
+            ob.cr_day = date_list[2]
+            if ob.cr_day[0] == '0':
+                ob.cr_day = ob.cr_day[1]
+
+        ret_list = []
+        pageInfo = [int(page), int(paginator.num_pages)]
+        # print int(page)
+        # print int(paginator.num_pages)
+        ret_list.append(pageInfo)
+        ret_list.append(object_list)
+        return ret_list
 
 class ArticlePublishView(FormView):
     template_name = 'polls/article_publish.html'
@@ -100,16 +120,18 @@ class ArticlePublishView(FormView):
     success_url = reverse_lazy('polls:blog_index')
 
     def form_valid(self, form):
-        form.save(self.request.user.username)
+        userId = self.request.session['userId']
+        userName = Userinfo.objects.get(id=userId).username
+        form.save(userName)
         return super(ArticlePublishView, self).form_valid(form)
 
 class ArticleDetailView(DetailView):
     template_name = 'polls/article_detail.html'
 
     def get_object(self, **kwargs):
-        title = self.kwargs.get('title')
+        articleId = self.kwargs.get('articleId')
         try:
-            article = Article.objects.get(title=title)
+            article = Article.objects.get(id=articleId)
             article.views += 1
             article.save()
             article.tags = article.tags.split()
@@ -121,29 +143,29 @@ class ArticleEditView(FormView):
     template_name = 'polls/article_publish.html'
     form_class = ArticlePublishForm
     article = None
+    articleId = -1
 
     def get_initial(self, **kwargs):
-        title = self.kwargs.get('title')
+        self.articleId = self.kwargs.get('articleId')
         try:
-            self.article = Article.objects.get(title=title)
+            self.article = Article.objects.get(id=self.articleId)
             initial = {
-                'title': title,
-                'content': self.article.content_md,
+                'title': self.article.title,
+                'content': self.article.content_html,
                 'tags': self.article.tags,
             }
             return initial
         except Article.DoesNotExist:
             raise Http404("Article does not exist")
 
-
-
     def form_valid(self, form):
-        form.save(self.request, self.article)
+        userId = self.request.session['userId']
+        userName = Userinfo.objects.get(id=userId).username
+        form.save(userName, self.article)
         return super(ArticleEditView, self).form_valid(form)
 
     def get_success_url(self):
-        title = self.request.POST.get('title')
-        success_url = reverse('polls:article_detail', args=(title,))
+        success_url = reverse('polls:article_detail', args=(self.articleId,))
         return success_url
 
 class RegisterView(FormView):

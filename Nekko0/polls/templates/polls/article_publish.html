@@ -1,33 +1,48 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
+<!--
 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link href="{% static 'polls/publish_article.css' %}" rel="stylesheet" type="text/css" />
+-->
+<link href="{% static 'polls/publish_article1.css' %}" rel="stylesheet" type="text/css" />
 <head>
+    <script language="Javascript">
+        function preview(){
+            var content = document.getElementById("content").value;
+            document.getElementById("preview").innerHTML = content;
+        }
+    </script>
 </head>
-<body>
+
+<body onload="preview()">
 
 <div class="container">
   <div class="publish center-block">
       <div class="leave-margin-top">
       </div>
       <form action="" method="post">{% csrf_token %}
-          <div class="form-group">
+          <div class="form-group half">
             <label>标题</label>
             {{ form.title }}
           </div>
 
-          <div class="form-group">
-            <label>内容</label>
-            {{ form.content }}
+          <div>
+            <div class="form-group" onchange="preview()">
+              <label>内容</label>
+              {{ form.content }}
+            </div>
+            <div class="form-group preview-div">
+              <label>预览</label>
+              <div class="preview half" id="preview"></div>
+            </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group half offset">
             <label>Tags</label>
             {{ form.tags }}
           </div>
-      <button type="submit" class="btn btn-primary">Publish</button>
+      <button type="submit" class="btn btn-primary offset">Publish</button>
     </form>
     <div class="leave-margin-bottom">
     </div>

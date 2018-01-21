@@ -18,12 +18,57 @@
         <div class="">
             <nav class="nav-outer">
                 <ul class="nav_ul">
-                    <li><a class="nav_ul-li-a-l" href="#home">Home</a></li>
-                    <li><a class="nav_ul-li-a-l" href="#news">News</a></li>
-                    <li><a class="nav_ul-li-a-l" href="#contact">Contact</a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-home"></use>
+                    </svg>
+                    秘密基地
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-jingxihuaxuepin"></use>
+                    </svg>
+                    实验室
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-magic"></use>
+                    </svg>
+                    魔法屋
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-code"></use>
+                    </svg>
+                    算法
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-icontalk01"></use>
+                    </svg>
+                    轻语
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-33"></use>
+                    </svg>
+                    充电
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-jiqixuexi"></use>
+                    </svg>
+                    <!-- 日常 -->
+                    とある神秘の程序猿
+                    </nobr></a></li>
                     <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
                     {% if request.session.userId %}
-                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:logout' %}">断开</a></li>
+                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:logout' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shebeiduankai"></use>
+                    </svg>
+                    断开
+                    </nobr></a></li>
                     <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
     	            <li style="float:right;margin-top:4px;" class="up-img-cover"  id="up-img-touch" >
                         <a href="{% url 'polls:newAvatar' %}" target="_blank">
@@ -31,7 +76,12 @@
                         </a>
         	        </li>
                     {% else %}
-                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:login' %}">接入</a></li>
+                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:login' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-bhjlink"></use>
+                    </svg>
+                    接入
+                    </nobr></a></li>
                     {% endif %}
                 </ul>
 

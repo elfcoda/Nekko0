@@ -113,7 +113,8 @@ aside {
   width:100%;
   min-height:200px;
   height:auto;
-  margin-bottom:50px;
+  margin-bottom:80px;
+  margin-top:-15px;
   background:rgba(240, 240, 240, 0.75);
   border-radius:7px;
 }
@@ -248,7 +249,10 @@ aside {
 
 .readmore {
   color: white;
+  font-size: 16px;
   text-decoration: none;
+  position: relative;
+  top: -2px;
 }
 
 .readmore:hover {
@@ -257,9 +261,9 @@ aside {
 }
 
 .post-readmore {
-  height:28px;
-  line-height:28px;
-  width:124px;
+  height:25px;
+  line-height:25px;
+  width:100px;
   cursor:pointer;
   color:white;
   text-align:center;
@@ -278,7 +282,9 @@ aside {
 }
 
 .shuangyou {
-  font-size:14px;
+  font-size:12px;
+  position: relative;
+  top: -2px;
 }
 
 
@@ -669,7 +675,7 @@ aside {
 */
 
 .tooltiptext {
-  visibility: visible;
+  visibility: hidden;
   background: black;
   color: white;
   text-align: center;
@@ -677,18 +683,40 @@ aside {
   /* Position the tooltip */
   position: relative;
   z-index: 1;
-  left: 0px;
+  left: -42px;
   top: -70px;
 
   font-size:15px;
   text-decoration: none;
   height:23px;
-  border-radius:3px;
   line-height:23px;
-  width:60px;
-  padding: 3px 0;
+  width:120px;
 
+  opacity:0;
   transition: opacity .5s;
+}
+
+.notextdeco {
+  text-decoration: none;
+}
+.notextdeco:hover {
+  text-decoration: none;
+}
+
+/* 计算方式：18-width/2
+ * 改文字的时候也要改样式
+ * */
+.po-5 {
+  left: -5px;
+  width: 46px;
+}
+.po-10 {
+  left: -10px;
+  width: 56px;
+}
+.po-32 {
+  left: -32px;
+  width: 100px;
 }
 
 .tooltiptext::after {
@@ -705,7 +733,7 @@ aside {
 .cur-pointer:hover .tooltiptext {
   visibility: visible;
   text-decoration: none;
-  opacity: .6;
+  opacity: .7;
 }
 
 
@@ -735,7 +763,6 @@ aside {
   color: #ff8080;
   font-size:15px;
   float: left;
-  padding: 0px 2px;
   text-decoration: none;
   transition: background-color .3s;
   border: 1px solid #ff8080;
@@ -767,19 +794,12 @@ aside {
   display:none;
 }
 
-.pagination-first {}
-.pagination-first:before {
-  font-family:fontello;
-  content:"\f100";
-}
-
-.pagination-last {}
-.pagination-last:before {
-  font-family:fontello;
-  content:"\f101";
-}
-
 .hidden-messages {
   display:none;
 }
+
+.footer-blank {
+  height: 70px;
+}
+
 

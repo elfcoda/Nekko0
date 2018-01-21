@@ -135,6 +135,16 @@ class ArticleDetailView(DetailView):
             article.views += 1
             article.save()
             article.tags = article.tags.split()
+            # print article.created
+            article.created = str(article.created).split(' ')[0]
+            date_list = article.created.split('-')
+            article.cr_mon = date_list[1]
+            if article.cr_mon[0] == '0':
+                article.cr_mon = article.cr_mon[1]
+            article.cr_day = date_list[2]
+            if article.cr_day[0] == '0':
+                article.cr_day = article.cr_day[1]
+
         except Article.DoesNotExist:
             raise Http404("Article does not exist")
         return article
@@ -216,7 +226,7 @@ def Logout(request):
         pass
 
     # messages.success(request, "logout!")
-    return render(request, "polls/blog_index.html")
+    return HttpResponseRedirect(reverse('polls:blog_index'))
 
 def MsgLike(request):
     # -1--评论 1 2 3--回复

@@ -5,7 +5,7 @@
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
         <!--
         -->
-        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_6bstx8i79l0rizfr.js">
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
         <style type="text/css">
             .icon {
@@ -106,6 +106,13 @@
                         }
                     }
                 }
+                //侧边hover位置
+                var sidepoes = document.getElementsByName('tooltip-po');
+                var lenpoes = sidepoes.length;
+                for (var i = 0; i < lenpoes; ++i){
+                    //alert(sidepoes[i].style.color);
+                }
+                //sidepoes[0].style.color = "#888";
             }
         </script>
     </head>
@@ -113,6 +120,11 @@
         <!--
         -->
         {% include 'polls/nav.html' %}
+
+        <!-- 主节点状态
+        -->
+        <div class="kernal">
+        </div>
 
         <div class="outer-align-main">
             <div id="main">
@@ -133,12 +145,27 @@
                         </div>
                         <div class="art">
                             <div class="post-title">{{ object.title }}</div>
-                            <div class="post-subtitle">{{ object.created }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ object.views }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ object.author }}</div>
+                            <div class="post-subtitle">
+                                <nobr>
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-date"></use>
+                                    </svg>
+                                    {{ object.created }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-ico_yueduliang"></use>
+                                    </svg>
+                                    {{ object.views }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-user"></use>
+                                    </svg>
+                                    {{ object.author }}
+                                </nobr>
+                            </div>
 							<div class="post-content"><div class="article-p">
                                     {{ object.content_html }}
                             </div></div>
                                 <div class="post-readmore">
-                                    <a class="readmore" href="{% url 'polls:article_detail' articleId=object.id %}">read more
+                                    <a class="readmore" href="{% url 'polls:article_detail' articleId=object.id %}">阅读更多
                                     <svg class="icon shuangyou" aria-hidden="true">
                                         <use xlink:href="#icon-shuangyou"></use>
                                     </svg>
@@ -151,7 +178,11 @@
                     <div class="main-pagination">
                     <div class="pag-center">
                         <div class="pagination">
-                            <a href="#" id="first-page" class="pagination-first"></a>
+                            <a href="#" id="first-page" class="">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon-arrow-left2"></use>
+                                </svg>
+                            </a>
                             <a href="#" id="page1">1</a>
                             <a href="#" id="page2">2</a>
                             <a href="#" id="page3">3</a>
@@ -159,7 +190,11 @@
                             <a href="#" id="page5">5</a>
                             <a href="#" id="page6">6</a>
                             <a href="#" id="page7">7</a>
-                            <a href="#" id="last-page" class="pagination-last"></a>
+                            <a href="#" id="last-page" class="">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon-arrow-right2"></use>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                     </div>
@@ -172,56 +207,62 @@
                         </div>
                         <div class="catch-me">
                             <div class="catch-me-1">
-                                <a href="http://music.163.com/#/user/home?id=68362002">
+                                <a href="http://music.163.com/#/user/home?id=68362002" class="notextdeco" target="_blank">
                                     <div class="catch-me-1-1 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-musiccloud-copy"></use>
                                         </svg>
+                                        <header class="tooltiptext" name="tooltip-po">&nbsp;网易云音乐&nbsp;</header>
                                     </div>
                                 </a>
-                                <a href="">
+                                <a href="" class="notextdeco">
                                     <div class="catch-me-1-2 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-lol"></use>
                                         </svg>
+                                        <header class="tooltiptext" name="tooltip-po">&nbsp;艾欧: 终结谷yy&nbsp;</header>
                                     </div>
                                 </a>
-                                <a href="">
+                                <a href="https://space.bilibili.com/21352320/#/favlist" class="notextdeco" target="_blank">
                                     <div class="catch-me-1-3 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-bili"></use>
                                         </svg>
+                                        <header class="tooltiptext" name="tooltip-po">&nbsp;死宅乐园&nbsp;</header>
                                     </div>
                                 </a>
                             </div>
                             <div class="catch-me-2">
-                                <a href="">
+                                <a href="" class="notextdeco">
                                     <div class="catch-me-2-1 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-we_chat_l"></use>
                                         </svg>
+                                        <header class="tooltiptext" name="tooltip-po">&nbsp;微信: Kalisplu&nbsp;</header>
                                     </div>
                                 </a>
-                                <a href="https://user.qzone.qq.com/707935952">
+                                <a href="https://user.qzone.qq.com/707935952" class="notextdeco" target="_blank">
                                     <div class="catch-me-2-2 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-QQ"></use>
                                         </svg>
+                                        <header class="tooltiptext po-5" name="tooltip-po">&nbsp;QQ&nbsp;</header>
                                     </div>
                                 </a>
-                                <a href="">
+                                <a href="" class="notextdeco">
                                     <div class="catch-me-2-3 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-gongzhonghao"></use>
                                         </svg>
+                                        <header class="tooltiptext po-5" name="tooltip-po">&nbsp;>_<&nbsp;</header>
                                     </div>
                                 </a>
-                                <a href="">
+                                <a href="" class="notextdeco">
                                     <div class="catch-me-2-4 cur-pointer">
                                         <svg class="icon" aria-hidden="true">
                                             <use xlink:href="#icon-github"></use>
                                         </svg>
-                                        <span class="tooltiptext">&nbsp;HHHKKK&nbsp;</span>
+                                        <header class="tooltiptext po-5" name="tooltip-po">&nbsp;>_<&nbsp;</header>
                                     </div>
                                 </a>
                             </div>
@@ -279,5 +320,7 @@
 
             </div>
         </div>
+        <div class="footer-blank"></div>
+        {% include 'polls/footer.html' %}
     </body>
 </html>

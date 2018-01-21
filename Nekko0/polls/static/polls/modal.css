@@ -1,0 +1,86 @@
+/*
+ * a.button -> mo-a-btn
+ * overlay  -> mo-overlay
+ * modal    -> mo-modal
+ * a.close  -> mo-a-close
+ */
+
+.mo-btn {
+  color:red;
+}
+
+.mo-a-btn {
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  color: #00a2ff;
+  font-weight: 500;
+  padding: 8px 15px 8px 15px;
+  border: 1px solid rgba(26, 53, 71, 0.1);
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  transition: .25s;
+  background: linear-gradient(white, ghostwhite);
+}
+
+.mo-a-btn:hover {
+  border: 1px solid rgba(26, 53, 71, 0.2);
+  background: white;
+}
+
+.mo-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity .5s;
+  visibility: hidden;
+  opacity: 0;
+}
+.mo-overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.mo-modal {
+  width: 80%;
+  position: relative;
+  margin: auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  transition: .5s;
+  opacity: 0;
+}
+.mo-overlay:target > .mo-modal {
+  transform: translateY(30%) scale(0.9);
+  transition-timing-function: cubic-bezier(0.8, 0, 0, 1.5);
+  opacity: 1;
+}
+
+.mo-a-close {
+  position: absolute;
+  top: 15px;
+  right: 13px;
+  width: 24px;
+  height: 24px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 24px;
+  line-height: 22px;
+  color: lightslategrey;
+  background-color: lightgrey;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  transition: .25s;
+}
+.mo-a-close:hover {
+  background-color: tomato;
+  color: white;
+}

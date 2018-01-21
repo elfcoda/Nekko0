@@ -1,0 +1,25 @@
+.leave-margin-bottom, .leave-margin-top {
+  height:15px;
+}
+
+.half {
+  width: 718px;
+}
+
+.preview {
+  width: 718px;
+  min-height: 300px;
+  background: rgba(200, 200, 200, 0.5);
+}
+
+.preview-div {
+  position:relative;
+  left: 718px;
+  top: -254px;
+}
+
+.offset {
+  position:relative;
+  top: -334px;
+}
+

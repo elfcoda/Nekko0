@@ -127,8 +127,8 @@
         </div>
 
         <div class="outer-align-main">
-            <div id="main">
-                <div id="context">
+            <div class="main">
+                <div class="context">
                     {% for object in object_list.1 %}
                     <!-- one article begin -->
                     <article id="post-{{ object.id }}" class="context-article">
@@ -165,7 +165,7 @@
                                     {{ object.content_html }}
                             </div></div>
                                 <div class="post-readmore">
-                                    <a class="readmore" href="{% url 'polls:article_detail' articleId=object.id %}">阅读更多
+                                    <a class="readmore" href="{% url 'polls:article_detail' articleId=object.id page=1 %}">阅读更多
                                     <svg class="icon shuangyou" aria-hidden="true">
                                         <use xlink:href="#icon-shuangyou"></use>
                                     </svg>
@@ -176,27 +176,27 @@
                     <!-- one article end -->
                     {% endfor %}
                     <div class="main-pagination">
-                    <div class="pag-center">
-                        <div class="pagination">
-                            <a href="#" id="first-page" class="">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-icon-arrow-left2"></use>
-                                </svg>
-                            </a>
-                            <a href="#" id="page1">1</a>
-                            <a href="#" id="page2">2</a>
-                            <a href="#" id="page3">3</a>
-                            <a href="#" id="page4">4</a>
-                            <a href="#" id="page5">5</a>
-                            <a href="#" id="page6">6</a>
-                            <a href="#" id="page7">7</a>
-                            <a href="#" id="last-page" class="">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-icon-arrow-right2"></use>
-                                </svg>
-                            </a>
+                        <div class="pag-center">
+                            <div class="pagination">
+                                <a href="#" id="first-page" class="">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-icon-arrow-left2"></use>
+                                    </svg>
+                                </a>
+                                <a href="#" id="page1">1</a>
+                                <a href="#" id="page2">2</a>
+                                <a href="#" id="page3">3</a>
+                                <a href="#" id="page4">4</a>
+                                <a href="#" id="page5">5</a>
+                                <a href="#" id="page6">6</a>
+                                <a href="#" id="page7">7</a>
+                                <a href="#" id="last-page" class="">
+                                    <svg class="icon" aria-hidden="true">
+                                        <use xlink:href="#icon-icon-arrow-right2"></use>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
 
@@ -317,10 +317,9 @@
                     </div>
                     <div class="closeaside"></div>
                 </aside>
-
             </div>
         </div>
-        <div class="footer-blank"></div>
-        {% include 'polls/footer.html' %}
+            <div class="footer-blank"></div>
+            {% include 'polls/footer.html' %}
     </body>
 </html>

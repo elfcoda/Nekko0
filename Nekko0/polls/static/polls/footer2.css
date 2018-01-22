@@ -2,6 +2,12 @@
   height:15px;
 }
 
+.footer-outer {
+  float:left;
+  width:100%;
+  margin-top:70px;
+}
+
 .ft-style {
   background:#404040;
   width:100%;

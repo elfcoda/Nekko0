@@ -79,24 +79,26 @@ body {
 /* Main */
 .outer-align-main {
   width:1400px;
-  height:1000px;
+  height:auto;
   position:relative;
   top:70px;
   margin:auto;
 }
 
-#main {
+.main {
   width:1200px;
-  height:1000px;
+  height:auto;
   background:rgba(0, 0, 0, 0);
-  position:absolute;
+  /*position:absolute;*/
   top:0px;
   margin-left:100px;
+  float:left;
 }
 
-#context {
+.context {
   width:70%;
   height:100%;
+  height:auto;
   left:0%;
   float:left;
 }
@@ -743,6 +745,7 @@ aside {
   height:60px;
   background:rgba(240, 240, 240, 0.75);
   border-radius: 7px;
+  margin-bottom: 50px;
 }
 
 .pag-center {
@@ -799,7 +802,7 @@ aside {
 }
 
 .footer-blank {
-  height: 70px;
+  height:0px;
 }
 
 

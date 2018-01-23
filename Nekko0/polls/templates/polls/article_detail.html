@@ -15,6 +15,10 @@
             fill: currentColor;
             overflow: hidden;
         }
+
+        .color-red {
+            color: red;
+        }
     </style>
 
     <script type="text/javascript">
@@ -357,8 +361,8 @@
 
 
         <div class="outer-align-main">
-          <div id="main">
-              <div id="context">
+          <div class="main">
+              <div class="context">
                   <article id="post-{{ object_list.1.id }}" class="context-article">
                       <div class="">
                           <div class="div-date-decor">
@@ -594,8 +598,12 @@
                       {% endfor %}
                   </div>
 
+
+
               </div>
 
+            {% include 'polls/aside.html' %}
+            <!--
             <aside>
               <div class="findme">
                 <div class="my-avatar-outer">
@@ -713,6 +721,7 @@
               </div>
               <div class="closeaside"></div>
             </aside>
+            -->
 
           </div>
         </div>

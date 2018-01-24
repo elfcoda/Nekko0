@@ -132,7 +132,7 @@ aside {
   color:#FFF;
   box-shadow:1px 1px 1px #888888;
   border-radius:50%;
-  background:#f1a7db;
+  background:#ff8080;
 }
 
 .article-mon {
@@ -153,6 +153,7 @@ aside {
   height:28px;
   line-height:28px;
   background:#f1a7db;
+  background:#ff8080;
   position:relative;
   top:15px;
   color:#EEE;
@@ -169,7 +170,7 @@ aside {
 .article-side-decorate-div {
   width:0;
   height:0;
-  border-top:12px solid #d853b0;
+  border-top:12px solid #c06060;
   border-left:20px solid transparent;
   position:absolute;
   top:28px;
@@ -192,11 +193,12 @@ aside {
   left:-19px;
   box-shadow:1px 1px 1px #999;
   background:#33d1e1;
+  background:#3DE6E6;
 }
 .decorate-header-shadow {
   width:0;
   height:0;
-  border-top:12px solid #3c969f;
+  border-top:12px solid #3DAFAf;
   border-left:20px solid transparent;
   position:relative;
   top:20px;
@@ -274,13 +276,14 @@ aside {
   position:relative;
   top:75px;
   background:#f1a7db;
+  background:#ff8080;
   box-shadow:1px 1px 1px #777;
   transition:background 0.5s, color 0.2s;
   -webkit-transition:background 0.5s, color 0.2s;
 }
 
 .post-readmore:hover {
-  background: rgba(241, 167, 219, 0.75);
+  background: rgba(255, 128, 128, 0.75);
 }
 
 .shuangyou {

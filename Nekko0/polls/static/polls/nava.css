@@ -24,6 +24,8 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    -webkit-transition:color 0.3s;
+    transition:color 0.3s;
 }
 
 .nav_ul-li-a-l:hover {
@@ -37,6 +39,8 @@
     text-align: center;
     padding: 14px 2px;
     text-decoration: none;
+    -webkit-transition:color 0.3s;
+    transition:color 0.3s;
 }
 
 .nav_ul-li-a-r:hover {

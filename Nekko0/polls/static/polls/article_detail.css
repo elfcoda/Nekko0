@@ -1,3 +1,35 @@
+.porn {
+  height: 65px;
+  width:95%;
+  position: relative;
+  margin: auto;
+  margin-top: 50px;
+  background: rgba(200, 100, 125, 0);
+  border-top: solid 1px rgba(180, 180, 180, 0.9);
+}
+
+.previous {
+  float: left;
+  height: 65px;
+  line-height: 65px;
+  position: relative;
+  top: 10px;
+}
+
+.next {
+  float: right;
+  height: 65px;
+  line-height: 65px;
+  position: relative;
+  top: 10px;
+}
+
+.article_comment {
+  height: 500px;
+}
+
+
+/* 评论区样式 */
 @font-face {
   font-family:fontello;
   src:url('myfont-ello/font/fontello.eot'),
@@ -45,12 +77,12 @@
 
 
 .body {
-  background:url("images/wall-paper/ne.jpg") no-repeat fixed center;
+  background:url("images/wall-paper/wallhaven-517692.png") no-repeat fixed center;
   background-size:cover;
 }
 
 .msg-board-page {
-  width:1200px;
+  width:100%;
 	height:auto;
   top:30px;
   position:relative;
@@ -58,14 +90,13 @@
 }
 
 .msg-board-list {
-  width:80%;
+  width:100%;
   height:auto;
-  margin-left:10%;
+  margin-left:0%;
   margin-bottom:30px;
-  background:#F0F8FF;
-  background:rgba(240, 248, 255, 0.75);
+  background: rgba(240, 248, 255, 0.75);
   border-radius:6px;
-  top:10px;
+  top:-80px;
   position:relative;
   float:left;
 }
@@ -123,7 +154,7 @@
   border-color:#B0E2FF;
   color:#355;
   background:#E0FFFF;
-  background:rgba(224, 255, 255, 0.8);
+  background:rgba(224, 255, 255, 0.92);
 }
 
 .msg-title {
@@ -230,7 +261,7 @@
   border-color:#B0E2FF;
   color:#355;
   background:#E0FFFF;
-  background:rgba(224, 255, 255, 0.8);
+  background:rgba(224, 255, 255, 0.92);
 }
 
 .reply-display {
@@ -257,15 +288,17 @@
   color: #ff8080;
   font-size:15px;
   float: left;
-  padding: 8px 2px;
+  padding: 0px 2px;
   text-decoration: none;
   transition: background-color .3s;
-  border: 1px solid #ddd;
+  border: 1px solid #ff8080;
   width:42px;
   height:42px;
   text-align:center;
   border-radius:50%;
   margin: 0 4px;
+  margin-top: -10px;
+  margin-bottom: 15px;
 }
 
 .pagination a.active {
@@ -302,7 +335,7 @@
 
 .form-comment-margin-top {
   margin-top:5px;
-  opacity:0.5;
+  opacity: 0.8;
 }
 
 .button {

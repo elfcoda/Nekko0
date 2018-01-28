@@ -120,6 +120,40 @@
 
 }
 
+.cute-font-label {
+  height: 30px;
+  width: 70px;;
+  padding: 0 5px;
+  border-radius: 5px;
+  background: #888;
+  float: left;
+  margin-right: 5px;
+}
+
+.cute-font-list {
+  visibility: hidden;
+  width: 335px;
+  border-radius: 5px;
+  height: 125px;
+  top: -150px;
+  left: -5px;
+  background: #AAA;
+  position: relative;
+  padding: 5px 15px;
+  padding-right: 3px;
+}
+
+.cute-font-label:hover .cute-font-list {
+  visibility: visible;
+}
+
+.cute-font-list>div {
+  margin-bottom: 5px;
+  margin-right: 12px;
+  float: left;
+  width: auto;
+}
+
 /* avatar */
 .msg-item-left {
   width:90px;
@@ -568,3 +602,29 @@
 
 
 /* delete msg modal */
+
+.cute-font {
+  position:relative;
+  top:0px;
+  -webkit-animation-name:cute_style_1;
+  -webkit-animation-duration:0.3s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+  animation-name:cute_style_1;
+  animation-duration:0.3s;
+  animation-iteration-count:infinite;
+  animation-timing-function:linear;
+}
+
+@-webkit-keyframes cute_style_1 {
+  0%    {top:0px;}
+  50%   {top:-5px;}
+  100%  {top:0px;}
+}
+
+@keyframes cute_style_1 {
+  0%    {top:0px;}
+  50%   {top:-5px;}
+  100%  {top:0px;}
+}
+

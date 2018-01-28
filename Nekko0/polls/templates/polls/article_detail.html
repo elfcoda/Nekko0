@@ -22,7 +22,35 @@
     </style>
 
     <script type="text/javascript">
+        // 自定义转化标签
+        function resetValue(e){
+            var replaceCode = e.innerHTML.replace(/lt_cus/g, '<');
+            replaceCode = replaceCode.replace(/gt_cus/g, '>');
+            //alert(replaceCode);
+            e.innerHTML = replaceCode;
+        }
+
+        function unsetValue(e){
+            var replaceCode = e.innerHTML.replace(/</g, "&lt;");
+            replaceCode = replaceCode.replace(/>/g, "&gt;");
+            //alert(replaceCode);
+            e.innerHTML = replaceCode;
+        }
+
+        function setValue(s){
+            s = s.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/lt_cus/g, '<').replace(/gt_cus/g, '>');
+            //alert(s);
+            return s;
+        }
+
         function load(){
+            //设置评论内容的标签转化
+            var resetValueEs = document.getElementsByName("resetValue");
+            var resetValueLen = resetValueEs.length;
+            for (var resetValueIdx = 0; resetValueIdx < resetValueLen; resetValueIdx ++)
+            {
+                resetValue(resetValueEs[resetValueIdx]);
+            }
             //固定显示7页
             var show_max = 7;
             var msg = document.getElementById("info").innerHTML;
@@ -158,6 +186,27 @@
             e2.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.placeholder = "回复 " + reply_name + ": ";
         }
 
+        function convertCuteFont(s){
+            s = s.replace(/\( •̀ .̫ •́ \)✧/g, "lt_cusspan class=\"cute-font\"gt_cus( •̀ .̫ •́ )✧lt_cus/spangt_cus");
+            s = s.replace(/\(つд⊂\)/g, "lt_cusspan class=\"cute-font\"gt_cus(つд⊂)lt_cus/spangt_cus");
+            s = s.replace(/\(•౪• \)/g, "lt_cusspan class=\"cute-font\"gt_cus(•౪• )lt_cus/spangt_cus");
+            s = s.replace(/\(..›ᴗ‹..\)/g, "lt_cusspan class=\"cute-font\"gt_cus(..›ᴗ‹..)lt_cus/spangt_cus");
+            s = s.replace(/\(๑•̀ㅂ•́\) ✧/g, "lt_cusspan class=\"cute-font\"gt_cus(๑•̀ㅂ•́) ✧lt_cus/spangt_cus");
+            s = s.replace(/\(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿\)/g, "lt_cusspan class=\"cute-font\"gt_cus(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)lt_cus/spangt_cus");
+            s = s.replace(/\( •̥́ ˍ •̀ू \)/g, "lt_cusspan class=\"cute-font\"gt_cus( •̥́ ˍ •̀ू )lt_cus/spangt_cus");
+            s = s.replace(/\(⇀‸↼‶\)/g, "lt_cusspan class=\"cute-font\"gt_cus(⇀‸↼‶)lt_cus/spangt_cus");
+            s = s.replace(/\(ᵒ̤̑ ₀̑ ᵒ̤̑\)/g, "lt_cusspan class=\"cute-font\"gt_cus(ᵒ̤̑ ₀̑ ᵒ̤̑)lt_cus/spangt_cus");
+            s = s.replace(/\(〃ω〃\)/g, "lt_cusspan class=\"cute-font\"gt_cus(〃ω〃)lt_cus/spangt_cus");
+            s = s.replace(/\( ꒪⌓꒪\)/g, "lt_cusspan class=\"cute-font\"gt_cus( ꒪⌓꒪)lt_cus/spangt_cus");
+            s = s.replace(/୧\(๑•̀⌄•́๑\)૭✧/g, "lt_cusspan class=\"cute-font\"gt_cus୧(๑•̀⌄•́๑)૭✧lt_cus/spangt_cus");
+            s = s.replace(/ᕕ\( ᐛ \)ᕗ/g, "lt_cusspan class=\"cute-font\"gt_cusᕕ( ᐛ )ᕗlt_cus/spangt_cus");
+            s = s.replace(/ \(๑•̀ω•́ ๑\)/g, "lt_cusspan class=\"cute-font\"gt_cus (๑•̀ω•́ ๑)lt_cus/spangt_cus");
+            s = s.replace(/ ̋\(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ\)/g, "lt_cusspan class=\"cute-font\"gt_cus ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)lt_cus/spangt_cus");
+            s = s.replace(/\( ˶ˇωˇ˶ \)/g, "lt_cusspan class=\"cute-font\"gt_cus( ˶ˇωˇ˶ )lt_cus/spangt_cus");
+            s = s.replace(/༼•̀ɷ•́༽/g, "lt_cusspan class=\"cute-font\"gt_cus༼•̀ɷ•́༽lt_cus/spangt_cus");
+            return s;
+        }
+
         function submit_form(form_id){
             {% if request.session.userId %}
             var e;
@@ -171,6 +220,8 @@
             }
             var e_content = e.lastElementChild.lastElementChild.previousElementSibling;
             var e_content_value = e_content.value;
+            //try converting
+            e_content_value = convertCuteFont(e_content_value);
             if (e_content_value)
             {
                 //e.submit();
@@ -218,7 +269,7 @@
                         html_comment += "<div class=\"msg-level-body\"><span class=\"msg-level-body-font\">" + level_tag + "</span></div>";
                         html_comment += "<div class=\"sex-adjust select-a-" + sex + "\">&nbsp;&nbsp;</div>";
                         html_comment += "</div>";
-                        html_comment += "<div class=\"msg-content new-line\">" + content + "</div>";
+                        html_comment += "<div class=\"msg-content new-line\">" + setValue(content) + "</div>";
                         html_comment += "<div class=\"msg-addition\">";
                         html_comment += "<span class=\"date-beau-style float-left-msgb\">" + date + "&nbsp;&nbsp;&nbsp;</span>";
                         html_comment += "<span class=\"float-left-msgb like-webfont\" onclick=\"like(" + commentId + ", -1)\" id=\"msglike-" + commentId + "--1\">";
@@ -272,7 +323,7 @@
                         html_reply += "<div class=\"msg-level-body\"><span class=\"msg-level-body-font\">" + level_tag + "</span></div>";
                         html_reply += "<div class=\"sex-adjust select-a-" + sex + "\">&nbsp;&nbsp;</div>";
                         html_reply += "</div>";
-                        html_reply += "<div class=\"msg-content new-line\">" + content + "</div>";
+                        html_reply += "<div class=\"msg-content new-line\">" + setValue(content) + "</div>";
                         html_reply += "<div class=\"msg-addition\">";
                         html_reply += "<span class=\"date-beau-style float-left-msgb\">" + date + "&nbsp;&nbsp;&nbsp;</span>";
                         html_reply += "<span class=\"float-left-msgb like-webfont\" onclick=\"like(" + commentId + ", " + replyId + ")\" id=\"msglike-" + commentId + "-" + replyId + "\">";
@@ -352,6 +403,26 @@
                 }
 
             })
+        }
+
+        function mouseOverCute(e){
+            e.setAttribute('class', "cute-font");
+        }
+
+        function mouseOutCute(e){
+            e.setAttribute('class', "");
+        }
+
+        function addToMsg(e){
+            //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+            var appendMsg = e.innerHTML;
+            e.parentNode.parentNode.nextElementSibling.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+        }
+
+        function addToMsgReply(e){
+            //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+            var appendMsg = e.innerHTML;
+            e.parentNode.parentNode.parentNode.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
         }
 
     </script>
@@ -452,6 +523,28 @@
                       <div class="msg-board-list">
                           <div class="msg_item-outer-margin">
                               <div class="msg-item">
+                                  <div class="cute-font-label">( •̀ .̫ •́ )✧
+                                    <div class="cute-font-list">
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
+                                    </div>
+                                  </div>
+                                  <div class="cute-font-label"></div>
                                   <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">
                                       {% csrf_token %}
                                       <div class="form-group">
@@ -485,7 +578,11 @@
                                               <div class="msg-level-body"><span class="msg-level-body-font">{{ object.2.9 }}</span></div>
                                               <div class="sex-adjust select-a-{{ object.2.7 }}">&nbsp;&nbsp;</div>
                                           </div>
-                                          <div class="msg-content new-line">{{ object.2.3 }}</div>
+                                          <!--
+                                              <br /><img src="{% static 'polls/userEmotion/bq1.png' %}" />
+                                              <br /><img src="/static/polls/userEmotion/bq1.png" />
+                                          -->
+                                          <div class="msg-content new-line" name="resetValue">{{ object.2.3 }}</div>
                                           <div class="msg-addition">
                                               <span class="date-beau-style float-left-msgb">{{ object.2.2 }}&nbsp;&nbsp;&nbsp;</span>
                                               <form action="{% url 'polls:msglike' %}" method="get">
@@ -522,7 +619,7 @@
                                                   <div class="msg-level-body"><span class="msg-level-body-font">{{ reply_item.9 }}</span></div>
                                                   <div class="sex-adjust select-a-{{ reply_item.7 }}">&nbsp;&nbsp;</div>
                                               </div>
-                                              <div class="msg-content new-line">{{ reply_item.3 }}</div>
+                                              <div class="msg-content new-line" name="resetValue">{{ reply_item.3 }}</div>
                                               <div class="msg-addition">
                                                   <span class="date-beau-style float-left-msgb">{{ reply_item.2 }}&nbsp;&nbsp;&nbsp;</span>
                                                   <form action="{% url 'polls:msglike' %}" method="get">
@@ -549,6 +646,28 @@
                                       </div>
 
                                       <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
+                                          <div class="cute-font-label">( •̀ .̫ •́ )✧
+                                            <div class="cute-font-list">
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
+                                            </div>
+                                          </div>
+                                          <div class="cute-font-label"></div>
                                           {% csrf_token %}
                                           <div class="form-group">
                                               <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
@@ -605,7 +724,8 @@
             {% include 'polls/aside.html' %}
           </div>
         </div>
-        <div class="footer-blank"></div>
+        <div class="footer-blank-less"></div>
+        {% include 'polls/fixed.html' %}
         {% include 'polls/footer.html' %}
 
 

@@ -15,9 +15,9 @@
         </script>
 
 
-        <div class="">
+        <div class="" id="i_nav_header">
             <nav class="nav-outer">
-                <ul class="nav_ul">
+                <ul class="nav_ul" id="nav_ul">
                     <li><a class="nav_ul-li-a-l" href="{% url 'polls:blog_index' %}"><nobr>
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-home"></use>
@@ -88,6 +88,32 @@
 
                 <div class="sign-in-up">
                 </div>
+
+                <script language="Javascript">
+                    //导航栏上下滚动时隐藏和可见
+                    var new_scroll_position = 0;
+                    var last_scroll_position;
+                    var nav_header = document.getElementById("i_nav_header");
+
+                    window.addEventListener('scroll', function(e) {
+                        last_scroll_position = window.scrollY;
+                        if (new_scroll_position < last_scroll_position && last_scroll_position > 200)
+                        {
+                            //scroll down
+                            nav_header.classList.remove("navSlideDown");
+                            nav_header.classList.add("navSlideUp");
+                        }
+                        else if (new_scroll_position > last_scroll_position)
+                        {
+                            //scroll up
+                            nav_header.classList.remove("navSlideUp");
+                            nav_header.classList.add("navSlideDown");
+                        }
+
+                        new_scroll_position = last_scroll_position;
+                    });
+                </script>
+
             </nav>
         </div>
 

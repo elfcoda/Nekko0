@@ -81,8 +81,12 @@ body {
   width:1400px;
   height:auto;
   position:relative;
-  top:70px;
+  top:125px;
   margin:auto;
+}
+
+.outer-main-for-base-top {
+  top: 500px;
 }
 
 .main {
@@ -805,7 +809,15 @@ aside {
 }
 
 .footer-blank {
-  height:0px;
+  height: 420px;
+  width: 100%;
+  float:left;
+}
+
+.footer-blank-less {
+  height: 0px;
+  width: 100%;
+  float:left;
 }
 
 

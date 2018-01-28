@@ -5,7 +5,7 @@
 .footer-outer {
   float:left;
   width:100%;
-  margin-top:70px;
+  margin-top:120px;
 }
 
 .ft-style {
@@ -36,7 +36,7 @@
   position:relative;
   top:0px;
   -webkit-animation-name:cute_style_1;
-  -webkit-animation-duration:3s;
+  -webkit-animation-duration:0.5s;
   -webkit-animation-iteration-count:infinite;
   -webkit-animation-timing-function:linear;
   animation-name:cute_style_1;

@@ -1,0 +1,26 @@
+{% load static %}
+<link href="{% static 'polls/fixed.css' %}" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    function dm(){
+        //document.getElementById("dm-content");
+        alert(1);
+    }
+
+    function mouseOverCute(e){
+        e.setAttribute('class', "cute-font");
+    }
+    function mouseOutCute(e){
+        e.setAttribute('class', "");
+    }
+</script>
+
+<div class="danmu">
+  <div class="dm-content" id="dm-content">
+      <div class="" onmouseout="mouseOutCute(this)" onMouseOver="mouseOverCute(this)">
+      0.0
+      </div>
+  </div>
+  <div class="dm-deliver" id="dm-deliver">
+  </div>
+</div>

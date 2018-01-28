@@ -3,7 +3,15 @@
 }
 
 .nav-outer {
-    width:100%;
+  width:100%;
+}
+
+#i_nav_header {
+  height: auto;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
 }
 
 .nav_ul {
@@ -155,4 +163,19 @@
 .am-modal-btn-color-confirn:hover {
   color:rgba(0, 128, 0, 0.7);
 }
+
+.navSlideUp {
+  -webkit-transform: translateY(-52px);
+  transform: translateY(-52px);
+  -webkit-transition: transform .5s ease-out;
+  transition: transform .5s ease-out;
+}
+
+.navSlideDown {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition: transform .5s ease-out;
+  transition: transform .5s ease-out;
+}
+
 

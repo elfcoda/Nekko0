@@ -1,0 +1,51 @@
+.danmu {
+  background: red;
+  height: 30px;
+  width: auto;
+  position: fixed;
+  bottom: 50px;
+  right: 1px;
+}
+
+.dm-content {
+  height: 100%;
+  width: 120px;
+  background: green;
+  position: relative;
+  float: left;
+}
+
+.dm-deliver {
+  height: 100%;
+  width: 30px;
+  background: blue;
+  position: relative;
+  float: right;
+}
+
+.cute-font:hover {
+  position:relative;
+  top:0px;
+  -webkit-animation-name:cute_style_1;
+  -webkit-animation-duration:0.5s;
+  -webkit-animation-iteration-count:infinite;
+  -webkit-animation-timing-function:linear;
+  animation-name:cute_style_1;
+  animation-duration:0.5s;
+  animation-iteration-count:infinite;
+  animation-timing-function:linear;
+}
+
+@-webkit-keyframes cute_style_1 {
+  0%    {top:0px;}
+  50%   {top:-5px;}
+  100%  {top:0px;}
+}
+
+@keyframes cute_style_1 {
+  0%    {top:0px;}
+  50%   {top:-5px;}
+  100%  {top:0px;}
+}
+
+

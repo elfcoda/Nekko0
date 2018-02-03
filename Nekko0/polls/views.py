@@ -76,7 +76,6 @@ def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 
-
 class ArticleListView(ListView):
     # template_name = 'polls/blog_index.html'
     template_name = 'polls/main.html'
@@ -124,6 +123,13 @@ class ArticlePublishView(FormView):
         userName = Userinfo.objects.get(id=userId).username
         form.save(userName)
         return super(ArticlePublishView, self).form_valid(form)
+
+class NewIndexView(DetailView):
+    template_name = 'polls/index.html'
+
+    def get_object(self, **kwargs):
+        return None
+
 
 class ArticleDetailViewOld(DetailView):
     template_name = 'polls/article_detail_old.html'

@@ -1,0 +1,213 @@
+.body-img-index {
+  background:url("images/wall-paper/index.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+
+/* 主节点 */
+.kernal {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  top: 270px;
+  text-align: center;
+}
+
+.kernal-main {
+  position: relative;
+}
+
+.kernal-avatar {
+  position: relative;
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  top: 35px;
+  left: 0%;
+  border: 3px solid white;
+  transition: width 0.3s, height 0.3s;
+  -webkit-transition: width 0.3s, height 0.3s;
+}
+
+.kernal-avatar-outer {
+  height: 100px;
+  width: 300px;
+  position: relative;
+  margin: auto;
+}
+
+.kernal-avatar:hover {
+  width: 145px;
+  height: 145px;
+}
+
+.kernal-status {
+  width: 500px;
+  height: 45px;
+  line-height: 45px;
+  background: rgba(50, 50, 50, 0.7);
+  position: relative;
+  top: 100px;
+  border-radius: 30px;
+  margin: auto;
+  font-size: 20px;
+  color: orange;
+}
+
+.kernal-contact {
+  width: 364px;
+  height: 42px;
+  line-height: 42px;
+  position: relative;
+  top:110px;
+  margin: auto;
+}
+
+/*
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+*/
+
+.tooltiptext {
+  visibility: hidden;
+  background: black;
+  color: white;
+  text-align: center;
+
+  /* Position the tooltip */
+  position: relative;
+  z-index: 1;
+  left: -42px;
+  top: -70px;
+
+  font-size:15px;
+  text-decoration: none;
+  height:23px;
+  line-height:23px;
+  width:120px;
+
+  opacity:0;
+  transition: opacity .5s;
+}
+
+.notextdeco {
+  text-decoration: none;
+}
+.notextdeco:hover {
+  text-decoration: none;
+}
+
+/* 计算方式：18-width/2
+ * 改文字的时候也要改样式
+ * */
+.po-5 {
+  left: -5px;
+  width: 46px;
+}
+.po-10 {
+  left: -10px;
+  width: 56px;
+}
+.po-32 {
+  left: -32px;
+  width: 100px;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.cur-pointer:hover .tooltiptext {
+  visibility: visible;
+  text-decoration: none;
+  opacity: .7;
+}
+
+.kernal-contact a div {
+  background: rgba(70, 70, 70, 0.7);
+  float: left;
+  height: 42px;
+  width: 42px;
+  line-height: 42px;
+  font-size: 28px;
+  border-radius: 50%;
+  margin: 0 5px;
+  transition:background 0.5s, color 0.5s;
+  -webkit-transition:background 0.5s, color 0.5s;
+}
+
+.kernal-contact a div:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.catch-me-1-1 {
+  height:35px;
+  width:35px;
+  color:#DF0D2A;
+}
+.catch-me-1-1:hover {
+  background:#DF0D2A;
+}
+
+.catch-me-1-2 {
+  height:35px;
+  width:35px;
+  color:#DFAC0D;
+}
+.catch-me-1-2:hover {
+  background:#DFAC0D;
+}
+
+.catch-me-1-3 {
+  height:35px;
+  width:35px;
+  color:#C760AB;
+}
+.catch-me-1-3:hover {
+  background:#C760AB;
+}
+
+.catch-me-2-1 {
+  height:35px;
+  width:35px;
+  color:#31A013;
+}
+.catch-me-2-1:hover {
+  background:#31A013;
+}
+
+.catch-me-2-2 {
+  height:35px;
+  width:35px;
+  color:#28DCE8;
+}
+.catch-me-2-2:hover {
+  background:#28DCE8;
+}
+
+.catch-me-2-3 {
+  height:35px;
+  width:35px;
+  color:#E87128;
+}
+.catch-me-2-3:hover {
+  background:#E87128;
+}
+
+.catch-me-2-4 {
+  height:35px;
+  width:35px;
+  color:#2370DF;
+}
+.catch-me-2-4:hover {
+  background:#2370DF;
+}
+

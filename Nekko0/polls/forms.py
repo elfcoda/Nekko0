@@ -220,7 +220,7 @@ class RegisterForm(forms.Form):
             sex = sex,
             created_date = datetime.datetime.now(),
             com_power = 0,
-            level_tag = u"无能力者",
+            level_tag = u"超能力者",
             birthday = datetime.datetime.now(),
             introduce = "",
             avatar_url = "")

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+    <head>
+        {% load static %}
+        <link href="{% static 'polls/resume.css' %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
+        </script>
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body class="body-img-resume">
+        {% include 'polls/nav.html' %}
+        <div class="resume-container resume-br-radius">
+          <div class="resume-header resume-br-radius">
+            <div class="resume-avatar">
+              <img class="resume-avatar-img" src="{% static 'polls/userAvatar/vx_avatar.jpg' %}" />
+            </div>
+            <div class="resume-resume-text">RESUME</div>
+            <div class="resume-date">2018-2-7</div>
+          </div>
+
+          <div class="resume-info resume-br-radius">
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">手机</div>
+              <div class="resume-info-item-content">15574989048</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">微信</div>
+              <div class="resume-info-item-content">Kalisplu</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">故乡</div>
+              <div class="resume-info-item-content">福建省福州市</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">生日</div>
+              <div class="resume-info-item-content">1994-08-15</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">学校</div>
+              <div class="resume-info-item-content">湖南大学</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">学历</div>
+              <div class="resume-info-item-content">本科</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">个人主页</div>
+              <a href="http://193.112.19.61/polls/index" class="resume-link"  target="_blank">
+                <div class="resume-info-item-content">193.112.19.61/polls/index</div>
+              </a>
+              <div class="resume-info-item-comment">(似乎还没备案无法用域名访问orz)</div>
+            </div>
+          </div>
+
+          <div class="resume-main resume-br-radius">
+            <div class="resume-skills">
+            </div>
+          </div>
+
+          <div class="resume-footer resume-br-radius">
+          </div>
+        </div>
+        <!--
+        {% include 'polls/footer.html' %}
+        -->
+    </body>
+</html>

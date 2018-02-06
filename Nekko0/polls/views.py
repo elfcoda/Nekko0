@@ -130,6 +130,12 @@ class NewIndexView(DetailView):
     def get_object(self, **kwargs):
         return None
 
+class ResumeView(DetailView):
+    template_name = 'polls/resume.html'
+
+    def get_object(self, **kwargs):
+        return None
+
 
 class ArticleDetailViewOld(DetailView):
     template_name = 'polls/article_detail_old.html'
@@ -352,8 +358,10 @@ def UploadUserImage(request):
             userId = str(request.session['userId'])
         except KeyError:
             userId = "noUser"
-        avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
-        # avatar_path_head = "/root/Nekko0/Nekko0/Nekko0/polls/static/polls/userAvatar/"
+        # local
+        # avatar_path_head = "/root/Nekko0/Nekko0/polls/static/polls/userAvatar/"
+        # remote
+        avatar_path_head = "/root/Nekko0/nekko0/Nekko0/polls/static/polls/userAvatar/"
         avatar_path = avatar_path_head + userId + ".png"
         with open(avatar_path, 'wb+') as dst:
             dst.write(img)

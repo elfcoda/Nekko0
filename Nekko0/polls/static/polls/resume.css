@@ -1,0 +1,114 @@
+.body-img-resume {
+  background:url("images/wall-paper/resume.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+
+.resume-br-radius {
+  border-radius: 7px;
+}
+
+.resume-container {
+  width: 1200px;
+  height: 1000px;
+  background: rgba(255, 255, 255, 0.9);
+  margin: auto;
+  position: relative;
+  top: 100px;
+  margin-bottom: 100px;
+}
+
+.resume-header {
+  width: 100%;
+  height: 150px;
+  float: left;
+}
+
+.resume-avatar {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  float: left;
+  margin: 15px 15px;
+}
+
+.resume-avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid #888;
+}
+
+.resume-resume-text {
+  color: orange;
+  font-size: 42px;
+  font-weight: 700;
+  float: left;
+  margin: 20px 150px;
+}
+
+.resume-date {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+  top: 80px;
+  left: -315px;
+  color: #AAA;
+}
+
+.resume-info {
+  width: 20%;
+  height: 500px;
+  float: left;
+}
+
+.resume-info-item {
+  height: auto;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 7px;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+}
+
+.resume-link {
+  text-decoration: none;
+}
+
+.resume-link:hover div {
+  color: #F782C4;
+}
+
+.resume-link:hover {
+  text-decoration: none;
+}
+
+.resume-info-item-title {
+  position: relative;
+  color: #2BB673;
+  font-size: 27px;
+}
+
+.resume-info-item-content {
+  position: relative;
+  color: #999;
+  font-size: 20px;
+  transition: color 0.5s;
+  -webkit-transition: color 0.5s;
+}
+
+.resume-info-item-comment {
+  position: relative;
+  color: #999;
+  font-size: 14px;
+}
+
+.resume-main {
+  width: 72%;
+  height: 500px;
+  background: rgba(0, 255, 0, 0.15);
+  float: right;
+  margin-right: 3%;
+}
+
+
+

@@ -6,7 +6,8 @@ from django.conf.urls import url
 from . import views
 from views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     RegisterView, LoginView, Logout, MsgBoardListView,  UploadAvatar, \
-    UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, NewIndexView
+    UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
+    NewIndexView, ResumeView
 
 app_name = 'polls'
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'^newAvatar$', newAvatar, name='newAvatar'),
 
 
+    url(r'^resume$', views.ResumeView.as_view(), name='resume'),
     url(r'^index$', views.NewIndexView.as_view(), name='index'),
     url(r'^$', views.ArticleListView.as_view(), name='blog_index'),
     url(r'^(?P<page>\w+)$', views.ArticleListView.as_view(), name='blog_index_page'),

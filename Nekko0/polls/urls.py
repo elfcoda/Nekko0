@@ -20,8 +20,8 @@ urlpatterns = [
 
 
     url(r'^resume$', views.ResumeView.as_view(), name='resume'),
-    url(r'^index$', views.NewIndexView.as_view(), name='index'),
-    url(r'^$', views.ArticleListView.as_view(), name='blog_index'),
+    url(r'^$', views.NewIndexView.as_view(), name='index'),
+    url(r'^index$', views.ArticleListView.as_view(), name='blog_index'),
     url(r'^(?P<page>\w+)$', views.ArticleListView.as_view(), name='blog_index_page'),
     url(r'^article/publish$', ArticlePublishView.as_view(), name='article_publish'),
     # url(r'^article/(?P<articleId>\w+\.?\w+)$', ArticleDetailView.as_view(), name='article_detail'),

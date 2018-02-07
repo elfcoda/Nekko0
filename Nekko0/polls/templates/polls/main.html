@@ -23,9 +23,9 @@
                 var all_page_num = {{ object_list.0.1 }};
                 var cur_page = {{ object_list.0.0 }};
                 document.getElementById('first-page').style.display = "inline-block";
-                document.getElementById('first-page').href = "/polls/1";
+                document.getElementById('first-page').href = "/1";
                 document.getElementById('last-page').style.display = "inline-block";
-                document.getElementById('last-page').href = "/polls/" + all_page_num;
+                document.getElementById('last-page').href = "/" + all_page_num;
 
                 if (all_page_num <= show_max)
                 {
@@ -35,7 +35,7 @@
                         var e = document.getElementById(id);
                         e.style.display = "inline-block";
                         e.innerHTML = i;
-                        e.href = "/polls/" + i;
+                        e.href = "/" + i;
                         if (i == cur_page)
                         {
                             e.setAttribute('class', 'active');
@@ -56,7 +56,7 @@
                             var p_e = document.getElementById(p_id);
                             p_e.style.display = "inline-block";
                             p_e.innerHTML = p_n;
-                            p_e.href = "/polls/" + p_n;
+                            p_e.href = "/" + p_n;
                             if (cur_page == p_n)
                             {
                                 p_e.setAttribute('class', 'active');
@@ -72,7 +72,7 @@
                             var b_e = document.getElementById(b_id);
                             b_e.style.display = "inline-block";
                             b_e.innerHTML = b_n;
-                            b_e.href = "/polls/" + b_n;
+                            b_e.href = "/" + b_n;
                             if (cur_page == b_n)
                             {
                                 b_e.setAttribute('class', 'active');
@@ -88,13 +88,13 @@
                             var m1_e = document.getElementById(m1_id);
                             m1_e.style.display = "inline-block";
                             m1_e.innerHTML = m1_n;
-                            m1_e.href = "/polls/" + m1_n;
+                            m1_e.href = "/" + m1_n;
                         }
                         var m2_e = document.getElementById("page4");
                         m2_e.style.display = "inline-block";
                         m2_e.innerHTML = cur_page;
                         m2_e.setAttribute('class', 'active');
-                        m2_e.href = "/polls/" + cur_page;
+                        m2_e.href = "/" + cur_page;
                         //cur_page-0+1: 先转str为int
                         for (var m3_i = show_max-half+2, m3_n = cur_page-0+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
                         {
@@ -102,7 +102,7 @@
                             var m3_e = document.getElementById(m3_id);
                             m3_e.style.display = "inline-block";
                             m3_e.innerHTML = m3_n;
-                            m3_e.href = "/polls/" + m3_n;
+                            m3_e.href = "/" + m3_n;
                         }
                     }
                 }

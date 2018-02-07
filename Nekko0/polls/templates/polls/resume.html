@@ -3,7 +3,24 @@
     <head>
         {% load static %}
         <link href="{% static 'polls/resume.css' %}" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_rvuh56m3s1m26gvi.js">
+        </script>
+        <script language="Javascript">
+            function showTime(){
+                var nowStamp = (Date.parse(new Date()) / 1000) - 1499616000;
+                var days = parseInt(nowStamp / 86400);
+                nowStamp = nowStamp % 86400;
+                var hours = parseInt(nowStamp / 3600);
+                nowStamp = nowStamp % 3600;
+                var mins = parseInt(nowStamp / 60);
+                var secs = nowStamp % 60;
+                if (secs < 10)
+                {
+                    secs = "0" + secs;
+                }
+                document.getElementById("passed").innerHTML = days + "天" + hours + "时" + mins + "分" + secs + "秒";
+                setTimeout("showTime()", 1000);
+            }
         </script>
         <style type="text/css">
             .icon {
@@ -13,17 +30,20 @@
                 overflow: hidden;
             }
         </style>
-        {% include 'polls/title_info.html' %}
+        {% include 'polls/title_info_resume.html' %}
     </head>
     <body class="body-img-resume">
         {% include 'polls/nav.html' %}
         <div class="resume-container resume-br-radius">
           <div class="resume-header resume-br-radius">
-            <div class="resume-avatar">
-              <img class="resume-avatar-img" src="{% static 'polls/userAvatar/vx_avatar.jpg' %}" />
-            </div>
+            <a href="{% url 'polls:index' %}" target="_blank">
+              <div class="resume-avatar">
+                <img class="resume-avatar-img" src="{% static 'polls/userAvatar/vx_avatar.jpg' %}" />
+              </div>
+            </a>
             <div class="resume-resume-text">RESUME</div>
             <div class="resume-date">2018-2-7</div>
+            <div class="resume-desc-header">94小鲜肉，虎牙后端狗</div>
           </div>
 
           <div class="resume-info resume-br-radius">
@@ -48,6 +68,22 @@
               <div class="resume-info-item-content">湖南大学/本科</div>
             </div>
             <div class="resume-info-item">
+              <div class="resume-info-item-title">入职时长</div>
+              <div class="resume-info-item-content" id="passed"><script language="Javascript">showTime();</script></div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">期望职位</div>
+              <div class="resume-info-item-content">C++服务端开发</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">期望薪资</div>
+              <div class="resume-info-item-content">税前月薪14-20k，特别喜欢的公司可例外</div>
+            </div>
+            <div class="resume-info-item">
+              <div class="resume-info-item-title">期望城市</div>
+              <div class="resume-info-item-content">深圳/上海/北京</div>
+            </div>
+            <div class="resume-info-item">
               <div class="resume-info-item-title">个人主页</div>
               <a href="http://kekelwj.cn" class="resume-link"  target="_blank">
                 <div class="resume-info-item-content">http://kekelwj.cn</div>
@@ -59,8 +95,189 @@
           </div>
 
           <div class="resume-main resume-br-radius">
-            <div class="resume-skills">
+            <div class="resume-experience">
+              <div class="resume-experience-header">
+                虎牙信息科技有限公司(2017-07-10 ~ 至今)[全职]
+                <br />
+                <span>
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jieshao"></use>
+                  </svg>
+                </span>
+                <span class="resume-introduce">
+                在职期间，使用腾讯的Tars微服务框架进行开发，包括直播间的新功能，以及每月和年度的活动。
+                </span>
+                <hr />
+              </div>
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-title">
+                  颜值爱豆榜(2017-08)
+                </div>
+                <div class="resume-experience-item-detail">
+                  负责颜值直播间的爱豆榜开发任务，也是入职第一次上线的服务，要注意多线程环境下合理使用不同的锁来
+                  避免程序crash，学会使用缓存来大幅度提高程序性能，了解分布式服务开发的过程，巩固数据库的基础，也清楚
+                  了一个需求从提出到最后开发测试上线的完整流程，并微服务的开发有一定认识。<br />
+                  服务从上线到现在半年依旧稳定运行，未发现异常。
+                </div>
+              </div>
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-title">
+                  直播平台年度活动(2017-09 ~ 2017-12)
+                </div>
+                <div class="resume-experience-item-detail">
+                  在年度最重要的活动里帮忙开发专题页，以及帮其他两位同事查找bug，写脚本处理数据等等
+                  ，共同促进营收的大幅提升。
+                </div>
+              </div>
+
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-title">
+                  颜值打call(2017-12) 与 颜值盛世嘉年华(2017-12 ~ 2018-01)
+                </div>
+                <div class="resume-experience-item-detail">
+                  打call需求开发完成后正在测试，紧急接下嘉年华的需求
+                </div>
+              </div>
+
+              <!-- 实习 -->
+              <div class="resume-blank"></div>
+              <div class="resume-experience-header">
+                腾讯科技有限公司(2016-07-02 ~ 2016-09-02)[实习]
+                <br />
+                <span>
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jieshao"></use>
+                  </svg>
+                </span>
+                <span class="resume-introduce">
+                大三实习，当时一个多月都在看代码和学习。很惭愧，没做一点微小的工作。
+                </span>
+                <hr />
+              </div>
+
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-title">
+                  一个关于protobuf数据转换的小工具(未完成)
+                </div>
+                <div class="resume-experience-item-detail">
+                  将protobuf的协议用c++转换成需要的数据输出，以便后台对数据进行观察。
+                  如果只是简单输出数据，直接用api即可，没什么难度，但是代码冗余度高，写起来很累<br />
+                  方案：用c++代码生成代码，直接输入protobuf的协议文件和必要的参数就可以生成c++的代码，
+                  之后只需要编译生成的代码。但是开发起来难度较高，数据类型多。<br />
+                  后续：没开发完实习就结束了，后来发现这个东西叫做元编程，而c++实现元编程难度较高，
+                  Lisp实现有先天优势。
+                </div>
+              </div>
+
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-title">
+                  用epoll模型做的一个高并发的开房间小游戏
+                </div>
+                <div class="resume-experience-item-detail">
+                  主要是用来练习写高并发的程序。也遇到一些小问题，当时Tcp传输数据串包的问题就搞了挺久orz,
+                  在做这个之前并不知道会有这些问题。
+                </div>
+              </div>
+
+              <!-- 个人项目 -->
+              <div class="resume-blank"></div>
+              <div class="resume-experience-header">
+                基于Django的个人主站[个人项目]
+                <br />
+                <span>
+                  <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-jieshao"></use>
+                  </svg>
+                </span>
+                <span class="resume-introduce">
+                  业余时间学习前端CSS/HTML/JS技能，后端使用Django处理数据，DB即MySQL，开发基本完成。
+                  用于个人的展
+                </span>
+                <div class="resume-introduce">
+                  示，日常，学习的记录，想法，也会放一些之后个人开发的小游戏上去(如果有时间的话),
+                  用Python开发也是个人原因。
+                </div>
+                <hr />
+              </div>
+
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-detail">
+                  正在开发模块：[高级]弹幕模块，权限控制模块，算法模块，emmm...其他的后面再补充。<br />
+                  开发工具Ubuntu + Vim(Vim依赖症)，代码偷偷托管在Github。
+                </div>
+              </div>
+
             </div>
+
+            <div class="resume-blank"></div>
+            <div class="resume-skills">
+              <div class="resume-experience-header">
+                技能
+                <hr />
+              </div>
+
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-detail">
+                  <span class="resume-color-blue">后端：</span>Linux，C++(基于腾讯Tars微服务框架)，Python(基于Django框架，也搞过Flask)，MySQL，Redis<br />
+                  <span class="resume-color-blue">开发工具：</span>Tmux，Vim等Linux平台下高效开发的工具<br />
+                  <span class="resume-color-blue">版本控制</span>：工作使用Svn，个人使用Git<br />
+                  <span class="resume-color-blue">前端(略懂)：</span>CSS3，HTML，JS<br />
+                  <span class="resume-color-blue">备注：</span>熟悉vim中的奇技淫巧，了解并能够应用C++11的主要新特性，Python平
+                  常工作用来写脚本处理业务数据，开发尽量追求代码优雅不冗余，逻辑严谨能够及时发现问题,注重细节
+                  ，能够在多线程/分布式环境下写出安全的代码，懂得缓存优化，乐于学习新技术，能够承受较大压力
+                </div>
+              </div>
+            </div>
+
+            <!-- 个人兴趣 -->
+            <div class="resume-blank"></div>
+            <div class="resume-interest">
+              <div class="resume-experience-header">
+                兴趣 && 性格
+                <hr />
+              </div>
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-detail">
+                  <span class="resume-color-red">喜欢：</span>二次元，音乐，mmz，新技术，信息安全，编程，散步与冥想，和朋友开黑，游戏开发(学校里自己用
+                  引擎搞过小游戏Demo)，技术死宅一个。
+                </div>
+                <div class="resume-experience-item-detail">
+                  <span class="resume-color-grey">讨厌：</span>墙和一切限制你自由的东西。
+                </div>
+              </div>
+
+            </div>
+
+
+            <!-- 在校表现 -->
+            <div class="resume-blank"></div>
+            <div class="resume-school">
+              <div class="resume-experience-header">
+                校园
+                <hr />
+              </div>
+
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-detail">
+                </div>
+              </div>
+            </div>
+
+            <!-- 愿望 -->
+            <div class="resume-blank"></div>
+            <div class="resume-wish">
+              <div class="resume-experience-header">
+                愿望
+                <hr />
+              </div>
+
+              <div class="resume-experience-item">
+                <div class="resume-experience-item-detail">
+                  //本猿
+                </div>
+              </div>
+            </div>
+
           </div>
 
           <div class="resume-footer resume-br-radius">

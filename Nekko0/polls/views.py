@@ -418,7 +418,11 @@ class MsgBoardListView(ListView, FormView):
                 # 判断是否登录
                 like_set = pickle_reply_list_item[4]
                 likedNum = len(like_set)
-                userId = self.request.session['userId']
+                try:
+                    userId = self.request.session['userId']
+                except KeyError:
+                    userId = None
+
                 if userId and userId in like_set:
                     isLiked = 1
                 else:

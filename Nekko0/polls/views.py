@@ -409,6 +409,11 @@ class MsgBoardListView(ListView, FormView):
         messages.info(self.request, str(paginator.num_pages) + '_' + str(page) + \
                       '_' + str(self.articleId))
 
+        try:
+            userId = self.request.session['userId']
+        except KeyError:
+            userId = None
+
         for pickled_msg in object_list:
             # 这是一整条评论
             pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
@@ -418,10 +423,6 @@ class MsgBoardListView(ListView, FormView):
                 # 判断是否登录
                 like_set = pickle_reply_list_item[4]
                 likedNum = len(like_set)
-                try:
-                    userId = self.request.session['userId']
-                except KeyError:
-                    userId = None
 
                 if userId and userId in like_set:
                     isLiked = 1

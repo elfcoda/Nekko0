@@ -74,9 +74,9 @@
             //document.getElementById("get-page-comment").value = "1";
 
             document.getElementById('first-page').style.display = "inline-block";
-            document.getElementById('first-page').href = "/polls/article/" + article_id + "/1";
+            document.getElementById('first-page').href = "/article/" + article_id + "/1";
             document.getElementById('last-page').style.display = "inline-block";
-            document.getElementById('last-page').href = "/polls/article/" + article_id + "/" + all_page_num;
+            document.getElementById('last-page').href = "/article/" + article_id + "/" + all_page_num;
             var comment_e = document.getElementById('reply-form-comment').lastElementChild.lastElementChild.previousElementSibling;
             comment_e.placeholder = "蛙..";
             comment_e.setAttribute('rows', '3');
@@ -89,7 +89,7 @@
                     var e = document.getElementById(id);
                     e.style.display = "inline-block";
                     e.innerHTML = i;
-                    e.href = "/polls/article/" + article_id + "/" + i;
+                    e.href = "/article/" + article_id + "/" + i;
                     if (i == cur_page)
                     {
                         e.setAttribute('class', 'active');
@@ -110,7 +110,7 @@
                         var p_e = document.getElementById(p_id);
                         p_e.style.display = "inline-block";
                         p_e.innerHTML = p_n;
-                        p_e.href = "/polls/article/" + article_id + "/" + p_n;
+                        p_e.href = "/article/" + article_id + "/" + p_n;
                         if (cur_page == p_n)
                         {
                             p_e.setAttribute('class', 'active');
@@ -126,7 +126,7 @@
                         var b_e = document.getElementById(b_id);
                         b_e.style.display = "inline-block";
                         b_e.innerHTML = b_n;
-                        b_e.href = "/polls/article/" + article_id + "/" + b_n;
+                        b_e.href = "/article/" + article_id + "/" + b_n;
                         if (cur_page == b_n)
                         {
                             b_e.setAttribute('class', 'active');
@@ -142,13 +142,13 @@
                         var m1_e = document.getElementById(m1_id);
                         m1_e.style.display = "inline-block";
                         m1_e.innerHTML = m1_n;
-                        m1_e.href = "/polls/article/" + article_id + "/" + m1_n;
+                        m1_e.href = "/article/" + article_id + "/" + m1_n;
                     }
                     var m2_e = document.getElementById("page4");
                     m2_e.style.display = "inline-block";
                     m2_e.innerHTML = cur_page;
                     m2_e.setAttribute('class', 'active');
-                    m2_e.href = "/polls/article/" + article_id + "/" + cur_page;
+                    m2_e.href = "/article/" + article_id + "/" + cur_page;
                     //cur_page-0+1: 先转str为int
                     for (var m3_i = show_max-half+2, m3_n = cur_page-0+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
                     {
@@ -156,7 +156,7 @@
                         var m3_e = document.getElementById(m3_id);
                         m3_e.style.display = "inline-block";
                         m3_e.innerHTML = m3_n;
-                        m3_e.href = "/polls/article/" + article_id + "/" + m3_n;
+                        m3_e.href = "/article/" + article_id + "/" + m3_n;
                     }
                 }
             }

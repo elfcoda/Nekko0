@@ -1,151 +1,154 @@
 <!DOCTYPE html>
 
 <html>
-  {% load static %}
-  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="{% static 'polls/avatar-plugin/js/jquery.min.js' %}" charset="utf-8"></script>
-  <link href="{% static 'polls/sign8.css' %}" rel="stylesheet" type="text/css" />
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="{% static 'polls/avatar-plugin/js/jquery.min.js' %}" charset="utf-8"></script>
+        <link href="{% static 'polls/sign8.css' %}" rel="stylesheet" type="text/css" />
+        {% include 'polls/title_info.html' %}
+    </head>
 
-<body class="body-img">
-<div class="outest-layer">
-<div class="outer-align-main">
-<div class="sign-main">
-  <div class="register center-block">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong>注册</strong></h3>
-      </div>
-      <div class="panel-body">
-        <form action="" method="post">{% csrf_token %}
-          <div class="form-group {% if form.username.errors %} has-error {% endif %}">
-            <label for="">{{ form.username.label }}</label>
-            {% if form.username.errors %}
-            <span class="text-danger pull-right">{{ form.username.errors }}</span>
-            {% endif %}
-            {{ form.username }}
-            <p class="text-muted">{{ form.username.help_text }}</p>
-          </div>
-          <div class="form-group {% if form.sex.errors %} has-error {% endif %}">
-            <label for="">{{ form.sex.label }}</label>
-            {% if form.sex.errors %}
-            <span class="text-danger pull-right">{{ form.sex.errors }}</span>
-            {% endif %}
-            {{ form.sex }}
+    <body class="body-img">
+        <div class="outest-layer">
+            <div class="outer-align-main">
+                <div class="sign-main">
+                    <div class="register center-block">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><strong>注册</strong></h3>
+                            </div>
+                            <div class="panel-body">
+                                <form action="" method="post">{% csrf_token %}
+                                    <div class="form-group {% if form.username.errors %} has-error {% endif %}">
+                                        <label for="">{{ form.username.label }}</label>
+                                        {% if form.username.errors %}
+                                        <span class="text-danger pull-right">{{ form.username.errors }}</span>
+                                        {% endif %}
+                                        {{ form.username }}
+                                        <p class="text-muted">{{ form.username.help_text }}</p>
+                                    </div>
+                                    <div class="form-group {% if form.sex.errors %} has-error {% endif %}">
+                                        <label for="">{{ form.sex.label }}</label>
+                                        {% if form.sex.errors %}
+                                        <span class="text-danger pull-right">{{ form.sex.errors }}</span>
+                                        {% endif %}
+                                        {{ form.sex }}
 
-            <script language="Javascript">
-                function selectContentNone(e){
-                    //document.getElementById("dropdown-content-select").style.display = "none";
-                    //e.id就是sex的id
-                    $("#dropdown-content-select").fadeToggle("50");
-                    var sexName = e.innerHTML;
-                    document.getElementById("select-span-1").innerHTML = sexName;
-                    //伪元素
-                    var NewSex = window.getComputedStyle(e, ":before").getPropertyValue('content');
-                    NewSex = '\\' + NewSex;
-                    NewSex = NewSex.split('"')[1];
+                                        <script language="Javascript">
+                                            function selectContentNone(e){
+                                                //document.getElementById("dropdown-content-select").style.display = "none";
+                                                //e.id就是sex的id
+                                                $("#dropdown-content-select").fadeToggle("50");
+                                                var sexName = e.innerHTML;
+                                                document.getElementById("select-span-1").innerHTML = sexName;
+                                                //伪元素
+                                                var NewSex = window.getComputedStyle(e, ":before").getPropertyValue('content');
+                                                NewSex = '\\' + NewSex;
+                                                NewSex = NewSex.split('"')[1];
 
-                    var ele = document.getElementById("dropdiv-select");
-                    var ele_before = window.getComputedStyle(ele, ":before");
-                    document.styleSheets[0].addRule('#dropdiv-select:before','content: "' + NewSex + '"');
-                    document.styleSheets[0].insertRule('#dropdiv-select:before { content: "' + NewSex + '" }', 0);
-                    //颜色
-                    var selectId = (e.id).split('-')[1];    //获取性别Id
-                    document.getElementById('form-sex-hidden-text').value = selectId;
-                    if (selectId == 1){ele.style.color = "rgba(51, 216, 255, 1)";}
-                    else if (selectId == 2){ele.style.color = "rgba(237, 133, 166, 1)";}
-                    else if (selectId == 3){ele.style.color = "rgba(26, 200, 41, 1)";}
-                    else if (selectId == 4){ele.style.color = "rgba(213, 238, 26, 1)";}
-                    else if (selectId == 5){ele.style.color = "rgba(197, 23, 234, 1)";}
-                    else if (selectId == 6){ele.style.color = "rgba(23, 33, 234, 1)";}
-                    else if (selectId == 7){ele.style.color = "rgba(234, 23, 62, 1)";}
-                    else if (selectId == 8){ele.style.color = "rgba(234, 23, 204, 1)";}
-                    else if (selectId == 9){ele.style.color = "rgba(234, 121, 23, 1)";}
-                    else if (selectId == 10){ele.style.color = "rgba(134, 23, 234, 1)";}
-                    else if (selectId == 11){ele.style.color = "rgba(127, 234, 23, 1)";}
-                    else if (selectId == 12){ele.style.color = "rgba(75, 245, 197, 1)";}
-                }
-                $(document).ready(function(){
-                    $("#dropdiv-select").click(function(event){
-                        $("#dropdown-content-select").fadeToggle("50");
-                        //阻止事件往外层传播(冒泡)
-                        event.stopPropagation();
-                    });
-                    $("body").click(function(){
-                        $("#dropdown-content-select").fadeOut("50");
-                    });
-                });
-                function selectContentTog(){
-                //    var e = document.getElementById("dropdown-content-select");
-                //    if (e.style.display == "block")
-                //    {
-                //        e.style.display = "none";
-                //    }
-                //    else
-                //    {
-                //        e.style.display = "block";
-                //    }
-                }
-            </script>
-            <div class="dropdown-select">
-                <div class="dropdiv-select form-control" id="dropdiv-select" onclick="selectContentTog()">&nbsp;&nbsp;&nbsp;<span id="select-span-1">蓝孩纸</span><span class="elloicon-dpdown"></span></div>
-                <div class="dropdown-content-select" id="dropdown-content-select">
-                    <a class="select-a select-a-1" id="s-1" onclick="selectContentNone(this)"><span>蓝孩纸</span></a>
-                    <a class="select-a select-a-2" id="s-2" onclick="selectContentNone(this)"><span>女孩纸</span></a>
-                    <a class="select-a select-a-3" id="s-3" onclick="selectContentNone(this)"><span>mercury</span></a>
+                                                var ele = document.getElementById("dropdiv-select");
+                                                var ele_before = window.getComputedStyle(ele, ":before");
+                                                document.styleSheets[0].addRule('#dropdiv-select:before','content: "' + NewSex + '"');
+                                                document.styleSheets[0].insertRule('#dropdiv-select:before { content: "' + NewSex + '" }', 0);
+                                                //颜色
+                                                var selectId = (e.id).split('-')[1];    //获取性别Id
+                                                document.getElementById('form-sex-hidden-text').value = selectId;
+                                                if (selectId == 1){ele.style.color = "rgba(51, 216, 255, 1)";}
+                                                else if (selectId == 2){ele.style.color = "rgba(237, 133, 166, 1)";}
+                                                else if (selectId == 3){ele.style.color = "rgba(26, 200, 41, 1)";}
+                                                else if (selectId == 4){ele.style.color = "rgba(213, 238, 26, 1)";}
+                                                else if (selectId == 5){ele.style.color = "rgba(197, 23, 234, 1)";}
+                                                else if (selectId == 6){ele.style.color = "rgba(23, 33, 234, 1)";}
+                                                else if (selectId == 7){ele.style.color = "rgba(234, 23, 62, 1)";}
+                                                else if (selectId == 8){ele.style.color = "rgba(234, 23, 204, 1)";}
+                                                else if (selectId == 9){ele.style.color = "rgba(234, 121, 23, 1)";}
+                                                else if (selectId == 10){ele.style.color = "rgba(134, 23, 234, 1)";}
+                                                else if (selectId == 11){ele.style.color = "rgba(127, 234, 23, 1)";}
+                                                else if (selectId == 12){ele.style.color = "rgba(75, 245, 197, 1)";}
+                                            }
+$(document).ready(function(){
+    $("#dropdiv-select").click(function(event){
+        $("#dropdown-content-select").fadeToggle("50");
+        //阻止事件往外层传播(冒泡)
+        event.stopPropagation();
+    });
+    $("body").click(function(){
+        $("#dropdown-content-select").fadeOut("50");
+    });
+});
+function selectContentTog(){
+    //    var e = document.getElementById("dropdown-content-select");
+    //    if (e.style.display == "block")
+    //    {
+    //        e.style.display = "none";
+    //    }
+    //    else
+    //    {
+    //        e.style.display = "block";
+    //    }
+}
+                                        </script>
+                                        <div class="dropdown-select">
+                                            <div class="dropdiv-select form-control" id="dropdiv-select" onclick="selectContentTog()">&nbsp;&nbsp;&nbsp;<span id="select-span-1">蓝孩纸</span><span class="elloicon-dpdown"></span></div>
+                                            <div class="dropdown-content-select" id="dropdown-content-select">
+                                                <a class="select-a select-a-1" id="s-1" onclick="selectContentNone(this)"><span>蓝孩纸</span></a>
+                                                <a class="select-a select-a-2" id="s-2" onclick="selectContentNone(this)"><span>女孩纸</span></a>
+                                                <a class="select-a select-a-3" id="s-3" onclick="selectContentNone(this)"><span>mercury</span></a>
 
-                    <a class="select-a select-a-4" id="s-4" onclick="selectContentNone(this)"><span>neuter</span></a>
-                    <a class="select-a select-a-5" id="s-5" onclick="selectContentNone(this)"><span>mars-stroke-h</span></a>
-                    <a class="select-a select-a-6" id="s-6" onclick="selectContentNone(this)"><span>mars-stroke-v</span></a>
+                                                <a class="select-a select-a-4" id="s-4" onclick="selectContentNone(this)"><span>neuter</span></a>
+                                                <a class="select-a select-a-5" id="s-5" onclick="selectContentNone(this)"><span>mars-stroke-h</span></a>
+                                                <a class="select-a select-a-6" id="s-6" onclick="selectContentNone(this)"><span>mars-stroke-v</span></a>
 
-                    <a class="select-a select-a-7" id="s-7" onclick="selectContentNone(this)"><span>mars-stroke</span></a>
-                    <a class="select-a select-a-8" id="s-8" onclick="selectContentNone(this)"><span>venus-mars</span></a>
-                    <a class="select-a select-a-9" id="s-9" onclick="selectContentNone(this)"><span>mars-double</span></a>
+                                                <a class="select-a select-a-7" id="s-7" onclick="selectContentNone(this)"><span>mars-stroke</span></a>
+                                                <a class="select-a select-a-8" id="s-8" onclick="selectContentNone(this)"><span>venus-mars</span></a>
+                                                <a class="select-a select-a-9" id="s-9" onclick="selectContentNone(this)"><span>mars-double</span></a>
 
-                    <a class="select-a select-a-10" id="s-10" onclick="selectContentNone(this)"><span>venus-double</span></a>
-                    <a class="select-a select-a-11" id="s-11" onclick="selectContentNone(this)"><span>transgender-alt</span></a>
-                    <a class="select-a select-a-12" id="s-12" onclick="selectContentNone(this)"><span>跨性别</span></a>
+                                                <a class="select-a select-a-10" id="s-10" onclick="selectContentNone(this)"><span>venus-double</span></a>
+                                                <a class="select-a select-a-11" id="s-11" onclick="selectContentNone(this)"><span>transgender-alt</span></a>
+                                                <a class="select-a select-a-12" id="s-12" onclick="selectContentNone(this)"><span>跨性别</span></a>
+                                            </div>
+                                        </div>
+
+                                        <p class="text-muted">{{ form.sex.help_text }}</p>
+                                    </div>
+                                    <div class="form-group {% if form.email.errors %} has-error {% endif %}">
+                                        <label for="">{{ form.email.label }}</label>
+                                        {% if form.email.errors %}
+                                        <span class="text-danger pull-right">{{ form.email.errors }}</span>
+                                        {% endif %}
+                                        {{ form.email }}
+                                        <p class="text-muted">{{ form.email.help_text }}</p>
+                                    </div>
+                                    <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+                                        <label for="">{{ form.password.label }}</label>
+                                        {% if form.password.errors %}
+                                        <span class="text-danger pull-right">{{ form.password.errors }}</span>
+                                        {% endif %}
+                                        {{ form.password }}
+                                        <p class="text-muted">{{ form.password.help_text }}</p>
+                                    </div>
+                                    <div class="form-group {% if form.confirm_password.errors %} has-error {% endif %}">
+                                        <label for="">{{ form.confirm_password.label }}</label>
+                                        {% if form.confirm_password.errors %}
+                                        <span class="text-danger pull-right">{{ form.confirm_password.errors }}</span>
+                                        {% endif %}
+                                        {% if form.non_field_errors %}
+                                        <span class="text-danger pull-right">{{ form.non_field_errors }}</span>
+                                        {% endif %}
+                                        {{ form.confirm_password }}
+                                    </div>
+
+                                    <button type="submit" class="btn sign-btn-style">注册</button>
+                                    <a href="{% url 'polls:login' %}"><span class="btn btn-default">登录</span></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <p class="text-muted">{{ form.sex.help_text }}</p>
-          </div>
-          <div class="form-group {% if form.email.errors %} has-error {% endif %}">
-            <label for="">{{ form.email.label }}</label>
-            {% if form.email.errors %}
-            <span class="text-danger pull-right">{{ form.email.errors }}</span>
-            {% endif %}
-            {{ form.email }}
-            <p class="text-muted">{{ form.email.help_text }}</p>
-          </div>
-          <div class="form-group {% if form.password.errors %} has-error {% endif %}">
-            <label for="">{{ form.password.label }}</label>
-            {% if form.password.errors %}
-            <span class="text-danger pull-right">{{ form.password.errors }}</span>
-            {% endif %}
-            {{ form.password }}
-            <p class="text-muted">{{ form.password.help_text }}</p>
-          </div>
-          <div class="form-group {% if form.confirm_password.errors %} has-error {% endif %}">
-            <label for="">{{ form.confirm_password.label }}</label>
-            {% if form.confirm_password.errors %}
-            <span class="text-danger pull-right">{{ form.confirm_password.errors }}</span>
-            {% endif %}
-            {% if form.non_field_errors %}
-            <span class="text-danger pull-right">{{ form.non_field_errors }}</span>
-            {% endif %}
-            {{ form.confirm_password }}
-          </div>
-
-          <button type="submit" class="btn sign-btn-style">注册</button>
-          <a href="{% url 'polls:login' %}"><span class="btn btn-default">登录</span></a>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
-</body>
+        </div>
+    </body>
 </html>
 

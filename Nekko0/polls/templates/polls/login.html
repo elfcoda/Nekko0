@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 
 <html>
-{% load static %}
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link href="{% static 'polls/sign8.css' %}" rel="stylesheet" type="text/css" />
+    <head>
+        {% load static %}
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link href="{% static 'polls/sign8.css' %}" rel="stylesheet" type="text/css" />
+        {% include 'polls/title_info.html' %}
+    </head>
 
 
-<body class="body-img">
-<div class="outer-align-main">
-    <div class="sign-main">
-        <div class="register center-block">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><strong>登录</strong></h3>
-                </div>
-                <div class="panel-body">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        <div class="form-group {% if form.email.errors %} has-error {% endif %}">
-                            <label for="">{{ form.email.label }}</label>
-                            {% if form.email.errors %}
-                            <span class="text-danger pull-right">{{ form.email.errors }}</span>
-                            {% endif %}
-                            {{ form.email }}
-                            <p class="text-muted">{{ form.email.help_text }}</p>
+    <body class="body-img">
+        <div class="outer-align-main">
+            <div class="sign-main">
+                <div class="register center-block">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong>登录</strong></h3>
                         </div>
+                        <div class="panel-body">
+                            <form method="post" action="">
+                                {% csrf_token %}
+                                <div class="form-group {% if form.email.errors %} has-error {% endif %}">
+                                    <label for="">{{ form.email.label }}</label>
+                                    {% if form.email.errors %}
+                                    <span class="text-danger pull-right">{{ form.email.errors }}</span>
+                                    {% endif %}
+                                    {{ form.email }}
+                                    <p class="text-muted">{{ form.email.help_text }}</p>
+                                </div>
 
-                        <div class="form-group {% if form.password.errors %} has-error {% endif %}">
-                            <label for="">{{ form.password.label }}</label>
-                            {% if form.password.errors %}
-                            <span class="text-danger pull-right">{{ form.password.errors }}</span>
-                            {% endif %}
+                                <div class="form-group {% if form.password.errors %} has-error {% endif %}">
+                                    <label for="">{{ form.password.label }}</label>
+                                    {% if form.password.errors %}
+                                    <span class="text-danger pull-right">{{ form.password.errors }}</span>
+                                    {% endif %}
 
-                            {% if form.non_field_errors %}
-                            <span class="text-danger pull-right">{{ form.non_field_errors }}</span>
-                            {% endif %}
-                            {{ form.password }}
-                            <p class="text-muted">{{ form.password.help_text }}</p>
+                                    {% if form.non_field_errors %}
+                                    <span class="text-danger pull-right">{{ form.non_field_errors }}</span>
+                                    {% endif %}
+                                    {{ form.password }}
+                                    <p class="text-muted">{{ form.password.help_text }}</p>
+                                </div>
+
+                                <button type="submit" class="btn sign-btn-style">登录</button>
+                                <a href="{% url 'polls:register' %}"><span class="btn btn-default">注册</span></a>
+                            </form>
                         </div>
-
-                        <button type="submit" class="btn sign-btn-style">登录</button>
-                        <a href="{% url 'polls:register' %}"><span class="btn btn-default">注册</span></a>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-</body>
+    </body>
 </html>

@@ -34,6 +34,7 @@
     </head>
     <body class="body-img-resume">
         {% include 'polls/nav.html' %}
+        <div class="resume-container-outer">
         <div class="resume-container resume-br-radius">
           <div class="resume-header resume-br-radius">
             <a href="{% url 'polls:index' %}" target="_blank">
@@ -43,7 +44,7 @@
             </a>
             <div class="resume-resume-text">RESUME</div>
             <div class="resume-date">2018-2-7</div>
-            <div class="resume-desc-header">94小鲜肉，虎牙后端狗</div>
+            <div class="resume-desc-header">94小鲜肉，虎牙后端狗，卖萌求抱走<span class="cute-font">(๑•̀ㅂ•́) ✧</span></div>
           </div>
 
           <div class="resume-info resume-br-radius">
@@ -135,7 +136,10 @@
                   颜值打call(2017-12) 与 颜值盛世嘉年华(2017-12 ~ 2018-01)
                 </div>
                 <div class="resume-experience-item-detail">
-                  打call需求开发完成后正在测试，紧急接下嘉年华的需求
+                  打call需求开发完成后正在测试，紧急接下嘉年华的需求。嘉年华的需求较复杂，要考虑的状态多，
+                  一边修复打call需求的bug，一边开发嘉年华活动，压力山大。但是在最后的努力，以及与其他同事的沟通和协调下，
+                  终于两个需求都成功按时上线(在这之前运营同学应该觉得肯定是要延期了)。运营同学表示这个新来的应届生很给力，
+                  五星好评。
                 </div>
               </div>
 
@@ -242,7 +246,13 @@
                   引擎搞过小游戏Demo)，技术死宅一个。
                 </div>
                 <div class="resume-experience-item-detail">
-                  <span class="resume-color-grey">讨厌：</span>墙和一切限制你自由的东西。
+                  <span class="resume-color-pink">性格：</span><span class="resume-color-char1">能够坚持</span>(这个主站已经开发三四个月了，每天下班
+                  回来都会提交一点代码)，<span class="resume-color-char2">细心</span>(重要的操作都会很小心，避免线上出现
+                  问题)，<span class="resume-color-char3">能够发现问题</span>(在其他同事不注意的情况下，能够多想，去发现问题)
+                  ，<span class="resume-color-char4">善于沟通</span>(毕业前沟通能力较差，后来加强了自己的沟通能力，有问题及时和他人沟通，不懂的也会去问)
+                </div>
+                <div class="resume-experience-item-detail">
+                  <span class="resume-color-grey">讨厌：</span>墙和一切限制自由的东西。
                 </div>
               </div>
 
@@ -253,12 +263,19 @@
             <div class="resume-blank"></div>
             <div class="resume-school">
               <div class="resume-experience-header">
-                校园
+                校园表现
                 <hr />
               </div>
 
               <div class="resume-experience-item">
                 <div class="resume-experience-item-detail">
+                  在校期间积极参加各类技术竞赛和项目，包括
+                  <span class="resume-color-char4">基于OpenGL的3D图形建模工具</span>(毕设，Python)，
+                  <span class="resume-color-char2">邮件系统设计</span>(基于Python的Flask框架)，
+                  <span class="resume-color-char1">蚁群算法设计，编码与优化</span>(华为挑战精英赛)，
+                  <span class="resume-color-char3">企业公文审批系统</span>(Java),
+                  <span class="resume-color-char5">校级ACM竞赛</span>(二等奖)，
+                  等等
                 </div>
               </div>
             </div>
@@ -267,13 +284,18 @@
             <div class="resume-blank"></div>
             <div class="resume-wish">
               <div class="resume-experience-header">
-                愿望
+                结语
                 <hr />
               </div>
 
               <div class="resume-experience-item">
                 <div class="resume-experience-item-detail">
-                  //本猿
+                  大三的时候在腾讯实习过，实习结束后回到学校，就对游戏开发
+                  感兴趣，自己试着做了些小游戏(Unity 3D引擎)，毕业设计也是
+                  和游戏相关的项目(linux下的3D图形建模工具，python开发)。
+                  到现在(2018年)，当时预研的游戏项目预计上线，得知项目组要
+                  扩招的消息后，希望自己能回到原来的地方，完成当年未完成的
+                  事，也算是个愿望吧。
                 </div>
               </div>
             </div>
@@ -282,6 +304,7 @@
 
           <div class="resume-footer resume-br-radius">
           </div>
+        </div>
         </div>
         <!--
         {% include 'polls/footer.html' %}

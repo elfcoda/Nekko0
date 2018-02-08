@@ -270,3 +270,11 @@
   background: #B5F1C4;
 }
 
+*::-moz-selection {
+  background: #B5F1C4;
+}
+
+*::-webkit-selection {
+  background: #B5F1C4;
+}
+

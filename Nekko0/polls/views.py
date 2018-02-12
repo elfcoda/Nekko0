@@ -211,6 +211,13 @@ class RegisterView(FormView):
 
         return super(RegisterView, self).form_valid(form)
 
+
+class TestView(DetailView):
+    template_name = 'polls/code.html'
+
+    def get_object(self, **kwargs):
+        return None
+
 class LoginView(FormView):
     # template_name = 'polls/login.html'
     template_name = 'polls/login.html'

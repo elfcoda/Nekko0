@@ -67,7 +67,7 @@ class Userinfo(models.Model):
 @python_2_unicode_compatible
 class SingleMsgBoard(models.Model):
     article_id = models.IntegerField()
-    msg_pickle_str = models.TextField(max_length=100000)
+    msg_pickle_str = models.BinaryField(max_length=100000)    # msg_pickle_str = models.TextField(max_length=100000)
     is_exist = models.IntegerField()                # 通过这个在数据库进行筛选，得到所有未删除的评论
     hash_value = models.CharField(max_length=15)    # 存进数据库时指定一个哈希值，可以用哈希值取出数据，得到id
 

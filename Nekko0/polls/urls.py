@@ -4,7 +4,7 @@
 from django.conf.urls import url
 
 from . import views
-from views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
+from .views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     RegisterView, LoginView, Logout, MsgBoardListView,  UploadAvatar, \
     UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
     NewIndexView, ResumeView, TestView

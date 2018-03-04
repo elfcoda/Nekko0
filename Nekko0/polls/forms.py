@@ -7,7 +7,7 @@ import pickle
 
 from django import forms
 
-from models import Article, Userinfo, SingleMsgBoard
+from .models import Article, Userinfo, SingleMsgBoard
 
 
 class ArticlePublishForm(forms.Form):

@@ -12,13 +12,13 @@ from .models import Question, Choice
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import F
 from django.views.generic.list import ListView
-from models import Article, SingleMsgBoard, Userinfo
-# from django.urls import reverse
-from django.core.urlresolvers import reverse, reverse_lazy
+from .models import Article, SingleMsgBoard, Userinfo
+from django.urls import reverse, reverse_lazy # python3
+# from django.core.urlresolvers import reverse, reverse_lazy  # python2
 from django.views import generic
 from django.views.generic.edit import FormView
 from django.views.generic.detail import DetailView
-from forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm, UploadAvatarForm
+from .forms import ArticlePublishForm, RegisterForm, LoginForm, MsgBoardForm, UploadAvatarForm
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 import base64
@@ -213,7 +213,7 @@ class RegisterView(FormView):
 
 
 class TestView(DetailView):
-    template_name = 'polls/code.html'
+    template_name = 'polls/test_channels.html'
 
     def get_object(self, **kwargs):
         return None
@@ -303,7 +303,8 @@ def AddOrReplyMsg(request):
 
     try:
         userId = request.session['userId']
-        print userId
+        # 为了测试python3注释掉print
+        # print userId
     except KeyError:
         userId = -1
         return
@@ -381,12 +382,12 @@ def UploadUserImage(request):
         return JsonResponse(ret_json)
 
 def UploadAvatar(request):
-    print request.POST.get('x')
-    print request.POST.get('y')
-    print request.POST.get('w')
-    print request.POST.get('h')
-    print request.POST.get('scale-w')
-    print request.POST.get('scale-h')
+    # print request.POST.get('x')
+    # print request.POST.get('y')
+    # print request.POST.get('w')
+    # print request.POST.get('h')
+    # print request.POST.get('scale-w')
+    # print request.POST.get('scale-h')
     return HttpResponseRedirect(reverse('polls:msgboard', kwargs={"page":1, "articleId":1001}))
 
 class MsgBoardListView(ListView, FormView):
@@ -464,7 +465,7 @@ class MsgBoardListView(ListView, FormView):
         pageId = int(self.request.POST.get('get-page'))
         try:
             userId = self.request.session['userId']
-            print userId
+            # print userId
             self.success_url = reverse('polls:msgboard',\
                                        kwargs={"page":pageId, "articleId":articleId})
         except KeyError:
@@ -525,6 +526,12 @@ class ArticleDetailView(ListView, FormView):
 
         for pickled_msg in object_list:
             # 这是一整条评论
+            # msg_pickle_bytes = bytes(pickled_msg.msg_pickle_str, encoding="utf-8")
+            # print("---------------------------")
+            # print(msg_pickle_bytes)
+            # print("---------------------------")
+            # print(type(msg_pickle_bytes))
+            # print("---------------------------")
             pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
             # get userinfo by userid
             for pickle_reply_list_item in pickle_reply_list:
@@ -568,7 +575,7 @@ class ArticleDetailView(ListView, FormView):
         pageId = int(self.request.POST.get('get-page'))
         try:
             userId = self.request.session['userId']
-            print userId
+            # print userId
             self.success_url = reverse('polls:article_detail',\
                                        kwargs={"page":pageId, "articleId":articleId})
         except KeyError:

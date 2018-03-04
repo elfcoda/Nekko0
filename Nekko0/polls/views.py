@@ -24,6 +24,7 @@ from django.views.decorators.csrf import csrf_exempt
 import base64
 import random
 import datetime
+from Nekko0 import consumers
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -246,6 +247,11 @@ def Logout(request):
 
     # messages.success(request, "logout!")
     return HttpResponseRedirect(reverse('polls:blog_index'))
+
+def SendDM(request):
+    ret_json = {'r': 1}
+    consumers.ws_sendDM()
+    return JsonResponse(ret_json)
 
 def MsgLike(request):
     # -1--评论 1 2 3--回复

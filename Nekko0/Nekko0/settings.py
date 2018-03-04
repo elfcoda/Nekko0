@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'channels',
 ]
 
+# ASGI_APPLICATION = "Nekko0.routing.application"
+
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "asgiref.inmemory.ChannelLayer",

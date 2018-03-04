@@ -2,6 +2,8 @@
 <link href="{% static 'polls/fixed.css' %}" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
+    var dm_string = "0.0";
+
     function dm(){
         //document.getElementById("dm-content");
         alert(1);
@@ -13,14 +15,25 @@
     function mouseOutCute(e){
         e.setAttribute('class', "");
     }
+
+    //function mouseOverDM(){
+    //    document.getElementById('dm-text').innerHTML = dm_string;
+    //}
+
+    //function mouseOutDM(){
+    //    dm_string = document.getElementById('dm-text').innerHTML;
+    //    document.getElementById('dm-text').innerHTML = "";
+    //}
 </script>
 
 <div class="danmu">
-  <div class="dm-content" id="dm-content">
-      <div class="" onmouseout="mouseOutCute(this)" onMouseOver="mouseOverCute(this)">
-      0.0
-      </div>
-  </div>
   <div class="dm-deliver" id="dm-deliver">
   </div>
+  <div class="dm-content" id="dm-content">
+      <div class="form-group" id="dm-text">
+          <input type="text" class="form-control" maxlength="50">
+          </input>
+      </div>
+  </div>
 </div>
+

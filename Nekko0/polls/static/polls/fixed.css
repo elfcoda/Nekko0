@@ -1,6 +1,5 @@
 .danmu {
-  background: red;
-  height: 30px;
+  height: 38px;
   width: auto;
   position: fixed;
   bottom: 50px;
@@ -13,14 +12,29 @@
   background: green;
   position: relative;
   float: left;
+  opacity: 0.0;
+  visibility: hidden;
+  transition:opacity 0.3s;
 }
 
 .dm-deliver {
   height: 100%;
-  width: 30px;
-  background: blue;
+  width: 50px;
+  background: pink;
+  opacity: 0.85;
+  border-radius: 3px;
   position: relative;
   float: right;
+}
+
+.dm-deliver:hover+.dm-content {
+  opacity: 0.85;
+  visibility: visible;
+}
+
+.dm-content:hover {
+  opacity: 0.85;
+  visibility: visible;
 }
 
 .cute-font:hover {

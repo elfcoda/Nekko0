@@ -1,15 +1,31 @@
+.fixed-font-style {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}
+
+.top {
+  position: fixed;
+  height: 38px;
+  width: 38px;
+  bottom: 100px;
+  right: 15px;
+  background: #FF7A33;
+  opacity: 0.85;
+  border-radius: 5px;
+}
+
 .danmu {
   height: 38px;
   width: auto;
   position: fixed;
   bottom: 50px;
-  right: 1px;
+  right: 15px;
 }
 
 .dm-content {
   height: 100%;
   width: 120px;
-  background: green;
   position: relative;
   float: left;
   opacity: 0.0;
@@ -17,12 +33,31 @@
   transition:opacity 0.3s;
 }
 
+.my-form-control {
+  float: right;
+  height: 38px;
+  line-height: 38px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  outline: none;
+  color: #008CBA;
+  padding-left: 7px;
+}
+
+.my-form-control:hover {
+  border: 1px solid pink;
+}
+
+.dm-deliver:hover+.dm-content .my-form-control {
+  border: 1px solid pink;
+}
+
 .dm-deliver {
   height: 100%;
-  width: 50px;
-  background: pink;
+  width: 38px;
+  background: #339CFF;
   opacity: 0.85;
-  border-radius: 3px;
+  border-radius: 5px;
   position: relative;
   float: right;
 }

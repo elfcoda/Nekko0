@@ -1,5 +1,17 @@
 {% load static %}
 <link href="{% static 'polls/fixed.css' %}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://at.alicdn.com/t/font_526920_9257chjl0ej98uxr.js">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<style type="text/css">
+    .icon {
+        width: 1em; height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+</style>
 
 <script type="text/javascript">
     var dm_string = "0.0";
@@ -24,14 +36,52 @@
     //    dm_string = document.getElementById('dm-text').innerHTML;
     //    document.getElementById('dm-text').innerHTML = "";
     //}
+
+      function WebSocketDM()
+      {
+        if ("WebSocket" in window)
+        {
+          socket = new WebSocket("ws://" + "192.168.130.129:8000" + "/Nekko0/");
+          socket.onmessage = function(e) {
+            alert(e.data);
+          }
+          socket.onopen = function() {
+          }
+          if (socket.readyState == WebSocket.OPEN)
+          {
+            socket.onopen();
+          }
+        }
+        else
+        {
+          // 浏览器不支持 WebSocket
+          alert("您的浏览器不支持 WebSocket!");
+        }
+      }
+      function sendDM(){
+        e_v = document.getElementById("dm-input-content").value;
+        $.get("{% url 'polls:sendDM' %}", {'dmValue': e_v}, function(ret){
+        })
+      }
+
+      WebSocketDM();
 </script>
 
+<div class="top fixed-font-style">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-top"></use>
+    </svg>
+</div>
+
 <div class="danmu">
-  <div class="dm-deliver" id="dm-deliver">
+  <div class="dm-deliver fixed-font-style" id="dm-deliver" onclick="sendDM()">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-send1"></use>
+    </svg>
   </div>
   <div class="dm-content" id="dm-content">
       <div class="form-group" id="dm-text">
-          <input type="text" class="form-control" maxlength="50">
+          <input id="dm-input-content" type="text" class="my-form-control" maxlength="50" placeholder="装填弹幕！发射！">
           </input>
       </div>
   </div>

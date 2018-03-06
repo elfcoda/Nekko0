@@ -25,8 +25,8 @@ def ws_message(message):
         "text": "[user] %s" % message.content['text'],
     })
 
-def ws_sendDM():
+def ws_sendDM(dmValue):
     Group("DM").send({
-        "text": "Hi Anom.",
+        "text": dmValue,
     })
 

@@ -249,8 +249,15 @@ def Logout(request):
     return HttpResponseRedirect(reverse('polls:blog_index'))
 
 def SendDM(request):
+    dmValue = request.GET.get('dmValue')
+    consumers.ws_sendDM(dmValue)
+    try:
+        avatar = request.session['avatar']
+    except KeyError:
+        avatar = "/static/polls/userAvatar/default.png"
+
+    print(avatar)
     ret_json = {'r': 1}
-    consumers.ws_sendDM()
     return JsonResponse(ret_json)
 
 def MsgLike(request):
@@ -545,7 +552,11 @@ class ArticleDetailView(ListView, FormView):
                 # 判断是否登录
                 like_set = pickle_reply_list_item[4]
                 likedNum = len(like_set)
-                userId = self.request.session['userId']
+                try:
+                    userId = self.request.session['userId']
+                except KeyError:
+                    userId = None
+
                 if userId and userId in like_set:
                     isLiked = 1
                 else:

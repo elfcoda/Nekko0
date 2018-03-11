@@ -14,7 +14,7 @@
 </style>
 
 <script type="text/javascript">
-    var dm_string = "0.0";
+    var dm_string = "";
 
     function dm(){
         //document.getElementById("dm-content");
@@ -43,7 +43,10 @@
         {
           socket = new WebSocket("ws://" + "192.168.130.129:8000" + "/Nekko0/");
           socket.onmessage = function(e) {
-            alert(e.data);
+            // 创建弹幕
+            var jqueryDom = createScreenbullet(e.data);
+            // 添加定时任务
+            addInterval(jqueryDom, e.data.split("|")[0]);
           }
           socket.onopen = function() {
           }
@@ -59,15 +62,98 @@
         }
       }
       function sendDM(){
-        e_v = document.getElementById("dm-input-content").value;
-        $.get("{% url 'polls:sendDM' %}", {'dmValue': e_v}, function(ret){
+        var e = document.getElementById("dm-input-content");
+        var e_v = e.value;
+        var s_v;
+        if (e_v == "") {
+            s_v = dm_string;
+        } else {
+            s_v = e_v;
+            dm_string = e_v;
+            e.value = "";
+            e.placeholder = e_v;
+        }
+        $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
         })
       }
 
       WebSocketDM();
+
+    //dm
+    // 弹幕定时器
+    var timers = [];
+    // 控制弹幕显隐变量
+    var isShow = true;
+    // 监听关闭弹幕按钮
+    $("#clearDM").on("click", function () {
+        if (isShow) {
+            $(".dm").css("visibility", hidden);
+            isShow = false;
+        } else {
+            $(".dm").css("visibility", visible);
+            isShow = true;
+        }
+    });
+    // 新建一个弹幕
+    function createScreenbullet(text) {
+        var dmAva = text.split("|")[1];
+        var dmVal = text.split("|")[2];
+        var jqueryDom = $("<div class='dm'><img src='" + dmAva + "' class='dm-avatar'></img>&nbsp;" + dmVal + "</div>");
+        var fontColor = "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")";
+        var dmBackground = "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.5)";
+        var fontSize = Math.floor((Math.random() + 1) * 24) + "px";
+        //window对象属性获取:window.document.body.offsetWidth
+        var left = window.document.body.offsetWidth + "px";
+        var winHeight = window.innerHeight;
+        var winHeightLess = winHeight - 50;
+        var randScale = Math.random();
+        randScale = randScale < 0.1 ? 0.1 : randScale;
+        randScale = randScale > 0.9 ? 0.9 : randScale;
+        var top = Math.floor(randScale * winHeight) + "px";
+        top = parseInt(top) > winHeightLess ? (winHeightLess+"px") : top;
+        jqueryDom.css({
+            "position": 'fixed',
+            "color": fontColor,
+            "font-size": '20px',
+            "left": left,
+            "top": top,
+            "padding": '0px 7px',
+            "padding-left": '7px',
+            "width": 'auto',
+            "height": '28px',
+            "line-height": '28px',
+            "overflow": 'hidden',
+            "border-radius": '5px',
+            "background": dmBackground
+        });
+        $("#dm-show").append(jqueryDom);
+        return jqueryDom;
+    }
+    // 为弹幕添加定时任务
+    function addInterval(jqueryDom, flushInterval) {
+        var left = window.document.body.offsetWidth;
+        var timestamp = Date.parse(new Date());
+        var timer = setInterval(function () {
+            left--;
+            jqueryDom.css("left", left + "px");
+            if (Date.parse(new Date()) - timestamp > 120000) {
+                jqueryDom.remove();
+                clearInterval(timer);
+            }
+        }, parseInt(flushInterval));
+        timers.push(timer);
+    }
+
+    function smoothscroll(){
+        var curScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (curScroll > 0) {
+            window.requestAnimationFrame(smoothscroll);
+            window.scrollTo(0, curScroll - (curScroll/5));
+        }
+    }
 </script>
 
-<div class="top fixed-font-style">
+<div class="top fixed-font-style" id="totop" onclick="smoothscroll()">
     <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-top"></use>
     </svg>
@@ -85,5 +171,8 @@
           </input>
       </div>
   </div>
+</div>
+
+<div id="dm-show">
 </div>
 

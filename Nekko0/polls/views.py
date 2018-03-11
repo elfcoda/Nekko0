@@ -250,13 +250,13 @@ def Logout(request):
 
 def SendDM(request):
     dmValue = request.GET.get('dmValue')
-    consumers.ws_sendDM(dmValue)
     try:
         avatar = request.session['avatar']
     except KeyError:
-        avatar = "/static/polls/userAvatar/default.png"
+        avatar = "/static/polls/userAvatar/default.jpg"
 
-    print(avatar)
+    # print(avatar)
+    consumers.ws_sendDM(avatar, dmValue)
     ret_json = {'r': 1}
     return JsonResponse(ret_json)
 

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+
+    {% load static %}
+    <meta charset="utf-8">
+    <title></title>
+
+    <script type="text/javascript">
+      function WebSocketDM()
+      {
+        if ("WebSocket" in window)
+        {
+          socket = new WebSocket("ws://" + "192.168.130.129:8000" + "/Nekko0/");
+          socket.onmessage = function(e) {
+            alert(e.data);
+          }
+          socket.onopen = function() {
+          }
+          if (socket.readyState == WebSocket.OPEN)
+          {
+            socket.onopen();
+          }
+        }
+        else
+        {
+          // 浏览器不支持 WebSocket
+          alert("您的浏览器不支持 WebSocket!");
+        }
+      }
+      function sendDM(){
+        $.get("{% url 'polls:sendDM' %}", {}, function(ret){
+        })
+      }
+
+      WebSocketDM();
+    </script>
+  </head>
+
+  <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+    <div>
+      <a href="{% url 'polls:blog_index' %}">Index</a>
+    </div>
+    <div>
+      <a href="javascript:sendDM()">SendDM</a>
+    </div>
+  </body>
+</html>

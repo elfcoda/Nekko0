@@ -11,8 +11,13 @@
   bottom: 100px;
   right: 15px;
   background: #FF7A33;
-  opacity: 0.85;
+  opacity: 0.5;
   border-radius: 5px;
+  transition:opacity 0.3s;
+}
+
+.top:hover {
+  opacity: 0.9;
 }
 
 .danmu {
@@ -21,6 +26,10 @@
   position: fixed;
   bottom: 50px;
   right: 15px;
+}
+
+.danmu:hover #dm-deliver{
+  opacity: 0.9;
 }
 
 .dm-content {
@@ -56,19 +65,24 @@
   height: 100%;
   width: 38px;
   background: #339CFF;
-  opacity: 0.85;
+  opacity: 0.5;
   border-radius: 5px;
   position: relative;
   float: right;
+  transition:opacity 0.3s;
+}
+
+.dm-deliver:hover {
+  opacity: 0.9;
 }
 
 .dm-deliver:hover+.dm-content {
-  opacity: 0.85;
+  opacity: 0.9;
   visibility: visible;
 }
 
 .dm-content:hover {
-  opacity: 0.85;
+  opacity: 0.9;
   visibility: visible;
 }
 
@@ -95,6 +109,14 @@
   0%    {top:0px;}
   50%   {top:-5px;}
   100%  {top:0px;}
+}
+
+.dm-avatar {
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  position: relative;
+  top: -3px;
 }
 
 

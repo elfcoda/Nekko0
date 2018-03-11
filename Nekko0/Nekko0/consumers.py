@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from channels.handler import AsgiHandler
 from channels import Group, Channel
 from channels.sessions import channel_session
+import random
 
 #message.reply_channel    一个客户端通道的对象
 #message.reply_channel.send(chunk)  用来唯一返回这个客户端
@@ -25,8 +26,10 @@ def ws_message(message):
         "text": "[user] %s" % message.content['text'],
     })
 
-def ws_sendDM(dmValue):
+def ws_sendDM(avatar, dmValue):
+    flushInterval = str(random.randint(5, 35))
+    dmData = flushInterval + "|" + avatar + "|" + dmValue
     Group("DM").send({
-        "text": dmValue,
+        "text": dmData,
     })
 

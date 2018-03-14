@@ -161,6 +161,7 @@
                         }
                     }
                 }
+                likemeGet();
             }
 
             function reply(comment_id, reply_id){
@@ -547,7 +548,9 @@
                                         <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
                                     </div>
                                   </div>
+                                  <!--
                                   <div class="cute-font-label"></div>
+                                  -->
                                   <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">
                                       {% csrf_token %}
                                       <div class="form-group">
@@ -649,7 +652,7 @@
                                       </div>
 
                                       <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
-                                          <div class="cute-font-label">( •̀ .̫ •́ )✧
+                                          <div class="cute-font-label leave-cute-font-top">( •̀ .̫ •́ )✧
                                             <div class="cute-font-list">
                                                 <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
                                                 <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
@@ -670,7 +673,9 @@
                                                 <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
                                             </div>
                                           </div>
-                                          <div class="cute-font-label"></div>
+                                          <!--
+                                          <div class="cute-font-label leave-cute-font-top"></div>
+                                          -->
                                           {% csrf_token %}
                                           <div class="form-group">
                                               <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
@@ -730,7 +735,6 @@
         <div class="footer-blank-less"></div>
         {% include 'polls/fixed.html' %}
         {% include 'polls/footer.html' %}
-
 
     </body>
 </html>

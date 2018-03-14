@@ -12,7 +12,7 @@ from .models import Question, Choice
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import F
 from django.views.generic.list import ListView
-from .models import Article, SingleMsgBoard, Userinfo
+from .models import Article, SingleMsgBoard, Userinfo, LikeMeData
 from django.urls import reverse, reverse_lazy # python3
 # from django.core.urlresolvers import reverse, reverse_lazy  # python2
 from django.views import generic
@@ -247,6 +247,18 @@ def Logout(request):
 
     # messages.success(request, "logout!")
     return HttpResponseRedirect(reverse('polls:blog_index'))
+
+def LimeMeOp(request):
+    likeOp = request.GET.get('op')
+    if likeOp == "1":
+        likeCount = 1
+    elif likeOp == "2":
+        likeCount = 0
+    object_likeme = LikeMeData.objects.get(id=1)
+    object_likeme.LikeMeCount += likeCount
+    object_likeme.save()
+    ret_json = {'r': object_likeme.LikeMeCount}
+    return JsonResponse(ret_json)
 
 def SendDM(request):
     dmValue = request.GET.get('dmValue')

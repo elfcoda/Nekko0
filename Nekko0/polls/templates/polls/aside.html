@@ -1,3 +1,22 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+<script type="text/javascript">
+  function likemeOp()
+  {
+    $.get("{% url 'polls:likemeOP' %}", {'op': '1'}, function(ret){
+      document.getElementById("like-me-count").innerHTML = ret.r;
+    })
+  }
+
+  function likemeGet()
+  {
+    $.get("{% url 'polls:likemeOP' %}", {'op': '2'}, function(ret){
+      document.getElementById("like-me-count").innerHTML = ret.r;
+    })
+  }
+</script>
+
 <aside>
   <div class="findme">
     <div class="my-avatar-outer">
@@ -66,10 +85,12 @@
       </div>
     </div>
   </div>
+
   <div class="likeme">
-    <div class="like-me-text">这个啵主真是太棒了</div>
+    <div class="empty-div-top"></div>
+    <div class="like-me-text">OK，很酷！</div>
     <div class="click-like-me">
-      <div class="like-me-1">
+      <div class="like-me-1" onclick="likemeOp()">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-aixinshixin"></use>
         </svg>
@@ -81,10 +102,11 @@
       </div>
     </div>
     <div class="click-like-me-text">
-      <div class="like-me-text-1">系呀</div>
-      <div class="like-me-text-0">才不呢</div>
+      <div class="like-me-text-1" id="like-me-count">0</div>
+      <div class="like-me-text-0">0</div>
     </div>
   </div>
+
   <div class="latest-update">
     <header class="de-header">
       <div class="decorate-header"></div>

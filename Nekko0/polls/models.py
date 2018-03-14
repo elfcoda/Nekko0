@@ -84,3 +84,11 @@ class SingleMsgBoard(models.Model):
 
 
 
+@python_2_unicode_compatible
+class LikeMeData(models.Model):
+    LikeMeCount = models.IntegerField()
+    UnLikeMeCount = models.IntegerField()
+    # 日志记录点击数据
+
+    def __str__(self):
+        return self.LikeMeCount

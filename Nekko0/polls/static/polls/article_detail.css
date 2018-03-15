@@ -637,3 +637,13 @@
   100%  {top:0px;}
 }
 
+.ar-prev-next {
+  text-decoration: none;
+  color: #11036B;
+}
+
+.ar-prev-next:hover {
+  text-decoration: none;
+  color: #4A446F;
+}
+

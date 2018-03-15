@@ -898,4 +898,37 @@ aside {
   background: rgba(200, 200, 200, 0);
 }
 
+/* 生成点赞动画 */
+.like-me-animation {
+  position:relative;
+  top: -35px;
+  left: 88px;
+  font-size: 35px;
+  opacity: 0;
+  -webkit-animation-name:likeMeAnimation;
+  -webkit-animation-duration:2s;
+  -webkit-animation-iteration-count:1;
+  -webkit-animation-timing-function:linear;
+  animation-name:likeMeAnimation;
+  animation-duration:2s;
+  animation-iteration-count:1;
+  animation-timing-function:linear;
+}
+
+@-webkit-keyframes likeMeAnimation {
+  0%    {top:-70px;opacity:1;}
+  50%   {top:-120px;opacity:0.5;}
+  100%  {top:-170px;opacity:0;}
+}
+
+@keyframes likeMeAnimation {
+  0%    {top:-70px;opacity:1;}
+  50%   {top:-120px;opacity:0.5;}
+  100%  {top:-170px;opacity:0;}
+}
+
+.color-green {
+  color: green;
+}
+
 

@@ -509,7 +509,35 @@ class ArticleDetailView(ListView, FormView):
                                kwargs={"page":1, "articleId":articleId})
     # 如果是留言板，id必须传1001过来
 
+    def getPrevNext(self, aId):
+        try:
+            ar_list = Article.objects.filter(is_exist=1).order_by(F('id').desc())
+            ar_len = len(ar_list)
+            for idx in range(ar_len):
+                if int(ar_list[idx].id) == int(aId):
+                    idx_prev = idx-1
+                    idx_next = idx+1
+                    break
+        except Article.DoesNotExist:
+            raise Http404("Article does not exist")
+
+        ret_list = []
+        if idx_prev >= 0:
+            ret_list.append([ar_list[idx_prev].title, ar_list[idx_prev].id])
+        else:
+            ret_list.append(None)
+
+        if idx_next <= (ar_len-1):
+            ret_list.append([ar_list[idx_next].title, ar_list[idx_next].id])
+        else:
+            ret_list.append(None)
+
+        return ret_list
+
+
     def getArticle(self, aId):
+        prevNextList = self.getPrevNext(aId)
+        print(prevNextList)
         try:
             article = Article.objects.get(id=aId)
             article.views += 1
@@ -527,6 +555,7 @@ class ArticleDetailView(ListView, FormView):
 
         except Article.DoesNotExist:
             raise Http404("Article does not exist")
+        article.prevNextList = prevNextList
         return article
 
     def get_queryset(self, **kwargs):

@@ -40,6 +40,8 @@ class Article(models.Model):
     views = models.IntegerField()
     created = models.DateTimeField()
     updated = models.DateTimeField()
+    # 是否存在
+    is_exist = models.IntegerField(default=1)
 
     def __str__(self):
         return self.title_zh

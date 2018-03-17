@@ -7,6 +7,7 @@
     $.get("{% url 'polls:likemeOP' %}", {'op': '1'}, function(ret){
       document.getElementById("like-me-count").innerHTML = ret.r;
     })
+    addLikeMeDiv();
   }
 
   function likemeGet()
@@ -15,6 +16,28 @@
       document.getElementById("like-me-count").innerHTML = ret.r;
     })
   }
+
+  function addLikeMeDiv(){
+    var heartColor = "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")";
+    var animationName = "likeMeAnimation" + Math.floor(Math.random() * 4);
+
+    var sDiv = "";
+    sDiv += "<div class='like-me-1 like-me-animation color-random' onclick='likemeOp()'>";
+    sDiv += "<svg class='icon' aria-hidden='true'>";
+    sDiv += "<use xlink:href='#icon-aixinshixin'></use>";
+    sDiv += "</svg>";
+    sDiv += "</div>";
+
+    var jqHeartDiv = $(sDiv);
+    jqHeartDiv.css({
+      "-webkit-animation-name": animationName,
+      "animation-name": animationName,
+      "color": heartColor
+    });
+
+    $("#gen-colored-heart").append(jqHeartDiv);
+  }
+
 </script>
 
 <aside>
@@ -95,7 +118,7 @@
           <use xlink:href="#icon-aixinshixin"></use>
         </svg>
       </div>
-      <div class="like-me-0">
+      <div class="like-me-0" onclick="alert('服务器已拒绝您的请求！[doge]')">
         <svg class="icon" aria-hidden="true">
           <use xlink:href="#icon-heart-broken"></use>
         </svg>
@@ -106,12 +129,7 @@
       <div class="like-me-text-0">0</div>
     </div>
 
-    <div id="gen-colored-heart">
-      <div class="like-me-1 like-me-animation color-green">
-        <svg class="icon" aria-hidden="true">
-          <use xlink:href="#icon-aixinshixin"></use>
-        </svg>
-      </div>
+    <div id='gen-colored-heart'>
     </div>
 
   </div>

@@ -119,4 +119,16 @@
   top: -3px;
 }
 
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
+
 

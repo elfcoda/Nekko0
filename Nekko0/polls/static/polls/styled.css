@@ -480,6 +480,7 @@ aside {
 
 .like-me-text {
   color:#008CBA;
+  color:#DC4A58;
   text-align:center;
   font-size:17px;
   height:20px;
@@ -510,7 +511,7 @@ aside {
 .like-me-1 {
   width:40px;
   height:40px;
-  color:red;
+  color:#dc3545;
   position:relative;
 }
 
@@ -902,33 +903,83 @@ aside {
 .like-me-animation {
   position:relative;
   top: -35px;
+  height: 0px;
   left: 88px;
   font-size: 35px;
   opacity: 0;
-  -webkit-animation-name:likeMeAnimation;
+  -webkit-animation-name:likeMeAnimation1;
   -webkit-animation-duration:2s;
   -webkit-animation-iteration-count:1;
   -webkit-animation-timing-function:linear;
-  animation-name:likeMeAnimation;
+  animation-name:likeMeAnimation1;
   animation-duration:2s;
   animation-iteration-count:1;
   animation-timing-function:linear;
 }
 
-@-webkit-keyframes likeMeAnimation {
-  0%    {top:-70px;opacity:1;}
-  50%   {top:-120px;opacity:0.5;}
-  100%  {top:-170px;opacity:0;}
+@-webkit-keyframes likeMeAnimation0 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-160px;opacity:0.5;left:99px;}
+  100%  {top:-250px;opacity:0;left:90px;}
 }
 
-@keyframes likeMeAnimation {
-  0%    {top:-70px;opacity:1;}
-  50%   {top:-120px;opacity:0.5;}
-  100%  {top:-170px;opacity:0;}
+@keyframes likeMeAnimation0 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-160px;opacity:0.5;left:99px;}
+  100%  {top:-250px;opacity:0;left:90px;}
 }
 
-.color-green {
-  color: green;
+
+@-webkit-keyframes likeMeAnimation1 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-150px;opacity:0.5;left:78px;}
+  100%  {top:-230px;opacity:0;left:85px;}
 }
 
+@keyframes likeMeAnimation1 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-150px;opacity:0.5;left:78px;}
+  100%  {top:-230px;opacity:0;left:85px;}
+}
+
+
+@-webkit-keyframes likeMeAnimation2 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-120px;opacity:0.5;left:83px;}
+  100%  {top:-170px;opacity:0;left:89px;}
+}
+
+@keyframes likeMeAnimation2 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-120px;opacity:0.5;left:83px;}
+  100%  {top:-170px;opacity:0;left:89px;}
+}
+
+@-webkit-keyframes likeMeAnimation3 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-120px;opacity:0.5;left:94px;}
+  100%  {top:-170px;opacity:0;left:87px;}
+}
+
+@keyframes likeMeAnimation3 {
+  0%    {top:-70px;opacity:1;left:88px;}
+  50%   {top:-120px;opacity:0.5;left:94px;}
+  100%  {top:-170px;opacity:0;left:87px;}
+}
+
+.color-orange {
+  color: orange;
+}
+
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
 

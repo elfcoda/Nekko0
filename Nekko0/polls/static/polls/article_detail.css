@@ -639,11 +639,28 @@
 
 .ar-prev-next {
   text-decoration: none;
-  color: #11036B;
+  color: #17C60C;
+  transition:color 0.5s;
 }
 
 .ar-prev-next:hover {
   text-decoration: none;
-  color: #4A446F;
+  color: #35A22E;
+}
+
+.color-ar {
+  color: #555;
+}
+
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
 }
 

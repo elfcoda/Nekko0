@@ -57,4 +57,16 @@
   100%  {top:0px;}
 }
 
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
+
 

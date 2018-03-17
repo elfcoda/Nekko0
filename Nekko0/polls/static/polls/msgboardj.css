@@ -535,3 +535,16 @@
 
 
 /* delete msg modal */
+
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
+

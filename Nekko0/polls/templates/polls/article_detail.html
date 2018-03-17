@@ -469,12 +469,12 @@
                               </nobr>
                           </div>
                           <div class="post-content">
-                              <div class="article-p">
+                              <div class="article-p color-ar">
                               {{ object_list.1.content_html }}
                               </div>
                               <div class="porn">
                                   {% if object_list.1.prevNextList.0 %}
-                                  <div class="previous">
+                                  <div class="previous ar-prev-next">
                                       <svg class="icon" aria-hidden="true">
                                           <use xlink:href="#icon-icon-arrow-left2"></use>
                                       </svg>
@@ -485,7 +485,7 @@
                                   {% endif %}
 
                                   {% if object_list.1.prevNextList.1 %}
-                                  <div class="next">
+                                  <div class="next ar-prev-next">
                                       <a href="{% url 'polls:article_detail' articleId=object_list.1.prevNextList.1.1 page=1 %}" class="ar-prev-next">
                                       {{ object_list.1.prevNextList.1.0 }}
                                       </a>

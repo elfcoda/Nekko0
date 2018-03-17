@@ -178,4 +178,16 @@
   transition: transform .5s ease-out;
 }
 
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
+
 

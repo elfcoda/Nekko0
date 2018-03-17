@@ -376,3 +376,15 @@
   background:rgba(0, 175, 223, 0.85);
 }
 
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
+

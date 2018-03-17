@@ -211,3 +211,15 @@
   background:#2370DF;
 }
 
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
+

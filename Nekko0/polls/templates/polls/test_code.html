@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <script src="{% static 'polls/prism/prism.js' %}"></script>
+    <pre>
+      <code class="language-cpp">
+      #include &lt;iostream&gt;
+      using namespace std;
+
+      int main()
+      {
+        int i = 0;
+        string x = "233";
+        char xa[10] = {};
+        std::cout << "hello world" << std::endl;
+        return 0;
+      }
+
+      </code>
+    </pre>
+
+    <pre>
+    <code class="language-python">
+    import time
+    print "233"
+    x = []
+    x.append(2)
+
+    def funct(x1):
+      if 1 == False:
+        print "12"
+      elif:
+        print "23"
+
+    </code>
+    </pre>
+  </body>
+</html>

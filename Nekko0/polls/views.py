@@ -77,6 +77,44 @@ def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 
+class CodeListView(ListView):
+    template_name = 'polls/code.html'
+
+    def get_queryset(self, **kwargs):
+        object_list = Article.objects.filter(tags="code").order_by(F('created').desc())
+        paginator = Paginator(object_list, 3)
+        page = self.kwargs.get('page')
+        if page is None:
+            page = 1
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(paginator.num_pages)
+
+        for ob in object_list:
+            ob.tags = ob.tags.split()
+            ob.created = str(ob.created).split(' ')[0]
+            ob.updated = str(ob.updated).split(' ')[0]
+            date_list = ob.created.split(' ')[0].split('-')
+            ob.cr_mon = date_list[1]
+            if ob.cr_mon[0] == '0':
+                ob.cr_mon = ob.cr_mon[1]
+            ob.cr_day = date_list[2]
+            if ob.cr_day[0] == '0':
+                ob.cr_day = ob.cr_day[1]
+
+        ret_list = []
+        pageInfo = [int(page), int(paginator.num_pages)]
+        # print int(page)
+        # print int(paginator.num_pages)
+        ret_list.append(pageInfo)
+        ret_list.append(object_list)
+        return ret_list
+
+
+
 class ArticleListView(ListView):
     # template_name = 'polls/blog_index.html'
     template_name = 'polls/main.html'
@@ -214,7 +252,7 @@ class RegisterView(FormView):
 
 
 class TestView(DetailView):
-    template_name = 'polls/test_music.html'
+    template_name = 'polls/test_code.html'
 
     def get_object(self, **kwargs):
         return None
@@ -492,6 +530,149 @@ class MsgBoardListView(ListView, FormView):
             userId = self.request.session['userId']
             # print userId
             self.success_url = reverse('polls:msgboard',\
+                                       kwargs={"page":pageId, "articleId":articleId})
+        except KeyError:
+            userId = -1
+            # modify success url
+            self.success_url = reverse('polls:login')
+        form.save(userId, articleId, commentId, replyToName)
+        return FormView.form_valid(self, form)
+
+
+class CodeDetailView(ListView, FormView):
+    template_name = 'polls/code_detail.html'
+    form_class = MsgBoardForm
+    articleId = -1
+    success_url = reverse_lazy('polls:code_detail',\
+                               kwargs={"page":1, "articleId":articleId})
+    # 如果是留言板，id必须传1001过来
+
+    def getPrevNext(self, aId):
+        try:
+            ar_list = Article.objects.filter(is_exist=1, tags="code").order_by(F('id').desc())
+            ar_len = len(ar_list)
+            for idx in range(ar_len):
+                if int(ar_list[idx].id) == int(aId):
+                    idx_prev = idx-1
+                    idx_next = idx+1
+                    break
+        except Article.DoesNotExist:
+            raise Http404("Article does not exist")
+
+        ret_list = []
+        if idx_prev >= 0:
+            ret_list.append([ar_list[idx_prev].title, ar_list[idx_prev].id])
+        else:
+            ret_list.append(None)
+
+        if idx_next <= (ar_len-1):
+            ret_list.append([ar_list[idx_next].title, ar_list[idx_next].id])
+        else:
+            ret_list.append(None)
+
+        return ret_list
+
+
+    def getArticle(self, aId):
+        prevNextList = self.getPrevNext(aId)
+        print(prevNextList)
+        try:
+            article = Article.objects.get(id=aId)
+            article.views += 1
+            article.save()
+            article.tags = article.tags.split()
+            # print article.created
+            article.created = str(article.created).split(' ')[0]
+            date_list = article.created.split('-')
+            article.cr_mon = date_list[1]
+            if article.cr_mon[0] == '0':
+                article.cr_mon = article.cr_mon[1]
+            article.cr_day = date_list[2]
+            if article.cr_day[0] == '0':
+                article.cr_day = article.cr_day[1]
+
+        except Article.DoesNotExist:
+            raise Http404("Article does not exist")
+        article.prevNextList = prevNextList
+        return article
+
+    def get_queryset(self, **kwargs):
+        page = self.kwargs.get('page')
+        self.articleId = self.kwargs.get('articleId')
+        self.success_url = reverse('polls:article_detail', kwargs={"page":1, "articleId":self.articleId})
+        object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
+        paginator = Paginator(object_list, 2)
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(paginator.num_pages)
+
+        ret_object_list = []
+        # message: cur Page && all page num
+        # print paginator.num_pages
+        # print page
+        messages.info(self.request, str(paginator.num_pages) + '_' + str(page) + \
+                      '_' + str(self.articleId))
+
+        for pickled_msg in object_list:
+            # 这是一整条评论
+            # msg_pickle_bytes = bytes(pickled_msg.msg_pickle_str, encoding="utf-8")
+            # print("---------------------------")
+            # print(msg_pickle_bytes)
+            # print("---------------------------")
+            # print(type(msg_pickle_bytes))
+            # print("---------------------------")
+            pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
+            # get userinfo by userid
+            for pickle_reply_list_item in pickle_reply_list:
+                # 处理点赞数据
+                # 判断是否登录
+                like_set = pickle_reply_list_item[4]
+                likedNum = len(like_set)
+                try:
+                    userId = self.request.session['userId']
+                except KeyError:
+                    userId = None
+
+                if userId and userId in like_set:
+                    isLiked = 1
+                else:
+                    isLiked = 0
+                pickle_reply_list_item[4] = [likedNum, isLiked]
+
+                userid = pickle_reply_list_item[0]
+                pickle_reply_list_item[2] = pickle_reply_list_item[2].split('.')[0]
+                userInfo = Userinfo.objects.get(id=userid)
+                # 加入username, sex, level, level_tag, avatar_url
+                # com_power是算力值，需要换算成level
+                append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
+                               userInfo.level_tag, userInfo.avatar_url]
+                pickle_reply_list_item += append_list
+                # 判断子评论的所属者是否是当前用户
+                if userId and userId == userid:
+                    isCurrentUser = 1
+                    # isCurrentUser = 0
+                else:
+                    isCurrentUser = 0
+                pickle_reply_list_item.append(isCurrentUser)
+
+            ret_object_list.append([pickled_msg.id, pickled_msg.article_id, pickle_reply_list[0], pickle_reply_list[1:]])
+            # print pickle.loads(pickled_msg.msg_pickle_str)
+        # [评论列表, 文章model]
+        return [ret_object_list, self.getArticle(self.articleId)]
+
+    # 似乎没用了
+    def form_valid(self, form):
+        commentId = int(self.request.POST.get('reply-form-commentid'))
+        replyToName = self.request.POST.get('reply-form-replyto-name')
+        articleId = int(self.request.POST.get('get-article-id'))
+        pageId = int(self.request.POST.get('get-page'))
+        try:
+            userId = self.request.session['userId']
+            # print userId
+            self.success_url = reverse('polls:article_detail',\
                                        kwargs={"page":pageId, "articleId":articleId})
         except KeyError:
             userId = -1

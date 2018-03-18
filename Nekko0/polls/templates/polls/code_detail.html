@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
+        </script>
+
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+
+            .color-red {
+                color: red;
+            }
+        </style>
+
+        <script type="text/javascript">
+            // 自定义转化标签
+            function resetValue(e){
+                var replaceCode = e.innerHTML.replace(/lt_cus/g, '<');
+                replaceCode = replaceCode.replace(/gt_cus/g, '>');
+                //alert(replaceCode);
+                e.innerHTML = replaceCode;
+            }
+
+            function unsetValue(e){
+                var replaceCode = e.innerHTML.replace(/</g, "&lt;");
+                replaceCode = replaceCode.replace(/>/g, "&gt;");
+                //alert(replaceCode);
+                e.innerHTML = replaceCode;
+            }
+
+            function setValue(s){
+                s = s.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/lt_cus/g, '<').replace(/gt_cus/g, '>');
+                //alert(s);
+                return s;
+            }
+
+            function load(){
+                //设置评论内容的标签转化
+                var resetValueEs = document.getElementsByName("resetValue");
+                var resetValueLen = resetValueEs.length;
+                for (var resetValueIdx = 0; resetValueIdx < resetValueLen; resetValueIdx ++)
+                {
+                    resetValue(resetValueEs[resetValueIdx]);
+                }
+                //固定显示7页
+                var show_max = 7;
+                var msg = document.getElementById("info").innerHTML;
+                var all_page_num = msg.split('_')[0];
+                var cur_page = msg.split('_')[1];
+                var article_id = msg.split('_')[2];
+                //回传ArticleId(用于表单提交)
+                var getArticleIds = document.getElementsByName("get-article-id");
+                var iFormSize = getArticleIds.length;
+                for (var ar_i = 0; ar_i < iFormSize; ar_i ++)
+                {
+                    getArticleIds[ar_i].value = article_id;
+                }
+                //回传page(用于表单提交)
+                var getPageReplys = document.getElementsByName("get-page");
+                var iPageReplySize = getPageReplys.length;
+                for (var gPareply_i = 0; gPareply_i < iPageReplySize; gPareply_i ++)
+                {
+                    getPageReplys[gPareply_i].value = cur_page;
+                }
+                //document.getElementById("get-page-comment").value = "1";
+
+                document.getElementById('first-page').style.display = "inline-block";
+                document.getElementById('first-page').href = "/article/" + article_id + "/1";
+                document.getElementById('last-page').style.display = "inline-block";
+                document.getElementById('last-page').href = "/article/" + article_id + "/" + all_page_num;
+                var comment_e = document.getElementById('reply-form-comment').lastElementChild.lastElementChild.previousElementSibling;
+                comment_e.placeholder = "蛙..";
+                comment_e.setAttribute('rows', '3');
+
+                if (all_page_num <= show_max)
+                {
+                    for (var i = 1; i <= all_page_num; ++i)
+                    {
+                        var id = "page" + i;
+                        var e = document.getElementById(id);
+                        e.style.display = "inline-block";
+                        e.innerHTML = i;
+                        e.href = "/article/" + article_id + "/" + i;
+                        if (i == cur_page)
+                        {
+                            e.setAttribute('class', 'active');
+                        }
+                    }
+                }
+                else
+                {
+                    //判断当前页和总页
+                    //1 2 3 4 5 6 7 8 9 10
+                    var half = Math.round(show_max / 2);
+                    if (cur_page <= half)
+                    {
+                        //显示前面showmnax页
+                        for (var p_n = 1; p_n <= show_max; p_n ++)
+                        {
+                            var p_id = "page" + p_n;
+                            var p_e = document.getElementById(p_id);
+                            p_e.style.display = "inline-block";
+                            p_e.innerHTML = p_n;
+                            p_e.href = "/article/" + article_id + "/" + p_n;
+                            if (cur_page == p_n)
+                            {
+                                p_e.setAttribute('class', 'active');
+                            }
+                        }
+                    }
+                    else if (cur_page > all_page_num-half)
+                    {
+                        //显示后面showmax页
+                        for (var b_n = all_page_num-show_max+1, b_i = 1; b_n <= all_page_num, b_i <= show_max; b_n ++, b_i ++)
+                        {
+                            var b_id = "page" + b_i;
+                            var b_e = document.getElementById(b_id);
+                            b_e.style.display = "inline-block";
+                            b_e.innerHTML = b_n;
+                            b_e.href = "/article/" + article_id + "/" + b_n;
+                            if (cur_page == b_n)
+                            {
+                                b_e.setAttribute('class', 'active');
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // eg:5 6, 显示前三 当前 后三
+                        for (var m1_i = 1, m1_n = cur_page-half+1; m1_i <= half-1, m1_n < cur_page; m1_i ++, m1_n ++)
+                        {
+                            var m1_id = "page" + m1_i;
+                            var m1_e = document.getElementById(m1_id);
+                            m1_e.style.display = "inline-block";
+                            m1_e.innerHTML = m1_n;
+                            m1_e.href = "/article/" + article_id + "/" + m1_n;
+                        }
+                        var m2_e = document.getElementById("page4");
+                        m2_e.style.display = "inline-block";
+                        m2_e.innerHTML = cur_page;
+                        m2_e.setAttribute('class', 'active');
+                        m2_e.href = "/article/" + article_id + "/" + cur_page;
+                        //cur_page-0+1: 先转str为int
+                        for (var m3_i = show_max-half+2, m3_n = cur_page-0+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
+                        {
+                            var m3_id = "page" + m3_i;
+                            var m3_e = document.getElementById(m3_id);
+                            m3_e.style.display = "inline-block";
+                            m3_e.innerHTML = m3_n;
+                            m3_e.href = "/article/" + article_id + "/" + m3_n;
+                        }
+                    }
+                }
+                likemeGet();
+            }
+
+            function reply(comment_id, reply_id){
+                var reply_forms = document.getElementsByName("reply-form");
+                var iCount = reply_forms.length;
+                for (var i = 0; i < iCount; ++i)
+                {
+                    reply_forms[i].style.display = "none";
+                }
+                var e = document.getElementById("reply-form-" + comment_id);
+                e.style.display = "block";
+                e.lastElementChild.lastElementChild.previousElementSibling.setAttribute('rows', '3');
+                var reply_name = "";
+                if (reply_id == "-1")
+                {
+                    reply_name = document.getElementById("comment-name-" + comment_id).innerHTML;
+                }
+                else
+                {
+                    reply_name = document.getElementById("reply-name-" + comment_id  + "-" + reply_id).innerHTML;
+                }
+                var e2 = document.getElementById("reply-form-name-" + comment_id);
+                e2.value = reply_name;
+                e2.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.placeholder = "回复 " + reply_name + ": ";
+            }
+
+            function convertCuteFont(s){
+                s = s.replace(/\( •̀ .̫ •́ \)✧/g, "lt_cusspan class=\"cute-font\"gt_cus( •̀ .̫ •́ )✧lt_cus/spangt_cus");
+                s = s.replace(/\(つд⊂\)/g, "lt_cusspan class=\"cute-font\"gt_cus(つд⊂)lt_cus/spangt_cus");
+                s = s.replace(/\(•౪• \)/g, "lt_cusspan class=\"cute-font\"gt_cus(•౪• )lt_cus/spangt_cus");
+                s = s.replace(/\(..›ᴗ‹..\)/g, "lt_cusspan class=\"cute-font\"gt_cus(..›ᴗ‹..)lt_cus/spangt_cus");
+                s = s.replace(/\(๑•̀ㅂ•́\) ✧/g, "lt_cusspan class=\"cute-font\"gt_cus(๑•̀ㅂ•́) ✧lt_cus/spangt_cus");
+                s = s.replace(/\(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿\)/g, "lt_cusspan class=\"cute-font\"gt_cus(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)lt_cus/spangt_cus");
+                s = s.replace(/\( •̥́ ˍ •̀ू \)/g, "lt_cusspan class=\"cute-font\"gt_cus( •̥́ ˍ •̀ू )lt_cus/spangt_cus");
+                s = s.replace(/\(⇀‸↼‶\)/g, "lt_cusspan class=\"cute-font\"gt_cus(⇀‸↼‶)lt_cus/spangt_cus");
+                s = s.replace(/\(ᵒ̤̑ ₀̑ ᵒ̤̑\)/g, "lt_cusspan class=\"cute-font\"gt_cus(ᵒ̤̑ ₀̑ ᵒ̤̑)lt_cus/spangt_cus");
+                s = s.replace(/\(〃ω〃\)/g, "lt_cusspan class=\"cute-font\"gt_cus(〃ω〃)lt_cus/spangt_cus");
+                s = s.replace(/\( ꒪⌓꒪\)/g, "lt_cusspan class=\"cute-font\"gt_cus( ꒪⌓꒪)lt_cus/spangt_cus");
+                s = s.replace(/୧\(๑•̀⌄•́๑\)૭✧/g, "lt_cusspan class=\"cute-font\"gt_cus୧(๑•̀⌄•́๑)૭✧lt_cus/spangt_cus");
+                s = s.replace(/ᕕ\( ᐛ \)ᕗ/g, "lt_cusspan class=\"cute-font\"gt_cusᕕ( ᐛ )ᕗlt_cus/spangt_cus");
+                s = s.replace(/ \(๑•̀ω•́ ๑\)/g, "lt_cusspan class=\"cute-font\"gt_cus (๑•̀ω•́ ๑)lt_cus/spangt_cus");
+                s = s.replace(/ ̋\(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ\)/g, "lt_cusspan class=\"cute-font\"gt_cus ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)lt_cus/spangt_cus");
+                s = s.replace(/\( ˶ˇωˇ˶ \)/g, "lt_cusspan class=\"cute-font\"gt_cus( ˶ˇωˇ˶ )lt_cus/spangt_cus");
+                s = s.replace(/༼•̀ɷ•́༽/g, "lt_cusspan class=\"cute-font\"gt_cus༼•̀ɷ•́༽lt_cus/spangt_cus");
+                return s;
+            }
+
+            function submit_form(form_id){
+                {% if request.session.userId %}
+                var e;
+                if (form_id == "-1")
+                {
+                    e = document.getElementById("reply-form-comment");
+                }
+                else
+                {
+                    e = document.getElementById("reply-form-" + form_id);
+                }
+                var e_content = e.lastElementChild.lastElementChild.previousElementSibling;
+                var e_content_value = e_content.value;
+                //try converting
+                e_content_value = convertCuteFont(e_content_value);
+                if (e_content_value)
+                {
+                    //e.submit();
+                    var e_page = e_content.previousElementSibling;
+                    var e_articleId = e_page.previousElementSibling;
+                    var e_commentId = e_articleId.previousElementSibling;
+                    var e_replyToName = e_commentId.previousElementSibling;
+
+                    var e_page_value = e_page.value;
+                    var e_articleId_value = e_articleId.value;
+                    var e_commentId_value = e_commentId.value;
+                    var e_replyToName_value = e_replyToName.value;
+
+                    $.get("{% url 'polls:msgAddOrReply' %}", {'articleId':e_articleId_value, 'commentId': e_commentId_value, 'replyToName': e_replyToName_value, 'content': e_content_value}, function(retMsg){
+                        //获取元素值
+                        var userId      = retMsg.userId;
+                        var date        = retMsg.date;
+                        var username    = retMsg.username;
+                        var sex         = retMsg.sex;
+                        var power       = retMsg.power;
+                        var level_tag   = retMsg.level_tag;
+                        var avatar_url  = retMsg.avatar_url;
+                        var commentId   = retMsg.commentId;
+                        var replyId     = retMsg.replyId;
+
+                        var page        = e_page_value;
+                        var articleId   = e_articleId_value;
+                        var replyToName = e_replyToName_value;
+                        var content     = e_content_value;
+
+
+                        //构造html元素
+                        //如果是评论(并且当前在第一页就构造)
+                        if (form_id == "-1" && page == 1){
+                            var html_comment = "";
+                            html_comment += "<div class=\"msg-item\" id=\"msg-del-" + commentId + "-0\">";
+                            html_comment += "<div class=\"msg-item-left\">";
+                            html_comment += "<img class=\"avatar-style\" src=\"/static/polls/userAvatar/" + avatar_url + "\"></img>";
+                            html_comment += "</div>";
+                            html_comment += "<div class=\"msg-item-right\">";
+                            html_comment += "<div class=\"msg-item-right-main-content\">";
+                            html_comment += "<div class=\"msg-title\">";
+                            html_comment += "<div class=\"msg-name\" id=\"comment-name-" + commentId + "\">" + username + "</div>";
+                            html_comment += "<div class=\"msg-level-head\"><span class=\"msg-level-body-font\">Lv" + power + "</span></div>";
+                            html_comment += "<div class=\"msg-level-body\"><span class=\"msg-level-body-font\">" + level_tag + "</span></div>";
+                            html_comment += "<div class=\"sex-adjust select-a-" + sex + "\">&nbsp;&nbsp;</div>";
+                            html_comment += "</div>";
+                            html_comment += "<div class=\"msg-content new-line\">" + setValue(content) + "</div>";
+                            html_comment += "<div class=\"msg-addition\">";
+                            html_comment += "<span class=\"date-beau-style float-left-msgb\">" + date + "&nbsp;&nbsp;&nbsp;</span>";
+                            html_comment += "<span class=\"float-left-msgb like-webfont\" onclick=\"like(" + commentId + ", -1)\" id=\"msglike-" + commentId + "--1\">";
+                            html_comment += "</span>";
+                            html_comment += "<span class=\"float-left-msgb\">&nbsp;&nbsp;&nbsp;</span>";
+                            html_comment += "<a class=\"reply-link-style\" onclick=\"reply(" + commentId + ", -1)\"><span class=\"reply-beau-style\">回复</span></a>";
+                            html_comment += "<span onclick=\"deleteMsg(" + commentId + ", 0)\" class=\"delete-link-style\">&nbsp;&nbsp;删除</span>";
+                            html_comment += "</div>";
+                            html_comment += "</div>";
+
+                            html_comment += "<div id=\"reply_list_outer_div_" + commentId + "\">";
+                            html_comment += "</div>";
+
+                            html_comment += "<form class=\"reply-display\" id=\"reply-form-" + commentId + "\" name=\"reply-form\" method=\"post\" action=\"\">";
+                            html_comment += "{% csrf_token %}";
+                            html_comment += "<div class=\"form-group\">";
+                            html_comment += "<span class=\"text-danger pull-right hidden-span\">请填写数据哦～</span>";
+                            html_comment += "<input type=\"hidden\" name=\"reply-form-replyto-name\" value=\"\" id=\"reply-form-name-" + commentId + "\"></input>";
+                            html_comment += "<input type=\"hidden\" name=\"reply-form-commentid\" value=\"" + commentId + "\"></input>";
+                            html_comment += "<input type=\"hidden\" name=\"get-article-id\" value=\"" + articleId + "\"></input>";
+                            html_comment += "<input type=\"hidden\" name=\"get-page\" value=\"" + page + "\"></input>";
+                            html_comment += "<textarea class=\"form-control form-comment-margin-top\" name=\"reply-msg\"></textarea>";
+                            html_comment += "<input type=\"button\" class=\"button\" value=\"哔～\" onclick=\"submit_form(" + commentId + ")\"></input>";
+                            html_comment += "<!--";
+                            html_comment += "<input type=\"submit\" value=\"ok\"></input>";
+                            html_comment += "-->";
+                            html_comment += "</div>";
+                            html_comment += "</form>";
+                            html_comment += "<!-- 最后一条回复后面 -->";
+                            html_comment += "</div>";
+                            html_comment += "</div>";
+
+                            $("#msg_item-outer-margin").prepend(html_comment);
+                            var commentDivSlideId = "#msg-del-" + commentId + "-0";
+                            $(commentDivSlideId).hide();
+                            $(commentDivSlideId).slideDown();
+                        }
+
+                        //如果是回复
+                        else if (form_id != -1){
+                            var html_reply = "";
+                            html_reply += "<div class=\"msg-item-reply\" id=\"msg-del-" + commentId + "-" + replyId + "\">";
+                            html_reply += "<div class=\"msg-reply-left\">";
+                            html_reply += "<img class=\"avatar-style\" src=\"/static/polls/userAvatar/" + avatar_url + "\"></img>";
+                            html_reply += "</div>";
+                            html_reply += "<div class=\"msg-reply-right\">";
+                            html_reply += "<div class=\"msg-title\">";
+                            html_reply += "<div class=\"msg-name\" id=\"reply-name-" + commentId + "-" + replyId + "\">" + username + "</div>";
+                            html_reply += "<div class=\"msg-name\">&nbsp;回复 <span class=\"color-pink1\">" + replyToName + "</span></div>";
+                            html_reply += "<div class=\"msg-level-head\"><span class=\"msg-level-body-font\">Lv" + power + "</span></div>";
+                            html_reply += "<div class=\"msg-level-body\"><span class=\"msg-level-body-font\">" + level_tag + "</span></div>";
+                            html_reply += "<div class=\"sex-adjust select-a-" + sex + "\">&nbsp;&nbsp;</div>";
+                            html_reply += "</div>";
+                            html_reply += "<div class=\"msg-content new-line\">" + setValue(content) + "</div>";
+                            html_reply += "<div class=\"msg-addition\">";
+                            html_reply += "<span class=\"date-beau-style float-left-msgb\">" + date + "&nbsp;&nbsp;&nbsp;</span>";
+                            html_reply += "<span class=\"float-left-msgb like-webfont\" onclick=\"like(" + commentId + ", " + replyId + ")\" id=\"msglike-" + commentId + "-" + replyId + "\">";
+                            html_reply += "</span>";
+                            html_reply += "<span class=\"float-left-msgb\">&nbsp;&nbsp;&nbsp;</span>";
+                            html_reply += "<a class=\"reply-link-style float-left-msgb\" onclick=\"reply(" + commentId + ", " + replyId + ")\"><span class=\"reply-beau-style\">回复</span></a>";
+                            html_reply += "<span onclick=\"deleteMsg(" + commentId + ", " + replyId + ")\" class=\"delete-link-style\">&nbsp;&nbsp;删除</span>";
+                            html_reply += "</div>";
+                            html_reply += "</div>";
+                            html_reply += "</div>";
+
+                            //添加dom元素
+                            var getReplyOuterId = "#reply_list_outer_div_" + commentId;
+                            $(getReplyOuterId).append(html_reply);
+
+                            //滑出回复层
+                            var replyDivSlideId = "#msg-del-" + commentId + "-" + replyId;
+                            $(replyDivSlideId).hide();
+                            $(replyDivSlideId).slideDown();
+                        }
+                    })
+
+                    e_content.value = "";
+                    if (form_id != -1){
+                        e.style.display = "none";
+                    }
+                }
+                else
+                {
+                    e.lastElementChild.firstElementChild.style.display = "inline-block";
+                    e.lastElementChild.setAttribute('class', 'form-group has-error');
+                }
+                {% else %}
+                alert(1);
+                {% endif %}
+            }
+
+            function like(commentId, replyId){
+                {% if request.session.userId %}
+                $.get("{% url 'polls:msglike' %}", {'commentId':commentId, 'replyId':replyId}, function(ret){
+                    var e = document.getElementById("msglike-" + commentId + "-" + replyId);
+                    if (ret.isLiked == 1){
+                        e.style.color = "#FF4500";
+                    }
+                    else{
+                        e.style.color = "#888";
+                    }
+                    if (ret.likedNum != 0){
+                        e.innerHTML = " " + ret.likedNum;
+                    }
+                    else{
+                        e.innerHTML = "";
+                    }
+
+                })
+                {% else %}
+                alert(2);
+                {% endif %}
+            }
+
+            function deleteMsg(msgId, replyId){
+                if (replyId == 0){var childOrParent = "主";}
+                else if (replyId > 0) {var childOrParent = "子";}
+                document.getElementById("del-sub-thread").innerHTML = "正在销毁" + childOrParent + "线程...";
+                document.getElementById("del-sub-thread-rotate-out").style.display = "block";
+                document.getElementById("modal-ok-btn").style.display = "none";
+                document.getElementById("modal-body-customer").style.height = "42px";
+                document.getElementById("deleteMsgModal").click();
+                $.get("{% url 'polls:deleteMsg' %}", {'msgId':msgId, 'replyId':replyId}, function(ret){
+                    if (ret.retVal == 0){
+                        document.getElementById("del-sub-thread").innerHTML = childOrParent + "线程已被成功销毁!";
+                        document.getElementById("modal-ok-btn").style.display = "block";
+                        document.getElementById("del-sub-thread-rotate-out").style.display = "none";
+                        document.getElementById("modal-body-customer").style.height = "30px";
+                        var divId = "#msg-del-" + msgId + "-" + replyId;
+                        $(divId).slideUp();
+                    }
+
+                })
+            }
+
+            function mouseOverCute(e){
+                e.setAttribute('class', "cute-font");
+            }
+
+            function mouseOutCute(e){
+                e.setAttribute('class', "");
+            }
+
+            function addToMsg(e){
+                //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+                var appendMsg = e.innerHTML;
+                e.parentNode.parentNode.nextElementSibling.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+            }
+
+            function addToMsgReply(e){
+                //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+                var appendMsg = e.innerHTML;
+                e.parentNode.parentNode.parentNode.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+            }
+
+        </script>
+        {% include 'polls/title_info.html' %}
+    </head>
+
+    <body onload="load()" class="body">
+        {% include 'polls/nav.html' %}
+
+
+        <div class="outer-align-main">
+          <div class="main">
+              <div class="context">
+                  <article id="post-{{ object_list.1.id }}" class="context-article">
+                      <div class="">
+                          <div class="div-date-decor">
+                              <div class="leave-margin-top"></div>
+                              <div class="article-mon">{{ object_list.1.cr_mon }} MON</div>
+                              <div class="article-day">{{ object_list.1.cr_day }}</div>
+                          </div>
+                          <div class="article-side-decorate-div-outer">
+                              <div class="tags-font">{{ object_list.1.tags.0 }}</div>
+                              <div class="article-side-decorate-div"></div>
+                          </div>
+                      </div>
+                      <div class="art">
+                          <div class="post-title">{{ object_list.1.title }}</div>
+                          <div class="post-subtitle">
+                              <nobr>
+                              <svg class="icon" aria-hidden="true">
+                                  <use xlink:href="#icon-date"></use>
+                              </svg>
+                              {{ object_list.1.created }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <svg class="icon" aria-hidden="true">
+                                  <use xlink:href="#icon-ico_yueduliang"></use>
+                              </svg>
+                              {{ object_list.1.views }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              <svg class="icon" aria-hidden="true">
+                                  <use xlink:href="#icon-user"></use>
+                              </svg>
+                              {{ object_list.1.author }}
+                              </nobr>
+                          </div>
+                          <div class="post-content">
+                              <div class="article-p color-ar">
+                              {{ object_list.1.content_html }}
+                              </div>
+                              <div class="porn">
+                                  {% if object_list.1.prevNextList.0 %}
+                                  <div class="previous ar-prev-next">
+                                      <svg class="icon" aria-hidden="true">
+                                          <use xlink:href="#icon-icon-arrow-left2"></use>
+                                      </svg>
+                                      <a href="{% url 'polls:article_detail' articleId=object_list.1.prevNextList.0.1 page=1 %}" class="ar-prev-next">
+                                      {{ object_list.1.prevNextList.0.0 }}
+                                      </a>
+                                  </div>
+                                  {% endif %}
+
+                                  {% if object_list.1.prevNextList.1 %}
+                                  <div class="next ar-prev-next">
+                                      <a href="{% url 'polls:article_detail' articleId=object_list.1.prevNextList.1.1 page=1 %}" class="ar-prev-next">
+                                      {{ object_list.1.prevNextList.1.0 }}
+                                      </a>
+                                      <svg class="icon" aria-hidden="true">
+                                          <use xlink:href="#icon-icon-arrow-right2"></use>
+                                      </svg>
+                                  </div>
+                                  {% endif %}
+                              </div>
+                          </div>
+                      </div>
+                  </article>
+                  <!-- 评论区 -->
+
+
+                  <!-- css可以从include里加载，但是js不行
+                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+                  -->
+                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+                  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+                  <!-- Modal -->
+                  <button type="button" class="delete-msg-btn" data-toggle="modal" data-target="#myModal" id="deleteMsgModal">
+                      deleteMsg
+                  </button>
+
+                  <!-- The Modal -->
+                  <div class="modal fade modal-customer1" id="myModal">
+                      <div class="modal-dialog modal-customer">
+                          <div class="modal-content" style="width:380px;margin:auto;margin-top: 200px;">
+
+                              <!-- Modal body -->
+                              <div class="modal-body modal-body-customer" id="modal-body-customer">
+                                  <div class="delete-sub-thread" id="del-sub-thread">正在销毁子线程...</div>
+                                  <div class="delete-sub-thread-rotate-out" id="del-sub-thread-rotate-out">
+                                      <div class="ball-clip-rotate-multiple delete-sub-thread-rotate" id="ball-clip-rotate-multiple">
+                                          <div></div>
+                                          <div></div>
+                                      </div>
+                                  </div>
+                              </div>
+
+                              <!-- Modal footer -->
+                              <div class="modal-footer-customer">
+                                  <div id="modal-ok-btn" class="btn delete-msg-ok-modal" data-dismiss="modal"><div class="del-msg-ok-facefont">(｡・`ω´･)</div></div>
+                              </div>
+
+                          </div>
+                      </div>
+                  </div>
+                  <!-- i -->
+
+                  <div class="msg-board-page">
+                      <div class="msg-board-list">
+                          <div class="msg_item-outer-margin">
+                              <div class="msg-item">
+                                  <div class="cute-font-label">( •̀ .̫ •́ )✧
+                                    <div class="cute-font-list">
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
+                                    </div>
+                                  </div>
+                                  <!--
+                                  <div class="cute-font-label"></div>
+                                  -->
+                                  <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">
+                                      {% csrf_token %}
+                                      <div class="form-group">
+                                          <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
+                                          <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-comment-name"></input>
+                                          <input type="hidden" name="reply-form-commentid" value="-1"></input>
+                                          <input type="hidden" name="get-article-id" value=""></input>
+                                          <input type="hidden" name="get-page" id="get-page-comment" value="1"></input>
+                                          {{ form.content }}
+                                          <input class="button" type="button" value="哔~" onclick="submit_form(-1)"></input>
+                                          <!--
+                                              <input type="submit" value="ok">
+                                          -->
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                          <div class="msg_item-outer-margin" id="msg_item-outer-margin">
+                              {% for object in object_list.0 %}
+                              {% if object.2.1 %}
+                              <!-- one comment begin -->
+                              <div class="msg-item" id="msg-del-{{ object.0 }}-0">
+                                  <div class="msg-item-left">
+                                      <img class="avatar-style" src="/static/polls/userAvatar/{{ object.2.10 }}"></img>
+                                  </div>
+                                  <div class="msg-item-right">
+                                      <div class="msg-item-right-main-content">
+                                          <div class="msg-title">
+                                              <div class="msg-name" id="comment-name-{{ object.0 }}">{{ object.2.6 }}</div>
+                                              <div class="msg-level-head"><span class="msg-level-body-font">Lv{{ object.2.8 }}</span></div>
+                                              <div class="msg-level-body"><span class="msg-level-body-font">{{ object.2.9 }}</span></div>
+                                              <div class="sex-adjust select-a-{{ object.2.7 }}">&nbsp;&nbsp;</div>
+                                          </div>
+                                          <!--
+                                              <br /><img src="{% static 'polls/userEmotion/bq1.png' %}" />
+                                              <br /><img src="/static/polls/userEmotion/bq1.png" />
+                                          -->
+                                          <div class="msg-content new-line" name="resetValue">{{ object.2.3 }}</div>
+                                          <div class="msg-addition">
+                                              <span class="date-beau-style float-left-msgb">{{ object.2.2 }}&nbsp;&nbsp;&nbsp;</span>
+                                              <form action="{% url 'polls:msglike' %}" method="get">
+                                                  {% if object.2.4.1 %}
+                                                  <span class="float-left-msgb like-webfont" style="color:#FF4500" onclick="like({{ object.0 }}, -1)" id="msglike-{{ object.0 }}--1">&nbsp;{{ object.2.4.0 }}</span>
+                                                  {% else %}
+                                                  <span class="float-left-msgb like-webfont" onclick="like({{ object.0 }}, -1)" id="msglike-{{ object.0 }}--1">
+                                                      {% if object.2.4.0 %}
+                                                      {{ object.2.4.0 }}
+                                                      {% endif %}
+                                                  </span>
+                                                  {% endif %}
+                                              </form>
+                                              <span class="float-left-msgb">&nbsp;&nbsp;&nbsp;</span>
+                                              <a class="reply-link-style" onclick="reply({{ object.0 }}, -1)"><span class="reply-beau-style">回复</span></a>
+                                              {% if object.2.11 %}
+                                              <span onclick="deleteMsg({{ object.0 }}, 0)" class="delete-link-style">&nbsp;&nbsp;删除</span>
+                                              {% endif %}
+                                          </div>
+                                      </div>
+
+                                      <div id="reply_list_outer_div_{{ object.0 }}">
+                                      {% for reply_item in object.3 %}
+                                      {% if reply_item.1 %}
+                                      <div class="msg-item-reply" id="msg-del-{{ object.0 }}-{{ forloop.counter }}">
+                                          <div class="msg-reply-left">
+                                              <img class="avatar-style" src="/static/polls/userAvatar/{{ reply_item.10 }}"></img>
+                                          </div>
+                                          <div class="msg-reply-right">
+                                              <div class="msg-title">
+                                                  <div class="msg-name" id="reply-name-{{ object.0 }}-{{ forloop.counter }}">{{ reply_item.6 }}</div>
+                                                  <div class="msg-name">&nbsp;回复 <span class="color-pink1">{{ reply_item.5 }}</span></div>
+                                                  <div class="msg-level-head"><span class="msg-level-body-font">Lv{{ reply_item.8 }}</span></div>
+                                                  <div class="msg-level-body"><span class="msg-level-body-font">{{ reply_item.9 }}</span></div>
+                                                  <div class="sex-adjust select-a-{{ reply_item.7 }}">&nbsp;&nbsp;</div>
+                                              </div>
+                                              <div class="msg-content new-line" name="resetValue">{{ reply_item.3 }}</div>
+                                              <div class="msg-addition">
+                                                  <span class="date-beau-style float-left-msgb">{{ reply_item.2 }}&nbsp;&nbsp;&nbsp;</span>
+                                                  <form action="{% url 'polls:msglike' %}" method="get">
+                                                      {% if reply_item.4.1 %}
+                                                      <span class="float-left-msgb like-webfont" style="color:#FF4500" onclick="like({{ object.0 }}, {{ forloop.counter }})" id="msglike-{{ object.0 }}-{{ forloop.counter }}">&nbsp;{{ reply_item.4.0 }}</span>
+                                                      {% else %}
+                                                      <span class="float-left-msgb like-webfont" onclick="like({{ object.0 }}, {{ forloop.counter }})" id="msglike-{{ object.0 }}-{{ forloop.counter }}">
+                                                          {% if reply_item.4.0 %}
+                                                          {{ reply_item.4.0 }}
+                                                          {% endif %}
+                                                      </span>
+                                                      {% endif %}
+                                                  </form>
+                                                  <span class="float-left-msgb">&nbsp;&nbsp;&nbsp;</span>
+                                                  <a class="reply-link-style float-left-msgb" onclick="reply({{ object.0 }}, {{ forloop.counter }})"><span class="reply-beau-style">回复</span></a>
+                                                  {% if reply_item.11 %}
+                                                  <span onclick="deleteMsg({{ object.0 }}, {{ forloop.counter }})" class="delete-link-style">&nbsp;&nbsp;删除</span>
+                                                  {% endif %}
+                                              </div>
+                                          </div>
+                                      </div>
+                                      {% endif %}
+                                      {% endfor %}
+                                      </div>
+
+                                      <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
+                                          <div class="cute-font-label leave-cute-font-top">( •̀ .̫ •́ )✧
+                                            <div class="cute-font-list">
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
+                                                <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
+                                            </div>
+                                          </div>
+                                          <!--
+                                          <div class="cute-font-label leave-cute-font-top"></div>
+                                          -->
+                                          {% csrf_token %}
+                                          <div class="form-group">
+                                              <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
+                                              <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-name-{{ object.0 }}"></input>
+                                              <input type="hidden" name="reply-form-commentid" value="{{ object.0 }}"></input>
+                                              <input type="hidden" name="get-article-id" value=""></input>
+                                              <input type="hidden" name="get-page" value=""></input>
+                                              {{ form.content }}
+                                              <input type="button" class="button" value="哔～" onclick="submit_form({{ object.0 }})"></input>
+                                              <!--
+                                                  <input type="submit" value="ok"></input>
+                                              -->
+                                          </div>
+                                      </form>
+                                      <!-- 最后一条回复后面 -->
+                                  </div>
+                              </div>
+                              <!-- one comment end -->
+                              {% endif %}
+                              {% endfor %}
+                              <div>&nbsp;</div>
+                              <div class="pag-center">
+                                  <div class="pagination">
+                                      <a href="#" id="first-page" class="pagination-first"></a>
+                                      <a href="#" id="page1">1</a>
+                                      <a href="#" id="page2">2</a>
+                                      <a href="#" id="page3">3</a>
+                                      <a href="#" id="page4">4</a>
+                                      <a href="#" id="page5">5</a>
+                                      <a href="#" id="page6">6</a>
+                                      <a href="#" id="page7">7</a>
+                                      <a href="#" id="last-page" class="pagination-last"></a>
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="leave-margin-bottom">
+                          </div>
+                      </div>
+                      <div class="">
+                      </div>
+                  </div>
+
+                  <div class="hidden-messages" id="hidden-messages">
+                      {% for m in messages %}
+                      <div id="{{ m.tags }}">{{ m }}</div>
+                      {% endfor %}
+                  </div>
+
+
+
+              </div>
+
+            {% include 'polls/aside.html' %}
+          </div>
+        </div>
+        <div class="footer-blank-less"></div>
+        {% include 'polls/fixed.html' %}
+        {% include 'polls/footer.html' %}
+
+    </body>
+</html>
+

@@ -7,7 +7,7 @@ from . import views
 from .views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     RegisterView, LoginView, Logout, MsgBoardListView,  UploadAvatar, \
     UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
-    NewIndexView, ResumeView, TestView, SendDM, LimeMeOp
+    NewIndexView, ResumeView, TestView, SendDM, LimeMeOp, CodeListView, CodeDetailView
 
 app_name = 'polls'
 urlpatterns = [
@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^newAvatar$', newAvatar, name='newAvatar'),
 
 
+    url(r'^code$', views.CodeListView.as_view(), name='code'),
+    url(r'^code/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', CodeDetailView.as_view(), name='code_detail'),
     url(r'^test$', views.TestView.as_view(), name='test'),
     url(r'^resume$', views.ResumeView.as_view(), name='resume'),
     url(r'^$', views.NewIndexView.as_view(), name='index'),

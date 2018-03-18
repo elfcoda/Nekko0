@@ -29,3 +29,9 @@ isCurrentUser
 python2的pickle数据不能用python3导出
 已经全部改成python3
 
+
+
+# 做些修改
+安装python3，以及安装channels
+安装npm的aplayer和dplayer
+

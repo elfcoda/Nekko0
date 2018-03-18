@@ -323,11 +323,18 @@ aside {
 .my-avatar {
   width:92%;
   height:200px;
-  background:url("images/avatar.jpeg") center;
+  /*
+  background:url("images/avatar.jpg") no-repeat center;
+  */
   position:relative;
   margin:auto;
   border:3px solid white;
   border-radius:5px;
+}
+
+.my-avatar-img {
+  width: 100%;
+  height: 100%;
 }
 
 .catch-me {

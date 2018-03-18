@@ -1,3 +1,5 @@
+{% load static %}
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 
@@ -43,7 +45,9 @@
 <aside>
   <div class="findme">
     <div class="my-avatar-outer">
-      <div class="my-avatar"></div>
+      <div class="my-avatar">
+        <img class="my-avatar-img" src="{% static 'polls/images/avatar.jpg' %}"></img>
+      </div>
     </div>
     <div class="catch-me">
       <div class="catch-me-1">

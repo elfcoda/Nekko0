@@ -214,7 +214,7 @@ class RegisterView(FormView):
 
 
 class TestView(DetailView):
-    template_name = 'polls/test_channels.html'
+    template_name = 'polls/test_music.html'
 
     def get_object(self, **kwargs):
         return None

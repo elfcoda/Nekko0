@@ -1,0 +1,52 @@
+{%  load static %}
+<link rel="stylesheet" href="{% static 'polls/node_modules/aplayer/dist/APlayer.min.css' %}">
+<link rel="stylesheet" href="{% static 'polls/aplayer.css' %}">
+<script src="{% static 'polls/node_modules/aplayer/dist/APlayer.min.js' %}"></script>
+
+<div class="aplayer-outer">
+  <div id="aplayer" class="aplayer-inner-container-0"></div>
+</div>
+
+<script type="text/javascript">
+  const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    mini: false,
+    autoplay: false,
+    theme: '#FADFA3',
+    loop: 'add',
+    order: 'random',
+    preload: 'auto',
+    volume: 0.7,
+    mutex: true,
+    listFolded: false,
+    listMaxHeight: '98px',
+    lrcType: 3,
+    audio: [
+    {
+      name: '慢慢喜欢你',
+      artist: '江辰',
+      url: 'http://www.170mv.com/kw/other.web.nm01.sycdn.kuwo.cn/resource/n3/25/27/2777424463.mp3',
+      cover: 'http://img4.kuwo.cn/star/starheads/240/99/22/3110345668.jpg',
+      theme: '#21B132',
+      lrc: "{% static 'polls/node_modules/resource/lrc/default.lrc' %}"
+    },
+    {
+      name: 'Life Is Like A Boat',
+      artist: 'Rie fu',
+      url: 'http://other.web.ra01.sycdn.kuwo.cn/resource/n2/128/33/90/1599771349.mp3',
+      cover: 'http://hamasukiayumi.seesaa.net/image/lilab.jpg',
+      theme: '#21B132',
+      lrc: "{% static 'polls/node_modules/resource/lrc/LifeIsLikeABoat.lrc' %}"
+    },
+    {
+      name: 'Life Is Like A Boat',
+      artist: 'Rie fu',
+      url: 'http://other.web.ra01.sycdn.kuwo.cn/resource/n2/128/33/90/1599771349.mp3',
+      cover: 'http://hamasukiayumi.seesaa.net/image/lilab.jpg',
+      theme: '#21B132',
+      lrc: "{% static 'polls/node_modules/resource/lrc/LifeIsLikeABoat.lrc' %}"
+    }
+    ]
+  });
+</script>
+

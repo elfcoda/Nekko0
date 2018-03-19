@@ -30,17 +30,11 @@
                     </svg>
                     实验室
                     </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-magic"></use>
-                    </svg>
-                    魔法屋
-                    </nobr></a></li>
                     <li><a class="nav_ul-li-a-l" href="{% url 'polls:code' %}"><nobr>
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-code"></use>
                     </svg>
-                    算法
+                    源代码
                     </nobr></a></li>
                     <li><a class="nav_ul-li-a-l" href="{% url 'polls:msgboard' articleId=1001 page=1 %}"><nobr>
                     <svg class="icon" aria-hidden="true">
@@ -60,6 +54,12 @@
                     </svg>
                     <!-- 日常 -->
                     とある神秘の程序猿
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-magic"></use>
+                    </svg>
+                    异次元世界
                     </nobr></a></li>
                     <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
                     {% if request.session.userId %}

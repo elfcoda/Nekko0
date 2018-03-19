@@ -6,6 +6,8 @@
         {% load static %}
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
+        <script src="{% static 'polls/prism/prism.js' %}"></script>
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
 
@@ -431,7 +433,7 @@
         {% include 'polls/title_info.html' %}
     </head>
 
-    <body onload="load()" class="body">
+    <body onload="load()" class="body-code">
         {% include 'polls/nav.html' %}
 
 
@@ -471,7 +473,42 @@
                           <div class="post-content">
                               <div class="article-p color-ar">
                               {{ object_list.1.content_html }}
+
+                              <div class="code-wrapper">
+                              <pre>
+                                <code class="language-cpp">
+                                #include &lt;iostream&gt;
+                                using namespace std;
+
+                                int main()
+                                {
+                                  int i = 0;
+                                  string x = "233";
+                                  char xa[10] = {};
+                                  std::cout << "hello world" << std::endl;
+                                  return 0;
+                                }
+                                </code>
+                              </pre>
+
+                              <pre>
+                                <code class="language-python">
+                                import time
+                                print "233"
+                                x = []
+                                x.append(2)
+
+                                def funct(x1):
+                                  if 1 == False:
+                                    print "12"
+                                  elif:
+                                    print "23"
+                                </code>
+                              </pre>
                               </div>
+
+                              </div>
+
                               <div class="porn">
                                   {% if object_list.1.prevNextList.0 %}
                                   <div class="previous ar-prev-next">
@@ -744,7 +781,7 @@
 
               </div>
 
-            {% include 'polls/aside.html' %}
+            {% include 'polls/code_aside.html' %}
           </div>
         </div>
         <div class="footer-blank-less"></div>

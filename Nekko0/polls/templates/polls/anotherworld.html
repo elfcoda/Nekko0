@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
+        </script>
+
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+
+            .color-red {
+                color: red;
+            }
+        </style>
+
+        {% include 'polls/title_info.html' %}
+    </head>
+
+    <body class="body-anotherworld">
+        {% include 'polls/nav.html' %}
+        {% include 'polls/anotherworld_fixed.html' %}
+    </body>
+</html>
+

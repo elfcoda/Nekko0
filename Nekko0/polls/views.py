@@ -163,6 +163,13 @@ class ArticlePublishView(FormView):
         form.save(userName)
         return super(ArticlePublishView, self).form_valid(form)
 
+
+class AnotherWorldView(DetailView):
+    template_name = 'polls/anotherworld.html'
+
+    def get_object(self, **kwargs):
+        return None
+
 class NewIndexView(DetailView):
     template_name = 'polls/index.html'
 

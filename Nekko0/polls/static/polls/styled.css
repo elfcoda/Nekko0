@@ -32,6 +32,11 @@ body {
   background-size:cover;
 }
 
+.body-img-main-code {
+  background:url("images/code/kawaimiku.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+
 .inline-block-style {
   display:inline-block;
   float:left;
@@ -520,6 +525,7 @@ aside {
   height:40px;
   color:#dc3545;
   position:relative;
+  cursor:pointer;
 }
 
 .like-me-1:before {
@@ -531,6 +537,7 @@ aside {
   width:40px;
   height:40px;
   color:grey;
+  cursor:pointer;
 }
 
 .like-me-0:before {
@@ -873,6 +880,16 @@ aside {
 .kernal-status {
   width: 140px;
   height: 30px;
+  position: relative;
+  margin: auto;
+  top: 105px;
+}
+
+.kernal-status-introduce {
+  width: auto;
+  height: 30px;
+  font-size: 13px;
+  color: #555;
   position: relative;
   margin: auto;
   top: 105px;

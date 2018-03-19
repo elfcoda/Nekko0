@@ -85,6 +85,20 @@
   background-size:cover;
 }
 
+.body-anotherworld {
+  background:url("images/code/sakura.png") no-repeat fixed center;
+  background-size:cover;
+}
+
+.body-code {
+  background:url("images/code/kawaimiku.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+
+.code-wrapper {
+  opacity: .95;
+}
+
 .msg-board-page {
   width:100%;
 	height:auto;

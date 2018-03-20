@@ -14,10 +14,25 @@
   opacity: 0.5;
   border-radius: 5px;
   transition:opacity 0.3s;
+  cursor:pointer;
 }
 
 .top:hover {
   opacity: 0.9;
+}
+
+
+.top-disabled {
+  position: fixed;
+  height: 38px;
+  width: 38px;
+  bottom: 100px;
+  right: 15px;
+  background: #FF7A33;
+  opacity: 0.5;
+  border-radius: 5px;
+  transition:opacity 0.3s;
+  cursor: not-allowed;
 }
 
 .danmu {
@@ -70,6 +85,7 @@
   position: relative;
   float: right;
   transition:opacity 0.3s;
+  cursor:pointer;
 }
 
 .dm-deliver:hover {

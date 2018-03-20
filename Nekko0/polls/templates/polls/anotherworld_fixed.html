@@ -172,7 +172,7 @@
     }
 </script>
 
-<div class="top fixed-font-style" id="totop" onclick="smoothscroll()">
+<div class="top-disabled fixed-font-style" id="totop" onclick="smoothscroll()">
     <svg class="icon" aria-hidden="true">
         <use xlink:href="#icon-top"></use>
     </svg>
@@ -219,7 +219,7 @@
   const ap = new APlayer({
     container: document.getElementById('aplayer'),
     mini: true,
-    autoplay: false,
+    autoplay: true,
     theme: '#FADFA3',
     loop: 'all',
     order: 'random',
@@ -231,28 +231,140 @@
     lrcType: 3,
     audio: [
     {
-      name: 'Life Is Like A Boat2',
-      artist: 'Rie fu2',
-      url: 'http://other.web.ra01.sycdn.kuwo.cn/resource/n2/128/33/90/1599771349.mp3',
-      cover: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2259410677,3162918079&fm=27&gp=0.jpg',
-      theme: '#21B132',
-      lrc: "{% static 'polls/node_modules/resource/lrc/LifeIsLikeABoat.lrc' %}"
+      name: 'Somewhere',
+      artist: 'July',
+      url: 'http://other.web.ra01.sycdn.kuwo.cn/resource/n2/62/79/1505460541.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
     },
     {
-      name: '慢慢喜欢你',
-      artist: '江辰',
-      url: 'http://www.170mv.com/kw/other.web.nm01.sycdn.kuwo.cn/resource/n3/25/27/2777424463.mp3',
-      cover: 'http://img4.kuwo.cn/star/starheads/240/99/22/3110345668.jpg',
-      theme: '#FADFA3',
-      lrc: "{% static 'polls/node_modules/resource/lrc/default.lrc' %}"
+      name: '勿念他归',
+      artist: 'V.A.',
+      url: 'http://other.web.nc01.sycdn.kuwo.cn/resource/n1/64/8/848774537.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
     },
     {
-      name: 'Life Is Like A Boat',
-      artist: 'Rie fu',
-      url: 'http://other.web.ra01.sycdn.kuwo.cn/resource/n2/128/33/90/1599771349.mp3',
-      cover: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2259410677,3162918079&fm=27&gp=0.jpg',
-      theme: '#21B132',
-      lrc: "{% static 'polls/node_modules/resource/lrc/LifeIsLikeABoat.lrc' %}"
+      name: 'いのちの名前',
+      artist: '広橋真紀子',
+      url: 'http://other.web.rr01.sycdn.kuwo.cn/resource/n2/6/59/2808853958.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: 'Refrain',
+      artist: 'Anan Ryoko',
+      url: 'http://other.web.nf01.sycdn.kuwo.cn/resource/n2/63/90/76499938.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: 'Journey',
+      artist: 'Capo Productions',
+      url: 'http://other.web.nf01.sycdn.kuwo.cn/resource/n3/34/5/1176520486.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '风居住的街道',
+      artist: 'iano ver) – 饭碗的彼岸',
+      url: 'http://other.web.rn01.sycdn.kuwo.cn/resource/n2/42/19/2274432472.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '三生石',
+      artist: '梅小涵',
+      url: 'http://other.web.nc01.sycdn.kuwo.cn/resource/n2/7/0/3923017865.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '愿世界对你温柔相待',
+      artist: '徐梦圆',
+      url: 'http://other.web.rz01.sycdn.kuwo.cn/resource/n1/90/96/3996976019.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '洱海的偶遇(钢琴曲)',
+      artist: '张宇桦',
+      url: 'http://other.web.nc01.sycdn.kuwo.cn/resource/n3/67/27/3482711794.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '青石巷',
+      artist: '魏琮霏',
+      url: 'http://other.web.rm01.sycdn.kuwo.cn/resource/n2/46/37/3047981317.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '夜晚的海滨小镇',
+      artist: '皮璐宇',
+      url: 'http://other.web.rh01.sycdn.kuwo.cn/resource/n1/61/8/2455682099.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: 'Cry for The Moon',
+      artist: '出羽良彰',
+      url: 'http://other.web.ri01.sycdn.kuwo.cn/resource/n1/40/20/2853801846.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '海の涙',
+      artist: '出羽良彰',
+      url: 'http://other.web.rf01.sycdn.kuwo.cn/resource/n3/35/83/4141556937.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '云流れ',
+      artist: 'みかん箱&Foxtail-Grass Studio',
+      url: 'http://other.web.ri01.sycdn.kuwo.cn/resource/n2/89/43/2933143132.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: 'Town',
+      artist: 'Windmill – a_hisa',
+      url: 'http://other.web.ri01.sycdn.kuwo.cn/resource/n1/31/20/591511889.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '回梦游仙',
+      artist: '骆集益',
+      url: 'http://other.web.ra01.sycdn.kuwo.cn/resource/n1/320/49/60/1817840731.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+    },
+    {
+      name: '莫失莫忘-(电视剧《仙剑奇侠传》插曲)',
+      artist: '麦振鸿',
+      url: 'http://other.web.nf01.sycdn.kuwo.cn/resource/n1/91/77/2491907032.mp3',
+      cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+      theme: '#FC709C',
+      lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
     }
     ]
   });
@@ -262,7 +374,8 @@
         var apList = document.getElementById('aplayer').lastElementChild.firstElementChild;
         var apListSize = apList.childElementCount || apList.children.length;
         var apClassIdx = apListSize - 1 - idx;
-        var apClassNames = "aplayer-inner-container-b" + apClassIdx;
+        //var apClassNames = "aplayer-inner-container-b" + apClassIdx;
+        var apClassNames = "aplayer-inner-container-b-abmusic";
         if (lastApBgClassName != ""){
             document.getElementById("aplayer").classList.remove(lastApBgClassName);
         }

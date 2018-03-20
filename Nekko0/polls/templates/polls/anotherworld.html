@@ -6,6 +6,8 @@
         {% load static %}
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="{% static 'polls/sakura/jquery-sakura.css' %}" />
+        <script src="{% static 'polls/avatar-plugin/js/jquery.min.js' %}" charset="utf-8"></script>
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
 
@@ -30,4 +32,11 @@
         {% include 'polls/anotherworld_fixed.html' %}
     </body>
 </html>
+
+<script>
+  if( /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
+{}
+else
+{  document.write('<script src="http://oss.rainman.me/rainman.me/js/sakura/jquery-sakura.js"><\/script><script type="text/javascript">$(function(){$("body").sakura()});$(window).load(function(){$("body").sakura()});<\/script>');}
+</script>
 

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% load static %}
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/anotherworld.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
         <link type="text/css" rel="stylesheet" media="screen" href="{% static 'polls/sakura/jquery-sakura.css' %}" />
         <script src="{% static 'polls/avatar-plugin/js/jquery.min.js' %}" charset="utf-8"></script>
@@ -27,16 +28,147 @@
         {% include 'polls/title_info.html' %}
     </head>
 
-    <body class="body-anotherworld">
+    <body class="" id="body-anotherworld">
+        <!--
+        <main id="background"></main>
+        -->
+        <div class="sakuraComment-nopadding" id="sakuraComment">
+        </div>
         {% include 'polls/nav.html' %}
         {% include 'polls/anotherworld_fixed.html' %}
     </body>
 </html>
 
-<script>
-  if( /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
-{}
-else
-{  document.write('<script src="http://oss.rainman.me/rainman.me/js/sakura/jquery-sakura.js"><\/script><script type="text/javascript">$(function(){$("body").sakura()});$(window).load(function(){$("body").sakura()});<\/script>');}
+<script type="text/javascript">
+  var c0 = "-你相信这个宇宙中存在平行世界吗？<br/>" + "-相信啊。<br/>" + "-那在另那个平行世界里，我们一定是在一起的，对吗？<br/>" + " -嗯。";
+  var c1 = "可怜无定河边骨，犹是春闺梦里人。";
+  var c2 = "人生就是一列开往坟墓的列车，路途上会有很多站，很难有人可以自始至终陪着走完。当陪你的人要下车时，即使不舍也该心存感激，然后挥手道别。";
+  var c3 = "花不会因为你的疏离,来年不再盛开；<br/>人却会因为你的错过，转身为陌路。";
+  var c4 = "五岁的时候，你可以为捕捉一只蝴蝶，而跑到一公里外的田野；<br/>";
+  c4 += "十岁的时候，你可以为一个冰淇凌，跑遍大街小巷的商店；<br/>";
+  c4 += "十七岁的时候，你可以为喜欢的人，一个人去陌生的城市；<br/>";
+  c4 += "二十七岁的时候，你可以只为了生活，而随便就找个人，过一辈子。<br/>";
+  c4 += "你说，你越来越懒了，懒得去爱啦";
+  var c5 = "风不能为街道停留， 街道也不能追随风。风若停驻在了街道， 那么风也就不存在。<br/>";
+  c5 += "风是街道命运中的过客， 街道只是风途经的路标。<br/>";
+  c5 += "不要争论谁为谁停留， 风居住的街道也一样居住在风中。<br/>";
+  c5 += "离去是一种无奈的割舍， 不追随跟离去一样令人唏嘘，谁又知道街道的苦衷。";
+  var c6 = "如有来生，我愿为石。风吹不动，雨淋不透。<br/>";
+  c6 += "独守石芯，处然不惊。无人知晓，无物干扰。";
+  var c7 = "我存过你的照片，你喜欢的歌我也有去听，你看过的电影我也偷偷看过，你感兴趣的东西我也尝试感兴趣，其实，我远比表面更喜欢你";
+  var c8 = "偶遇不是必须，只是必定，遇见爱的人不如遇见对的人，只是看着偶遇的她笑叹一声世事无常。";
+  var c9 = "潮湿的小巷子墙边仍旧爬满了青苔，远处孩童银铃般的笑声依稀可闻，谁家的炊烟在袅袅升起。时间在这里仿佛停下了脚步，脑海深处的记忆浮现与此刻重叠与交织，惹人迷失。";
+  c9 = "只是那孩童不再熟悉的面庞提醒着我：再没有一缕炊烟属于自己";
+  var c10 = "法国最美的海滨小镇—埃特勒塔。夜幕降临，坐在山顶的石椅上一览全景，右边的海岸线上，前后两座象鼻山守护着这一片海滩，和身后这一个宁静安详的小镇～";
+  var c11 = "我一直在你身旁看着你的点点滴滴";
+  c11 += "就像是住在大海的近旁就能够逐渐了解大海一样<br/>";
+  c11 += "关于你的事情，我也渐渐地了解了很多<br/>";
+  c11 += "何时动怒何时微笑<br/>";
+  c11 += "又或是泫然欲泣的瞬间<br/>";
+  c11 += "我都可以感受得到<br/>";
+  c11 += "你的心 现在在我身上<br/>";
+  c11 += "<span class='commentRight'>冈田磨里《来自风平浪静的明天》</span>";
+  var c12 = "大海的颜色 大地的颜色 风的颜色 心的颜色 你的颜色<br/>";
+  c12 += "<span class='commentRight'>《来自风平浪静的明天》</span>";
+  var c13 = "她身上有个谁也带不走的夏天";
+  var c14 = "起风了 只是这风意外的也孤独 像你 风总会来 但你不是";
+  var c15 = "也许人和人之间的缘分都是注定的<br/>等到上天要收回的时候，连一天一刻都不会多等<br/>再深沉的感情，再真挚的牵挂，还是会有分开的一天<br/>到头来又怎么敌得过生离死别<br/>";
+  c15 += "<span class='commentRight'>上软《仙剑奇侠传4》</span>";
+  var c16 = "既不回头，何必不忘？<br/>";
+  c16 += "既然无缘，何须誓言;<br/>";
+  c16 += "今日种种，似水无痕;<br/>";
+  c16 += "明夕何夕，君已陌路……<br/>";
+  c16 += "<span class='commentRight'>赵灵儿《仙剑奇侠传》</span>";
+  var c17 = "……下雪了，白，是你在哭泣吗？我们一直在一起，所以最终也想在你身旁<br/>可能的话，真想和你…去…同一个地方……<br/>";
+  c17 += "<span class='commentRight'>再不斩《火影忍者》</span>";
+  var c18 = "……就因为这样……你就可以把自己当成悲剧主角，每天哭得唏哩哗拉了吗……？像你这种笨蛋就永远哭下去吧！没用的爱哭鬼！<br/><span class='commentRight'>漩涡鸣人《火影忍者》</span>";
+  var c19 = "是鸣人改变了我！是鸣人的笑脸拯救了我！所以，如果是为了保护鸣人，就算死，我也无可畏惧，因为我，最喜欢鸣人了！<br/><span class='commentRight'>日向雏田《火影忍者》</span>";
+  var c20 = "只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。<br/><span class='commentRight'>三代 猿飞《火影忍者》</span>";
+  var c21 = "原谅我，佐助，这是最后一次了。<br/>";
+  c21 += "<span class='commentRight'>宇智波鼬《火影忍者》</span>";
+  var c22 = "阔别已久回到我身边的穹，已经不像是我曾经认识的妹妹，变成了我从未见过的纤细柔美的少女。<br/>";
+  c22 += "一举一动，都让我心动不已…虽然她总是很不坦率，但也正因为这样，被她所依靠时才让我更加珍惜，想要好好的守护她。<br/>";
+  c22 += "<span class='commentRight'>春日野悠《缘之空》</span>";
+  var c23 = "\"谢谢你，结弦，谢谢你喜欢我，谢谢你赐予了我生命\"<br/>";
+  c23 += "\"奏，我喜欢你，拜托你，不要消失，好不好？\"<br/>";
+  c23 += "<span class='commentRight'>立华奏 && 音无结弦《angel beats》</span>";
+  var c24 = "我也很没用，但是两个人一起的话，就会变得很坚强。<br/>";
+  c24 += "<span class='commentRight'>古河渚《Clannad》</span>";
+
+
+  var evalString = "var sakuraComment = [";
+  var maxIdx = 24;
+  for (var i = 0; i <= maxIdx; ++i)
+  {
+    evalString += ("c"+i);
+    if (i != maxIdx){
+      evalString += ",";
+    }
+  }
+  evalString += "];";
+  eval(evalString);
+
+  var sakuraImg = ['sakura.png', 'sakura1.jpg', 'sakura2.jpg', 'sakura3.jpg', 'sakura4.jpg', 'sakura5.jpg', 'sakura6.jpg', 'sakura7.jpg'];
+  var sakuraImgLen = sakuraImg.length;
+  var curIdx = 0;
+  //var idx = Math.floor(Math.random() * sakuraImgLen));
+  addFadeInBackgroundAndSakura('/static/polls/images/code/'+sakuraImg[curIdx], 'background');
+  function modifyComment(musicIdx)
+  {
+    var commentElement = document.getElementById("sakuraComment");
+    var commentTimeoutInterval = 850;
+    $('#sakuraComment').fadeOut(commentTimeoutInterval);
+    setTimeout(function(){
+        commentElement.innerHTML = sakuraComment[musicIdx];
+        //换成有padding的class
+        commentElement.setAttribute('class', 'sakuraComment');
+    }, commentTimeoutInterval);
+    $('#sakuraComment').fadeIn(commentTimeoutInterval);
+  }
+  function AfterEffect(){
+    var b = document.getElementById("body-anotherworld");
+    var child = document.getElementById("background");
+    b.removeChild(child);
+    b.setAttribute('class', 'body-anotherworld-'+curIdx);
+    //多少秒后换壁纸
+    setTimeout(setEffect, 60000);
+  }
+  function setEffect(){
+    curIdx = Math.floor(Math.random() * sakuraImgLen);
+    addFadeInBackground('/static/polls/images/code/'+sakuraImg[curIdx], 'background');
+  }
+  function addFadeInBackground(url, domId) {
+    var background = new Image();
+    background.src = url;
+    background.onload = function () {
+      var b = document.getElementById("body-anotherworld");
+      b.setAttribute('class', '');
+      var child = document.createElement('main');
+      child.id = 'background';
+      b.prepend(child);
+
+      var loadbackground = document.getElementById(domId);
+      loadbackground.style.background = 'url(' + background.src + ') no-repeat fixed center';
+      loadbackground.style.backgroundSize = 'cover';
+      loadbackground.style.animationName = 'fadein';
+
+      setTimeout(AfterEffect, 2000);
+    }
+  }
+
+  function addFadeInBackgroundAndSakura(url, domId) {
+    addFadeInBackground(url, domId);
+    loadSakura();
+  }
+
+  function loadSakura(){
+    if( /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
+    {}
+    else
+    {
+      document.write('<script src="static/polls/sakura/jquery-sakura.js"><\/script><script type="text/javascript">$(function(){$("body").sakura()});$(window).load(function(){$("body").sakura()});<\/script>');
+      //document.write('<script src="http://oss.rainman.me/rainman.me/js/sakura/jquery-sakura.js"><\/script><script type="text/javascript">$(function(){$("body").sakura()});$(window).load(function(){$("body").sakura()});<\/script>');
+    }
+  }
 </script>
 

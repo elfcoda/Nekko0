@@ -688,6 +688,8 @@ class CodeDetailView(ListView, FormView):
         form.save(userId, articleId, commentId, replyToName)
         return FormView.form_valid(self, form)
 
+class DonateView(ListView, FormView):
+    pass
 
 class ArticleDetailView(ListView, FormView):
     template_name = 'polls/article_detail.html'

@@ -681,3 +681,35 @@
   background: pink;
 }
 
+.body-anotherworld-0 {
+  background:url("images/code/sakura.png") no-repeat fixed center;
+  background-size:cover;
+}
+.body-anotherworld-1 {
+  background:url("images/code/sakura1.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+.body-anotherworld-2 {
+  background:url("images/code/sakura2.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+.body-anotherworld-3 {
+  background:url("images/code/sakura3.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+.body-anotherworld-4 {
+  background:url("images/code/sakura4.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+.body-anotherworld-5 {
+  background:url("images/code/sakura5.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+.body-anotherworld-6 {
+  background:url("images/code/sakura6.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+.body-anotherworld-7 {
+  background:url("images/code/sakura7.jpg") no-repeat fixed center;
+  background-size:cover;
+}

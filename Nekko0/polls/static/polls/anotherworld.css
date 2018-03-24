@@ -1,0 +1,54 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+main#background {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-size: cover;
+  animation-delay: 0s;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.sakuraComment-nopadding {
+  width: 420px;
+  height: auto;
+  position: fixed;
+  font-size: 18px;
+  color: white;
+  background: rgba(100, 100, 100, .35);
+  border-radius: 5px;
+  font-family: STKaiti;
+  right: 15px;
+  bottom: 150px;
+}
+
+.commentRight {
+  float: right;
+}
+
+.sakuraComment {
+  width: 500px;
+  height: auto;
+  position: fixed;
+  font-size: 18px;
+  color: white;
+  background: rgba(100, 100, 100, .35);
+  border-radius: 5px;
+  padding: 5px;
+  font-family: STKaiti;
+  right: 15px;
+  bottom: 150px;
+}
+

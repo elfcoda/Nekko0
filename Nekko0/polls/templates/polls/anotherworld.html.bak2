@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/bgimg/bgstretcher.css' %}" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" media="screen" href="{% static 'polls/sakura/jquery-sakura.css' %}" />
+        <script src="{% static 'polls/bgimg/bgstretcher.js' %}" charset="utf-8"></script>
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.min.js"></script>
+
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+
+            .color-red {
+                color: red;
+            }
+        </style>
+
+        {% include 'polls/title_info.html' %}
+    </head>
+
+    <body class="body-anotherworld" id="body">
+        {% include 'polls/nav.html' %}
+        {% include 'polls/anotherworld_fixed.html' %}
+    </body>
+</html>
+
+<script type="text/javascript">
+  //addFadeInBackground('/static/polls/images/code/sakura1.jpg');
+  function addFadeInBackground(url) {
+    var background = new Image();
+    background.src = url;
+    background.onload = function () {
+      var loadbackground = document.getElementById("body");
+      loadbackground.style.backgroundImage = 'url(' + background.src + ')';
+      loadbackground.style.animationName = 'fadein';
+    }
+  }
+
+    if( /Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent))
+    {}
+    else
+    {
+      document.write('<script src="static/polls/sakura/jquery-sakura.js"><\/script><script type="text/javascript">$(function(){$("body").sakura()});$(window).load(function(){$("body").sakura()});<\/script>');
+      //document.write('<script src="http://oss.rainman.me/rainman.me/js/sakura/jquery-sakura.js"><\/script><script type="text/javascript">$(function(){$("body").sakura()});$(window).load(function(){$("body").sakura()});<\/script>');
+      //document.write('<script src="static/polls/bgimg/bgstretcher.js"><\/script><script type="text/javascript">$(function(){$("body").bgStretcher({images: ["static/polls/images/11.jpg"],imageWidth: 1024,imageHeight: 768})});<\/script>');
+    }
+</script>
+

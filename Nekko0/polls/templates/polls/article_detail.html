@@ -418,7 +418,7 @@
             function addToMsg(e){
                 //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
                 var appendMsg = e.innerHTML;
-                e.parentNode.parentNode.nextElementSibling.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+                e.parentNode.parentNode.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
             }
 
             function addToMsgReply(e){
@@ -544,7 +544,7 @@
                               <div class="msg-item">
                                   <div class="cute-font-label">( •̀ .̫ •́ )✧
                                     <div class="cute-font-list">
-                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
+                                        <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)" id="t11">( •̀ .̫ •́ )✧</div>
                                         <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
                                         <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
                                         <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>

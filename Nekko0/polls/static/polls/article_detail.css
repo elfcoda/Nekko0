@@ -138,7 +138,29 @@
 
 }
 
+.cute-2233-label {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 70px;;
+  padding: 0 5px;
+  border-radius: 5px;
+  background: #008CBA;
+  color: white;
+  opacity: 1;
+  float: left;
+  margin-right: 5px;
+  position: relative;
+  top: -5px;
+  cursor: pointer;
+}
+
+.cute-2233-label:hover .cute-2233-list {
+  visibility: visible;
+}
+
 .cute-font-label {
+  height: 30px;
   height: 30px;
   width: 70px;;
   padding: 0 5px;
@@ -151,6 +173,47 @@
   position: relative;
   top: -5px;
   cursor: pointer;
+}
+
+.cute-2233-list {
+  visibility: hidden;
+  width: 335px;
+  border-radius: 5px;
+  height: 150px;
+  top: -181px;
+  left: -5px;
+  background: rgba(255, 255, 255, 1);
+  color: #008CBA;
+  border: 1px solid #008CBA;
+  position: relative;
+  padding: 5px 15px;
+  padding-right: 3px;
+
+  /* flex布局 */
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.cute-2233-list div {
+  cursor: pointer;
+  position: relative;
+  height: 40px;
+  width: 40px;
+}
+
+.bilibili-img {
+  height: 40px;
+  width: 40px;
+}
+
+.cute-2233-list>div {
+  margin-bottom: 5px;
+  margin-right: 12px;
+  float: left;
+  width: auto;
 }
 
 .cute-font-list {

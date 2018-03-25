@@ -116,6 +116,26 @@
   right: 20px;
 }
 
+.donate-bilibili {
+  height: 140px;
+  width: 140px;
+  position: realtive;
+  float: left;
+  margin-left: 20px;
+}
+
+.donate-bilibili-img {
+  height: 140px;
+  width: 140px;
+}
+
+.donate-head-desc {
+  position: relative;
+  float: left;
+  margin-left: 70px;
+  margin-top: 10px;
+}
+
 .donate-qgwl-speech {
   float: right;
   height: auto;

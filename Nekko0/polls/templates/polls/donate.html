@@ -408,12 +408,26 @@
                 })
             }
 
+            function mouseOverCute2233(e){
+            }
+
+            function mouseOutCute2233(e){
+            }
+
             function mouseOverCute(e){
                 e.setAttribute('class', "cute-font");
             }
 
             function mouseOutCute(e){
                 e.setAttribute('class', "");
+            }
+
+            function addToMsg2233(e){
+                //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+                //appendMsg = 'static/polls/bilibili/0b01ce848b.gif';
+                var appendMsg = e.innerHTML;
+                alert(appendMsg);
+                e.parentNode.parentNode.nextElementSibling.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
             }
 
             function addToMsg(e){
@@ -443,12 +457,16 @@
                   <article id="post-1002-2" class="context-article-origin">
                       <div class="art">
                               <div class="donate-qgwl-head">
-                                  <div class="donate-leave-margin-1"></div>
-                                  充电说明：<br/>
-                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为服务器提供计算资源<br/>
-                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为主人购买酸奶和食物<br/>
-                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为主人购买手办<br/>
-                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;众筹买辆兰博基尼(?)
+                                  <div class="donate-bilibili">
+                                      <img class="donate-bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
+                                  </div>
+                                  <div class="donate-head-desc">
+                                    充电说明：<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为服务器提供计算资源<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为主人购买酸奶和食物<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为主人购买手办<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;众筹买辆兰博基尼(?)
+                                  </div>
                               </div>
                       </div>
                   </article>
@@ -516,16 +534,14 @@
                                       <div class="donate-qgwl-avatar-desc">伟大的精神领袖</div>
                                       <div class="donate-qgwl-avatar-desc">窃·格瓦拉</div>
                                   </div>
-                                  其实，作为虎牙的一名开发者，我一直不觉得自己多骄傲，因为是这位格瓦拉先生让我
-                                  明白：修bug，是不可能修bug的！<br/><br/>
+                                  其实，作为虎牙的一名开发者，我一直不觉得自己多骄傲，因为是这位格瓦拉先生让我明白：修bug，是不可能修bug的！<br/><br/>
                                   没有钱了，肯定要做啊，不做的话没有钱用。<br/>
                                   修bug这方面，修bug是不可能修bug的，这辈子不可能修bug的。<br/>
                                   加班又不会加，就是发收款码这种东西，才可以维持的了生活这样子。<br/>
                                   从我刚开始写代码那时候13年平均这样算过来，可能有一百...一千个bug都有了！<br/>
                                   十几个bug一段代码，反正低于十个bug的简单程序我都不写懂吗。<br/>
                                   我一年加班，客户端发版晚上我都不加班就是说，就平时线上服务出点CoreDump我就去公司看看。<br/>
-                                  发收款码的感觉呢，发收款码的感觉比修bug好多了！修bug一个人很无聊，都没有友仔玩
-                                  没有友女玩，连了互联网上去个个都是人才，长得又好看，超喜欢这里面的！
+                                  发收款码的感觉呢，发收款码的感觉比修bug好多了！修bug一个人很无聊，都没有友仔玩没有友女玩，连了互联网上去个个都是人才，长得又好看，超喜欢这里面的！
                               </div>
                       </div>
                   </article>
@@ -573,6 +589,55 @@
                       <div class="msg-board-list">
                           <div class="msg_item-outer-margin">
                               <div class="msg-item">
+                                  <!-- 2233娘 -->
+                                  <div class="cute-2233-label">2233娘
+                                    <div class="cute-2233-list">
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/0b01ce848b.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/19082ca464.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/53060c0841.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/617406e82e.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/66cfeda396.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/88c318d30c.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/bf34839f00.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/1098b0c0e8.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/4ed2dac213.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/55b2bdbd4c.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/86fcba9352.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/91260cbbc2.gif' %}"></img>
+                                        </div>
+                                        <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                            <img class="bilibili-img" src="{% static 'polls/bilibili/c868b742e5.gif' %}"></img>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                  <!-- 颜文字表情 -->
                                   <div class="cute-font-label">( •̀ .̫ •́ )✧
                                     <div class="cute-font-list">
                                         <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)" id="t11">( •̀ .̫ •́ )✧</div>

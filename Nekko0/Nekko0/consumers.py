@@ -27,6 +27,7 @@ def ws_message(message):
     })
 
 def ws_sendDM(avatar, dmValue):
+    print(111)
     flushInterval = str(random.randint(5, 35))
     dmData = flushInterval + "|" + avatar + "|" + dmValue
     Group("DM").send({

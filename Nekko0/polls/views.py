@@ -689,7 +689,77 @@ class CodeDetailView(ListView, FormView):
         return FormView.form_valid(self, form)
 
 class DonateView(ListView, FormView):
-    pass
+    template_name = 'polls/donate.html'
+    form_class = MsgBoardForm
+    articleId = 1002
+    # 如果是留言板，id必须传1001过来
+    # 充电id1002
+
+    def get_queryset(self, **kwargs):
+        page = self.kwargs.get('page')
+        self.articleId = 1002
+        object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
+        paginator = Paginator(object_list, 2)
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(paginator.num_pages)
+
+        ret_object_list = []
+        # message: cur Page && all page num
+        # print paginator.num_pages
+        # print page
+        messages.info(self.request, str(paginator.num_pages) + '_' + str(page) + \
+                      '_' + str(self.articleId))
+
+        for pickled_msg in object_list:
+            # 这是一整条评论
+            # msg_pickle_bytes = bytes(pickled_msg.msg_pickle_str, encoding="utf-8")
+            # print("---------------------------")
+            # print(msg_pickle_bytes)
+            # print("---------------------------")
+            # print(type(msg_pickle_bytes))
+            # print("---------------------------")
+            pickle_reply_list = pickle.loads(pickled_msg.msg_pickle_str)
+            # get userinfo by userid
+            for pickle_reply_list_item in pickle_reply_list:
+                # 处理点赞数据
+                # 判断是否登录
+                like_set = pickle_reply_list_item[4]
+                likedNum = len(like_set)
+                try:
+                    userId = self.request.session['userId']
+                except KeyError:
+                    userId = None
+
+                if userId and userId in like_set:
+                    isLiked = 1
+                else:
+                    isLiked = 0
+                pickle_reply_list_item[4] = [likedNum, isLiked]
+
+                userid = pickle_reply_list_item[0]
+                pickle_reply_list_item[2] = pickle_reply_list_item[2].split('.')[0]
+                userInfo = Userinfo.objects.get(id=userid)
+                # 加入username, sex, level, level_tag, avatar_url
+                # com_power是算力值，需要换算成level
+                append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
+                               userInfo.level_tag, userInfo.avatar_url]
+                pickle_reply_list_item += append_list
+                # 判断子评论的所属者是否是当前用户
+                if userId and userId == userid:
+                    isCurrentUser = 1
+                    # isCurrentUser = 0
+                else:
+                    isCurrentUser = 0
+                pickle_reply_list_item.append(isCurrentUser)
+
+            ret_object_list.append([pickled_msg.id, pickled_msg.article_id, pickle_reply_list[0], pickle_reply_list[1:]])
+            # print pickle.loads(pickled_msg.msg_pickle_str)
+        # [评论列表]
+        return [ret_object_list]
 
 class ArticleDetailView(ListView, FormView):
     template_name = 'polls/article_detail.html'

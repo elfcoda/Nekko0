@@ -3,6 +3,16 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
         <link href="{% static 'polls/nava.css' %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_x6gwz71xl6iozuxr.js">
+        </script>
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+        </style>
         <style type="text/css">
      		.up-img-cover {width: 45px;height: 45px;}
      		.up-img-cover img{width: 100%;}
@@ -42,11 +52,17 @@
                     </svg>
                     轻语
                     </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:donate' page=1 %}"><nobr>
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-33"></use>
                     </svg>
                     充电
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:another_world' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-musicnote"></use>
+                    </svg>
+                    异次元世界
                     </nobr></a></li>
                     <li><a class="nav_ul-li-a-l" href="#"><nobr>
                     <svg class="icon" aria-hidden="true">
@@ -54,12 +70,6 @@
                     </svg>
                     <!-- 日常 -->
                     とある神秘の程序猿
-                    </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:another_world' %}"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-magic"></use>
-                    </svg>
-                    异次元世界
                     </nobr></a></li>
                     <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
                     {% if request.session.userId %}

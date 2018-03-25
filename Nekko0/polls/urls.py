@@ -20,7 +20,6 @@ urlpatterns = [
     url(r'^newAvatar$', newAvatar, name='newAvatar'),
 
 
-    url(r'^donate$', views.DonateView.as_view(), name='donate'),
     url(r'^music$', views.AnotherWorldView.as_view(), name='another_world'),
     url(r'^code$', views.CodeListView.as_view(), name='code'),
     url(r'^code/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', CodeDetailView.as_view(), name='code_detail'),
@@ -37,6 +36,8 @@ urlpatterns = [
     url(r'^article/(?P<articleId>\w+)/edit$', ArticleEditView.as_view(), name='article_edit'),
 
     # url(r'^DdsafgdadfewaFDsae32DSa3SDA165DS4Fsdada3/$', CommentListView.as_view(), name="article_comment"),
+    # 充电
+    url(r'^donate/(?P<page>[0-9]+)$', views.DonateView.as_view(), name='donate'),
     # 留言板
     url(r'^msgboard/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', MsgBoardListView.as_view(), name='msgboard'),
     url(r'^Gfdre8Dfd4s37d48sas3dD42D94f328GA7s4At23/$', MsgLike, name='msglike'),

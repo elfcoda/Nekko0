@@ -1,0 +1,15 @@
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.sessions import SessionMiddlewareStack
+
+from .consumers import ChatConsumer
+from django.conf.urls import url
+
+application = ProtocolTypeRouter({
+
+    "websocket": SessionMiddlewareStack(
+        URLRouter([
+            url("^front(end)/$", ChatConsumer),
+        ])
+    ),
+
+})

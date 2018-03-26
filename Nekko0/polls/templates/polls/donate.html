@@ -5,8 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         {% load static %}
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'polls/donate.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/donate.css' %}" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_0izsmsqchj8aor.js">
         </script>
 
@@ -37,6 +37,18 @@
                 replaceCode = replaceCode.replace(/>/g, "&gt;");
                 //alert(replaceCode);
                 e.innerHTML = replaceCode;
+            }
+
+            function convert2233(s){
+                s = s.replace(/</g, "lt_cus").replace(/>/g, "gt_cus").trim();
+                s = s.substr(-21, 10);
+                s = "{__" + s + "__}";
+                return s;
+            }
+
+            function conver2Tags(s){
+                s = s.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+                return s;
             }
 
             function setValue(s){
@@ -76,9 +88,9 @@
                 //document.getElementById("get-page-comment").value = "1";
 
                 document.getElementById('first-page').style.display = "inline-block";
-                document.getElementById('first-page').href = "/article/" + article_id + "/1";
+                document.getElementById('first-page').href = "/donate/1";
                 document.getElementById('last-page').style.display = "inline-block";
-                document.getElementById('last-page').href = "/article/" + article_id + "/" + all_page_num;
+                document.getElementById('last-page').href = "/donate/" + all_page_num;
                 var comment_e = document.getElementById('reply-form-comment').lastElementChild.lastElementChild.previousElementSibling;
                 comment_e.placeholder = "蛙..";
                 comment_e.setAttribute('rows', '3');
@@ -91,7 +103,7 @@
                         var e = document.getElementById(id);
                         e.style.display = "inline-block";
                         e.innerHTML = i;
-                        e.href = "/article/" + article_id + "/" + i;
+                        e.href = "/donate/" + i;
                         if (i == cur_page)
                         {
                             e.setAttribute('class', 'active');
@@ -112,7 +124,7 @@
                             var p_e = document.getElementById(p_id);
                             p_e.style.display = "inline-block";
                             p_e.innerHTML = p_n;
-                            p_e.href = "/article/" + article_id + "/" + p_n;
+                            p_e.href = "/donate/" + p_n;
                             if (cur_page == p_n)
                             {
                                 p_e.setAttribute('class', 'active');
@@ -128,7 +140,7 @@
                             var b_e = document.getElementById(b_id);
                             b_e.style.display = "inline-block";
                             b_e.innerHTML = b_n;
-                            b_e.href = "/article/" + article_id + "/" + b_n;
+                            b_e.href = "/donate/" + b_n;
                             if (cur_page == b_n)
                             {
                                 b_e.setAttribute('class', 'active');
@@ -144,13 +156,13 @@
                             var m1_e = document.getElementById(m1_id);
                             m1_e.style.display = "inline-block";
                             m1_e.innerHTML = m1_n;
-                            m1_e.href = "/article/" + article_id + "/" + m1_n;
+                            m1_e.href = "/donate/" + m1_n;
                         }
                         var m2_e = document.getElementById("page4");
                         m2_e.style.display = "inline-block";
                         m2_e.innerHTML = cur_page;
                         m2_e.setAttribute('class', 'active');
-                        m2_e.href = "/article/" + article_id + "/" + cur_page;
+                        m2_e.href = "/donate/" + cur_page;
                         //cur_page-0+1: 先转str为int
                         for (var m3_i = show_max-half+2, m3_n = cur_page-0+1; m3_i <= show_max, m3_n <= cur_page+half-1; m3_i ++, m3_n ++)
                         {
@@ -158,7 +170,7 @@
                             var m3_e = document.getElementById(m3_id);
                             m3_e.style.display = "inline-block";
                             m3_e.innerHTML = m3_n;
-                            m3_e.href = "/article/" + article_id + "/" + m3_n;
+                            m3_e.href = "/donate/" + m3_n;
                         }
                     }
                 }
@@ -210,6 +222,13 @@
                 return s;
             }
 
+            function convert2233Img(s){
+                //替换成存储的图像url
+		        s = s.replace(/{__/g, 'lt_cusimg class="bilibili-img-scale-up" src="/static/polls/bilibili/');
+                s = s.replace(/__}/g, '.gif"gt_cus');
+                return s;
+            }
+
             function submit_form(form_id){
                 {% if request.session.userId %}
                 var e;
@@ -225,6 +244,7 @@
                 var e_content_value = e_content.value;
                 //try converting
                 e_content_value = convertCuteFont(e_content_value);
+                e_content_value = convert2233Img(e_content_value);
                 if (e_content_value)
                 {
                     //e.submit();
@@ -426,7 +446,7 @@
                 //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
                 //appendMsg = 'static/polls/bilibili/0b01ce848b.gif';
                 var appendMsg = e.innerHTML;
-                alert(appendMsg);
+                appendMsg = convert2233(appendMsg);
                 e.parentNode.parentNode.nextElementSibling.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
             }
 

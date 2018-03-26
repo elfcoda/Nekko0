@@ -178,3 +178,18 @@
 }
 
 
+.donate-qgwl-speech::selection {
+  background: rgba(246, 175, 0, .55);;
+  color: rgba(250, 250, 250, 1);
+}
+
+.donate-qgwl-speech::-moz-selection {
+  background: rgba(246, 175, 0, .55);;
+  color: rgba(250, 250, 250, 1);
+}
+
+.donate-qgwl-speech::-webkit-selection {
+  background: rgba(246, 175, 0, .55);;
+  color: rgba(250, 250, 250, 1);
+}
+

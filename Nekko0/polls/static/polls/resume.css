@@ -278,3 +278,14 @@
   background: #B5F1C4;
 }
 
+.body-img-resume::selection {
+  background: #B5F1C4;
+}
+
+.body-img-resume::-moz-selection {
+  background: #B5F1C4;
+}
+
+.body-img-resume::-webkit-selection {
+  background: #B5F1C4;
+}

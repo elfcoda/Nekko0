@@ -1,3 +1,15 @@
+*::selection {
+  background: pink;
+}
+
+*::-moz-selection {
+  background: pink;
+}
+
+*::-webkit-selection {
+  background: pink;
+}
+
 .porn {
   height: 65px;
   width:95%;
@@ -86,7 +98,7 @@
 }
 
 .body-anotherworld {
-  background:url("images/code/sakura.png") no-repeat fixed center;
+  background:url("images/code/sakura0.jpg") no-repeat fixed center;
   background-size:cover;
 }
 
@@ -202,6 +214,11 @@
   position: relative;
   height: 40px;
   width: 40px;
+}
+
+.bilibili-img-scale-up {
+  height: 150px;
+  width: 150px;
 }
 
 .bilibili-img {
@@ -747,20 +764,8 @@
   color: #555;
 }
 
-*::selection {
-  background: pink;
-}
-
-*::-moz-selection {
-  background: pink;
-}
-
-*::-webkit-selection {
-  background: pink;
-}
-
 .body-anotherworld-0 {
-  background:url("images/code/sakura.png") no-repeat fixed center;
+  background:url("images/code/sakura0.jpg") no-repeat fixed center;
   background-size:cover;
 }
 .body-anotherworld-1 {

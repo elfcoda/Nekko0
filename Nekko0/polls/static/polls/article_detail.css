@@ -226,6 +226,11 @@
   width: 40px;
 }
 
+.bilibili-img-preview {
+  height: 90px;
+  width: 90px;
+}
+
 .cute-2233-list>div {
   margin-bottom: 5px;
   margin-right: 12px;

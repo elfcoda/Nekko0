@@ -59,16 +59,14 @@
       {
         if ("WebSocket" in window)
         {
-          socket = new WebSocket("ws://" + "192.168.130.129:8000" + "/Nekko0/");
+          socket = new WebSocket("ws://" + "192.168.130.129:80" + "/Nekko0/");
           socket.onmessage = function(e) {
-              alert(2);
             // 创建弹幕
             var jqueryDom = createScreenbullet(e.data);
             // 添加定时任务
             addInterval(jqueryDom, e.data.split("|")[0]);
           }
           socket.onopen = function() {
-              alert(1);
           }
           if (socket.readyState == WebSocket.OPEN)
           {

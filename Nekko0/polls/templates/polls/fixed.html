@@ -57,8 +57,10 @@
 
       function WebSocketDM()
       {
+        alert(1);
         if ("WebSocket" in window)
         {
+          alert("您的浏览器支持 WebSocket!");
           socket = new WebSocket("ws://" + "192.168.130.129:8000" + "/Nekko0/");
           socket.onmessage = function(e) {
             // 创建弹幕

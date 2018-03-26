@@ -9,11 +9,19 @@
         </script>
 
         <style type="text/css">
+            html, body {
+                height: 100%;
+            }
             .icon {
                 width: 1em; height: 1em;
                 vertical-align: -0.15em;
                 fill: currentColor;
                 overflow: hidden;
+            }
+
+            .wrapper {
+                min-height: 100%;
+                margin-bottom: -150px;
             }
         </style>
 
@@ -357,6 +365,7 @@
     <body onload="load()" class="body">
         {% include 'polls/nav.html' %}
 
+        <div class="wrapper">
         <!-- css可以从include里加载，但是js不行
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         -->
@@ -542,6 +551,7 @@
             {% for m in messages %}
             <div id="{{ m.tags }}">{{ m }}</div>
             {% endfor %}
+        </div>
         </div>
         {% include 'polls/fixed.html' %}
         {% include 'polls/footer.html' %}

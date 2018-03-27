@@ -380,7 +380,7 @@
                     e.lastElementChild.setAttribute('class', 'form-group has-error');
                 }
                 {% else %}
-                alert(1);
+                alert("请先登录哦！");
                 {% endif %}
             }
 
@@ -403,7 +403,7 @@
 
                 })
                 {% else %}
-                alert(2);
+                alert("请先登录哦！");
                 {% endif %}
             }
 
@@ -448,6 +448,12 @@
                 var appendMsg = e.innerHTML;
                 appendMsg = convert2233(appendMsg);
                 e.parentNode.parentNode.nextElementSibling.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+            }
+
+            function addToMsgReply2233(e){
+                var appendMsg = e.innerHTML;
+                appendMsg = convert2233(appendMsg);
+                e.parentNode.parentNode.parentNode.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
             }
 
             function addToMsg(e){
@@ -655,11 +661,6 @@
                                             <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/c868b742e5.gif' %}"></img>
                                         </div>
                                     </div>
-                                    <!--
-                                    <div class="img-preview">
-                                        <img class="bilibili-img-preview" src="{% static 'polls/bilibili/0b01ce848b.gif' %}"></img>
-                                    </div>
-                                    -->
                                   </div>
 
                                   <!-- 颜文字表情 -->
@@ -788,6 +789,56 @@
                                       </div>
 
                                       <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
+
+                                          <!-- 2233娘 -->
+                                          <div class="cute-2233-label leave-cute-font-top">2233娘
+                                            <div class="cute-2233-list">
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title="舔" class="bilibili-img" src="{% static 'polls/bilibili/0b01ce848b.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/19082ca464.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/53060c0841.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title="乾杯" class="bilibili-img" src="{% static 'polls/bilibili/617406e82e.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/66cfeda396.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/88c318d30c.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/bf34839f00.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/1098b0c0e8.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/4ed2dac213.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title="扶额" class="bilibili-img" src="{% static 'polls/bilibili/55b2bdbd4c.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title="吃土" class="bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title="踢墙" class="bilibili-img" src="{% static 'polls/bilibili/86fcba9352.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title="猥琐的笑" class="bilibili-img" src="{% static 'polls/bilibili/91260cbbc2.gif' %}"></img>
+                                                </div>
+                                                <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                                    <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/c868b742e5.gif' %}"></img>
+                                                </div>
+                                            </div>
+                                          </div>
+
+                                          <!-- 颜文字 -->
                                           <div class="cute-font-label leave-cute-font-top">( •̀ .̫ •́ )✧
                                             <div class="cute-font-list">
                                                 <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>

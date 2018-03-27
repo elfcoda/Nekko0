@@ -79,10 +79,6 @@
   color:red;
 }
 
-.leave-cute-font-top {
-  margin-top: 7px;
-}
-
 .leave-margin-bottom, .leave-margin-top {
   height:15px;
 }
@@ -169,6 +165,10 @@
 
 .cute-2233-label:hover .cute-2233-list {
   visibility: visible;
+}
+
+.leave-cute-font-top {
+  margin-top: 7px;
 }
 
 .cute-font-label {

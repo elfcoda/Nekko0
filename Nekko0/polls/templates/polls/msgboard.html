@@ -26,7 +26,49 @@
         </style>
 
         <script type="text/javascript">
+
+
+            // 自定义转化标签
+            function resetValue(e){
+                var replaceCode = e.innerHTML.replace(/lt_cus/g, '<');
+                replaceCode = replaceCode.replace(/gt_cus/g, '>');
+                //alert(replaceCode);
+                e.innerHTML = replaceCode;
+            }
+
+            function unsetValue(e){
+                var replaceCode = e.innerHTML.replace(/</g, "&lt;");
+                replaceCode = replaceCode.replace(/>/g, "&gt;");
+                //alert(replaceCode);
+                e.innerHTML = replaceCode;
+            }
+
+            function convert2233(s){
+                s = s.replace(/</g, "lt_cus").replace(/>/g, "gt_cus").trim();
+                s = s.substr(-21, 10);
+                s = "{__" + s + "__}";
+                return s;
+            }
+
+            function conver2Tags(s){
+                s = s.replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+                return s;
+            }
+
+            function setValue(s){
+                s = s.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/lt_cus/g, '<').replace(/gt_cus/g, '>');
+                //alert(s);
+                return s;
+            }
+
             function load(){
+                //设置评论内容的标签转化
+                var resetValueEs = document.getElementsByName("resetValue");
+                var resetValueLen = resetValueEs.length;
+                for (var resetValueIdx = 0; resetValueIdx < resetValueLen; resetValueIdx ++)
+                {
+                    resetValue(resetValueEs[resetValueIdx]);
+                }
                 //固定显示7页
                 var show_max = 7;
                 var msg = document.getElementById("info").innerHTML;
@@ -54,7 +96,7 @@
                 document.getElementById('last-page').style.display = "inline-block";
                 document.getElementById('last-page').href = "/msgboard/" + article_id + "/" + all_page_num;
                 var comment_e = document.getElementById('reply-form-comment').lastElementChild.lastElementChild.previousElementSibling;
-                comment_e.placeholder = "蛙..";
+                comment_e.placeholder = "今天的风儿，甚是喧嚣呢...";
                 comment_e.setAttribute('rows', '3');
 
                 if (all_page_num <= show_max)
@@ -162,6 +204,34 @@
                 e2.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.placeholder = "回复 " + reply_name + ": ";
             }
 
+            function convertCuteFont(s){
+                s = s.replace(/\( •̀ .̫ •́ \)✧/g, "lt_cusspan class=\"cute-font\"gt_cus( •̀ .̫ •́ )✧lt_cus/spangt_cus");
+                s = s.replace(/\(つд⊂\)/g, "lt_cusspan class=\"cute-font\"gt_cus(つд⊂)lt_cus/spangt_cus");
+                s = s.replace(/\(•౪• \)/g, "lt_cusspan class=\"cute-font\"gt_cus(•౪• )lt_cus/spangt_cus");
+                s = s.replace(/\(..›ᴗ‹..\)/g, "lt_cusspan class=\"cute-font\"gt_cus(..›ᴗ‹..)lt_cus/spangt_cus");
+                s = s.replace(/\(๑•̀ㅂ•́\) ✧/g, "lt_cusspan class=\"cute-font\"gt_cus(๑•̀ㅂ•́) ✧lt_cus/spangt_cus");
+                s = s.replace(/\(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿\)/g, "lt_cusspan class=\"cute-font\"gt_cus(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)lt_cus/spangt_cus");
+                s = s.replace(/\( •̥́ ˍ •̀ू \)/g, "lt_cusspan class=\"cute-font\"gt_cus( •̥́ ˍ •̀ू )lt_cus/spangt_cus");
+                s = s.replace(/\(⇀‸↼‶\)/g, "lt_cusspan class=\"cute-font\"gt_cus(⇀‸↼‶)lt_cus/spangt_cus");
+                s = s.replace(/\(ᵒ̤̑ ₀̑ ᵒ̤̑\)/g, "lt_cusspan class=\"cute-font\"gt_cus(ᵒ̤̑ ₀̑ ᵒ̤̑)lt_cus/spangt_cus");
+                s = s.replace(/\(〃ω〃\)/g, "lt_cusspan class=\"cute-font\"gt_cus(〃ω〃)lt_cus/spangt_cus");
+                s = s.replace(/\( ꒪⌓꒪\)/g, "lt_cusspan class=\"cute-font\"gt_cus( ꒪⌓꒪)lt_cus/spangt_cus");
+                s = s.replace(/୧\(๑•̀⌄•́๑\)૭✧/g, "lt_cusspan class=\"cute-font\"gt_cus୧(๑•̀⌄•́๑)૭✧lt_cus/spangt_cus");
+                s = s.replace(/ᕕ\( ᐛ \)ᕗ/g, "lt_cusspan class=\"cute-font\"gt_cusᕕ( ᐛ )ᕗlt_cus/spangt_cus");
+                s = s.replace(/ \(๑•̀ω•́ ๑\)/g, "lt_cusspan class=\"cute-font\"gt_cus (๑•̀ω•́ ๑)lt_cus/spangt_cus");
+                s = s.replace(/ ̋\(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ\)/g, "lt_cusspan class=\"cute-font\"gt_cus ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)lt_cus/spangt_cus");
+                s = s.replace(/\( ˶ˇωˇ˶ \)/g, "lt_cusspan class=\"cute-font\"gt_cus( ˶ˇωˇ˶ )lt_cus/spangt_cus");
+                s = s.replace(/༼•̀ɷ•́༽/g, "lt_cusspan class=\"cute-font\"gt_cus༼•̀ɷ•́༽lt_cus/spangt_cus");
+                return s;
+            }
+
+            function convert2233Img(s){
+                //替换成存储的图像url
+		        s = s.replace(/{__/g, 'lt_cusimg class="bilibili-img-scale-up" src="/static/polls/bilibili/');
+                s = s.replace(/__}/g, '.gif"gt_cus');
+                return s;
+            }
+
             function submit_form(form_id){
                 {% if request.session.userId %}
                 var e;
@@ -175,6 +245,9 @@
                 }
                 var e_content = e.lastElementChild.lastElementChild.previousElementSibling;
                 var e_content_value = e_content.value;
+                //try converting
+                e_content_value = convertCuteFont(e_content_value);
+                e_content_value = convert2233Img(e_content_value);
                 if (e_content_value)
                 {
                     //e.submit();
@@ -222,7 +295,7 @@
                             html_comment += "<div class=\"msg-level-body\"><span class=\"msg-level-body-font\">" + level_tag + "</span></div>";
                             html_comment += "<div class=\"sex-adjust select-a-" + sex + "\">&nbsp;&nbsp;</div>";
                             html_comment += "</div>";
-                            html_comment += "<div class=\"msg-content new-line\">" + content + "</div>";
+                            html_comment += "<div class=\"msg-content new-line\">" + setValue(content) + "</div>";
                             html_comment += "<div class=\"msg-addition\">";
                             html_comment += "<span class=\"date-beau-style float-left-msgb\">" + date + "&nbsp;&nbsp;&nbsp;</span>";
                             html_comment += "<span class=\"float-left-msgb like-webfont\" onclick=\"like(" + commentId + ", -1)\" id=\"msglike-" + commentId + "--1\">";
@@ -276,7 +349,7 @@
                             html_reply += "<div class=\"msg-level-body\"><span class=\"msg-level-body-font\">" + level_tag + "</span></div>";
                             html_reply += "<div class=\"sex-adjust select-a-" + sex + "\">&nbsp;&nbsp;</div>";
                             html_reply += "</div>";
-                            html_reply += "<div class=\"msg-content new-line\">" + content + "</div>";
+                            html_reply += "<div class=\"msg-content new-line\">" + setValue(content) + "</div>";
                             html_reply += "<div class=\"msg-addition\">";
                             html_reply += "<span class=\"date-beau-style float-left-msgb\">" + date + "&nbsp;&nbsp;&nbsp;</span>";
                             html_reply += "<span class=\"float-left-msgb like-webfont\" onclick=\"like(" + commentId + ", " + replyId + ")\" id=\"msglike-" + commentId + "-" + replyId + "\">";
@@ -358,6 +431,47 @@
                 })
             }
 
+            function mouseOverCute2233(e){
+            }
+
+            function mouseOutCute2233(e){
+            }
+
+            function mouseOverCute(e){
+                e.setAttribute('class', "cute-font");
+            }
+
+            function mouseOutCute(e){
+                e.setAttribute('class', "");
+            }
+
+            function addToMsg2233(e){
+                //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+                //appendMsg = 'static/polls/bilibili/0b01ce848b.gif';
+                var appendMsg = e.innerHTML;
+                appendMsg = convert2233(appendMsg);
+                e.parentNode.parentNode.nextElementSibling.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+            }
+
+            function addToMsgReply2233(e){
+                var appendMsg = e.innerHTML;
+                appendMsg = convert2233(appendMsg);
+                e.parentNode.parentNode.parentNode.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+            }
+
+            function addToMsg(e){
+                //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+                var appendMsg = e.innerHTML;
+                e.parentNode.parentNode.nextElementSibling.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+            }
+
+            function addToMsgReply(e){
+                //var appendMsg = "lt_cusspan class=\"cute-font\"gt_cus" + e.innerHTML + "lt_cus/spangt_cus";
+                var appendMsg = e.innerHTML;
+                e.parentNode.parentNode.parentNode.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
+            }
+
+
         </script>
         {% include 'polls/title_info.html' %}
     </head>
@@ -369,6 +483,22 @@
         <!-- css可以从include里加载，但是js不行
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         -->
+
+        <!-- 留言板头部 -->
+        <article id="post-1002-2" class="context-article-origin">
+            <div class="art-msgboard-cont">
+                <div class="art-msgboard-head">
+                留言板
+                </div>
+                <div class="art-msgboard-body">
+                    请恕我直言，我是说在座的各位都是。。。有品味的人！
+                </div>
+                <img class="art-msgboard-body-img" src="{% static 'polls/bilibili/msg.jpg' %}"></img>
+            </div>
+        </article>
+
+        <div class="leave-margin-head"></div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
@@ -407,6 +537,80 @@
             <div class="msg-board-list">
                 <div class="msg_item-outer-margin">
                     <div class="msg-item">
+
+                        <!-- 2233娘 -->
+                        <div class="cute-2233-label">2233娘
+                          <div class="cute-2233-list">
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title="舔" class="bilibili-img" src="{% static 'polls/bilibili/0b01ce848b.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/19082ca464.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/53060c0841.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title="乾杯" class="bilibili-img" src="{% static 'polls/bilibili/617406e82e.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/66cfeda396.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/88c318d30c.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/bf34839f00.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/1098b0c0e8.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/4ed2dac213.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title="扶额" class="bilibili-img" src="{% static 'polls/bilibili/55b2bdbd4c.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title="吃土" class="bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title="踢墙" class="bilibili-img" src="{% static 'polls/bilibili/86fcba9352.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title="猥琐的笑" class="bilibili-img" src="{% static 'polls/bilibili/91260cbbc2.gif' %}"></img>
+                              </div>
+                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/c868b742e5.gif' %}"></img>
+                              </div>
+                          </div>
+                        </div>
+
+                        <!-- 颜文字表情 -->
+                        <div class="cute-font-label">( •̀ .̫ •́ )✧
+                          <div class="cute-font-list">
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)" id="t11">( •̀ .̫ •́ )✧</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
+                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
+                          </div>
+                        </div>
+                        <!--
+                        <div class="cute-font-label"></div>
+                        -->
                         <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">
                             {% csrf_token %}
                             <div class="form-group">
@@ -440,7 +644,7 @@
                                     <div class="msg-level-body"><span class="msg-level-body-font">{{ object.2.9 }}</span></div>
                                     <div class="sex-adjust select-a-{{ object.2.7 }}">&nbsp;&nbsp;</div>
                                 </div>
-                                <div class="msg-content new-line">{{ object.2.3 }}</div>
+                                <div class="msg-content new-line" name="resetValue">{{ object.2.3 }}</div>
                                 <div class="msg-addition">
                                     <span class="date-beau-style float-left-msgb">{{ object.2.2 }}&nbsp;&nbsp;&nbsp;</span>
                                     <form action="{% url 'polls:msglike' %}" method="get">
@@ -477,7 +681,7 @@
                                         <div class="msg-level-body"><span class="msg-level-body-font">{{ reply_item.9 }}</span></div>
                                         <div class="sex-adjust select-a-{{ reply_item.7 }}">&nbsp;&nbsp;</div>
                                     </div>
-                                    <div class="msg-content new-line">{{ reply_item.3 }}</div>
+                                    <div class="msg-content new-line" name="resetValue">{{ reply_item.3 }}</div>
                                     <div class="msg-addition">
                                         <span class="date-beau-style float-left-msgb">{{ reply_item.2 }}&nbsp;&nbsp;&nbsp;</span>
                                         <form action="{% url 'polls:msglike' %}" method="get">
@@ -504,6 +708,80 @@
                             </div>
 
                             <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
+
+                                <!-- 2233娘 -->
+                                <div class="cute-2233-label leave-cute-font-top">2233娘
+                                  <div class="cute-2233-list">
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title="舔" class="bilibili-img" src="{% static 'polls/bilibili/0b01ce848b.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/19082ca464.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/53060c0841.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title="乾杯" class="bilibili-img" src="{% static 'polls/bilibili/617406e82e.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/66cfeda396.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/88c318d30c.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/bf34839f00.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/1098b0c0e8.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/4ed2dac213.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title="扶额" class="bilibili-img" src="{% static 'polls/bilibili/55b2bdbd4c.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title="吃土" class="bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title="踢墙" class="bilibili-img" src="{% static 'polls/bilibili/86fcba9352.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title="猥琐的笑" class="bilibili-img" src="{% static 'polls/bilibili/91260cbbc2.gif' %}"></img>
+                                      </div>
+                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
+                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/c868b742e5.gif' %}"></img>
+                                      </div>
+                                  </div>
+                                </div>
+
+                                <!-- 颜文字 -->
+                                <div class="cute-font-label leave-cute-font-top">( •̀ .̫ •́ )✧
+                                  <div class="cute-font-list">
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
+                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
+                                  </div>
+                                </div>
+                                <!--
+                                <div class="cute-font-label leave-cute-font-top"></div>
+                                -->
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <span class="text-danger pull-right hidden-span">请填写数据哦～</span>

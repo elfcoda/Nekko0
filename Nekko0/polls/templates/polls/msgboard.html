@@ -31,6 +31,15 @@
         </style>
 
         <script type="text/javascript">
+            function footerPositionNew(){
+                $("#footer-outer").removeClass("fixed-bottom");
+                var contentHeight = document.body.scrollHeight,//网页正文全文高度
+                    winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+                if(!(contentHeight > winHeight)){
+                    //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+                    $("#footer-outer").addClass("fixed-bottom");
+                }
+            }
 
 
             // 自定义转化标签
@@ -387,6 +396,8 @@
                     e.lastElementChild.firstElementChild.style.display = "inline-block";
                     e.lastElementChild.setAttribute('class', 'form-group has-error');
                 }
+                //重置footer
+                footerPositionNew();
                 {% else %}
                 alert("请先登录哦！");
                 {% endif %}
@@ -431,6 +442,9 @@
                         document.getElementById("modal-body-customer").style.height = "30px";
                         var divId = "#msg-del-" + msgId + "-" + replyId;
                         $(divId).slideUp();
+
+                        //重置footer
+                        setTimeout(footerPositionNew, 1000);
                     }
             
                 })
@@ -524,7 +538,7 @@
 
         <div class="msg-board-page full-height">
 
-            <div class="wrapper">
+            <div class="wrapper-deprecated">
             <!-- 留言板头部 -->
             <article id="post-1002-2" class="context-article-origin">
                 <div class="art-msgboard-cont">

@@ -82,7 +82,7 @@ class CodeListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.filter(tags="code").order_by(F('created').desc())
-        paginator = Paginator(object_list, 3)
+        paginator = Paginator(object_list, 10)
         page = self.kwargs.get('page')
         if page is None:
             page = 1
@@ -121,7 +121,7 @@ class ArticleListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.all().order_by(F('created').desc())
-        paginator = Paginator(object_list, 3)
+        paginator = Paginator(object_list, 10)
         page = self.kwargs.get('page')
         if page is None:
             page = 1
@@ -472,7 +472,7 @@ class MsgBoardListView(ListView, FormView):
         page = self.kwargs.get('page')
         self.articleId = self.kwargs.get('articleId')
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
-        paginator = Paginator(object_list, 2)
+        paginator = Paginator(object_list, 10)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -608,7 +608,7 @@ class CodeDetailView(ListView, FormView):
         self.articleId = self.kwargs.get('articleId')
         self.success_url = reverse('polls:article_detail', kwargs={"page":1, "articleId":self.articleId})
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
-        paginator = Paginator(object_list, 2)
+        paginator = Paginator(object_list, 10)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -699,7 +699,7 @@ class DonateView(ListView, FormView):
         page = self.kwargs.get('page')
         self.articleId = 1002
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
-        paginator = Paginator(object_list, 2)
+        paginator = Paginator(object_list, 10)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -823,7 +823,7 @@ class ArticleDetailView(ListView, FormView):
         self.articleId = self.kwargs.get('articleId')
         self.success_url = reverse('polls:article_detail', kwargs={"page":1, "articleId":self.articleId})
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
-        paginator = Paginator(object_list, 2)
+        paginator = Paginator(object_list, 10)
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:

@@ -3,6 +3,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
         <link href="{% static 'polls/footer2.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/comm/comm.css' %}" rel="stylesheet" type="text/css" />
+        <script src="{% static 'polls/comm/comm.js' %}"></script>
         <script language="Javascript">
             function showTime(){
                 var nowStamp = (Date.parse(new Date()) / 1000) - 1522040940;
@@ -20,7 +22,7 @@
                 setTimeout("showTime()", 1000);
             }
         </script>
-        <div class="footer-outer">
+        <div class="footer-outer" id="footer-outer">
             <footer class="ft-style">
                 <div class="leave-margin-top"></div>
                 <div class="ft-center ft-fontclr-nor">

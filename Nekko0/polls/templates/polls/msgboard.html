@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <!--
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        -->
         {% load static %}
         <link href="{% static 'polls/msgboardj.css' %}" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
@@ -17,6 +19,9 @@
                 vertical-align: -0.15em;
                 fill: currentColor;
                 overflow: hidden;
+            }
+
+            .full-height {
             }
 
             .wrapper {
@@ -479,25 +484,9 @@
     <body onload="load()" class="body">
         {% include 'polls/nav.html' %}
 
-        <div class="wrapper">
         <!-- css可以从include里加载，但是js不行
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
         -->
-
-        <!-- 留言板头部 -->
-        <article id="post-1002-2" class="context-article-origin">
-            <div class="art-msgboard-cont">
-                <div class="art-msgboard-head">
-                留言板
-                </div>
-                <div class="art-msgboard-body">
-                    请恕我直言，我是说在座的各位都是。。。有品味的人！
-                </div>
-                <img class="art-msgboard-body-img" src="{% static 'polls/bilibili/msg.jpg' %}"></img>
-            </div>
-        </article>
-
-        <div class="leave-margin-head"></div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
@@ -533,7 +522,25 @@
         </div>
         <!-- i -->
 
-        <div class="msg-board-page">
+        <div class="msg-board-page full-height">
+
+            <div class="wrapper">
+            <!-- 留言板头部 -->
+            <article id="post-1002-2" class="context-article-origin">
+                <div class="art-msgboard-cont">
+                    <div class="art-msgboard-head">
+                    留言板
+                    </div>
+                    <div class="art-msgboard-body">
+                        请恕我直言，我是说在座的各位都是。。。有品味的人！
+                    </div>
+                    <img class="art-msgboard-body-img" src="{% static 'polls/bilibili/msg.jpg' %}"></img>
+                </div>
+            </article>
+            <div class="leave-margin-head"></div>
+
+
+
             <div class="msg-board-list">
                 <div class="msg_item-outer-margin">
                     <div class="msg-item">
@@ -823,6 +830,9 @@
             </div>
             <div class="">
             </div>
+
+            </div>
+            {% include 'polls/footer.html' %}
         </div>
 
         <div class="hidden-messages" id="hidden-messages">
@@ -830,9 +840,7 @@
             <div id="{{ m.tags }}">{{ m }}</div>
             {% endfor %}
         </div>
-        </div>
         {% include 'polls/fixed.html' %}
-        {% include 'polls/footer.html' %}
     </body>
 </html>
 

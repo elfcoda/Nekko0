@@ -19,11 +19,14 @@ $(function(){
             {
               document.getElementById("footer-outer").style.width = "100%";
               document.getElementById("ft-style").style.width = "100%";
-              alert(1);
             }
         }
 
     }
     footerPosition();
-    $(window).resize(footerPosition);
+    //移动端不处理resize,包括iPad
+    if (!mobile)
+    {
+      $(window).resize(footerPosition);
+    }
 });

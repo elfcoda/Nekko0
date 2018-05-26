@@ -2,10 +2,16 @@
 <html>
 {% load static %}
 <!--
+<script src="/static/polls/prism/prism.js"></script>
 -->
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+
+
 <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
 <script src="{% static 'polls/prism/prism.js' %}"></script>
+<link href="{% static 'polls/test.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link href="{% static 'polls/publish_article1.css' %}" rel="stylesheet" type="text/css" />
 <head>
@@ -13,38 +19,41 @@
         function preview(){
             var content = document.getElementById("content").value;
             document.getElementById("preview").innerHTML = content;
+            Prism.highlightAll();
         }
     </script>
 </head>
 
-<body onload="preview()">
+<body onload="preview()" class="body-publish">
 
 <div class="container">
   <div class="publish center-block">
       <div class="leave-margin-top">
       </div>
       <form action="" method="post">{% csrf_token %}
-          <div class="form-group half">
-            <label>标题</label>
+          <div class="form-group half opacity-publish">
+            <label class="publish-label">标题</label>
             {{ form.title }}
           </div>
 
           <div>
-            <div class="form-group" onchange="preview()">
-              <label>内容</label>
+            <div class="form-group opacity-publish" onchange="preview()">
+              <label class="publish-label">内容</label>
               {{ form.content }}
             </div>
             <div class="form-group preview-div">
-              <label>预览</label>
-              <div class="preview half" id="preview"></div>
+              <label class="publish-label pre-label">预览</label>
+              <div class="preview half preview-bg" id="preview">
+              </div>
+              <label class="publish-label pre-label"></label>
             </div>
           </div>
 
-          <div class="form-group half offset">
-            <label>Tags</label>
+          <div class="form-group half offset opacity-publish">
+            <label class="publish-label">Tags</label>
             {{ form.tags }}
           </div>
-      <button type="submit" class="btn btn-primary offset">Publish</button>
+      <button type="submit" class="btn btn-primary offset-btn">Publish</button>
     </form>
     <div class="leave-margin-bottom">
     </div>

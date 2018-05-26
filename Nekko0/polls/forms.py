@@ -14,19 +14,19 @@ class ArticlePublishForm(forms.Form):
     title = forms.CharField(
         label=u'Article Title',
         max_length=50,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': u'title'}),
+        widget=forms.TextInput(attrs={'class': 'form-control bg-color', 'placeholder': u'title'}),
     )
 
     content = forms.CharField(
         label=u'content',
         min_length=10,
-        widget=forms.Textarea(attrs={'class': 'form-control half', 'id': 'content'}),
+        widget=forms.Textarea(attrs={'class': 'form-control half bg-color pub-content-st', 'id': 'content', 'rows': '32'}),
     )
 
     tags = forms.CharField(
         label=u'tags',
         max_length=30,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': u'split with space.'}),
+        widget=forms.TextInput(attrs={'class': 'form-control bg-color', 'placeholder': u'split with space.'}),
     )
 
     def save(self, username, article=None):

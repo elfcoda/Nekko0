@@ -121,7 +121,7 @@ class ArticleListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.all().order_by(F('created').desc())
-        paginator = Paginator(object_list, 10)
+        paginator = Paginator(object_list, 1)
         page = self.kwargs.get('page')
         if page is None:
             page = 1
@@ -233,7 +233,7 @@ class ArticleEditView(FormView):
         return super(ArticleEditView, self).form_valid(form)
 
     def get_success_url(self):
-        success_url = reverse('polls:article_detail', args=(self.articleId,))
+        success_url = reverse('polls:article_detail', args=(self.articleId, 1))
         return success_url
 
 class RegisterView(FormView):

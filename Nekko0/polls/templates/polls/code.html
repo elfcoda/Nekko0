@@ -3,6 +3,8 @@
     <head>
         {% load static %}
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
+        <script src="{% static 'polls/prism/prism.js' %}"></script>
         <!--
         -->
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
@@ -17,7 +19,24 @@
         </style>
 
         <script type="text/javascript">
+            // 自定义转化标签
+            function resetValue(e){
+                var replaceCode = e.innerHTML.replace(/lt_cus/g, '<');
+                replaceCode = replaceCode.replace(/gt_cus/g, '>');
+                //alert(replaceCode);
+                e.innerHTML = replaceCode;
+            }
+
             function load(){
+                //将文章内容中的格式标签替换
+                var e_art_rep_conts = document.getElementsByName("art_rep_cont");
+                var e_art_rep_conts_len = e_art_rep_conts.length;
+                for (var e_art_rep_conts_idx = 0; e_art_rep_conts_idx < e_art_rep_conts_len; ++ e_art_rep_conts_idx)
+                {
+                    resetValue(e_art_rep_conts[e_art_rep_conts_idx]);
+                }
+                Prism.highlightAll();
+
                 //固定显示7页
                 var show_max = 7;
                 var all_page_num = {{ object_list.0.1 }};
@@ -158,7 +177,7 @@
                                     {{ object.author }}
                                 </nobr>
                             </div>
-							<div class="post-content"><div class="article-p">
+							              <div class="post-content"><div class="article-p" name="art_rep_cont">
                                     {{ object.content_html }}
                             </div></div>
                                 <div class="post-readmore">

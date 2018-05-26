@@ -49,6 +49,10 @@
             }
 
             function load(){
+                var e_art_rep_cont = document.getElementById("art_rep_cont");
+                resetValue(e_art_rep_cont);
+                Prism.highlightAll();
+
                 //设置评论内容的标签转化
                 var resetValueEs = document.getElementsByName("resetValue");
                 var resetValueLen = resetValueEs.length;
@@ -524,42 +528,8 @@
                               </nobr>
                           </div>
                           <div class="post-content">
-                              <div class="article-p color-ar">
+                              <div class="article-p color-ar" id="art_rep_cont">
                               {{ object_list.1.content_html }}
-
-                              <div class="code-wrapper">
-                              <pre>
-                                <code class="language-cpp">
-                                #include &lt;iostream&gt;
-                                using namespace std;
-
-                                int main()
-                                {
-                                  int i = 0;
-                                  string x = "233";
-                                  char xa[10] = {};
-                                  std::cout << "hello world" << std::endl;
-                                  return 0;
-                                }
-                                </code>
-                              </pre>
-
-                              <pre>
-                                <code class="language-python">
-                                import time
-                                print "233"
-                                x = []
-                                x.append(2)
-
-                                def funct(x1):
-                                  if 1 == False:
-                                    print "12"
-                                  elif:
-                                    print "23"
-                                </code>
-                              </pre>
-                              </div>
-
                               </div>
 
                               <div class="porn">

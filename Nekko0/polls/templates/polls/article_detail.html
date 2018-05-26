@@ -8,6 +8,8 @@
         {% load static %}
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
+        <script src="{% static 'polls/prism/prism.js' %}"></script>
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
 
@@ -64,6 +66,11 @@
             }
 
             function load(){
+                //将文章内容中的格式标签替换
+                var e_art_rep_cont = document.getElementById("art_rep_cont");
+                resetValue(e_art_rep_cont);
+                Prism.highlightAll();
+
                 //设置评论内容的标签转化
                 var resetValueEs = document.getElementsByName("resetValue");
                 var resetValueLen = resetValueEs.length;
@@ -521,7 +528,7 @@
                               </nobr>
                           </div>
                           <div class="post-content">
-                              <div class="article-p color-ar">
+                              <div class="article-p color-ar" id="art_rep_cont">
                               {{ object_list.1.content_html }}
                               </div>
                               <div class="porn">

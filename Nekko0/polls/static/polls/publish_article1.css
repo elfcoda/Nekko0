@@ -2,24 +2,81 @@
   height:15px;
 }
 
+.container
+{
+  width: 100%;
+}
+
+.center-block
+{
+  width: 90%;
+}
+
 .half {
   width: 718px;
 }
 
 .preview {
   width: 718px;
-  min-height: 300px;
-  background: rgba(200, 200, 200, 0.5);
+  height: auto;
+  margin: auto;
 }
 
 .preview-div {
+  width: 778px;
+  background: rgba(250, 250, 250, .55);
+  border-radius: 7px;
   position:relative;
-  left: 718px;
-  top: -254px;
+  left: 733px;
+  top: -670px;
+}
+
+.pre-label{
+  position: relative;
+  top: -25px;
+}
+
+.preview-bg
+{
 }
 
 .offset {
-  position:relative;
-  top: -334px;
+  position: absolute;
+  top: 780px;
 }
+.offset-btn {
+  position: absolute;
+  top: 850px;
+}
+
+.body-publish {
+  background:url("images/code/kawaimiku.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+
+.opacity-publish
+{
+  opacity: 1;
+}
+
+.publish-label
+{
+  color: #3EBF27;
+}
+
+.bg-color
+{
+  background: rgba(200, 200, 200, .35);
+}
+
+.pub-content-st
+{
+}
+
+.left-offset
+{
+  position: relative;
+  left: -200px;
+}
+
 

@@ -568,7 +568,7 @@
                                       <svg class="icon" aria-hidden="true">
                                           <use xlink:href="#icon-icon-arrow-left2"></use>
                                       </svg>
-                                      <a href="{% url 'polls:article_detail' articleId=object_list.1.prevNextList.0.1 page=1 %}" class="ar-prev-next">
+                                      <a href="{% url 'polls:code_detail' articleId=object_list.1.prevNextList.0.1 page=1 %}" class="ar-prev-next">
                                       {{ object_list.1.prevNextList.0.0 }}
                                       </a>
                                   </div>
@@ -576,7 +576,7 @@
 
                                   {% if object_list.1.prevNextList.1 %}
                                   <div class="next ar-prev-next">
-                                      <a href="{% url 'polls:article_detail' articleId=object_list.1.prevNextList.1.1 page=1 %}" class="ar-prev-next">
+                                      <a href="{% url 'polls:code_detail' articleId=object_list.1.prevNextList.1.1 page=1 %}" class="ar-prev-next">
                                       {{ object_list.1.prevNextList.1.0 }}
                                       </a>
                                       <svg class="icon" aria-hidden="true">

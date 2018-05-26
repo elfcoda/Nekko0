@@ -21,7 +21,7 @@ urlpatterns = [
 
 
     url(r'^music$', views.AnotherWorldView.as_view(), name='another_world'),
-    url(r'^code$', views.CodeListView.as_view(), name='code'),
+    url(r'^code/(?P<page>[0-9]+)$', views.CodeListView.as_view(), name='code'),
     url(r'^code/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', CodeDetailView.as_view(), name='code_detail'),
     url(r'^test$', views.TestView.as_view(), name='test'),
     url(r'^resume$', views.ResumeView.as_view(), name='resume'),

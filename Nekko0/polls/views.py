@@ -82,7 +82,7 @@ class CodeListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.filter(tags="code").order_by(F('created').desc())
-        paginator = Paginator(object_list, 10)
+        paginator = Paginator(object_list, 1)
         page = self.kwargs.get('page')
         if page is None:
             page = 1

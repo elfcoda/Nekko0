@@ -1,0 +1,34 @@
+lt_cusdiv class="code-wrapper"gt_cus
+lt_cuspregt_cus
+lt_cuscode class="language-cpp"gt_cus
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int i = 0;
+  string x = "233";
+  char xa[10] = {};
+  std::cout lt_cuslt_cus "hello world" lt_cuslt_cus std::endl;
+  return 0;
+}
+lt_cus/codegt_cus
+lt_cus/pregt_cus
+lt_cus/divgt_cus
+
+
+
+lt_cuspregt_cus
+lt_cuscode class="language-python"gt_cus
+import time
+print "233"
+  x = []
+x.append(2)
+
+  def funct(x1):
+    if 1 == False:
+    print "12"
+    elif:
+    print "23"
+    lt_cus/codegt_cus
+    lt_cus/pregt_cus

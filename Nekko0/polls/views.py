@@ -26,6 +26,8 @@ import random
 import datetime
 from Nekko0 import consumers
 
+SHOW_CONTENT_SPLIT = "#####"
+
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {
@@ -82,7 +84,7 @@ class CodeListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.filter(tags="code").order_by(F('created').desc())
-        paginator = Paginator(object_list, 1)
+        paginator = Paginator(object_list, 5)
         page = self.kwargs.get('page')
         if page is None:
             page = 1
@@ -94,6 +96,11 @@ class CodeListView(ListView):
             object_list = paginator.page(paginator.num_pages)
 
         for ob in object_list:
+            # 查找展示部分
+            ob_show = ob.content_html.split(SHOW_CONTENT_SPLIT)
+            if len(ob_show) == 2:
+                ob.content_html = ob_show[0]
+
             ob.tags = ob.tags.split()
             ob.created = str(ob.created).split(' ')[0]
             ob.updated = str(ob.updated).split(' ')[0]
@@ -121,7 +128,7 @@ class ArticleListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.all().order_by(F('created').desc())
-        paginator = Paginator(object_list, 1)
+        paginator = Paginator(object_list, 3)
         page = self.kwargs.get('page')
         if page is None:
             page = 1
@@ -133,6 +140,11 @@ class ArticleListView(ListView):
             object_list = paginator.page(paginator.num_pages)
 
         for ob in object_list:
+            # 查找展示部分
+            ob_show = ob.content_html.split(SHOW_CONTENT_SPLIT)
+            if len(ob_show) == 2:
+                ob.content_html = ob_show[0]
+
             ob.tags = ob.tags.split()
             ob.created = str(ob.created).split(' ')[0]
             ob.updated = str(ob.updated).split(' ')[0]
@@ -587,6 +599,11 @@ class CodeDetailView(ListView, FormView):
             article = Article.objects.get(id=aId)
             article.views += 1
             article.save()
+            # 查找内容部分
+            ar_cnt = article.content_html.split(SHOW_CONTENT_SPLIT)
+            if len(ar_cnt) == 2:
+                article.content_html = ar_cnt[1]
+
             article.tags = article.tags.split()
             # print article.created
             article.created = str(article.created).split(' ')[0]
@@ -802,6 +819,11 @@ class ArticleDetailView(ListView, FormView):
             article = Article.objects.get(id=aId)
             article.views += 1
             article.save()
+            # 查找内容部分
+            ar_cnt = article.content_html.split(SHOW_CONTENT_SPLIT)
+            if len(ar_cnt) == 2:
+                article.content_html = ar_cnt[1]
+
             article.tags = article.tags.split()
             # print article.created
             article.created = str(article.created).split(' ')[0]

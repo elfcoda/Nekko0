@@ -79,4 +79,24 @@
   left: -200px;
 }
 
+.publish-desc
+{
+  color: #F5B046;
+  font-size: 18px;
+  font-weight: 500;
+  background: rgba(80, 80, 80, .4);
+  padding: 5px;
+  border: 1px solid rgba(200, 200, 200, .9);
+  border-radius: 5px;
+  position: absolute;
+  top: 900px;
+}
+
+.pub-key1
+{
+  color: #BE3B3B;
+}
+
+
+
 

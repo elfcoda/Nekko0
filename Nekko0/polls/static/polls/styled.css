@@ -9,6 +9,11 @@
 }
 */
 
+@font-face {
+  font-family: eurostile;
+  src:url('Font/eurostile/Eurostile.ttf');
+}
+
 .leave-margin-top {
   height: 15px;
 }
@@ -18,9 +23,15 @@
   src:url('eng-font/weston/weston.otf');
 }
 
+/*
+ *
+ * 如果想换回原来的英文数字字体，就把font-family注释掉。
+ *
+ * */
 * {
   margin:0;
   padding:0;
+  font-family: "eurostile","Arial",'Times New Roman','Microsoft YaHei';
 }
 
 body {
@@ -272,7 +283,7 @@ aside {
   font-size: 16px;
   text-decoration: none;
   position: relative;
-  top: -2px;
+  top: 0px;
 }
 
 .readmore:hover {

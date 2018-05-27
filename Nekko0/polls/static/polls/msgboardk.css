@@ -7,6 +7,15 @@
   url('myfont-ello/font/fontello.woff2');
 }
 
+@font-face {
+  font-family: eurostile;
+  src:url('Font/eurostile/Eurostile.ttf');
+}
+
+* {
+  font-family: "eurostile","Arial",'Times New Roman','Microsoft YaHei';
+}
+
 .float-left-msgb {
   float:left;
 }
@@ -167,7 +176,7 @@
 
 .msg-level-body-font {
   position:relative;
-  top:-2px;
+  top:-0px;
 }
 
 .msg-content {

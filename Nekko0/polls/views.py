@@ -276,6 +276,12 @@ class TestView(DetailView):
     def get_object(self, **kwargs):
         return None
 
+class NoneView(DetailView):
+    template_name = 'polls/none.html'
+
+    def get_object(self, **kwargs):
+        return None
+
 class LoginView(FormView):
     # template_name = 'polls/login.html'
     template_name = 'polls/login.html'

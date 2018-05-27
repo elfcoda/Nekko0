@@ -69,4 +69,16 @@
   background: pink;
 }
 
+.footer-none
+{
+  text-decoration:none;
+  color:#C4B43C;
+}
+
+.footer-none:hover
+{
+  text-decoration:none;
+  color:#F9E54A;
+}
+
 

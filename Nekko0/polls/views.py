@@ -27,6 +27,7 @@ import datetime
 from Nekko0 import consumers
 
 SHOW_CONTENT_SPLIT = "#####"
+COM_POWER_RATE = 100
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -431,7 +432,7 @@ def AddOrReplyMsg(request):
     # return dict
     # 包含基本的list 和 commentId && replyId
     userInfo = Userinfo.objects.get(id=userId)
-    infoList = [userInfo.username, userInfo.sex, userInfo.com_power, userInfo.level_tag, \
+    infoList = [userInfo.username, userInfo.sex, userInfo.com_power/COM_POWER_RATE, userInfo.level_tag, \
                 userInfo.avatar_url]
     ret_json = {'userId': userId, 'date': timeNow.split('.')[0], \
                 'username': infoList[0], 'sex': infoList[1], 'power': infoList[2], \
@@ -531,8 +532,10 @@ class MsgBoardListView(ListView, FormView):
                 userInfo = Userinfo.objects.get(id=userid)
                 # 加入username, sex, level, level_tag, avatar_url
                 # com_power是算力值，需要换算成level
-                append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
+                append_list = [userInfo.username, userInfo.sex, userInfo.com_power/COM_POWER_RATE, \
                                userInfo.level_tag, userInfo.avatar_url]
+                # append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
+                #                userInfo.level_tag, userInfo.avatar_url]
                 pickle_reply_list_item += append_list
                 # 判断子评论的所属者是否是当前用户
                 if userId and userId == userid:
@@ -677,7 +680,7 @@ class CodeDetailView(ListView, FormView):
                 userInfo = Userinfo.objects.get(id=userid)
                 # 加入username, sex, level, level_tag, avatar_url
                 # com_power是算力值，需要换算成level
-                append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
+                append_list = [userInfo.username, userInfo.sex, userInfo.com_power/COM_POWER_RATE, \
                                userInfo.level_tag, userInfo.avatar_url]
                 pickle_reply_list_item += append_list
                 # 判断子评论的所属者是否是当前用户
@@ -768,7 +771,7 @@ class DonateView(ListView, FormView):
                 userInfo = Userinfo.objects.get(id=userid)
                 # 加入username, sex, level, level_tag, avatar_url
                 # com_power是算力值，需要换算成level
-                append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
+                append_list = [userInfo.username, userInfo.sex, userInfo.com_power/COM_POWER_RATE, \
                                userInfo.level_tag, userInfo.avatar_url]
                 pickle_reply_list_item += append_list
                 # 判断子评论的所属者是否是当前用户
@@ -897,7 +900,7 @@ class ArticleDetailView(ListView, FormView):
                 userInfo = Userinfo.objects.get(id=userid)
                 # 加入username, sex, level, level_tag, avatar_url
                 # com_power是算力值，需要换算成level
-                append_list = [userInfo.username, userInfo.sex, userInfo.com_power, \
+                append_list = [userInfo.username, userInfo.sex, userInfo.com_power/COM_POWER_RATE, \
                                userInfo.level_tag, userInfo.avatar_url]
                 pickle_reply_list_item += append_list
                 # 判断子评论的所属者是否是当前用户

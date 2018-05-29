@@ -4,10 +4,14 @@
 import datetime
 # import re
 import pickle
+import random
 
 from django import forms
 
 from .models import Article, Userinfo, SingleMsgBoard
+
+LEVEL_TAGS = [u"精灵", u"半精灵", u"光之精灵", u"死宅", u"萝莉", u"抖S", u"抖M", u"御姐", u"正太", \
+              u"魔法师", u"超能力者", u"弱能力者", u"异能力者", u"大能力者"]
 
 
 class ArticlePublishForm(forms.Form):
@@ -219,8 +223,9 @@ class RegisterForm(forms.Form):
             email = email,
             sex = sex,
             created_date = datetime.datetime.now(),
-            com_power = 0,
-            level_tag = u"超能力者",
+            # com_power = 0,
+            com_power = random.randint(5, 500),
+            level_tag = random.choice(LEVEL_TAGS),
             birthday = datetime.datetime.now(),
             introduce = "",
             avatar_url = "")

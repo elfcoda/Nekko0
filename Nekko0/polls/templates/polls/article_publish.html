@@ -23,6 +23,22 @@
             document.getElementById("preview").innerHTML = content;
             Prism.highlightAll();
         }
+
+        function str2sign()
+        {
+            var content = document.getElementById("content").value;
+            content = content.replace(/lt_cus/g, '<');
+            content = content.replace(/gt_cus/g, '>');
+            document.getElementById("content").value = content;
+        }
+
+        function sign2str()
+        {
+            var content = document.getElementById("content").value;
+            content = content.replace(/</g, "lt_cus");
+            content = content.replace(/>/g, "gt_cus");
+            document.getElementById("content").value = content;
+        }
     </script>
 </head>
 
@@ -60,6 +76,8 @@
           说明：内容以 ' <span class="pub-key1">#####</span> ' 隔开，前面的表示展示，后面的表示内容详情。
       </div>
     </form>
+      <button class="btn btn-primary publish-btn publishbtn-left1" onclick="sign2str()">Sign2Str</button>
+      <button class="btn btn-primary publish-btn publishbtn-left2" onclick="str2sign()">Str2Sign</button>
     <div class="leave-margin-bottom">
     </div>
   </div>

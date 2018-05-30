@@ -58,4 +58,21 @@
   color: #A19FA0;
 }
 
+/* other */
+.publish-btn
+{
+  position: absolute;
+  top: 850px;
+}
+
+.publishbtn-left1
+{
+  left: 175px;
+}
+
+.publishbtn-left2
+{
+  left: 275px;
+}
+
 

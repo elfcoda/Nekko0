@@ -75,4 +75,15 @@
   left: 275px;
 }
 
+.as-img-normal
+{
+  width: 80%;
+  border-radius: 7px;
+  border: 5px solid white;
+  display: block;
+  position: relative;
+  left: 10%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
 

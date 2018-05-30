@@ -823,7 +823,6 @@ class ArticleDetailView(ListView, FormView):
 
     def getArticle(self, aId):
         prevNextList = self.getPrevNext(aId)
-        # print(prevNextList)
         try:
             article = Article.objects.get(id=aId)
             article.views += 1

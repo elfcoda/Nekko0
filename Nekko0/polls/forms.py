@@ -132,7 +132,7 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(
         required = False,
         label = u'邮箱',
-        help_text = u'用于找回密码与登录',
+        help_text = u'用于找回密码与登录，以及来自本站的相关邮件通知(评论回复等)',
         max_length = 50,
         initial = '',
         widget = forms.TextInput(attrs={'class': 'form-control form-control-color'}),

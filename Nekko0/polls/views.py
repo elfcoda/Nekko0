@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 import pickle
+import logging
 from PIL import Image
 
 # Create your views here.
@@ -26,8 +27,45 @@ import random
 import datetime
 from Nekko0 import consumers
 
+from django.core.mail import send_mail
+
+
 SHOW_CONTENT_SPLIT = "#####"
 COM_POWER_RATE = 100
+
+# init logging
+logger = logging.getLogger('MyLog')
+logger.setLevel(logging.INFO)
+
+fh = logging.FileHandler('/info.log')
+fh.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+
+logger.addHandler(fh)
+# logger.info('233')
+
+def writeLoggerData(request, cusData):
+    s = request.META['REMOTE_ADDR'] + '| ' +  request.META['REMOTE_HOST'] + '| ';
+
+    try:
+        userId = request.session['userId']
+    except:
+        userId = 0
+
+    s += (str(userId) + '| ')
+    if userId == 0:
+        s += ('NoName' + '| ')
+    else:
+        s += (Userinfo.objects.get(id=userId).username + '| ')
+
+    s += (str(cusData) + '| ')
+    s += request.META['HTTP_USER_AGENT']
+
+    logger.info(s)
+    return s
+
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -313,6 +351,16 @@ def Logout(request):
     return HttpResponseRedirect(reverse('polls:blog_index'))
 
 def LimeMeOp(request):
+    # 数据统计
+    writeLoggerData(request, '-')
+    # 邮件发送
+    try:
+        send_mail('这里是来自http://nasaco.club/的邮件!', '哈喽...', '707935952@qq.com', ['2066584567@qq.com'], fail_silently=False)
+    except:
+        print('resend...')
+        send_mail('这里是来自http://nasaco.club/的邮件!', '哈喽...', '707935952@qq.com', ['2066584567@qq.com'], fail_silently=False)
+
+
     likeOp = request.GET.get('op')
     if likeOp == "1":
         likeCount = 1
@@ -326,11 +374,15 @@ def LimeMeOp(request):
 
 def SendDM(request):
     dmValue = request.GET.get('dmValue')
+    writeLoggerData(request, dmValue)
     try:
         avatar = request.session['avatar']
     except KeyError:
         avatar = "/static/polls/userAvatar/default.jpg"
 
+    print('-------')
+    print(dmValue)
+    print('-------')
     # print(avatar)
     consumers.ws_sendDM(avatar, dmValue)
     ret_json = {'r': 1}
@@ -341,6 +393,7 @@ def MsgLike(request):
     # 使用get没问题的
     commentId = int(request.GET.get('commentId'))
     replyId = int(request.GET.get('replyId'))
+    writeLoggerData(request, str(commentId) + '-' + str(replyId))
     userId = request.session['userId']
     msg = SingleMsgBoard.objects.get(id=commentId)
     msg_list = pickle.loads(msg.msg_pickle_str)
@@ -364,6 +417,7 @@ def MsgLike(request):
 def DeleteMsg(request):
     msgId = int(request.GET.get('msgId'))
     replyId = int(request.GET.get('replyId'))
+    writeLoggerData(request, str(msgId) + '-' + str(replyId))
     msg = SingleMsgBoard.objects.get(id=msgId)
     reply_list = pickle.loads(msg.msg_pickle_str)
     reply_list[replyId][1] = 0

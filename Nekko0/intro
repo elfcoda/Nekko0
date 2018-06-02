@@ -3,8 +3,8 @@ create database nekko default charset utf8 collate utf8_general_ci;
 对于评论区:
 
 文章Id(从1开始)
-留言板Id=1000
-投食区Id=1001
+留言板Id=1001
+投食区Id=1002
 
 每条评论是个序列化的字符串，格式:
 [[], [], []...]

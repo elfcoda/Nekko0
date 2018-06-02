@@ -32,6 +32,8 @@ from django.core.mail import send_mail
 
 SHOW_CONTENT_SPLIT = "#####"
 COM_POWER_RATE = 100
+EMAIL_SUBJECT = '这里是来自http://nasaco.club/的邮件!'
+MY_EMAIL_ADDR = "707935952@qq.com"
 
 # init logging
 logger = logging.getLogger('MyLog')
@@ -127,6 +129,7 @@ class CodeListView(ListView):
         page = self.kwargs.get('page')
         if page is None:
             page = 1
+        writeLoggerData(self.request, "CodeList"+str(page))
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -171,6 +174,7 @@ class ArticleListView(ListView):
         page = self.kwargs.get('page')
         if page is None:
             page = 1
+        writeLoggerData(self.request, "ArticleList"+str(page))
         try:
             object_list = paginator.page(page)
         except PageNotAnInteger:
@@ -219,18 +223,21 @@ class AnotherWorldView(DetailView):
     template_name = 'polls/anotherworld.html'
 
     def get_object(self, **kwargs):
+        writeLoggerData(self.request, "AnotherWorld")
         return None
 
 class NewIndexView(DetailView):
     template_name = 'polls/index.html'
 
     def get_object(self, **kwargs):
+        writeLoggerData(self.request, "NewIndex")
         return None
 
 class ResumeView(DetailView):
     template_name = 'polls/resume.html'
 
     def get_object(self, **kwargs):
+        writeLoggerData(self.request, "Resume")
         return None
 
 
@@ -239,6 +246,8 @@ class ArticleDetailViewOld(DetailView):
 
     def get_object(self, **kwargs):
         articleId = self.kwargs.get('articleId')
+        writeLoggerData(self.request, "ArticleDetailViewOld"+str(articleId))
+
         try:
             article = Article.objects.get(id=articleId)
             article.views += 1
@@ -293,6 +302,7 @@ class RegisterView(FormView):
     success_url = reverse_lazy('polls:blog_index')
 
     def form_valid(self, form):
+        writeLoggerData(self.request, "Register")
         form.save()
         email = form.cleaned_data.get('email')
         rand_github_id = random.randint(1, 28)
@@ -319,6 +329,7 @@ class NoneView(DetailView):
     template_name = 'polls/none.html'
 
     def get_object(self, **kwargs):
+        writeLoggerData(self.request, "NoneView")
         return None
 
 class LoginView(FormView):
@@ -328,6 +339,7 @@ class LoginView(FormView):
     success_url = reverse_lazy('polls:blog_index')
 
     def form_valid(self, form):
+        writeLoggerData(self.request, "Login")
         # email = self.request.POST.get('email')
         # messages.success(self.request, 'hreljh')
         email = form.cleaned_data.get('email')
@@ -341,6 +353,7 @@ class LoginView(FormView):
         return super(LoginView, self).form_valid(form)
 
 def Logout(request):
+    writeLoggerData(request, "Logout")
     try:
         del request.session['userId']
         del request.session['avatar']
@@ -352,18 +365,20 @@ def Logout(request):
 
 def LimeMeOp(request):
     # 数据统计
-    writeLoggerData(request, '-')
-    # 邮件发送
-    try:
-        send_mail('这里是来自http://nasaco.club/的邮件!', '哈喽...', '707935952@qq.com', ['2066584567@qq.com'], fail_silently=False)
-    except:
-        print('resend...')
-        send_mail('这里是来自http://nasaco.club/的邮件!', '哈喽...', '707935952@qq.com', ['2066584567@qq.com'], fail_silently=False)
-
+    writeLoggerData(request, "LimeMeOp")
 
     likeOp = request.GET.get('op')
     if likeOp == "1":
         likeCount = 1
+        # 邮件发送
+        try:
+            send_mail(EMAIL_SUBJECT, '有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
+        except:
+            print('resend...')
+            try:
+                send_mail(EMAIL_SUBJECT, '有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
+            except:
+                print('sent email error!')
     elif likeOp == "2":
         likeCount = 0
     object_likeme = LikeMeData.objects.get(id=1)
@@ -374,15 +389,12 @@ def LimeMeOp(request):
 
 def SendDM(request):
     dmValue = request.GET.get('dmValue')
-    writeLoggerData(request, dmValue)
+    writeLoggerData(request, "SendDM: " + str(dmValue))
     try:
         avatar = request.session['avatar']
     except KeyError:
         avatar = "/static/polls/userAvatar/default.jpg"
 
-    print('-------')
-    print(dmValue)
-    print('-------')
     # print(avatar)
     consumers.ws_sendDM(avatar, dmValue)
     ret_json = {'r': 1}
@@ -391,9 +403,11 @@ def SendDM(request):
 def MsgLike(request):
     # -1--评论 1 2 3--回复
     # 使用get没问题的
+
+    # 后面有需要再加上邮件通知
     commentId = int(request.GET.get('commentId'))
     replyId = int(request.GET.get('replyId'))
-    writeLoggerData(request, str(commentId) + '-' + str(replyId))
+    writeLoggerData(request, "MsgLike: " + str(commentId) + '-' + str(replyId))
     userId = request.session['userId']
     msg = SingleMsgBoard.objects.get(id=commentId)
     msg_list = pickle.loads(msg.msg_pickle_str)
@@ -417,7 +431,7 @@ def MsgLike(request):
 def DeleteMsg(request):
     msgId = int(request.GET.get('msgId'))
     replyId = int(request.GET.get('replyId'))
-    writeLoggerData(request, str(msgId) + '-' + str(replyId))
+    writeLoggerData(request, "DeleteMsg: " + str(msgId) + '-' + str(replyId))
     msg = SingleMsgBoard.objects.get(id=msgId)
     reply_list = pickle.loads(msg.msg_pickle_str)
     reply_list[replyId][1] = 0
@@ -436,13 +450,54 @@ def generateRandomString10():
 
     return sRet
 
+def getArticleTitleByArticleId(ArticleId):
+    if int(ArticleId) == 1001:
+        return u"轻语"
+    if int(ArticleId) == 1002:
+        return u"充电"
+    ArticleObject = Article.objects.get(id=ArticleId)
+    return ArticleObject.title
+
+
+def getArticleUrlByArticleId(ArticleId):
+    if int(ArticleId) == 1001:
+        return reverse('polls:msgboard', kwargs={"page":1, "articleId":1001})
+    if int(ArticleId) == 1002:
+        return reverse('polls:donate', kwargs={"page":1})
+    return reverse('polls:article_detail', kwargs={"page":1, "articleId":int(ArticleId)})
+
+def getEmailByUserName(userName):
+    if not userName:
+        return MY_EMAIL_ADDR
+    return Userinfo.objects.get(username=userName).email
+
+def getMsgEmailBodyByArticleId(ArticleId):
+    sTitle = getArticleTitleByArticleId(ArticleId)
+    sUrl = getArticleUrlByArticleId(ArticleId)
+    sBody = u"某个小可爱在[" + sTitle + u"]中回复了你，还不去看看呀poi~(http://nasaco.club" + sUrl + u")"
+
+    return sBody
 
 def AddOrReplyMsg(request):
     # page = int(request.GET.get(page))
     articleId = int(request.GET.get('articleId'))
     commentId = int(request.GET.get('commentId'))
     replyToName = request.GET.get('replyToName')
+
+    # 邮件发送
+    try:
+        send_mail(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)], fail_silently=False)
+    except:
+        print('resend...')
+        try:
+            send_mail(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)], fail_silently=False)
+        except:
+            print('sent email error!')
+
     content = request.GET.get('content')
+    writeLoggerData(request, "AddOrReplyMsg: " + str(articleId) + \
+                    "-" + str(commentId) + "-" + str(replyToName) + \
+                    "-" + str(content))
 
     try:
         userId = request.session['userId']
@@ -544,6 +599,8 @@ class MsgBoardListView(ListView, FormView):
     def get_queryset(self, **kwargs):
         page = self.kwargs.get('page')
         self.articleId = self.kwargs.get('articleId')
+        writeLoggerData(self.request, "MsgBoardList: " + str(page) + \
+                        "-" + str(self.articleId))
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
         paginator = Paginator(object_list, 10)
         try:
@@ -685,6 +742,8 @@ class CodeDetailView(ListView, FormView):
     def get_queryset(self, **kwargs):
         page = self.kwargs.get('page')
         self.articleId = self.kwargs.get('articleId')
+        writeLoggerData(self.request, "CodeDetail: " + str(page) + \
+                        "-" + str(self.articleId))
         self.success_url = reverse('polls:article_detail', kwargs={"page":1, "articleId":self.articleId})
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
         paginator = Paginator(object_list, 10)
@@ -776,6 +835,7 @@ class DonateView(ListView, FormView):
 
     def get_queryset(self, **kwargs):
         page = self.kwargs.get('page')
+        writeLoggerData(self.request, "DonateView" + str(page))
         self.articleId = 1002
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
         paginator = Paginator(object_list, 10)
@@ -904,6 +964,8 @@ class ArticleDetailView(ListView, FormView):
     def get_queryset(self, **kwargs):
         page = self.kwargs.get('page')
         self.articleId = self.kwargs.get('articleId')
+        writeLoggerData(self.request, "ArticleDetailView" + str(page) + \
+                        "-" + str(self.articleId))
         self.success_url = reverse('polls:article_detail', kwargs={"page":1, "articleId":self.articleId})
         object_list = SingleMsgBoard.objects.filter(article_id=self.articleId, is_exist=1).order_by(F('id').desc())
         paginator = Paginator(object_list, 10)

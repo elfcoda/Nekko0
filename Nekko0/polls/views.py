@@ -32,7 +32,7 @@ from django.core.mail import send_mail
 
 SHOW_CONTENT_SPLIT = "#####"
 COM_POWER_RATE = 100
-EMAIL_SUBJECT = '这里是来自http://nasaco.club/的邮件!'
+EMAIL_SUBJECT = u'这里是来自http://nasaco.club/的邮件!'
 MY_EMAIL_ADDR = "707935952@qq.com"
 
 # init logging
@@ -372,11 +372,11 @@ def LimeMeOp(request):
         likeCount = 1
         # 邮件发送
         try:
-            send_mail(EMAIL_SUBJECT, '有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
+            send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
         except:
             print('resend...')
             try:
-                send_mail(EMAIL_SUBJECT, '有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
+                send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
             except:
                 print('sent email error!')
     elif likeOp == "2":

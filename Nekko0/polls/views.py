@@ -32,7 +32,7 @@ from django.core.mail import send_mail
 
 SHOW_CONTENT_SPLIT = "#####"
 COM_POWER_RATE = 100
-EMAIL_SUBJECT = u'这里是来自http://nasaco.club/的邮件!'
+EMAIL_SUBJECT = u'这里是来自http://nasaco.club/的邮件!!'
 MY_EMAIL_ADDR = "707935952@qq.com"
 
 # init logging

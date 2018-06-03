@@ -60,12 +60,14 @@ def writeLoggerData(request, cusData):
     if userId == 0:
         s += ('NoName' + '| ')
     else:
-        s += (Userinfo.objects.get(id=userId).username + '| ')
+        s += ('HasName' + '| ')
+        # s += (Userinfo.objects.get(id=userId).username + '| ')
 
     s += (str(cusData) + '| ')
     s += request.META['HTTP_USER_AGENT']
 
     logger.info(s)
+
     return s
 
 
@@ -364,12 +366,13 @@ def Logout(request):
     return HttpResponseRedirect(reverse('polls:blog_index'))
 
 def LimeMeOp(request):
-    # 数据统计
-    writeLoggerData(request, "LimeMeOp")
 
     likeOp = request.GET.get('op')
     if likeOp == "1":
         likeCount = 1
+        # 数据统计
+        writeLoggerData(request, "LimeMeOp")
+
         # 邮件发送
         try:
             send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)

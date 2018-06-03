@@ -60,8 +60,8 @@ def writeLoggerData(request, cusData):
     if userId == 0:
         s += ('NoName' + '| ')
     else:
-        s += ('HasName' + '| ')
-        # s += (Userinfo.objects.get(id=userId).username + '| ')
+        # s += ('HasName' + '| ')
+        s += (Userinfo.objects.get(id=userId).username + '| ')
 
     s += (str(cusData) + '| ')
     s += request.META['HTTP_USER_AGENT']

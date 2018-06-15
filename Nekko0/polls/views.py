@@ -39,7 +39,8 @@ MY_EMAIL_ADDR = "707935952@qq.com"
 logger = logging.getLogger('MyLog')
 logger.setLevel(logging.INFO)
 
-fh = logging.FileHandler('/info.log')
+# fh = logging.FileHandler('/info.log')
+fh = logging.FileHandler('/root/Nekko0/nekko0/Nekko0/polls/templates/polls/log.html')
 fh.setLevel(logging.INFO)
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -331,6 +332,12 @@ class NoneView(DetailView):
 
     def get_object(self, **kwargs):
         writeLoggerData(self.request, "NoneView")
+        return None
+
+class LogView(DetailView):
+    template_name = "polls/log.html"
+
+    def get_object(self, **kwargs):
         return None
 
 class LoginView(FormView):

@@ -33,6 +33,7 @@
         {% include 'polls/title_info_resume.html' %}
     </head>
     <body class="body-img-resume">
+        {% include 'polls/nav.html' %}
         <div class="resume-container-outer">
         <div class="resume-container resume-br-radius">
           <div class="resume-header resume-br-radius">
@@ -42,7 +43,7 @@
               </div>
             </a>
             <div class="resume-resume-text">RESUME</div>
-            <div class="resume-date">最后更新于：2018-06-21</div>
+            <div class="resume-date">最后更新于：2018-3-26</div>
             <div class="resume-desc-header">94小鲜肉，虎牙后端狗，卖萌求抱走<span class="cute-font">(๑•̀ㅂ•́) ✧</span></div>
           </div>
 
@@ -77,7 +78,7 @@
             </div>
             <div class="resume-info-item">
               <div class="resume-info-item-title">期望薪资</div>
-              <div class="resume-info-item-content">税前月薪15-20k，特别喜欢的公司可例外</div>
+              <div class="resume-info-item-content">税前月薪14-20k，特别喜欢的公司可例外</div>
             </div>
             <div class="resume-info-item">
               <div class="resume-info-item-title">期望城市</div>
@@ -221,7 +222,7 @@
 
               <div class="resume-experience-item">
                 <div class="resume-experience-item-detail">
-                  <span class="resume-color-blue">后端：</span>Linux，C++(基于腾讯Tars微服务框架)，Python(基于Django框架，也搞过Flask)，MySQL，Redis，了解过Redis的设计与实现<br />
+                  <span class="resume-color-blue">后端：</span>Linux，C++(基于腾讯Tars微服务框架)，Python(基于Django框架，也搞过Flask)，MySQL，Redis<br />
                   <span class="resume-color-blue">开发工具：</span>Tmux，Vim等Linux平台下高效开发的工具<br />
                   <span class="resume-color-blue">版本控制</span>：工作使用Svn，个人使用Git<br />
                   <span class="resume-color-blue">前端(略懂)：</span>CSS3，HTML，JS<br />
@@ -288,8 +289,13 @@
 
               <div class="resume-experience-item">
                 <div class="resume-experience-item-detail">
-                  </del><br/>
-                  需要换一个环境，不想呆在广州了。
+                  <del>大三的时候在腾讯实习过，实习结束后回到学校，就对游戏开发
+                  感兴趣，自己试着做了些小游戏(Unity 3D引擎)，毕业设计也是
+                  和游戏相关的项目(linux下的3D图形建模工具，python开发)。
+                  到现在(2018年)，当时预研的游戏项目预计上线，得知项目组要
+                  扩招的消息后，希望自己能回到原来的地方，完成当年未完成的
+                  事，也算是个愿望吧。</del><br/>
+                  不想呆在广州了。
                 </div>
               </div>
             </div>

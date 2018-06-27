@@ -66,6 +66,8 @@ def writeLoggerData(request, cusData):
     s += (str(cusData) + '| ')
     s += request.META['HTTP_USER_AGENT']
 
+    s += "\n"
+
     logger.info(s)
 
     return s
@@ -338,6 +340,13 @@ class LogView(DetailView):
     template_name = "polls/log.html"
 
     def get_object(self, **kwargs):
+        return None
+
+class HelloWorldView(DetailView):
+    template_name = "polls/hw.html"
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "HelloWorldView")
         return None
 
 class LoginView(FormView):

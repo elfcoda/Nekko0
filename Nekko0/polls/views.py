@@ -5,6 +5,7 @@ from django.shortcuts import render
 import pickle
 import logging
 from PIL import Image
+import threading
 
 # Create your views here.
 from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
@@ -380,6 +381,19 @@ def Logout(request):
     # messages.success(request, "logout!")
     return HttpResponseRedirect(reverse('polls:blog_index'))
 
+# 邮件发送
+def sendEmailLike(s_emailsubject, s_emailaddr, s_emailaddrs):
+    print("Likeeeeeeeeee")
+    try:
+        send_mail(s_emailsubject, u'有人给你点了赞...', s_emailaddr, s_emailaddrs, fail_silently=False)
+    except:
+        print('resend...')
+        try:
+            send_mail(s_emailsubject, u'有人给你点了赞...', s_emailaddr, s_emailaddrs, fail_silently=False)
+        except:
+            print('sent email error!')
+
+
 def LimeMeOp(request):
 
     likeOp = request.GET.get('op')
@@ -389,14 +403,18 @@ def LimeMeOp(request):
         writeLoggerData(request, "LimeMeOp")
 
         # 邮件发送
-        try:
-            send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
-        except:
-            print('resend...')
-            try:
-                send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
-            except:
-                print('sent email error!')
+        # sendEmailLike(EMAIL_SUBJECT, MY_EMAIL_ADDR, [MY_EMAIL_ADDR])
+        t = threading.Thread(name="LikeThread", target=sendEmailLike, args=(EMAIL_SUBJECT, MY_EMAIL_ADDR, [MY_EMAIL_ADDR],))
+        t.start()
+
+        # try:
+        #     send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
+        # except:
+        #     print('resend...')
+        #     try:
+        #         send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
+        #     except:
+        #         print('sent email error!')
     elif likeOp == "2":
         likeCount = 0
     object_likeme = LikeMeData.objects.get(id=1)
@@ -496,6 +514,17 @@ def getMsgEmailBodyByArticleId(ArticleId):
 
     return sBody
 
+# 邮件发送
+def sendEmailReply(s_emailsubject, s_emailbody, s_myaddr, s_emailnamelist):
+    try:
+        send_mail(s_emailsubject, s_emailbody, s_myaddr, s_emailnamelist, fail_silently=False)
+    except:
+        print('resend...')
+        try:
+            send_mail(s_emailsubject, s_emailbody, s_myaddr, s_emailnamelist, fail_silently=False)
+        except:
+            print('sent email error!')
+
 def AddOrReplyMsg(request):
     # page = int(request.GET.get(page))
     articleId = int(request.GET.get('articleId'))
@@ -503,14 +532,18 @@ def AddOrReplyMsg(request):
     replyToName = request.GET.get('replyToName')
 
     # 邮件发送
-    try:
-        send_mail(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)], fail_silently=False)
-    except:
-        print('resend...')
-        try:
-            send_mail(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)], fail_silently=False)
-        except:
-            print('sent email error!')
+    # sendEmailReply(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)])
+    t = threading.Thread(name="ReplyThread", target=sendEmailReply, args=(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)],))
+    t.start()
+
+    # try:
+    #     send_mail(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)], fail_silently=False)
+    # except:
+    #     print('resend...')
+    #     try:
+    #         send_mail(EMAIL_SUBJECT, getMsgEmailBodyByArticleId(articleId), MY_EMAIL_ADDR, [getEmailByUserName(replyToName)], fail_silently=False)
+    #     except:
+    #         print('sent email error!')
 
     content = request.GET.get('content')
     writeLoggerData(request, "AddOrReplyMsg: " + str(articleId) + \

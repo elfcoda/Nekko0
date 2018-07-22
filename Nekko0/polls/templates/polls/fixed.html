@@ -171,12 +171,11 @@
         }
     }
 
-    function keyEventFun(){
-        alert(1);
-    }
-
-    window.onload = function(){
-        window.onkeydown = keyEventFun;
+    function keyDownFunc(event){
+        if (event.keyCode == 13)
+        {
+            sendDM();
+        }
     }
 </script>
 
@@ -194,7 +193,7 @@
   </div>
   <div class="dm-content" id="dm-content">
       <div class="form-group" id="dm-text">
-          <input id="dm-input-content" type="text" class="my-form-control" maxlength="50" placeholder="装填弹幕！发射！">
+          <input id="dm-input-content" type="text" class="my-form-control" maxlength="50" placeholder="装填弹幕！发射！" onkeydown="keyDownFunc(event)">
           </input>
       </div>
   </div>

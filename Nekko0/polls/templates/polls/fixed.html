@@ -170,6 +170,14 @@
             window.scrollTo(0, curScroll - (curScroll/5));
         }
     }
+
+    function keyEventFun(){
+        alert(1);
+    }
+
+    window.onload = function(){
+        window.onkeydown = keyEventFun;
+    }
 </script>
 
 <div class="top fixed-font-style" id="totop" onclick="smoothscroll()">

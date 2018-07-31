@@ -67,7 +67,7 @@ def writeLoggerData(request, cusData):
     s += (str(cusData) + '| ')
     s += request.META['HTTP_USER_AGENT']
 
-    s += "\n"
+    s += "\n<br>"
 
     logger.info(s)
 

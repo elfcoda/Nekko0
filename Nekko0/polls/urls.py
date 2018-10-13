@@ -8,7 +8,7 @@ from .views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     RegisterView, LoginView, Logout, MsgBoardListView,  UploadAvatar, \
     UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
     NewIndexView, ResumeView, TestView, SendDM, LimeMeOp, CodeListView, \
-    CodeDetailView, AnotherWorldView, DonateView, NoneView, LogView, HelloWorldView
+    CodeDetailView, AnotherWorldView, DonateView, NoneView, LogView, HelloWorldView, FriendsView
 
 app_name = 'polls'
 urlpatterns = [
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^none$', views.NoneView.as_view(), name='ft-none'),
     url(r'^log$', views.LogView.as_view(), name='log'),
     url(r'^resume$', views.ResumeView.as_view(), name='resume'),
+    url(r'^friends$', views.FriendsView.as_view(), name='friends'),
     url(r'^hi$', views.HelloWorldView.as_view(), name='hw'),
     url(r'^$', views.NewIndexView.as_view(), name='index'),
     url(r'^index$', views.ArticleListView.as_view(), name='blog_index'),

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+        {% load static %}
+        <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/friends.css' %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_rvuh56m3s1m26gvi.js">
+        </script>
+        <script language="Javascript">
+            function showTime(){
+                var nowStamp = (Date.parse(new Date()) / 1000) - 1499616000;
+                var days = parseInt(nowStamp / 86400);
+                nowStamp = nowStamp % 86400;
+                var hours = parseInt(nowStamp / 3600);
+                nowStamp = nowStamp % 3600;
+                var mins = parseInt(nowStamp / 60);
+                var secs = nowStamp % 60;
+                if (secs < 10)
+                {
+                    secs = "0" + secs;
+                }
+                document.getElementById("passed").innerHTML = days + "天" + hours + "时" + mins + "分" + secs + "秒";
+                setTimeout("showTime()", 1000);
+            }
+        </script>
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+        </style>
+        {% include 'polls/title_info.html' %}
+    </head>
+    <body class="body-img-resume">
+    {% include 'polls/nav.html' %}
+
+        <div class="outer-align-main">
+          <div class="main">
+              <div class="context-donate-page">
+                  <div class="donate-leave-margin"></div>
+                  <article id="post-1002-2" class="context-article-origin">
+                      <div class="art">
+                              <div class="donate-qgwl-head">
+                                  <div class="donate-bilibili">
+                                      <img class="donate-bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
+                                  </div>
+                                  <div class="donate-head-desc">
+                                    充电说明：<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为服务器提供计算资源<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为主人购买酸奶和食物<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用于为主人购买手办<br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;众筹买辆兰博基尼(?)
+                                  </div>
+                              </div>
+                      </div>
+                  </article>
+              </div>
+          </div>
+        </div>
+
+    <!--
+        {% include 'polls/footer.html' %}
+    -->
+    </body>
+</html>

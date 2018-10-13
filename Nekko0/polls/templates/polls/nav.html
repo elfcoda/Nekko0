@@ -68,12 +68,24 @@
                     </svg>
                     异次元世界
                     </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:friends' %}"><nobr>
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-jiqixuexi"></use>
                     </svg>
                     <!-- 日常 -->
-                    とある神秘の程序猿
+                    友链
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-musicnote"></use>
+                    </svg>
+                    心情
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-musicnote"></use>
+                    </svg>
+                    计划
                     </nobr></a></li>
                     <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
                     {% if request.session.userId %}

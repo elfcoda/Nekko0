@@ -245,6 +245,13 @@ class ResumeView(DetailView):
         writeLoggerData(self.request, "Resume")
         return None
 
+class FriendsView(DetailView):
+    template_name = 'polls/friends.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "Friends")
+        return None
+
 
 class ArticleDetailViewOld(DetailView):
     template_name = 'polls/article_detail_old.html'

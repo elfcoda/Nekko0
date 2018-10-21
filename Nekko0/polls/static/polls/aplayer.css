@@ -72,6 +72,7 @@
   color: white;
   position: fixed;
   left: 475px;
+  bottom: 256px;
   bottom: 124px;
   z-index: -1;
   opacity: 0;

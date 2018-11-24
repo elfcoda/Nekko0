@@ -11,6 +11,8 @@
         <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
         <script src="{% static 'polls/prism/prism.js' %}"></script>
+        <link href="{% static 'polls/node_modules/dplayer/dist/DPlayer.min.css' %}" rel="stylesheet" />
+        <script src="{% static 'polls/node_modules/dplayer/dist/DPlayer.min.js' %}"></script>
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
 
@@ -28,6 +30,19 @@
         </style>
 
         <script type="text/javascript">
+            // cry
+            function loadDP(dpName){
+                const dp = new DPlayer({
+                    container: document.getElementById(dpName),
+                    screenshot: true,
+                    video: {
+                        url: '/static/polls/Resource/movie/' + dpName + '.mp4',
+                        pic: '/static/polls/Resource/movie/' + dpName + '.jpg'
+                    }
+                });
+            }
+
+
             function footerPositionNew(){
                 $("#footer-outer").removeClass("fixed-bottom");
                 var contentHeight = document.body.scrollHeight,//网页正文全文高度
@@ -189,6 +204,7 @@
                     }
                 }
                 likemeGet();
+                loadDP('cry' + article_id);
             }
 
             function reply(comment_id, reply_id){

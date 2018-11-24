@@ -87,3 +87,175 @@
   margin-bottom: 15px;
 }
 
+.a-link {
+  text-decoration: none;
+  color: #F08080;
+  transition:color 0.5s;
+}
+
+.a-link:hover {
+  text-decoration: none;
+  color: red;
+}
+
+.dp-div {
+    width: 100%;
+    height: 100%;
+}
+
+/*
+ * color style
+ * http://www.runoob.com/cssref/css-colornames.html
+ * */
+.clr-red {
+    color: red;
+}
+
+.clr-green {
+    color: green;
+}
+
+.clr-blue {
+    color: blue;
+}
+
+.clr-orange {
+    color: orange;
+}
+
+.clr-purple {
+    color: purple;
+}
+
+.clr-Coral  {
+    color: coral;
+}
+
+.clr-Crimson {
+    color: Crimson;
+}
+
+.clr-Chartreuse {
+    color: Chartreuse;
+}
+
+.clr-BlueViolet {
+    color: BlueViolet;
+}
+
+.clr-Chocolate {
+    color: Chocolate;
+}
+
+
+.clr-DarkMagenta {
+    color: DarkMagenta;
+}
+
+
+.clr-DarkOrchid {
+    color: DarkOrchid;
+}
+
+
+.clr-DarkRed {
+    color: DarkRed;
+}
+
+.clr-DarkTurquoise {
+    color: DarkTurquoise;
+}
+
+.clr-DeepPink {
+    color: DeepPink;
+}
+.clr-Gold {
+    color: Gold;
+}
+.clr-GoldenRod {
+    color: GoldenRod;
+}
+.clr-Fuchsia {
+    color: Fuchsia;
+}
+.clr-GreenYellow {
+    color: GreenYellow;
+}
+.clr-HotPink {
+    color: HotPink;
+}
+.clr-Indigo {
+    color: Indigo;
+}
+.clr-LawnGreen {
+    color: LawnGreen;
+}
+.clr-LightBlue {
+    color: LightBlue;
+}
+.clr-LightCoral {
+    color: LightCoral;
+}
+.clr-LightGreen {
+    color: LightGreen;
+}
+.clr-LightSalmon  {
+    color: LightSalmon;
+}
+.clr-LightSeaGreen {
+    color: LightSeaGreen;
+}
+.clr-Lime  {
+    color: Lime;
+}
+.clr-Magenta {
+    color: Magenta;
+}
+.clr-MediumVioletRed {
+    color: MediumVioletRed;
+}
+
+.clr-MediumSpringGreen {
+    color: MediumSpringGreen;
+}
+
+.clr-MediumSlateBlue {
+    color: MediumSlateBlue;
+}
+
+.clr-OrangeRed {
+    color: OrangeRed;
+}
+
+.clr-Orchid {
+    color: Orchid;
+}
+
+.clr-PaleVioletRed {
+    color: PaleVioletRed;
+}
+
+.clr-Plum {
+    color: Plum;
+}
+
+.clr-Pink {
+    color: Pink;
+}
+
+.clr-Violet {
+    color: Violet;
+}
+
+.clr-Tomato {
+    color: Tomato;
+}
+
+.clr-YellowGreen {
+    color: YellowGreen;
+}
+/* color style end. */
+
+
+
+

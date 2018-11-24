@@ -305,7 +305,8 @@ class ArticleEditView(FormView):
         return super(ArticleEditView, self).form_valid(form)
 
     def get_success_url(self):
-        success_url = reverse('polls:article_detail', args=(self.articleId, 1))
+        # success_url = reverse('polls:article_detail', args=(self.articleId, 1))
+        success_url = reverse('polls:article_edit', args=(self.articleId))
         return success_url
 
 class RegisterView(FormView):
@@ -332,7 +333,7 @@ class RegisterView(FormView):
 
 
 class TestView(DetailView):
-    template_name = 'polls/test_code.html'
+    template_name = 'polls/test_mp4.html'
 
     def get_object(self, **kwargs):
         return None

@@ -1,3 +1,7 @@
+* {
+  cursor: url("./Resource/cursor/cursor.ico"),default;
+}
+
 .body-img-index {
   background:url("images/wall-paper/index.jpg") no-repeat fixed center;
   background-size:cover;

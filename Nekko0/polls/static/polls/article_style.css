@@ -256,6 +256,26 @@
 }
 /* color style end. */
 
+.clr-size {
+    font-size: 12px;
+}
 
+.clr-fix-bottom {
+    position: relative;
+    margin-top: 60px;
+}
+
+.dp-border {
+    border-radius: 3px;
+    padding: 3px;
+    background: white;
+}
+
+/* picture */
+.ar-pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
 
 

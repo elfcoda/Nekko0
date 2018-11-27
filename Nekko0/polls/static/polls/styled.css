@@ -9,6 +9,10 @@
 }
 */
 
+* {
+  cursor: url("./Resource/cursor/cursor.ico"),default;
+}
+
 @font-face {
   font-family: eurostile;
   src:url('Font/eurostile/Eurostile.ttf');
@@ -51,7 +55,8 @@ body {
 }
 
 .body-img-main {
-  background:url("images/wall-paper/wallhaven-539405.jpg") no-repeat fixed center;
+  /* background:url("images/wall-paper/wallhaven-539405.jpg") no-repeat fixed center; */
+  background:url("http://45.32.23.169/pic/bg/wallhaven-539405.jpg") no-repeat fixed center;
   background-size:cover;
 }
 
@@ -157,6 +162,7 @@ aside {
   margin-bottom:80px;
   margin-top:-15px;
   background:rgba(240, 240, 240, 0.75);
+  background:rgba(255, 255, 255, .92);
   border-radius:7px;
 }
 
@@ -808,6 +814,7 @@ aside {
   width: 100%;
   height:60px;
   background:rgba(240, 240, 240, 0.75);
+  background:rgba(255, 255, 255, .92);
   border-radius: 7px;
   margin-bottom: 50px;
 }

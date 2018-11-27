@@ -5,6 +5,7 @@
         <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/article_style.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
+        <script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
         <script src="{% static 'polls/prism/prism.js' %}"></script>
         <!--
         -->
@@ -164,18 +165,24 @@
                             <div class="post-title">{{ object.title }}</div>
                             <div class="post-subtitle">
                                 <nobr>
+                              <span class="clr-YellowGreen">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-date"></use>
                                     </svg>
                                     {{ object.created }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span>
+                              <span class="clr-Violet">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-ico_yueduliang"></use>
                                     </svg>
                                     {{ object.views }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span>
+                              <span class="clr-Chocolate">
                                     <svg class="icon" aria-hidden="true">
                                         <use xlink:href="#icon-user"></use>
                                     </svg>
                                     {{ object.author }}
+                              </span>
                                 </nobr>
                             </div>
 							              <div class="post-content"><div class="article-p" name="art_rep_cont">

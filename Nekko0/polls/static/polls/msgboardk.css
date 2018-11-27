@@ -1,3 +1,7 @@
+* {
+  cursor: url("./Resource/cursor/cursor.ico"),default;
+}
+
 @font-face {
   font-family:fontello;
   src:url('myfont-ello/font/fontello.eot'),

@@ -333,7 +333,7 @@ class RegisterView(FormView):
 
 
 class TestView(DetailView):
-    template_name = 'polls/test_mp4.html'
+    template_name = 'polls/test_fire.html'
 
     def get_object(self, **kwargs):
         return None
@@ -958,6 +958,18 @@ class DonateView(ListView, FormView):
         # [评论列表]
         return [ret_object_list]
 
+# class CORSMiddleware(object):
+#     # 尝试解决跨域问题
+#     def __init__(self, get_response):
+#         self.get_response = get_response
+#
+#     def __call__(self, request):
+#         response = self.get_response(request)
+#         response["Access-Control-Allow-Origin"] = "*"
+#
+#         return response
+
+
 class ArticleDetailView(ListView, FormView):
     template_name = 'polls/article_detail.html'
     form_class = MsgBoardForm
@@ -965,6 +977,7 @@ class ArticleDetailView(ListView, FormView):
     success_url = reverse_lazy('polls:article_detail',\
                                kwargs={"page":1, "articleId":articleId})
     # 如果是留言板，id必须传1001过来
+
 
     def getPrevNext(self, aId):
         try:

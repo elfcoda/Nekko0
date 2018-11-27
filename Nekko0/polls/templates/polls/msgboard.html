@@ -7,6 +7,7 @@
         -->
         {% load static %}
         <link href="{% static 'polls/msgboardk.css' %}" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
 
@@ -499,7 +500,7 @@
         {% include 'polls/nav.html' %}
 
         <!-- css可以从include里加载，但是js不行
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'polls/cdn/bootstrap.min.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         -->
 
@@ -549,7 +550,7 @@
                     <div class="art-msgboard-body">
                         请恕我直言，我是说在座的各位都是。。。有品味的人！
                     </div>
-                    <img class="art-msgboard-body-img" src="{% static 'polls/bilibili/msg.jpg' %}"></img>
+                    <img data-action="zoom" class="art-msgboard-body-img" src="{% static 'polls/bilibili/msg.jpg' %}"></img>
                 </div>
             </article>
             <div class="leave-margin-head"></div>

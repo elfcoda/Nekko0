@@ -1,8 +1,12 @@
         {% load static %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'polls/cdn/bootstrap.min.css' %}">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
         <link href="{% static 'polls/nava.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/zoom/zoom.js/css/zoom.css' %}" rel="stylesheet" type="text/css" />
+        <script src="{% static 'polls/zoom/zoom.js/js/zoom.js' %}"></script>
+        <!-- 过渡动画插件 -->
+        <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/transition.js"></script>
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_x6gwz71xl6iozuxr.js">
         </script>
         <style type="text/css">
@@ -48,7 +52,7 @@
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-code"></use>
                     </svg>
-                    源代码
+                    实验室
                     </nobr></a></li>
                     <li><a class="nav_ul-li-a-l" href="{% url 'polls:msgboard' articleId=1001 page=1 %}"><nobr>
                     <svg class="icon" aria-hidden="true">

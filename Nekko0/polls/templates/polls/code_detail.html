@@ -11,6 +11,7 @@
         <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/prism/prism.css' %}" rel="stylesheet" />
         <script src="{% static 'polls/prism/prism.js' %}"></script>
+        <script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
 
@@ -514,18 +515,24 @@
                           <div class="post-title">{{ object_list.1.title }}</div>
                           <div class="post-subtitle">
                               <nobr>
+                              <span class="clr-YellowGreen">
                               <svg class="icon" aria-hidden="true">
                                   <use xlink:href="#icon-date"></use>
                               </svg>
                               {{ object_list.1.created }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span>
+                              <span class="clr-Violet">
                               <svg class="icon" aria-hidden="true">
                                   <use xlink:href="#icon-ico_yueduliang"></use>
                               </svg>
                               {{ object_list.1.views }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              </span>
+                              <span class="clr-Chocolate">
                               <svg class="icon" aria-hidden="true">
                                   <use xlink:href="#icon-user"></use>
                               </svg>
                               {{ object_list.1.author }}
+                              </span>
                               </nobr>
                           </div>
                           <div class="post-content">
@@ -563,7 +570,7 @@
 
 
                   <!-- css可以从include里加载，但是js不行
-                  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+                      <link rel="stylesheet" href="{% static 'polls/cdn/bootstrap.min.css' %}">
                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                   -->
                   <script src="{% static 'polls/googleapis/jquery.min.js' %}"></script>

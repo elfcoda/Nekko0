@@ -1,0 +1,22 @@
+{% load static %}
+    <link href="{% static 'polls/test.css' %}" rel="stylesheet" />
+    <link href="{% static 'polls/node_modules/dplayer/dist/DPlayer.min.css' %}" rel="stylesheet" />
+    <script src="{% static 'polls/node_modules/dplayer/dist/DPlayer.min.js' %}"></script>
+
+
+
+
+    <div class="test-div">
+        <div id="dplayer"></div>
+    </div>
+    <script>
+        const dp = new DPlayer({
+            container: document.getElementById('dplayer'),
+            screenshot: true,
+            video: {
+                url: '{% static 'polls/Resource/movie/cry.mp4' %}',
+                pic: '{% static 'polls/Resource/movie/cry.jpg' %}',
+            }
+        });
+    </script>
+

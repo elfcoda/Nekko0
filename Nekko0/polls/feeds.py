@@ -5,6 +5,11 @@ from django.db.models import F
 from .models import Article
 from .views import SHOW_CONTENT_SPLIT
 
+def delCustomerTag(html):
+    html = html.replace('lt_cus', '<')
+    html = html.replace('gt_cus', '>')
+    return html
+
 class LatestEntriesFeed(Feed):
     title = "某个荒凉的小岛"
     link = "/"
@@ -21,7 +26,10 @@ class LatestEntriesFeed(Feed):
         rssShow = retHtml.split(SHOW_CONTENT_SPLIT)
         if len(rssShow) == 2:
             retHtml = rssShow[0]
-
+        retHtml = delCustomerTag(retHtml)
         return retHtml
+
+    def item_pubdate(self, item):
+        return item.created
 
 

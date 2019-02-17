@@ -413,15 +413,6 @@ def LimeMeOp(request):
         # sendEmailLike(EMAIL_SUBJECT, MY_EMAIL_ADDR, [MY_EMAIL_ADDR])
         t = threading.Thread(name="LikeThread", target=sendEmailLike, args=(EMAIL_SUBJECT, MY_EMAIL_ADDR, [MY_EMAIL_ADDR],))
         t.start()
-
-        # try:
-        #     send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
-        # except:
-        #     print('resend...')
-        #     try:
-        #         send_mail(EMAIL_SUBJECT, u'有人给你点了赞...', MY_EMAIL_ADDR, [MY_EMAIL_ADDR], fail_silently=False)
-        #     except:
-        #         print('sent email error!')
     elif likeOp == "2":
         likeCount = 0
     object_likeme = LikeMeData.objects.get(id=1)

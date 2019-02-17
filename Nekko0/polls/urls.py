@@ -4,6 +4,7 @@
 from django.conf.urls import url
 
 from . import views
+from .feeds import LatestEntriesFeed
 from .views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     RegisterView, LoginView, Logout, MsgBoardListView,  UploadAvatar, \
     UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
@@ -19,7 +20,7 @@ urlpatterns = [
     url(r'^upload-image$', UploadUserImage, name='upload-image'),
     url(r'^newAvatar$', newAvatar, name='newAvatar'),
 
-
+    url(r'^rss$', LatestEntriesFeed(), name='rss'),
     url(r'^music$', views.AnotherWorldView.as_view(), name='another_world'),
     url(r'^code/(?P<page>[0-9]+)$', views.CodeListView.as_view(), name='code'),
     url(r'^code/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', CodeDetailView.as_view(), name='code_detail'),

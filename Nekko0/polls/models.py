@@ -46,6 +46,9 @@ class Article(models.Model):
     def __str__(self):
         return self.title_zh
 
+    def get_absolute_url(self):
+        return "/article/" + str(self.id) + "/1"
+
 
 @python_2_unicode_compatible
 class Userinfo(models.Model):

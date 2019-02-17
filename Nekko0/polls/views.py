@@ -393,7 +393,8 @@ def Logout(request):
 def sendEmailLike(s_emailsubject, s_emailaddr, s_emailaddrs):
     try:
         send_mail(s_emailsubject, u'有人给你点了赞...', s_emailaddr, s_emailaddrs, fail_silently=False)
-    except:
+    except Exception as e:
+        print(e)
         print('resend...')
         try:
             send_mail(s_emailsubject, u'有人给你点了赞...', s_emailaddr, s_emailaddrs, fail_silently=False)

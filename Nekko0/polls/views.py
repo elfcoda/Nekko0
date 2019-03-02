@@ -224,6 +224,13 @@ class ArticlePublishView(FormView):
         return super(ArticlePublishView, self).form_valid(form)
 
 
+class ResourceView(DetailView):
+    template_name = 'polls/resource.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "Resource")
+        return None
+
 class AnotherWorldView(DetailView):
     template_name = 'polls/anotherworld.html'
 

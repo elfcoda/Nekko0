@@ -1,1 +1,8 @@
 # Nekko0
+
+# command in docker elfcoda/django:1.0.5 in vps
+0] start
+1] run3 &
+
+# to stop the server
+0] ps aux | grep python3 |grep runserver | awk '{print $2}' | xargs | xargs kill -9

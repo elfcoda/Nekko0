@@ -127,7 +127,8 @@ DATABASES = {
         'NAME': 'nekko',
         'USER': 'root',
         'PASSWORD': '123hac',
-        'HOST': '127.0.0.1',
+        # 'HOST': '127.0.0.1',
+        'HOST': '45.32.23.169',
     }
 }
 

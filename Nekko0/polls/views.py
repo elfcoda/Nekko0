@@ -435,7 +435,7 @@ def SendDM(request):
     try:
         avatar = request.session['avatar']
     except KeyError:
-        avatar = "/static/polls/userAvatar/default.jpg"
+        avatar = "/static/polls/userEmotion/cute_shortcut.jpg"
 
     # print(avatar)
     consumers.ws_sendDM(avatar, dmValue)

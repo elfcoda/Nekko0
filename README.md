@@ -1,6 +1,6 @@
 # Nekko0
 
-# command in docker elfcoda/django:1.0.5 in vps
+# command in docker elfcoda/django:1.0.5 on vps
 0] start
 1] run3 &
 

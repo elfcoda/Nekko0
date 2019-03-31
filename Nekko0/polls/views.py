@@ -41,7 +41,7 @@ logger = logging.getLogger('MyLog')
 logger.setLevel(logging.INFO)
 
 # fh = logging.FileHandler('/info.log')
-fh = logging.FileHandler('/root/Nekko0/nekko0/Nekko0/polls/templates/polls/log.html')
+fh = logging.FileHandler('/root/nekko/Nekko0/Nekko0/polls/templates/polls/log.html')
 fh.setLevel(logging.INFO)
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')

@@ -14,7 +14,7 @@
         <!--
         -->
 
-	<div id="stop-visit"></div>
+	<h1 id="stop-visit"></h1>
         <script type="text/javascript">
 		var os = function() {
 			var ua = navigator.userAgent,
@@ -37,7 +37,7 @@
 		if (os.isPhone || os.isAndroid)
 		{
 			var v = document.getElementById("stop-visit");
-			v.innerHTML = "please visit the page on PC browser.";
+			v.innerHTML = "各位可爱的小哥哥小姐姐们大家早上/下午/晚上好啊，其实我想说移动端已经不支持这个页面的访问啦，主要是没做好移动端的兼容所以有些地方显示会很奇怪。各位可爱的小哥哥小姐姐们都移步到PC端的浏览器吧，最好是Chrome，因为代码就是在Chrome上面测试的。(如果坚持要从这里访问的话，请联系我;-)  This page is not available on mobile client, please visit it on PC browser for better experiment. ;-)";
 			alert("为了更好的访问体验，请使用PC端浏览器哦~");
 			if (window.stop)
 				window.stop();

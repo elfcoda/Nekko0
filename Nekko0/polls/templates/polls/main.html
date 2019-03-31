@@ -13,6 +13,41 @@
         <script src="{% static 'polls/Resource/effect/firework/firework.js' %}"></script>
         <!--
         -->
+
+	<div id="stop-visit"></div>
+        <script type="text/javascript">
+		var os = function() {
+			var ua = navigator.userAgent,
+				isWindowsPhone = /(?:Windows Phone)/.test(ua),
+				isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
+				isAndroid = /(?:Android)/.test(ua),
+				isFireFox = /(?:Firefox)/.test(ua),
+				isChrome = /(?:Chrome|CriOS)/.test(ua),
+				isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua)) || (isFireFox && /(?:Tablet)/.test(ua)),
+				isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+				isPc = !isPhone && !isAndroid && !isSymbian;
+			return {
+				isTablet: isTablet,
+				isPhone: isPhone,
+				isAndroid : isAndroid,
+				isPc : isPc
+			};
+		}();
+
+		if (os.isPhone || os.isAndroid)
+		{
+			var v = document.getElementById("stop-visit");
+			v.innerHTML = "please visit the page on PC browser.";
+			alert("为了更好的访问体验，请使用PC端浏览器哦~");
+			if (window.stop)
+				window.stop();
+			else
+				document.execCommand("Stop");
+		}
+        </script>
+
+
+
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
         <style type="text/css">

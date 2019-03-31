@@ -879,6 +879,13 @@ aside {
   float:left;
 }
 
+.footer-blank-mobile {
+  height: 420px;
+  height: 220px;
+  width: 100%;
+  float:left;
+}
+
 .footer-blank-less {
   height: 0px;
   width: 100%;

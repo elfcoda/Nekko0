@@ -11,6 +11,10 @@
 	    if (os.isPhone || os.isAndroid)
 	    {
 	        alert("为了更好的访问体验，请使用PC端浏览器哦~");
+		if (window.stop)
+		    window.stop();
+		else
+		    document.execCommand("Stop");
 		// var v = document.getElementById("ft-front-blank");
 		// v.setAttribute("display", "none");
 	    }

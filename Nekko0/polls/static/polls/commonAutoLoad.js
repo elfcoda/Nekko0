@@ -19,3 +19,16 @@ var os = function() {
           isPc : isPc
      };
 }();
+
+function stopVisit() {
+    if (os.isPhone || os.isAndroid)
+    {
+	    var v = document.getElementById("stop-visit");
+            v.innerHTML = "please visit the page on PC browser.";
+	    alert("为了更好的访问体验，请使用PC端浏览器哦~");
+	    if (window.stop)
+	        window.stop();
+	    else
+	        document.execCommand("Stop");
+    }
+}

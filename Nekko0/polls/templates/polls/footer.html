@@ -5,6 +5,17 @@
         <link href="{% static 'polls/footer2.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/comm/comm.css' %}" rel="stylesheet" type="text/css" />
         <script src="{% static 'polls/comm/comm.js' %}"></script>
+        <script src="{% static 'polls/commonAutoLoad.js' %}"></script>
+
+        <script language="Javascript">
+	    if (os.isPhone || os.isAndroid)
+	    {
+	        alert("为了更好的访问体验，请使用PC端浏览器哦~");
+		// var v = document.getElementById("ft-front-blank");
+		// v.setAttribute("display", "none");
+	    }
+	</script>
+
         <script language="Javascript">
             function showTime(){
                 var nowStamp = (Date.parse(new Date()) / 1000) - 1522040940;
@@ -23,6 +34,10 @@
             }
         </script>
         <div class="footer-outer" id="footer-outer">
+	    <!--
+	    <div id="ft-front-blank" class="ft-front-blank">
+	    </div>
+	    -->
             <footer class="ft-style" id="ft-style">
                 <div class="leave-margin-top"></div>
                 <div class="ft-center ft-fontclr-nor">
@@ -47,4 +62,5 @@
                 <div class="leave-margin-bottom"></div>
             </footer>
         </div>
+
 

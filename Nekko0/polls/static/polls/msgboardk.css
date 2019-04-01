@@ -274,6 +274,7 @@
   text-decoration: none;
   transition: background-color .3s;
   border: 1px solid #ddd;
+  border: 1px solid #ff8080;
   width:42px;
   height:42px;
   text-align:center;

@@ -640,6 +640,36 @@ def UploadUserImage(request):
         ret_json = {'result': '图像已提交到数据中心！'}
         return JsonResponse(ret_json)
 
+@csrf_exempt
+def UploadImageCanon(request):
+    if request.method == 'POST':
+        base64_img = request.POST.get('image').split(',', 1)[1]
+        img = base64.b64decode(base64_img)
+        avatar_path_head = "/root/Nekko0/nekko0/Nekko0/polls/static/polls/ImageCanon/"
+        curTime = datetime.datetime.now()
+        image_path = avatar_path_head + str(curTime.year) + "_" + str(curTime.month) + "_" + str(curTime.day) + "_" \
+                     + str(curTime.hour) + "_" + str(curTime.minute) + "_" + str(curTime.second) + ".jpeg"
+        with open(image_path, 'wb+') as dst:
+            dst.write(img)
+
+        ret_json = {'result': image_path}
+        return JsonResponse(ret_json)
+
+@csrf_exempt
+def UploadImageCanonOSAKA(request):
+    if request.method == 'POST':
+        base64_img = request.POST.get('image').split(',', 1)[1]
+        img = base64.b64decode(base64_img)
+        avatar_path_head = "/root/Nekko0/nekko0/Nekko0/polls/static/polls/ImageCanonOSAKA/"
+        curTime = datetime.datetime.now()
+        image_path = avatar_path_head + str(curTime.year) + "_" + str(curTime.month) + "_" + str(curTime.day) + "_" \
+                     + str(curTime.hour) + "_" + str(curTime.minute) + "_" + str(curTime.second) + ".jpeg"
+        with open(image_path, 'wb+') as dst:
+            dst.write(img)
+
+        ret_json = {'result': image_path}
+        return JsonResponse(ret_json)
+
 def UploadAvatar(request):
     # print request.POST.get('x')
     # print request.POST.get('y')

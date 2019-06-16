@@ -10,7 +10,7 @@ from .views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
     NewIndexView, ResumeView, TestView, SendDM, LimeMeOp, CodeListView, \
     CodeDetailView, AnotherWorldView, DonateView, NoneView, LogView, HelloWorldView, FriendsView, \
-    ResourceView, UploadImg
+    ResourceView, UploadImg, UploadImageCanon
 
 app_name = 'polls'
 urlpatterns = [
@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^logout/$', Logout, name='logout'),
     url(r'^upload-avatar$', UploadAvatar, name='upload-avatar'),
     url(r'^upload-image$', UploadUserImage, name='upload-image'),
+    url(r'^upload-image-canon$', UploadImageCanon, name='upload-image-canon'),
     url(r'^newAvatar$', newAvatar, name='newAvatar'),
     url(r'^upimg$', UploadImg, name='upimg'),
 

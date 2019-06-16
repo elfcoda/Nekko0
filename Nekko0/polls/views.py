@@ -649,11 +649,10 @@ def UploadImageCanon(request):
         avatar_path_head = "/root/nekko/Nekko0/Nekko0/polls/static/polls/ImageCanon/"
         curTime = datetime.datetime.now()
         image_path = avatar_path_head + str(curTime.year) + "_" + str(curTime.month) + "_" + str(curTime.day) + "_" \
-                     + str(curTime.hour) + "_" + str(curTime.minute) + "_" + str(curTime.second) + ".jpg"
+                     + str(curTime.hour) + "_" + str(curTime.minute) + "_" + str(curTime.second) + ".jpeg"
         with open(image_path, 'wb+') as dst:
             dst.write(img)
 
-        print(image_path)
         ret_json = {'result': image_path}
         return JsonResponse(ret_json)
 

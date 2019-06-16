@@ -612,6 +612,10 @@ def newAvatar(request):
     context = {}
     return render(request, "polls/avatar.html", context)
 
+def UploadImage(request):
+    context = {}
+    return render(request, "polls/upimg.html", context);
+
 @csrf_exempt
 def UploadUserImage(request):
     if request.method == 'POST':

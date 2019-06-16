@@ -9,7 +9,8 @@ from .views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     RegisterView, LoginView, Logout, MsgBoardListView,  UploadAvatar, \
     UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
     NewIndexView, ResumeView, TestView, SendDM, LimeMeOp, CodeListView, \
-    CodeDetailView, AnotherWorldView, DonateView, NoneView, LogView, HelloWorldView, FriendsView, ResourceView
+    CodeDetailView, AnotherWorldView, DonateView, NoneView, LogView, HelloWorldView, FriendsView, \
+    ResourceView, UploadImg
 
 app_name = 'polls'
 urlpatterns = [
@@ -19,6 +20,7 @@ urlpatterns = [
     url(r'^upload-avatar$', UploadAvatar, name='upload-avatar'),
     url(r'^upload-image$', UploadUserImage, name='upload-image'),
     url(r'^newAvatar$', newAvatar, name='newAvatar'),
+    url(r'^upimg$', UploadImg, name='upimg'),
 
     url(r'^resource$', views.ResourceView.as_view(), name='resource'),    # static/download_resource
     url(r'^rss$', LatestEntriesFeed(), name='rss'),

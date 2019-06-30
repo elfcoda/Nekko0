@@ -11,8 +11,43 @@
         <script src="{% static 'polls/node_modules/dplayer/dist/DPlayer.min.js' %}"></script>
         <link href="{% static 'polls/Resource/effect/firework/firework.css' %}" rel="stylesheet" />
         <script src="{% static 'polls/Resource/effect/firework/firework.js' %}"></script>
+
+
         <!--
+	<h1 id="stop-visit"></h1>
+        <script type="text/javascript">
+		var os = function() {
+			var ua = navigator.userAgent,
+				isWindowsPhone = /(?:Windows Phone)/.test(ua),
+				isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
+				isAndroid = /(?:Android)/.test(ua),
+				isFireFox = /(?:Firefox)/.test(ua),
+				isChrome = /(?:Chrome|CriOS)/.test(ua),
+				isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua)) || (isFireFox && /(?:Tablet)/.test(ua)),
+				isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+				isPc = !isPhone && !isAndroid && !isSymbian;
+			return {
+				isTablet: isTablet,
+				isPhone: isPhone,
+				isAndroid : isAndroid,
+				isPc : isPc
+			};
+		}();
+
+		if (os.isPhone || os.isAndroid)
+		{
+			var v = document.getElementById("footer-blank");
+			v.innerHTML = "各位可爱的小哥哥小姐姐们大家早上/下午/晚上好啊，其实我想说移动端已经不支持这个页面的访问啦，主要是没做好移动端的兼容所以有些地方显示会很奇怪。各位可爱的小哥哥小姐姐们都移步到PC端的浏览器吧，最好是Chrome，因为代码就是在Chrome上面测试的。(如果坚持要从这里访问的话，请联系我;-)  This page is not available on mobile client, please visit it on PC browser for better experiment. ;-)";
+			alert("为了更好的访问体验，请使用PC端浏览器哦~");
+			if (window.stop)
+				window.stop();
+			else
+				document.execCommand("Stop");
+		}
+        </script>
         -->
+
+
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
         <style type="text/css">
@@ -22,6 +57,12 @@
                 fill: currentColor;
                 overflow: hidden;
             }
+	    .footer-blank-mobile {
+		    height: 420px;
+		    height: 120px;
+		    width: 100%;
+		    float: left;
+	    }
         </style>
 
         <script type="text/javascript">
@@ -163,7 +204,7 @@
                     </div>
                     <div class="kernal-status-describe">节点状态: 正常</div>
                 </div>
-                <div class="kernal-status-introduce">94年魔法少年///..萌死我了好吧///好笨的一个人，笨蛋！</div>
+                <div class="kernal-status-introduce">永远亭魔法研究所///..萌死我了好吧///好笨的一个人，笨蛋！</div>
             </div>
         </div>
 
@@ -250,8 +291,33 @@
                 {% include 'polls/aside.html' %}
             </div>
         </div>
-            <div class="footer-blank"></div>
+            <div class="footer-blank" id="footer-blank"></div>
             {% include 'polls/footer.html' %}
             {% include 'polls/fixed.html' %}
     </body>
+    <script type="text/javascript">
+	    var os = function() {
+		    var ua = navigator.userAgent,
+			    isWindowsPhone = /(?:Windows Phone)/.test(ua),
+			    isSymbian = /(?:SymbianOS)/.test(ua) || isWindowsPhone,
+			    isAndroid = /(?:Android)/.test(ua),
+			    isFireFox = /(?:Firefox)/.test(ua),
+			    isChrome = /(?:Chrome|CriOS)/.test(ua),
+			    isTablet = /(?:iPad|PlayBook)/.test(ua) || (isAndroid && !/(?:Mobile)/.test(ua)) || (isFireFox && /(?:Tablet)/.test(ua)),
+			    isPhone = /(?:iPhone)/.test(ua) && !isTablet,
+			    isPc = !isPhone && !isAndroid && !isSymbian;
+		    return {
+			    isTablet: isTablet,
+			    isPhone: isPhone,
+			    isAndroid : isAndroid,
+			    isPc : isPc
+		    };
+	    }();
+
+    if (os.isPhone || os.isAndroid)
+    {
+    	var v = document.getElementById("footer-blank");
+	v.setAttribute('class', 'footer-blank-mobile');
+    }
+    </script>
 </html>

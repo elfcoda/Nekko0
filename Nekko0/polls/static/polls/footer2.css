@@ -14,6 +14,12 @@
   height:auto;
 }
 
+.ft-front-blank {
+  width: 100%;
+  height: 120px;
+  background: red;
+}
+
 .ft-center {
   text-align:center;
 }

@@ -41,7 +41,7 @@ logger = logging.getLogger('MyLog')
 logger.setLevel(logging.INFO)
 
 # fh = logging.FileHandler('/info.log')
-fh = logging.FileHandler('/root/Nekko0/nekko0/Nekko0/polls/templates/polls/log.html')
+fh = logging.FileHandler('/root/nekko/Nekko0/Nekko0/polls/templates/polls/log.html')
 fh.setLevel(logging.INFO)
 
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -435,7 +435,7 @@ def SendDM(request):
     try:
         avatar = request.session['avatar']
     except KeyError:
-        avatar = "/static/polls/userAvatar/default.jpg"
+        avatar = "/static/polls/userEmotion/cute_shortcut.jpg"
 
     # print(avatar)
     consumers.ws_sendDM(avatar, dmValue)
@@ -612,6 +612,10 @@ def newAvatar(request):
     context = {}
     return render(request, "polls/avatar.html", context)
 
+def UploadImg(request):
+    context = {}
+    return render(request, "polls/upimg.html", context)
+
 @csrf_exempt
 def UploadUserImage(request):
     if request.method == 'POST':
@@ -634,6 +638,38 @@ def UploadUserImage(request):
         set_ava_user.save()
         request.session['avatar'] = "/static/polls/userAvatar/" + userId + ".png"
         ret_json = {'result': '图像已提交到数据中心！'}
+        return JsonResponse(ret_json)
+
+@csrf_exempt
+def UploadImageCanon(request):
+    if request.method == 'POST':
+        base64_img = request.POST.get('image').split(',', 1)[1]
+        img = base64.b64decode(base64_img)
+        # avatar_path_head = "/root/Nekko0/nekko0/Nekko0/polls/static/polls/ImageCanon/"
+        avatar_path_head = "/root/nekko/Nekko0/Nekko0/polls/static/polls/ImageCanon/"
+        curTime = datetime.datetime.now()
+        image_path = avatar_path_head + str(curTime.year) + "_" + str(curTime.month) + "_" + str(curTime.day) + "_" \
+                     + str(curTime.hour) + "_" + str(curTime.minute) + "_" + str(curTime.second) + ".jpeg"
+        with open(image_path, 'wb+') as dst:
+            dst.write(img)
+
+        ret_json = {'result': image_path}
+        return JsonResponse(ret_json)
+
+@csrf_exempt
+def UploadImageCanonOSAKA(request):
+    if request.method == 'POST':
+        base64_img = request.POST.get('image').split(',', 1)[1]
+        img = base64.b64decode(base64_img)
+        # avatar_path_head = "/root/Nekko0/nekko0/Nekko0/polls/static/polls/ImageCanonOSAKA/"
+        avatar_path_head = "/root/nekko/Nekko0/Nekko0/polls/static/polls/ImageCanonOSAKA/"
+        curTime = datetime.datetime.now()
+        image_path = avatar_path_head + str(curTime.year) + "_" + str(curTime.month) + "_" + str(curTime.day) + "_" \
+                     + str(curTime.hour) + "_" + str(curTime.minute) + "_" + str(curTime.second) + ".jpeg"
+        with open(image_path, 'wb+') as dst:
+            dst.write(img)
+
+        ret_json = {'result': image_path}
         return JsonResponse(ret_json)
 
 def UploadAvatar(request):

@@ -56,7 +56,7 @@ body {
 
 .body-img-main {
   /* background:url("images/wall-paper/wallhaven-539405.jpg") no-repeat fixed center; */
-  background:url("http://45.32.23.169:8000/pic/bg/wallhaven-539405.jpg") no-repeat fixed center;
+  background:url("http://45.32.23.169/static/polls/images/wall-paper/reimu.png") no-repeat fixed center;
   background-size:cover;
 }
 
@@ -877,6 +877,13 @@ aside {
   height: 45px;
   width: 100%;
   float:left;
+}
+
+.footer-blank-mobile {
+  height: 420px;
+  height: 320px;
+  width: 100%;
+  float: left;
 }
 
 .footer-blank-less {

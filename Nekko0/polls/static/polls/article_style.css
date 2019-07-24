@@ -299,3 +299,13 @@
     background: rgba(50, 50, 50, 1);
     color: rgba(250, 250, 250, 1);
 }
+
+.del-s-pink {
+    background: rgba(255, 128, 128, 1);
+    color: rgba(255, 128, 128, 1);
+}
+
+.del-s-pink:hover {
+    background: rgba(255, 128, 128, 1);
+    color: rgba(255, 255, 255, 1);
+}

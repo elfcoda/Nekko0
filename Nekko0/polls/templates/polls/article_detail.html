@@ -30,9 +30,41 @@
             .color-red {
                 color: red;
             }
+	    .as-img-60
+            {
+                width: 60%;
+                border-radius: 7px;
+                border: 5px solid white;
+                display: block;
+                position: relative;
+                left: 20%;
+                margin-top: 15px;
+                margin-bottom: 15px;
+	    }
+	    .as-img-40
+            {
+                width: 40%;
+                border-radius: 7px;
+                border: 5px solid white;
+                display: block;
+                position: relative;
+                left: 30%;
+                margin-top: 15px;
+                margin-bottom: 15px;
+	    }
         </style>
 
         <script type="text/javascript">
+	    function poorN()
+            {
+                document.getElementById("poorN").setAttribute('class', '');
+		document.getElementById("ifurpoor").setAttribute('class', 'text-hide-ar');
+	    }
+	    function poorY()
+            {
+                document.getElementById("poorY").setAttribute('class', '');
+		document.getElementById("ifurpoor").setAttribute('class', 'text-hide-ar');
+	    }
             // cry
             function loadDP(dpName){
                 for (var i = 1; i <= 5; ++i)
@@ -92,6 +124,10 @@
                 //将文章内容中的格式标签替换
                 var e_art_rep_cont = document.getElementById("art_rep_cont");
                 resetValue(e_art_rep_cont);
+                //将文章标题中的格式标签替换
+                var e_art_rep_cont_title = document.getElementById("art_rep_cont_title");
+                resetValue(e_art_rep_cont_title);
+
                 Prism.highlightAll();
 
                 //设置评论内容的标签转化
@@ -533,7 +569,7 @@
                           </div>
                       </div>
                       <div class="art">
-                          <div class="post-title">{{ object_list.1.title }}</div>
+                          <div class="post-title" id="art_rep_cont_title">{{ object_list.1.title }}</div>
                           <div class="post-subtitle">
                               <nobr>
                               <span class="clr-YellowGreen">

@@ -175,7 +175,7 @@ class ArticleListView(ListView):
 
     def get_queryset(self, **kwargs):
         object_list = Article.objects.all().order_by(F('created').desc())
-        paginator = Paginator(object_list, 3)
+        paginator = Paginator(object_list, 7)
         page = self.kwargs.get('page')
         if page is None:
             page = 1

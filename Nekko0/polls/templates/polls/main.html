@@ -12,6 +12,10 @@
         <link href="{% static 'polls/Resource/effect/firework/firework.css' %}" rel="stylesheet" />
         <script src="{% static 'polls/Resource/effect/firework/firework.js' %}"></script>
 
+	<link rel="stylesheet" href="{% static 'polls/node_modules/aplayer/dist/APlayer.min.css' %}">
+	<link rel="stylesheet" href="{% static 'polls/aplayer.css' %}">
+	<script src="{% static 'polls/node_modules/aplayer/dist/APlayer.min.js' %}"></script>
+
 
         <!--
 	<h1 id="stop-visit"></h1>
@@ -243,6 +247,31 @@
                 }
                 //sidepoes[0].style.color = "#888";
                 likemeGet();
+
+                const ap = new APlayer({
+                	container: document.getElementById('cry24_1'),
+                	mini: false,
+                	autoplay:false,
+                	theme: '#FADFA3',
+                	loop: 'all',
+                	order: 'random',
+                	preload: 'auto',
+                	volume: 0.7,
+                	mutex: false,
+                	listFolded: true,
+                	listMaxHeight: '98px',
+                	lrcType: 3,
+                	audio: [
+                		{
+                			name: 'Somewhere',
+                			artist: 'July',
+                			url: "{% static 'polls/anotherworld_music/somewhere.mp3' %}",
+                			cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+                			theme: '#FC709C',
+                			lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+                		}
+                	]
+                });
             }
         </script>
         {% include 'polls/title_info.html' %}

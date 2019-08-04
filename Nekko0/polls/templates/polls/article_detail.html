@@ -19,6 +19,10 @@
         <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_qihrql69j0v0a4i.js">
         </script>
 
+	<link rel="stylesheet" href="{% static 'polls/node_modules/aplayer/dist/APlayer.min.css' %}">
+	<link rel="stylesheet" href="{% static 'polls/aplayer.css' %}">
+	<script src="{% static 'polls/node_modules/aplayer/dist/APlayer.min.js' %}"></script>
+
         <style type="text/css">
             .icon {
                 width: 1em; height: 1em;
@@ -271,6 +275,31 @@
                 }
                 likemeGet();
                 loadDP('cry' + article_id);
+
+                const ap = new APlayer({
+                	container: document.getElementById('cry24_1'),
+                	mini: true,
+                	autoplay: false,
+                	theme: '#FADFA3',
+                	loop: 'all',
+                	order: 'random',
+                	preload: 'auto',
+                	volume: 0.7,
+                	mutex: true,
+                	listFolded: true,
+                	listMaxHeight: '98px',
+                	lrcType: 3,
+                	audio: [
+                		{
+                			name: 'Somewhere',
+                			artist: 'July',
+                			url: "{% static 'polls/anotherworld_music/somewhere.mp3' %}",
+                			cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+                			theme: '#FC709C',
+                			lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
+                		}
+                	]
+                });
             }
 
             function reply(comment_id, reply_id){

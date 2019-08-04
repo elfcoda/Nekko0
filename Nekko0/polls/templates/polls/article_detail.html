@@ -278,28 +278,26 @@
 
                 const ap = new APlayer({
                 	container: document.getElementById('cry24_1'),
-                	mini: true,
-                	autoplay: false,
+                	mini: false,
+                	autoplay:false,
                 	theme: '#FADFA3',
                 	loop: 'all',
                 	order: 'random',
                 	preload: 'auto',
                 	volume: 0.7,
-                	mutex: true,
+                	mutex: false,
                 	listFolded: true,
                 	listMaxHeight: '98px',
                 	lrcType: 3,
                 	audio: [
                 		{
-                			name: 'Somewhere',
-                			artist: 'July',
-                			url: "{% static 'polls/anotherworld_music/somewhere.mp3' %}",
-                			cover: "{% static 'polls/node_modules/resource/cover/abmusic.jpg' %}",
+                			name: '勾指起誓',
+                			artist: 'xxx',
                 			theme: '#FC709C',
-                			lrc: "{% static 'polls/node_modules/resource/lrc/abmusic.lrc' %}"
                 		}
                 	]
                 });
+
             }
 
             function reply(comment_id, reply_id){

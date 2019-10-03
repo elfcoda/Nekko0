@@ -309,12 +309,15 @@
                                 <div class="article-mon">{{ object.cr_mon }} MON</div>
                                 <div class="article-day">{{ object.cr_day }}</div>
                             </div>
+			    {% ifnotequal object.title '00000' %}
                             <div class="article-side-decorate-div-outer">
                                 <div class="tags-font">{{ object.tags.0 }}</div>
                                 <div class="article-side-decorate-div"></div>
                             </div>
+			    {% endifnotequal %}
                         </div>
                         <div class="art">
+			    {% ifnotequal object.title '00000' %}
                             <div class="post-title" name="art_rep_cont_title">{{ object.title }}</div>
                             <div class="post-subtitle">
                                 <nobr>
@@ -338,9 +341,11 @@
                               </span>
                                 </nobr>
                             </div>
-							<div class="post-content"><div class="article-p" name="art_rep_cont">
+			    {% endifnotequal %}
+			    <div class="post-content"><div class="article-p" name="art_rep_cont">
                                     {{ object.content_html }}
                             </div></div>
+			    	{% ifnotequal object.title '00000' %}
                                 <div class="post-readmore">
                                     <a class="readmore" href="{% url 'polls:article_detail' articleId=object.id page=1 %}">阅读更多
                                     <svg class="icon shuangyou" aria-hidden="true">
@@ -348,6 +353,7 @@
                                     </svg>
                                     </a>
                                 </div>
+				{% endifnotequal %}
                         </div>
                     </article>
                     <!-- one article end -->

@@ -39,7 +39,7 @@
           <div class="resume-header resume-br-radius">
             <a href="{% url 'polls:index' %}" target="_blank">
               <div class="resume-avatar">
-                <img class="resume-avatar-img" src="{% static 'polls/userAvatar/vx_avatar.jpg' %}" />
+                <img class="resume-avatar-img" src="{% static 'polls/userAvatar/marisa.jpeg' %}" />
               </div>
             </a>
             <div class="resume-resume-text">RESUME</div>

@@ -128,7 +128,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '123hac',
         # 'HOST': '127.0.0.1',
-        'HOST': '108.160.128.166',
+        'HOST': '139.180.129.20',
     }
 }
 
@@ -180,5 +180,6 @@ EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = '707935952@qq.com'
-EMAIL_HOST_PASSWORD = 'icuuihrumivcbccj'
+# EMAIL_HOST_PASSWORD = 'icuuihrumivcbccj'
+EMAIL_HOST_PASSWORD = 'tkquhiaggzrjbdia'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

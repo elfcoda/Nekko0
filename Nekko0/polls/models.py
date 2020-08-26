@@ -98,4 +98,11 @@ class LikeMeData(models.Model):
     def __str__(self):
         return self.LikeMeCount
 
+@python_2_unicode_compatible
+class hhvData(models.Model):
+    start = models.IntegerField()
+    date = models.IntegerField()
+
+    def __str__(self):
+        return  self.date
 

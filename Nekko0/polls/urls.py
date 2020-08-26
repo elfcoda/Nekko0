@@ -10,7 +10,7 @@ from .views import ArticlePublishView, ArticleDetailView, ArticleEditView, \
     UploadUserImage, MsgLike, DeleteMsg, AddOrReplyMsg, newAvatar, \
     NewIndexView, ResumeView, TestView, SendDM, LimeMeOp, CodeListView, \
     CodeDetailView, AnotherWorldView, DonateView, NoneView, LogView, HelloWorldView, FriendsView, \
-    ResourceView, UploadImg, UploadImageCanon
+    ResourceView, UploadImg, UploadImageCanon, HHV
 
 app_name = 'polls'
 urlpatterns = [
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^code/(?P<page>[0-9]+)$', views.CodeListView.as_view(), name='code'),
     url(r'^code/(?P<articleId>[0-9]+)/(?P<page>[0-9]+)$', CodeDetailView.as_view(), name='code_detail'),
     url(r'^test$', views.TestView.as_view(), name='test'),
+    url(r'^hhv$', views.HHV.as_view(), name='hhv'),
     url(r'^none$', views.NoneView.as_view(), name='ft-none'),
     url(r'^log$', views.LogView.as_view(), name='log'),
     url(r'^resume$', views.ResumeView.as_view(), name='resume'),

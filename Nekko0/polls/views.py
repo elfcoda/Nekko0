@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
+import time
 import pickle
 import logging
 from PIL import Image
@@ -33,7 +34,7 @@ from django.core.mail import send_mail
 
 SHOW_CONTENT_SPLIT = "#####"
 COM_POWER_RATE = 100
-EMAIL_SUBJECT = u'这里是来自http://nasaco.club/的邮件!!'
+EMAIL_SUBJECT = u'这里是来自http://eientei.moe/的邮件!!'
 MY_EMAIL_ADDR = "707935952@qq.com"
 
 # init logging
@@ -259,6 +260,14 @@ class FriendsView(DetailView):
         writeLoggerData(self.request, "Friends")
         return None
 
+class HHV(DetailView):
+    template_name = 'polls/hhw.html'
+
+    def get_object(self, **kwargs): # 352719086@qq.com
+        # t = threading.Thread(name="hhv remind", target=sendhhv, args=(EMAIL_SUBJECT, MY_EMAIL_ADDR, ["352719086@qq.com", "707935952@qq.com"],))
+        # t.start()
+        return None
+
 
 class ArticleDetailViewOld(DetailView):
     template_name = 'polls/article_detail_old.html'
@@ -395,6 +404,21 @@ def Logout(request):
 
     # messages.success(request, "logout!")
     return HttpResponseRedirect(reverse('polls:blog_index'))
+
+def sendhhv(s_emailsubject, s_emailaddr, s_emailaddrs):
+    while True:
+        time.sleep(10)
+        now = int(time.time()) % 86400
+        if now >= 57900  and now <= 57930:
+            try:
+                send_mail(s_emailsubject, u'来自可弟的提示信息：请及时填写健康码哦~', s_emailaddr, s_emailaddrs, fail_silently=False)
+            except Exception as e:
+                print(e)
+                print('resend...')
+                try:
+                    send_mail(s_emailsubject, u'来自可弟的提示信息：请及时填写健康码哦~', s_emailaddr, s_emailaddrs, fail_silently=False)
+                except:
+                    print('sent email error!')
 
 # 邮件发送
 def sendEmailLike(s_emailsubject, s_emailaddr, s_emailaddrs):

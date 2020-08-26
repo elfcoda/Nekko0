@@ -171,7 +171,7 @@
         }
     }
 
-    hbd_pre = ["祝", "祝福", "祝愿", "愿"];
+    hbd_pre = ["祝", "祝福", "愿"];
     hbd_nickname = ["小何", "何涵微", "小微微", "小薇薇", "微微", "小何~", "hhw", "Hhw", "hhv"];
     hbd_body = ["生日快乐", "生快"]; // must exist
     hbd_tail = ["呀", "哦", "哟"];
@@ -197,9 +197,9 @@
         return s_v;
     }
 
-    function happy_birthday_to_Hhw()
+    function happy_birthday_to_Hhw(cnt = 10)
     {
-	for (var idx = 0; idx < 10; idx ++) {
+	for (var idx = 0; idx < cnt; idx ++) {
 	    s_v = get_hbd_str();
             $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
         })

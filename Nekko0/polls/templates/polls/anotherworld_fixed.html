@@ -171,10 +171,32 @@
         }
     }
 
+    hbd_pre = ["祝", "祝福", "祝愿", "愿"];
+    hbd_nickname = ["小何", "何涵微", "小微微", "小薇薇", "微微", "小何~", "hhw", "Hhw", "hhv"];
+    hbd_body = ["生日快乐", "生快"]; // must exist
+    hbd_tail = ["呀", "哦", "哟"];
+    hbd_tail2 = ["!", "!!", "!!!", "!!!!", "!!!!!", "~", "~~", "~!~", "!!~", "><", "QAQ", "嘻嘻~", "哈哈哈"];
+    hbd_all = [hbd_pre, hbd_nickname, hbd_body, hbd_tail, hbd_tail2];
+    function getrandom(li)
+    {
+        var randNum = Math.floor(Math.random() * li.length);
+        return li[randNum];
+    }
+    
+    function get_hbd_str() {
+        s_v = ""
+        for (var j = 0; j < hbd_all.length; j++) {
+            if (Math.floor(Math.random() * 2) == 1) {
+                s_v += getrandom(hbd_all[j]);
+            }
+        }
+        return s_v;
+    }
+
     function happy_birthday_to_Hhw()
     {
 	for (var idx = 0; idx < 10; idx ++) {
-	    s_v = "hallo";
+	    s_v = get_hbd_str();
             $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
         })
 	}

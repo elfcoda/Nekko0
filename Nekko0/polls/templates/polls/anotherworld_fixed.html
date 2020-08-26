@@ -196,6 +196,11 @@
         }
         return s_v;
     }
+    
+    var sleep = function(time) {
+	var startTime = new Date().getTime() + parseInt(time, 10);
+	while(new Date().getTime() < startTime) {}
+    };
 
     function happy_birthday_to_Hhw(cnt = 10)
     {

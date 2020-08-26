@@ -201,6 +201,7 @@
     {
 	for (var idx = 0; idx < cnt; idx ++) {
 	    s_v = get_hbd_str();
+	    sleep(5);
             $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
         })
 	}

@@ -186,7 +186,11 @@
     function get_hbd_str() {
         s_v = ""
         for (var j = 0; j < hbd_all.length; j++) {
-            if (Math.floor(Math.random() * 2) == 1) {
+            if (hbd_all[j] != hbd_body) {
+                if (Math.floor(Math.random() * 2) == 1) {
+                    s_v += getrandom(hbd_all[j]);
+                }
+            } else {
                 s_v += getrandom(hbd_all[j]);
             }
         }

@@ -1,0 +1,259 @@
+.body-img-resume {
+  background:url("images/wall-paper/resume.jpg") no-repeat fixed center;
+  background-size:cover;
+}
+
+.donate-leave-margin {
+  height: 25px;
+}
+
+.donate-leave-margin-1 {
+  height: 10px;
+}
+
+.post-content-donate {
+  position: relative;
+  top: 98px;
+}
+
+.donate-qrcode-container {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.donate-div {
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.donate-div-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.qrcode-desc {
+  width: 200px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.wechatPay {
+  color: #639c01;
+}
+
+.aliPay {
+  color: #049bd0;
+}
+
+.bitcoin {
+  color: #ff004e;
+}
+
+.dogecoin {
+  color: #6a297d;
+}
+
+.context-article-origin {
+  width:100%;
+  min-height:10px;
+  height:auto;
+  height:410px; /* modify here to change height while adding ourstory' links! */
+  margin-bottom:80px;
+  margin-top:-50px;
+  background:rgba(240, 240, 240, 0.75);
+  border-radius:7px;
+}
+
+.context-article-donate {
+  width:100%;
+  min-height:320px;
+  height:auto;
+  margin-bottom:80px;
+  margin-top:-50px;
+  background:rgba(240, 240, 240, 0.75);
+  border-radius:7px;
+}
+
+.donate-qgwl-avatar {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  top: 5px;
+  left: 20px;
+  float: left;
+}
+
+.donate-qgwl-avatar-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  border: 2px solid white;
+  transition: opacity 0.3s;
+  opacity: 0.9;
+}
+
+.donate-qgwl-avatar-img:hover {
+  opacity: 1;
+}
+
+.donate-qgwl-head {
+  float: right;
+  height: 160px;
+  height: auto;
+  width: 920px;
+  border-radius: 5px;
+  background: rgba(245, 211, 128, .25);
+  background: #e0fdfd;
+  padding: 8px;
+  color: rgba(246, 175, 0, 1);
+  color: #008cba;
+  border: 1px solid rgba(0, 140, 186, .3);
+  position: relative;
+  top: 118px;
+  right: 20px;
+}
+
+.donate-ourstory {
+  height: 80px;
+  width: 80px;
+  position: relative;   /* realtive */
+  float: left;
+  margin-left: 18px;
+  margin-top: 0px;
+}
+
+.donate-ourstory-img {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 120, 150, .7);
+}
+
+.ourstory-desc {
+  position: relative;
+  float: left;
+  margin-left: 18px;
+  margin-top: 8px;
+}
+
+.ourstory-sign-font-size {
+  font-size: 13px;
+}
+
+.donate-qgwl-speech {
+  float: right;
+  height: auto;
+  width: 920px;
+  border-radius: 5px;
+  background: rgba(245, 223, 189, .9);
+  padding: 8px;
+  color: rgba(246, 175, 0, 1);
+  position: relative;
+  border: 1px solid rgba(246, 175, 0, .3);
+  top: 118px;
+  right: 20px;
+}
+
+.donate-qgwl-avatar-desc {
+  height: auto;
+  color: #566;
+  width: 150px;
+  text-align: center;
+}
+
+.donate-play-font {
+  font-size: 30px;
+  color: black;
+  position: relative;
+  top: 55px;
+  z-index: 3;
+  opacity: .3;
+  left: 60px;
+  transition: opacity 0.3s;
+  height: 0;
+}
+
+.donate-play-font:hover {
+  opacity: .55;
+}
+
+.donate-play-font:hover+.donate-qgwl-avatar-img {
+  opacity: 1;
+}
+
+
+.donate-qgwl-speech::selection {
+  background: rgba(246, 175, 0, .55);;
+  color: rgba(250, 250, 250, 1);
+}
+
+.donate-qgwl-speech::-moz-selection {
+  background: rgba(246, 175, 0, .55);;
+  color: rgba(250, 250, 250, 1);
+}
+
+.donate-qgwl-speech::-webkit-selection {
+  background: rgba(246, 175, 0, .55);;
+  color: rgba(250, 250, 250, 1);
+}
+
+.ourstory-single-style {
+  float: left;
+  width: 33%;
+  margin-bottom: 16px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.ourstory-single-style:hover {
+  background: rgba(24, 175, 200, .08);;
+}
+
+
+*::selection {
+  background: rgba(46, 175, 10, .35);;
+}
+
+*::-moz-selection {
+  background: rgba(46, 175, 10, .35);;
+}
+
+*::-webkit-selection {
+  background: rgba(46, 175, 10, .35);;
+}
+
+.ourstory-link-style {
+  color: #058ebb;
+}
+
+.ourstory-link-style:hover {
+  text-decoration: none;
+  color: rgba(5, 142, 187, .75);
+}
+
+.empty-div {
+    opacity: 0;
+    height: 18px;
+}
+
+.empty-div-2 {
+    height: 12px;
+}
+
+.ourstory-head-desc {
+    height: 16px;
+    color: #058ebb;
+}
+
+
+

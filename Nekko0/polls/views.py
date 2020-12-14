@@ -260,6 +260,13 @@ class FriendsView(DetailView):
         writeLoggerData(self.request, "Friends")
         return None
 
+class OurStoryView(DetailView):
+    template_name = 'polls/ourstory.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "OurStory")
+        return None
+
 class HHV(DetailView):
     template_name = 'polls/hhw.html'
 

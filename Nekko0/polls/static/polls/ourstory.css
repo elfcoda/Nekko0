@@ -1,10 +1,10 @@
 @font-face {
-  font-family: eurostile;
-  src:url('Font/eurostile/Eurostile.ttf');
+  font-family: pandemi;
+  src:url('Font/pandemi/pandemi.ttf');
 }
 
 * {
-  font-family: "eurostile","Arial",'Times New Roman','Microsoft YaHei';
+  font-family: "pandemi","Arial",'Times New Roman','Microsoft YaHei';
 }
 
 

@@ -2,9 +2,14 @@
   font-family: pandemi;
   src:url('Font/pandemi/pandemi.ttf');
 }
+@font-face {
+  font-family: CF;
+  src:url('Font/CF.ttf');
+}
+
 
 * {
-  font-family: "pandemi","Arial",'Times New Roman','Microsoft YaHei';
+  font-family: "CF","Arial",'Times New Roman','Microsoft YaHei';
 }
 
 

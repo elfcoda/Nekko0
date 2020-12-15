@@ -123,6 +123,23 @@
   right: 20px;
 }
 
+.donate-qgwl-head-2 {
+  float: right;
+  height: 160px;
+  height: auto;
+  width: 920px;
+  border-radius: 5px;
+  background: rgba(245, 211, 128, .25);
+  background: #ff8080;
+  padding: 8px;
+  color: rgba(246, 175, 0, 1);
+  color: #008cba;
+  border: 1px solid rgba(0, 140, 186, .3);
+  position: relative;
+  top: 118px;
+  right: 20px;
+}
+
 .donate-ourstory {
   height: 80px;
   width: 80px;

@@ -229,7 +229,7 @@
 .ourstory-single-style {
   float: left;
   width: 100%;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
   padding: 6px;
   border-radius: 8px;
 }
@@ -266,7 +266,7 @@
 
 .ourstory-link-style-2:hover {
   text-decoration: none;
-  color: rgba(5, 142, 187, .75);
+  color: rgba(255, 128, 128, .75);
 }
 
 .empty-div {

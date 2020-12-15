@@ -3,6 +3,11 @@
   src:url('Font/eurostile/Eurostile.ttf');
 }
 
+* {
+  font-family: "eurostile","Arial",'Times New Roman','Microsoft YaHei';
+}
+
+
 .body-img-resume {
   background:url("images/wall-paper/resume.jpg") no-repeat fixed center;
   background-size:cover;

@@ -1,6 +1,6 @@
 @font-face {
-  font-family: pandemi;
-  src:url('Font/pandemi/pandemi.ttf');
+  font-family: happy;
+  src:url('Font/happy_cn.ttf');
 }
 @font-face {
   font-family: CF;
@@ -9,7 +9,7 @@
 
 
 * {
-  font-family: "CF","Arial",'Times New Roman','Microsoft YaHei';
+  font-family: "happy", "CF","Arial",'Times New Roman','Microsoft YaHei';
 }
 
 

@@ -1,0 +1,155 @@
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'polls/cdn/bootstrap.min.css' %}">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+        <link href="{% static 'polls/nava.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/zoom/zoom.js/css/zoom.css' %}" rel="stylesheet" type="text/css" />
+        <script src="{% static 'polls/zoom/zoom.js/js/zoom.js' %}"></script>
+        <!-- 过渡动画插件 -->
+        <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/transition.js"></script>
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_2272641_rk3eplagq5.js">
+
+        </script>
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+        </style>
+        <style type="text/css">
+     		.up-img-cover {width: 45px;height: 45px;}
+     		.up-img-cover img{width: 100%;}
+            .border-radius-circle {border-radius:50%;}
+        </style>
+        <script language="Javascript">
+        function reload_page() {
+            location.reload(true);
+        }
+        </script>
+
+
+        <div class="" id="i_nav_header">
+            <nav class="nav-outer">
+                <ul class="nav_ul" id="nav_ul">
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:blog_index' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-home"></use>
+                    </svg>
+                    秘密基地
+                    </nobr></a></li>
+
+                    <!--
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-jingxihuaxuepin"></use>
+                    </svg>
+                    实验室
+                    </nobr></a></li>
+                    -->
+
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:code' page=1 %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-iconzhengli-"></use>
+                    </svg>
+                    我们的回忆
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:msgboard' articleId=1001 page=1 %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-book"></use>
+                    </svg>
+                    未完成的故事
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:donate' page=1 %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-lvhang1"></use>
+                    </svg>
+                    向往的未来
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:another_world' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-aiqing"></use>
+                    </svg>
+                    更多更多
+                    </nobr></a></li>
+                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:friends' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-egg"></use>
+                    </svg>
+                    <!-- 日常 -->
+                    精灵的祝福
+                    </nobr></a></li>
+                    <!--
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-musicnote"></use>
+                    </svg>
+                    心情
+                    </nobr></a></li>
+                    -->
+
+                    <!--
+                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-musicnote"></use>
+                    </svg>
+                    计划
+                    </nobr></a></li>
+                    -->
+                    <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
+                    {% if request.session.userId %}
+                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:logout' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-shebeiduankai"></use>
+                    </svg>
+                    断开
+                    </nobr></a></li>
+                    <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
+    	            <li style="float:right;margin-top:4px;" class="up-img-cover"  id="up-img-touch" >
+                        <a href="{% url 'polls:newAvatar' %}" target="_blank">
+                            <img class="am-circle border-radius-circle" alt="点击图片上传" src="{{ request.session.avatar }}" data-am-popover="{content: '点击上传', trigger: 'hover focus'}" ></img>
+                        </a>
+        	        </li>
+                    {% else %}
+                    <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:login' %}"><nobr>
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-bhjlink"></use>
+                    </svg>
+                    接入
+                    </nobr></a></li>
+                    {% endif %}
+                </ul>
+
+
+                <div class="sign-in-up">
+                </div>
+
+                <script language="Javascript">
+                    //导航栏上下滚动时隐藏和可见
+                    var new_scroll_position = 0;
+                    var last_scroll_position;
+                    var nav_header = document.getElementById("i_nav_header");
+
+                    window.addEventListener('scroll', function(e) {
+                        last_scroll_position = window.scrollY;
+                        if (new_scroll_position < last_scroll_position && last_scroll_position > 200)
+                        {
+                            //scroll down
+                            nav_header.classList.remove("navSlideDown");
+                            nav_header.classList.add("navSlideUp");
+                        }
+                        else if (new_scroll_position > last_scroll_position)
+                        {
+                            //scroll up
+                            nav_header.classList.remove("navSlideUp");
+                            nav_header.classList.add("navSlideDown");
+                        }
+
+                        new_scroll_position = last_scroll_position;
+                    });
+                </script>
+
+            </nav>
+        </div>
+

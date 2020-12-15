@@ -107,7 +107,7 @@
 }
 
 .donate-qgwl-head {
-  float: right;
+  float: left;
   height: 160px;
   height: auto;
   width: 920px;
@@ -121,7 +121,7 @@
   border: 1px solid rgba(0, 140, 186, .3);
   position: relative;
   top: 118px;
-  right: 20px;
+  left: 20px;
 }
 
 .donate-qgwl-head-2 {

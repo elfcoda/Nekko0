@@ -1,3 +1,8 @@
+@font-face {
+  font-family: eurostile;
+  src:url('Font/eurostile/Eurostile.ttf');
+}
+
 .body-img-resume {
   background:url("images/wall-paper/resume.jpg") no-repeat fixed center;
   background-size:cover;
@@ -295,5 +300,9 @@
     color: #058ebb;
 }
 
+
+
+.osfix-outer {
+}
 
 

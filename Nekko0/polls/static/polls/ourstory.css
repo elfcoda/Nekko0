@@ -120,8 +120,8 @@
   color: #008cba;
   border: 1px solid rgba(0, 140, 186, .3);
   position: relative;
-  top: 0px;
-  left: 0px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .donate-qgwl-head-2 {
@@ -138,8 +138,8 @@
   color: #ff8080;
   border: 1px solid #fbb2b2;
   position: relative;
-  top: 0px;
-  left: 0px;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .donate-ourstory {

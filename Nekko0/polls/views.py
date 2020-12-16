@@ -266,6 +266,36 @@ class OurStoryView(DetailView):
     def get_object(self, **kwargs):
         writeLoggerData(self.request, "OurStory")
         return None
+class OurFutureView(DetailView):
+    template_name = 'polls/ourfuture.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "OurFuture")
+        return None
+class OurMemoryView(DetailView):
+    template_name = 'polls/ourmemory.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "OurMemory")
+        return None
+class OurTogetherView(DetailView):
+    template_name = 'polls/ourtogether.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "OurTogether")
+        return None
+class OurBlessingView(DetailView):
+    template_name = 'polls/ourblessing.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "OurBlessing")
+        return None
+class OurEdenView(DetailView):
+    template_name = 'polls/oureden.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "OurEden")
+        return None
 
 class HHV(DetailView):
     template_name = 'polls/hhw.html'

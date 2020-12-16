@@ -359,8 +359,8 @@ body:after {
   counter-increment: number;
   width: 1vw;
   height: 1vw;
-  min-width: 3em;
-  min-height: 3em;
+  min-width: 7em;
+  min-height: 7em;
   transition: .5s all ease;
   background: var(--color, #aaa);
   border: 0 solid transparent;

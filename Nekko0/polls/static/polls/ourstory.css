@@ -176,11 +176,11 @@
   width: 305px;
   border-radius: 5px;
   background: rgba(245, 211, 128, .25);
-  background: #fbd3d3;
+  background: #dca1f5;
   padding: 8px;
   color: rgba(246, 175, 0, 1);
-  color: #ff8080;
-  border: 1px solid #fbb2b2;
+  color: #701098;
+  border: 1px solid #db86f1;
   position: relative;
   margin-top: 10px;
   margin-left: 11px;
@@ -397,7 +397,7 @@
 
 
 .ourstory-link-style-3 {
-  color: #ff8080;
+  color: #701098;
 }
 
 .ourstory-link-style-3:hover {

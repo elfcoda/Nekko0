@@ -400,7 +400,6 @@ body:not([style]) #boxes div:first-child,
 
 body:not([style]) #boxes div:first-child:after,
 #boxes div:after {
-  content: counter(number);
   color: rgba(255, 255, 255, 0);
   font-size: calc(1vw + 1.2em);
   font-weight: 200;

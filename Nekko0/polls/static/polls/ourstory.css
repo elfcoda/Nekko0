@@ -302,6 +302,35 @@
   color: rgba(255, 128, 128, .75);
 }
 
+
+
+
+
+.ourstory-link-style-3 {
+  color: #ff8080;
+}
+
+.ourstory-link-style-3:hover {
+  text-decoration: none;
+  color: rgba(255, 128, 128, .75);
+}
+.ourstory-link-style-4 {
+  color: #ff8080;
+}
+
+.ourstory-link-style-4:hover {
+  text-decoration: none;
+  color: rgba(255, 128, 128, .75);
+}
+.ourstory-link-style-5 {
+  color: #ff8080;
+}
+
+.ourstory-link-style-5:hover {
+  text-decoration: none;
+  color: rgba(255, 128, 128, .75);
+}
+
 .empty-div {
     opacity: 0;
     height: 18px;

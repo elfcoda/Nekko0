@@ -443,31 +443,31 @@ body:not([style]) #boxes div:first-child:after,
 .jelly1 {
     position: fixed;
     left: 10px;
-    top: 50px;
+    top: 90px;
 }
 .jelly2 {
     position: fixed;
     left: 10px;
-    top: 75px;
+    top: 190px;
 }
 
 .jelly3 {
     position: fixed;
     left: 10px;
-    top: 100px;
+    top: 290px;
 }
 .jelly4 {
     position: fixed;
     left: 10px;
-    top: 125px;
+    top: 390px;
 }
 .jelly5 {
     position: fixed;
     left: 10px;
-    top: 150px;
+    top: 490px;
 }
 .jelly6 {
     position: fixed;
     left: 10px;
-    top: 175px;
+    top: 590px;
 }

@@ -94,6 +94,12 @@
   top: 150px;
   position: fixed;
 }
+.context-article-origin-our-together {
+  height:152px; /* modify here to change height while adding ourstory' links! */
+  width: 960px;
+  top: 150px;
+  position: fixed;
+}
 
 .context-article-donate {
   width:100%;
@@ -146,6 +152,57 @@
 }
 
 .donate-qgwl-head-2 {
+  float: left;
+  height: 160px;
+  height: auto;
+  width: 920px;
+  width: 305px;
+  border-radius: 5px;
+  background: rgba(245, 211, 128, .25);
+  background: #fbd3d3;
+  padding: 8px;
+  color: rgba(246, 175, 0, 1);
+  color: #ff8080;
+  border: 1px solid #fbb2b2;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 11px;
+}
+.donate-qgwl-head-3 {
+  float: left;
+  height: 160px;
+  height: auto;
+  width: 920px;
+  width: 305px;
+  border-radius: 5px;
+  background: rgba(245, 211, 128, .25);
+  background: #fbd3d3;
+  padding: 8px;
+  color: rgba(246, 175, 0, 1);
+  color: #ff8080;
+  border: 1px solid #fbb2b2;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 11px;
+}
+.donate-qgwl-head-4 {
+  float: left;
+  height: 160px;
+  height: auto;
+  width: 920px;
+  width: 305px;
+  border-radius: 5px;
+  background: rgba(245, 211, 128, .25);
+  background: #fbd3d3;
+  padding: 8px;
+  color: rgba(246, 175, 0, 1);
+  color: #ff8080;
+  border: 1px solid #fbb2b2;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 11px;
+}
+.donate-qgwl-head-5 {
   float: left;
   height: 160px;
   height: auto;
@@ -268,6 +325,39 @@
 }
 
 .ourstory-single-style-2:hover {
+  background: rgba(255, 98, 98, .08);;
+}
+.ourstory-single-style-3 {
+  float: left;
+  width: 100%;
+  margin-bottom: 1px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.ourstory-single-style-3:hover {
+  background: rgba(255, 98, 98, .08);;
+}
+.ourstory-single-style-4 {
+  float: left;
+  width: 100%;
+  margin-bottom: 1px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.ourstory-single-style-4:hover {
+  background: rgba(255, 98, 98, .08);;
+}
+.ourstory-single-style-5 {
+  float: left;
+  width: 100%;
+  margin-bottom: 1px;
+  padding: 6px;
+  border-radius: 8px;
+}
+
+.ourstory-single-style-5:hover {
   background: rgba(255, 98, 98, .08);;
 }
 

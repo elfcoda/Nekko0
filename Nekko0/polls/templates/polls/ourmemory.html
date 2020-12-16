@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+    <head>
+        {% load static %}
+        <link href="{% static 'polls/styled.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/article_detail.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/ourstory.css' %}" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_2272641_rk3eplagq5.js">
+        <script language="Javascript">
+            function showTime(){
+                var nowStamp = (Date.parse(new Date()) / 1000) - 1499616000;
+                var days = parseInt(nowStamp / 86400);
+                nowStamp = nowStamp % 86400;
+                var hours = parseInt(nowStamp / 3600);
+                nowStamp = nowStamp % 3600;
+                var mins = parseInt(nowStamp / 60);
+                var secs = nowStamp % 60;
+                if (secs < 10)
+                {
+                    secs = "0" + secs;
+                }
+                document.getElementById("passed").innerHTML = days + "天" + hours + "时" + mins + "分" + secs + "秒";
+                setTimeout("showTime()", 1000);
+            }
+        </script>
+        <style type="text/css">
+            .icon {
+                width: 1em; height: 1em;
+                vertical-align: -0.15em;
+                fill: currentColor;
+                overflow: hidden;
+            }
+        </style>
+        {% include 'polls/our_title_info.html' %}
+    </head>
+    <body class="body-img-resume">
+    {% include 'polls/nav_ourstory.html' %}
+
+        <div class="outer-align-main">
+          <div class="main">
+              <div class="context-donate-page">
+                  <div class="donate-leave-margin"></div>
+
+
+<!-- jelly -->
+<a href="ourmemory">
+<div id="boxes" class="jelly1 bo1">
+  <div style="--color: #f44336"></div>
+</div>
+</a>
+
+<a href="ourstory">
+<div id="boxes" class="jelly2 bo2">
+  <div style="--color: #e91e63"></div>
+</div>
+</a>
+
+<a href="ourfuture">
+<div id="boxes" class="jelly3 bo3">
+  <div style="--color: #9c27b0"></div>
+</div>
+</a>
+
+<a href="ourtogether">
+<div id="boxes" class="jelly4 bo4">
+  <div style="--color: #2196f3"></div>
+</div>
+</a>
+
+<a href="ourblessing">
+<div id="boxes" class="jelly5 bo5">
+  <div style="--color: #4caf50"></div>
+</div>
+</a>
+
+<a href="oureden">
+<div id="boxes" class="jelly6 bo6">
+  <div style="--color: #ff9800"></div>
+</div>
+</a>
+
+                  <article id="post-1002-2" class="context-article-origin context-article-origin-our-memory">
+                      <div class="art-0">
+
+                              <!-- 好友 -->
+                                  <div class="ourstory-head-desc">
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <svg class="icon" aria-hidden="true">
+                                      <use xlink:href="#icon-egg"></use>
+                                  </svg>
+                                  精灵的祝福
+                                  </div>
+                                  <div class="empty-div"></div>
+
+                              <div class="donate-qgwl-head">
+                                  <div class="ourstory-single-style">
+                                    <div class="ourstory-desc">
+                                        <a href="" target="_blank" class="ourstory-link-style">星星与远方</a><br/>
+                                        <div class="empty-div-2"></div>
+                                        <span class="ourstory-sign-font-size">点击查看</span>
+                                        <br/>
+                                    </div>
+                                  </div>
+                              </div>
+
+                              <div class="donate-qgwl-head">
+                                  <div class="ourstory-single-style">
+                                    <div class="ourstory-desc">
+                                        <a href="" target="_blank" class="ourstory-link-style">花与长明灯</a><br/>
+                                        <div class="empty-div-2"></div>
+                                        <span class="ourstory-sign-font-size">点击查看</span>
+                                        <br/>
+                                    </div>
+                                  </div>
+                              </div>
+
+                              <div class="donate-qgwl-head">
+                                  <div class="ourstory-single-style">
+                                    <div class="ourstory-desc">
+                                        <a href="" target="_blank" class="ourstory-link-style">我喜欢你</a><br/>
+                                        <div class="empty-div-2"></div>
+                                        <span class="ourstory-sign-font-size">点我点我点我!</span>
+                                        <br/>
+                                    </div>
+                                  </div>
+                              </div>
+
+                      </div>
+                  </article>
+              </div>
+          </div>
+        </div>
+
+    {% include 'polls/ourstory_fixed.html' %}
+    </body>
+</html>

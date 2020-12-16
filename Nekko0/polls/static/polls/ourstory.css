@@ -411,27 +411,27 @@ body:not([style]) #boxes div:first-child:after,
 body:not([style]) .bo1 div:first-child:after,
 .bo1 div:after {
     font-size: 12;
-  content: "我们的回忆";
+  content: "MEMORY";
 }
 body:not([style]) .bo2 div:first-child:after,
 .bo2 div:after {
-  content: "未完成的故事";
+  content: "STORY";
 }
 body:not([style]) .bo3 div:first-child:after,
 .bo3 div:after {
-  content: "计划中的未来";
+  content: "FUTURE";
 }
 body:not([style]) .bo4 div:first-child:after,
 .bo4 div:after {
-  content: "想和你一起";
+  content: "TOGETHER";
 }
 body:not([style]) .bo5 div:first-child:after,
 .bo5 div:after {
-  content: "精灵的祝福";
+  content: "BLESSING";
 }
 body:not([style]) .bo6 div:first-child:after,
 .bo6 div:after {
-  content: "伊甸园";
+  content: "EDEN";
 }
 
 body:not([style]) #boxes div:first-child:after,

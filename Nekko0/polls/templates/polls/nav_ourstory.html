@@ -7,8 +7,7 @@
         <script src="{% static 'polls/zoom/zoom.js/js/zoom.js' %}"></script>
         <!-- 过渡动画插件 -->
         <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/transition.js"></script>
-        <script type="text/javascript" src="http://at.alicdn.com/t/font_2272641_rk3eplagq5.js">
-
+        <script type="text/javascript" src="http://at.alicdn.com/t/font_526920_x6gwz71xl6iozuxr.js">
         </script>
         <style type="text/css">
             .icon {
@@ -39,64 +38,6 @@
                     </svg>
                     秘密基地
                     </nobr></a></li>
-
-                    <!--
-                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-jingxihuaxuepin"></use>
-                    </svg>
-                    实验室
-                    </nobr></a></li>
-                    -->
-
-                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:code' page=1 %}"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-iconzhengli-"></use>
-                    </svg>
-                    我们的回忆
-                    </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:msgboard' articleId=1001 page=1 %}"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-book"></use>
-                    </svg>
-                    未完成的故事
-                    </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:donate' page=1 %}"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-lvhang1"></use>
-                    </svg>
-                    向往的未来
-                    </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:another_world' %}"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-aiqing"></use>
-                    </svg>
-                    更多更多
-                    </nobr></a></li>
-                    <li><a class="nav_ul-li-a-l" href="{% url 'polls:friends' %}"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-egg"></use>
-                    </svg>
-                    <!-- 日常 -->
-                    精灵的祝福
-                    </nobr></a></li>
-                    <!--
-                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-musicnote"></use>
-                    </svg>
-                    心情
-                    </nobr></a></li>
-                    -->
-
-                    <!--
-                    <li><a class="nav_ul-li-a-l" href="#"><nobr>
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-musicnote"></use>
-                    </svg>
-                    计划
-                    </nobr></a></li>
-                    -->
                     <li style="float:right"><a href="">&nbsp;&nbsp;</a></li>
                     {% if request.session.userId %}
                     <li style="float:right"><a class="nav_ul-li-a-r" href="{% url 'polls:logout' %}"><nobr>

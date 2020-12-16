@@ -327,7 +327,6 @@ body, #boxes div {
   display: flex;
   align-items: center;
   justify-content: center;
-  float: fixed;
 }
 
 body:after {
@@ -347,6 +346,7 @@ body:after {
   counter-reset: number;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  float: fixed;
 }
 
 @media (max-width: 320px) {

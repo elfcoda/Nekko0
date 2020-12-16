@@ -401,7 +401,7 @@ body:not([style]) #boxes div:first-child,
 body:not([style]) #boxes div:first-child:after,
 #boxes div:after {
   color: rgba(255, 255, 255, 0);
-  font-size: calc(1vw + 1.2em);
+  font-size: calc(1vw + .2em);
   font-weight: 200;
   transition: all .2s ease;
   transition-delay: .1s;

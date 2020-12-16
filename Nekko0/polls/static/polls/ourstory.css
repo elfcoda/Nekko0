@@ -440,12 +440,34 @@ body:not([style]) #boxes div:first-child:after,
   transform: translate3d(0, 0, 0);
 }
 
-.jelly11 {
+.jelly1 {
     position: fixed;
     left: 10px;
+    top: 50px;
 }
-.jelly21 {
+.jelly2 {
     position: fixed;
-    right: 10px;
+    left: 10px;
+    top: 75px;
 }
 
+.jelly3 {
+    position: fixed;
+    left: 10px;
+    top: 100px;
+}
+.jelly4 {
+    position: fixed;
+    left: 10px;
+    top: 125px;
+}
+.jelly5 {
+    position: fixed;
+    left: 10px;
+    top: 150px;
+}
+.jelly6 {
+    position: fixed;
+    left: 10px;
+    top: 175px;
+}

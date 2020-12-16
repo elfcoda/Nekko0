@@ -408,6 +408,17 @@ body:not([style]) #boxes div:first-child:after,
   transform: translate3d(0, -.5em, 0);
 }
 
+body:not([style]) .bo div:first-child:after,
+.bo div:after {
+  content: "number";
+  color: rgba(255, 255, 255, 0);
+  font-size: calc(1vw + 1.2em);
+  font-weight: 200;
+  transition: all .2s ease;
+  transition-delay: .1s;
+  transform: translate3d(0, -.5em, 0);
+}
+
 body:not([style]) #boxes div:first-child:after,
 #boxes div:hover:after {
   color: rgba(255, 255, 255, .7);
@@ -421,9 +432,5 @@ body:not([style]) #boxes div:first-child:after,
 .jelly2 {
     position: fixed;
     right: 10px;
-}
-
-.j1 {
-    content: "memory";
 }
 

@@ -357,10 +357,10 @@ body:after {
 
 #boxes div {
   counter-increment: number;
-  width: 10vw;
-  height: 10vw;
-  min-width: 5em;
-  min-height: 5em;
+  width: 1vw;
+  height: 1vw;
+  min-width: 3em;
+  min-height: 3em;
   transition: .5s all ease;
   background: var(--color, #aaa);
   border: 0 solid transparent;

@@ -327,6 +327,7 @@ body, #boxes div {
   display: flex;
   align-items: center;
   justify-content: center;
+  float: fixed;
 }
 
 body:after {

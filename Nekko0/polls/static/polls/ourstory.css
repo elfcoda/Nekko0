@@ -410,6 +410,7 @@ body:not([style]) #boxes div:first-child:after,
 
 body:not([style]) .bo1 div:first-child:after,
 .bo1 div:after {
+    font-size: 12;
   content: "我们的回忆";
 }
 body:not([style]) .bo2 div:first-child:after,

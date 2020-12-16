@@ -440,11 +440,11 @@ body:not([style]) #boxes div:first-child:after,
   transform: translate3d(0, 0, 0);
 }
 
-.jelly1 {
+.jelly11 {
     position: fixed;
     left: 10px;
 }
-.jelly2 {
+.jelly21 {
     position: fixed;
     right: 10px;
 }

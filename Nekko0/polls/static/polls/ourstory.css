@@ -424,3 +424,7 @@ body:not([style]) #boxes div:first-child:after,
     right: 10px;
 }
 
+.j1 {
+    content: "memory";
+}
+

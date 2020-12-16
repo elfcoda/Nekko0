@@ -408,15 +408,29 @@ body:not([style]) #boxes div:first-child:after,
   transform: translate3d(0, -.5em, 0);
 }
 
-body:not([style]) .bo div:first-child:after,
-.bo div:after {
-  content: "number";
-  color: rgba(255, 255, 255, 0);
-  font-size: calc(1vw + 1.2em);
-  font-weight: 200;
-  transition: all .2s ease;
-  transition-delay: .1s;
-  transform: translate3d(0, -.5em, 0);
+body:not([style]) .bo1 div:first-child:after,
+.bo1 div:after {
+  content: "我们的回忆";
+}
+body:not([style]) .bo2 div:first-child:after,
+.bo2 div:after {
+  content: "未完成的故事";
+}
+body:not([style]) .bo3 div:first-child:after,
+.bo3 div:after {
+  content: "计划中的未来";
+}
+body:not([style]) .bo4 div:first-child:after,
+.bo4 div:after {
+  content: "想和你一起";
+}
+body:not([style]) .bo5 div:first-child:after,
+.bo5 div:after {
+  content: "精灵的祝福";
+}
+body:not([style]) .bo6 div:first-child:after,
+.bo6 div:after {
+  content: "伊甸园";
 }
 
 body:not([style]) #boxes div:first-child:after,

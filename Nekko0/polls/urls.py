@@ -34,12 +34,18 @@ urlpatterns = [
     url(r'^log$', views.LogView.as_view(), name='log'),
     url(r'^resume$', views.ResumeView.as_view(), name='resume'),
     url(r'^friends$', views.FriendsView.as_view(), name='friends'),
+
+    url(r'^our_star_and_afar$', views.OurStarAndAfarView.as_view(), name='our_star_and_afar'),
+    url(r'^our_flower_and_light$', views.OurFlowerAndLightView.as_view(), name='our_flower_and_light'),
+    url(r'^our_i_love_you$', views.OurILoveYouView.as_view(), name='our_i_love_you'),
+
     url(r'^ourmemory$', views.OurMemoryView.as_view(), name='ourmemory'),
     url(r'^ourstory$', views.OurStoryView.as_view(), name='ourstory'),
     url(r'^ourfuture$', views.OurFutureView.as_view(), name='ourfuture'),
     url(r'^ourtogether$', views.OurTogetherView.as_view(), name='ourtogether'),
     url(r'^ourblessing$', views.OurBlessingView.as_view(), name='ourblessing'),
     url(r'^oureden$', views.OurEdenView.as_view(), name='oureden'),
+
     url(r'^hi$', views.HelloWorldView.as_view(), name='hw'),
     url(r'^$', views.NewIndexView.as_view(), name='index'),
     url(r'^index$', views.ArticleListView.as_view(), name='blog_index'),

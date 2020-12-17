@@ -1,0 +1,311 @@
+{% load static %}
+<link href="{% static 'polls/fixed.css' %}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://at.alicdn.com/t/font_526920_i3rpt8jzr02uik9.js">
+</script>
+<script src="{% static 'polls/googleapis/jquery.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<style type="text/css">
+    .icon {
+        width: 1em; height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+</style>
+
+<script type="text/javascript">
+    var boxes = document.querySelectorAll('#boxes > div');
+    [].forEach.call(boxes, box => {
+    box.addEventListener('mousemove', e => {
+      document.body.style.setProperty(
+        '--bg-color',
+        box.style.getPropertyValue('--color')
+      );
+
+      var size = parseInt(getComputedStyle(box).width);
+
+      // scaling
+      var x = size * .3 * .7 + .7 * e.offsetX;
+      var y = size * .3 * .7 + .7 * e.offsetY;
+
+      box.style.setProperty('--x', x);
+      box.style.setProperty('--y', y);
+      box.style.setProperty('--size', size);
+    });
+  });
+</script>
+<script type="text/javascript">
+    var dm_string = "";
+
+    function ScaleUpAp(e){
+        ap.setMode('normal');
+        e.style.zIndex = "-1";
+        e.style.opacity = "0";
+        var o_e = document.getElementById("apUnsetFolder");
+        o_e.style.opacity = "1";
+        o_e.style.zIndex = "1";
+    }
+
+    function ScaleDownAp(e){
+        ap.setMode('mini');
+        e.style.zIndex = "-1";
+        e.style.opacity = "0";
+        var o_e = document.getElementById("apSetFolder");
+        o_e.style.opacity = "1";
+        o_e.style.zIndex = "1";
+    }
+
+    function dm(){
+        //document.getElementById("dm-content");
+        alert(1);
+    }
+
+    function mouseOverCute(e){
+        e.setAttribute('class', "cute-font");
+    }
+    function mouseOutCute(e){
+        e.setAttribute('class', "");
+    }
+
+    //function mouseOverDM(){
+    //    document.getElementById('dm-text').innerHTML = dm_string;
+    //}
+
+    //function mouseOutDM(){
+    //    dm_string = document.getElementById('dm-text').innerHTML;
+    //    document.getElementById('dm-text').innerHTML = "";
+    //}
+
+      function WebSocketDM()
+      {
+        if ("WebSocket" in window)
+        {
+          socket = new WebSocket("ws://" + "139.180.129.20:80" + "/Nekko0/");
+          socket.onmessage = function(e) {
+            // 创建弹幕
+            var jqueryDom = createScreenbullet(e.data);
+            // 添加定时任务
+            addInterval(jqueryDom, e.data.split("|")[0]);
+          }
+          socket.onopen = function() {
+          }
+          if (socket.readyState == WebSocket.OPEN)
+          {
+            socket.onopen();
+          }
+        }
+        else
+        {
+          // 浏览器不支持 WebSocket
+          alert("您的浏览器不支持 WebSocket!");
+        }
+      }
+      function sendDM(){
+        var e = document.getElementById("dm-input-content");
+        var e_v = e.value;
+        var s_v;
+        if (e_v == "") {
+            s_v = dm_string;
+        } else {
+            s_v = e_v;
+            dm_string = e_v;
+            e.value = "";
+            e.placeholder = e_v;
+        }
+        $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
+        })
+      }
+
+      WebSocketDM();
+
+    //dm
+    // 弹幕定时器
+    var timers = [];
+    // 控制弹幕显隐变量
+    var isShow = true;
+    // 监听关闭弹幕按钮
+    $("#clearDM").on("click", function () {
+        if (isShow) {
+            $(".dm").css("visibility", hidden);
+            isShow = false;
+        } else {
+            $(".dm").css("visibility", visible);
+            isShow = true;
+        }
+    });
+    // 新建一个弹幕
+    function createScreenbullet(text) {
+        var dmAva = text.split("|")[1];
+        var dmVal = text.split("|")[2];
+        var jqueryDom = $("<div class='dm'><img src='" + dmAva + "' class='dm-avatar'></img>&nbsp;" + dmVal + "</div>");
+        var fontColor = "rgb(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ")";
+        var dmBackground = "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + ", 0.5)";
+        var fontSize = Math.floor((Math.random() + 1) * 24) + "px";
+        //window对象属性获取:window.document.body.offsetWidth
+        var left = window.document.body.offsetWidth + "px";
+        var winHeight = window.innerHeight;
+        var winHeightLess = winHeight - 50;
+        var randScale = Math.random();
+        randScale = randScale < 0.1 ? 0.1 : randScale;
+        randScale = randScale > 0.9 ? 0.9 : randScale;
+        var top = Math.floor(randScale * winHeight) + "px";
+        top = parseInt(top) > winHeightLess ? (winHeightLess+"px") : top;
+        jqueryDom.css({
+            "position": 'fixed',
+            "color": fontColor,
+            "font-size": '20px',
+            "left": left,
+            "top": top,
+            "padding": '0px 7px',
+            "padding-left": '7px',
+            "width": 'auto',
+            "height": '28px',
+            "line-height": '28px',
+            "overflow": 'hidden',
+            "border-radius": '5px',
+            "z-index": '3',
+            "background": dmBackground
+        });
+        $("#dm-show").append(jqueryDom);
+        return jqueryDom;
+    }
+    // 为弹幕添加定时任务
+    function addInterval(jqueryDom, flushInterval) {
+        var left = window.document.body.offsetWidth;
+        var timestamp = Date.parse(new Date());
+        var timer = setInterval(function () {
+            left--;
+            jqueryDom.css("left", left + "px");
+            if (Date.parse(new Date()) - timestamp > 120000) {
+                jqueryDom.remove();
+                clearInterval(timer);
+            }
+        }, parseInt(flushInterval));
+        timers.push(timer);
+    }
+
+    function smoothscroll(){
+        var curScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        if (curScroll > 0) {
+            window.requestAnimationFrame(smoothscroll);
+            window.scrollTo(0, curScroll - (curScroll/5));
+        }
+    }
+
+    function keyDownFunc(event){
+        if (event.keyCode == 13)
+        {
+            sendDM();
+        }
+    }
+</script>
+
+<div class="top fixed-font-style" id="totop" onclick="smoothscroll()">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-top"></use>
+    </svg>
+</div>
+
+<div class="danmu">
+  <div class="dm-deliver fixed-font-style" id="dm-deliver" onclick="sendDM()">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-send1"></use>
+    </svg>
+  </div>
+  <div class="dm-content" id="dm-content">
+      <div class="form-group" id="dm-text">
+          <input id="dm-input-content" type="text" class="my-form-control" maxlength="50" placeholder="装填弹幕！发射！" onkeydown="keyDownFunc(event)">
+          </input>
+      </div>
+  </div>
+</div>
+
+<div id="dm-show">
+</div>
+
+<!-- 音乐播放器 -->
+<link rel="stylesheet" href="{% static 'polls/node_modules/aplayer/dist/APlayer.min.css' %}">
+<link rel="stylesheet" href="{% static 'polls/aplayer.css' %}">
+<script src="{% static 'polls/node_modules/aplayer/dist/APlayer.min.js' %}"></script>
+
+<div class="aplayer-outer">
+  <div id="aplayer" class="aplayer-inner-container">
+  </div>
+</div>
+<div class="apSetFolder" onclick="ScaleUpAp(this)" id="apSetFolder">
+  <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-fangda"></use>
+  </svg>
+</div>
+<div class="apUnsetFolder" onclick="ScaleDownAp(this)" id="apUnsetFolder">
+  <svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-suoxiao1"></use>
+  </svg>
+</div>
+
+<script type="text/javascript">
+  const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    mini: true,
+    autoplay: false,
+    theme: '#FADFA3',
+    loop: 'all',
+    order: 'list',
+    preload: 'auto',
+    volume: 0.7,
+    mutex: true,
+    listFolded: true,
+    listMaxHeight: '230px',
+    lrcType: 3,
+    audio: [
+    {
+        name: '所念皆星河',
+        artist: '房东的猫',
+        url: 'http://mp32.9ku.com/upload/128/2019/12/03/999581.mp3',
+        cover: "{% static 'polls/userEmotion/hhv.jpeg' %}",
+        theme: '#FF8080',
+        lrc: "{% static 'polls/node_modules/resource/lrc/default.lrc' %}"
+    }
+    ]
+  });
+
+    var lastApBgClassName = "";
+    ap.on('switchaudio', function (idx) {
+        var apList = document.getElementById('aplayer').lastElementChild.firstElementChild;
+        var apListSize = apList.childElementCount || apList.children.length;
+        var apClassIdx = apListSize - 1 - idx;
+        var apClassNames = "aplayer-inner-container-b-ALL";
+        //var apClassNames = "aplayer-inner-container-b" + apClassIdx;
+        if (lastApBgClassName != ""){
+            document.getElementById("aplayer").classList.remove(lastApBgClassName);
+        }
+        document.getElementById("aplayer").classList.add(apClassNames);
+        lastApBgClassName = apClassNames;
+    });
+
+    var apIntervalEle = document.getElementById('aplayer');
+    var scaleDownIntervalEle = document.getElementById('apUnsetFolder');
+    setInterval(function () {
+        if (apIntervalEle.clientHeight == 90){
+            //scaleDownIntervalEle.style.bottom = "124px";
+            scaleDownIntervalEle.style.bottom = "124px";
+        }
+        //else if (apIntervalEle.clientHeight == 33*2)
+        else if (apIntervalEle.clientHeight == 33*6)
+        {
+        }
+        else{
+            //(apIntervalEle.clientHeight == 155)
+            //scaleDownIntervalEle.style.bottom = "222px";
+            scaleDownIntervalEle.style.bottom = "354px";
+        }
+    }, 300);
+
+    setInterval(function () {
+        ap.volume(0.7, true);
+    }, 3000);
+</script>
+
+
+
+

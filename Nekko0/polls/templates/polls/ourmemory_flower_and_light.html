@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         -->
         {% load static %}
-        <link href="{% static 'polls/msgboardk.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'polls/ourstory_article.css' %}" rel="stylesheet" type="text/css" />
         <link href="{% static 'polls/Resource/effect/firework/firework.css' %}" rel="stylesheet" />
         <script src="{% static 'polls/Resource/effect/firework/firework.js' %}"></script>
         <script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
@@ -495,16 +495,11 @@
 
 
         </script>
-        {% include 'polls/title_info.html' %}
+        {% include 'polls/our_title_info.html' %}
     </head>
 
     <body onload="load()" class="body">
-        {% include 'polls/nav.html' %}
-
-        <!-- css可以从include里加载，但是js不行
-        <link rel="stylesheet" href="{% static 'polls/cdn/bootstrap.min.css' %}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        -->
+        {% include 'polls/nav_ourstory.html' %}
 
         <script src="{% static 'polls/googleapis/jquery.min.js' %}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
@@ -513,32 +508,6 @@
         <button type="button" class="delete-msg-btn" data-toggle="modal" data-target="#myModal" id="deleteMsgModal">
             deleteMsg
         </button>
-
-        <!-- The Modal -->
-        <div class="modal fade modal-customer1" id="myModal">
-            <div class="modal-dialog modal-customer">
-                <div class="modal-content" style="width:380px;margin:auto;margin-top: 200px;">
-
-                    <!-- Modal body -->
-                    <div class="modal-body modal-body-customer" id="modal-body-customer">
-                        <div class="delete-sub-thread" id="del-sub-thread">正在销毁子线程...</div>
-                        <div class="delete-sub-thread-rotate-out" id="del-sub-thread-rotate-out">
-                            <div class="ball-clip-rotate-multiple delete-sub-thread-rotate" id="ball-clip-rotate-multiple">
-                                <div></div>
-                                <div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Modal footer -->
-                    <div class="modal-footer-customer">
-                        <div id="modal-ok-btn" class="btn delete-msg-ok-modal" data-dismiss="modal"><div class="del-msg-ok-facefont">(｡・`ω´･)</div></div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- i -->
 
         <div class="msg-board-page full-height">
 
@@ -557,298 +526,6 @@
             </article>
             <div class="leave-margin-head"></div>
 
-
-
-            <div class="msg-board-list">
-                <div class="msg_item-outer-margin">
-                    <div class="msg-item">
-
-                        <!-- 2233娘 -->
-                        <div class="cute-2233-label">2233娘
-                          <div class="cute-2233-list">
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title="舔" class="bilibili-img" src="{% static 'polls/bilibili/0b01ce848b.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/19082ca464.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/53060c0841.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title="乾杯" class="bilibili-img" src="{% static 'polls/bilibili/617406e82e.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/66cfeda396.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/88c318d30c.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/bf34839f00.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/1098b0c0e8.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/4ed2dac213.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title="扶额" class="bilibili-img" src="{% static 'polls/bilibili/55b2bdbd4c.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title="吃土" class="bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title="踢墙" class="bilibili-img" src="{% static 'polls/bilibili/86fcba9352.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title="猥琐的笑" class="bilibili-img" src="{% static 'polls/bilibili/91260cbbc2.gif' %}"></img>
-                              </div>
-                              <div onclick="addToMsg2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                  <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/c868b742e5.gif' %}"></img>
-                              </div>
-                          </div>
-                        </div>
-
-                        <!-- 颜文字表情 -->
-                        <div class="cute-font-label">( •̀ .̫ •́ )✧
-                          <div class="cute-font-list">
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)" id="t11">( •̀ .̫ •́ )✧</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
-                              <div onclick="addToMsg(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
-                          </div>
-                        </div>
-                        <!--
-                        <div class="cute-font-label"></div>
-                        -->
-                        <form class="reply-display-comment" id="reply-form-comment"  name="reply-form-comment" method="post" action="">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
-                                <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-comment-name"></input>
-                                <input type="hidden" name="reply-form-commentid" value="-1"></input>
-                                <input type="hidden" name="get-article-id" value=""></input>
-                                <input type="hidden" name="get-page" id="get-page-comment" value="1"></input>
-                                {{ form.content }}
-                                <input class="button" type="button" value="哔~" onclick="submit_form(-1)"></input>
-                                <!--
-                                    <input type="submit" value="ok">
-                                -->
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="msg_item-outer-margin" id="msg_item-outer-margin">
-                    {% for object in object_list %}
-                    {% if object.2.1 %}
-                    <!-- one comment begin -->
-                    <div class="msg-item" id="msg-del-{{ object.0 }}-0">
-                        <div class="msg-item-left">
-                            <img class="avatar-style" src="/static/polls/userAvatar/{{ object.2.10 }}"></img>
-                        </div>
-                        <div class="msg-item-right">
-                            <div class="msg-item-right-main-content">
-                                <div class="msg-title">
-                                    <div class="msg-name" id="comment-name-{{ object.0 }}">{{ object.2.6 }}</div>
-                                    <div class="msg-level-head"><span class="msg-level-body-font">Lv{{ object.2.8 }}</span></div>
-                                    <div class="msg-level-body"><span class="msg-level-body-font">{{ object.2.9 }}</span></div>
-                                    <div class="sex-adjust select-a-{{ object.2.7 }}">&nbsp;&nbsp;</div>
-                                </div>
-                                <div class="msg-content new-line" name="resetValue">{{ object.2.3 }}</div>
-                                <div class="msg-addition">
-                                    <span class="date-beau-style float-left-msgb">{{ object.2.2 }}&nbsp;&nbsp;&nbsp;</span>
-                                    <form action="{% url 'polls:msglike' %}" method="get">
-                                        {% if object.2.4.1 %}
-                                        <span class="float-left-msgb like-webfont" style="color:#FF4500" onclick="like({{ object.0 }}, -1)" id="msglike-{{ object.0 }}--1">&nbsp;{{ object.2.4.0 }}</span>
-                                        {% else %}
-                                        <span class="float-left-msgb like-webfont" onclick="like({{ object.0 }}, -1)" id="msglike-{{ object.0 }}--1">
-                                            {% if object.2.4.0 %}
-                                            {{ object.2.4.0 }}
-                                            {% endif %}
-                                        </span>
-                                        {% endif %}
-                                    </form>
-                                    <span class="float-left-msgb">&nbsp;&nbsp;&nbsp;</span>
-                                    <a class="reply-link-style" onclick="reply({{ object.0 }}, -1)"><span class="reply-beau-style">回复</span></a>
-                                    {% if object.2.11 %}
-                                    <span onclick="deleteMsg({{ object.0 }}, 0)" class="delete-link-style">&nbsp;&nbsp;删除</span>
-                                    {% endif %}
-                                </div>
-                            </div>
-
-                            <div id="reply_list_outer_div_{{ object.0 }}">
-                            {% for reply_item in object.3 %}
-                            {% if reply_item.1 %}
-                            <div class="msg-item-reply" id="msg-del-{{ object.0 }}-{{ forloop.counter }}">
-                                <div class="msg-reply-left">
-                                    <img class="avatar-style" src="/static/polls/userAvatar/{{ reply_item.10 }}"></img>
-                                </div>
-                                <div class="msg-reply-right">
-                                    <div class="msg-title">
-                                        <div class="msg-name" id="reply-name-{{ object.0 }}-{{ forloop.counter }}">{{ reply_item.6 }}</div>
-                                        <div class="msg-name">&nbsp;回复 <span class="color-pink1">{{ reply_item.5 }}</span></div>
-                                        <div class="msg-level-head"><span class="msg-level-body-font">Lv{{ reply_item.8 }}</span></div>
-                                        <div class="msg-level-body"><span class="msg-level-body-font">{{ reply_item.9 }}</span></div>
-                                        <div class="sex-adjust select-a-{{ reply_item.7 }}">&nbsp;&nbsp;</div>
-                                    </div>
-                                    <div class="msg-content new-line" name="resetValue">{{ reply_item.3 }}</div>
-                                    <div class="msg-addition">
-                                        <span class="date-beau-style float-left-msgb">{{ reply_item.2 }}&nbsp;&nbsp;&nbsp;</span>
-                                        <form action="{% url 'polls:msglike' %}" method="get">
-                                            {% if reply_item.4.1 %}
-                                            <span class="float-left-msgb like-webfont" style="color:#FF4500" onclick="like({{ object.0 }}, {{ forloop.counter }})" id="msglike-{{ object.0 }}-{{ forloop.counter }}">&nbsp;{{ reply_item.4.0 }}</span>
-                                            {% else %}
-                                            <span class="float-left-msgb like-webfont" onclick="like({{ object.0 }}, {{ forloop.counter }})" id="msglike-{{ object.0 }}-{{ forloop.counter }}">
-                                                {% if reply_item.4.0 %}
-                                                {{ reply_item.4.0 }}
-                                                {% endif %}
-                                            </span>
-                                            {% endif %}
-                                        </form>
-                                        <span class="float-left-msgb">&nbsp;&nbsp;&nbsp;</span>
-                                        <a class="reply-link-style float-left-msgb" onclick="reply({{ object.0 }}, {{ forloop.counter }})"><span class="reply-beau-style">回复</span></a>
-                                        {% if reply_item.11 %}
-                                        <span onclick="deleteMsg({{ object.0 }}, {{ forloop.counter }})" class="delete-link-style">&nbsp;&nbsp;删除</span>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                            </div>
-
-                            <form class="reply-display" id="reply-form-{{ object.0 }}" name="reply-form" method="post" action="">
-
-                                <!-- 2233娘 -->
-                                <div class="cute-2233-label leave-cute-font-top">2233娘
-                                  <div class="cute-2233-list">
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title="舔" class="bilibili-img" src="{% static 'polls/bilibili/0b01ce848b.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/19082ca464.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/53060c0841.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title="乾杯" class="bilibili-img" src="{% static 'polls/bilibili/617406e82e.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/66cfeda396.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/88c318d30c.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/bf34839f00.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/1098b0c0e8.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/4ed2dac213.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title="扶额" class="bilibili-img" src="{% static 'polls/bilibili/55b2bdbd4c.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title="吃土" class="bilibili-img" src="{% static 'polls/bilibili/647a7b0e20.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title="踢墙" class="bilibili-img" src="{% static 'polls/bilibili/86fcba9352.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title="猥琐的笑" class="bilibili-img" src="{% static 'polls/bilibili/91260cbbc2.gif' %}"></img>
-                                      </div>
-                                      <div onclick="addToMsgReply2233(this)" onmouseover="mouseOverCute2233(this)" onmouseout="mouseOutCute2233(this)">
-                                          <img title=">_<" class="bilibili-img" src="{% static 'polls/bilibili/c868b742e5.gif' %}"></img>
-                                      </div>
-                                  </div>
-                                </div>
-
-                                <!-- 颜文字 -->
-                                <div class="cute-font-label leave-cute-font-top">( •̀ .̫ •́ )✧
-                                  <div class="cute-font-list">
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̀ .̫ •́ )✧</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(つд⊂)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(•౪• )</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(..›ᴗ‹..)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(๑•̀ㅂ•́) ✧</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(̿▀̿ ̿Ĺ̯̿̿▀̿ ̿)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( •̥́ ˍ •̀ू )</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(⇀‸↼‶)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(ᵒ̤̑ ₀̑ ᵒ̤̑)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">(〃ω〃)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ꒪⌓꒪)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">୧(๑•̀⌄•́๑)૭✧</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">ᕕ( ᐛ )ᕗ</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> (๑•̀ω•́ ๑)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)"> ̋(ˊᵒ̴̶̷̤ ꇴ ᵒ̴̶̷̤ˋ)</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">( ˶ˇωˇ˶ )</div>
-                                      <div onclick="addToMsgReply(this)" onmouseover="mouseOverCute(this)" onmouseout="mouseOutCute(this)">༼•̀ɷ•́༽</div>
-                                  </div>
-                                </div>
-                                <!--
-                                <div class="cute-font-label leave-cute-font-top"></div>
-                                -->
-                                {% csrf_token %}
-                                <div class="form-group">
-                                    <span class="text-danger pull-right hidden-span">请填写数据哦～</span>
-                                    <input type="hidden" name="reply-form-replyto-name" value="" id="reply-form-name-{{ object.0 }}"></input>
-                                    <input type="hidden" name="reply-form-commentid" value="{{ object.0 }}"></input>
-                                    <input type="hidden" name="get-article-id" value=""></input>
-                                    <input type="hidden" name="get-page" value=""></input>
-                                    {{ form.content }}
-                                    <input type="button" class="button" value="哔～" onclick="submit_form({{ object.0 }})"></input>
-                                    <!--
-                                        <input type="submit" value="ok"></input>
-                                    -->
-                                </div>
-                            </form>
-                            <!-- 最后一条回复后面 -->
-                        </div>
-                    </div>
-                    <!-- one comment end -->
-                    {% endif %}
-                    {% endfor %}
-                    <div>&nbsp;</div>
-                    <div class="pag-center">
-                        <div class="pagination">
-                            <a href="#" id="first-page" class="pagination-first"></a>
-                            <a href="#" id="page1">1</a>
-                            <a href="#" id="page2">2</a>
-                            <a href="#" id="page3">3</a>
-                            <a href="#" id="page4">4</a>
-                            <a href="#" id="page5">5</a>
-                            <a href="#" id="page6">6</a>
-                            <a href="#" id="page7">7</a>
-                            <a href="#" id="last-page" class="pagination-last"></a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="leave-margin-bottom">
-                </div>
-            </div>
-            <div class="">
-            </div>
-
             </div>
         </div>
 
@@ -857,7 +534,6 @@
             <div id="{{ m.tags }}">{{ m }}</div>
             {% endfor %}
         </div>
-        {% include 'polls/footer.html' %}
         {% include 'polls/fixed.html' %}
     </body>
 </html>

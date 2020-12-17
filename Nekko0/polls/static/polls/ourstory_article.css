@@ -15,9 +15,13 @@
   font-family: eurostile;
   src:url('Font/eurostile/Eurostile.ttf');
 }
+@font-face {
+  font-family: kafei;
+  src:url('Font/KaFei.ttf');
+}
 
 * {
-  font-family: "eurostile","Arial",'Times New Roman','Microsoft YaHei';
+  font-family: "kafei","Arial",'Times New Roman','Microsoft YaHei';
 }
 
 .float-left-msgb {

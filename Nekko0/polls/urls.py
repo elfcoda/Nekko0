@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^our_i_love_you$', views.OurILoveYouView.as_view(), name='our_i_love_you'),
 
     url(r'^ourtodo$', views.OurTODOView.as_view(), name='ourtodo'),
+    url(r'^ourstart$', views.OurStartView.as_view(), name='ourstart'),
 
     url(r'^ourmemory$', views.OurMemoryView.as_view(), name='ourmemory'),
     url(r'^ourstory$', views.OurStoryView.as_view(), name='ourstory'),

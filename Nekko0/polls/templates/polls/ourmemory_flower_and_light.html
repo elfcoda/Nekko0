@@ -44,6 +44,12 @@
                 }
             }
 
+            function send_DM_to_Hhw()
+            {
+	            s_v = "该设计怎样的彩蛋好呢~~";
+                $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
+                })
+            }
 
             // 自定义转化标签
             function resetValue(e){
@@ -195,6 +201,8 @@
                         }
                     }
                 }
+                
+                send_DM_to_Hhw();
             }
 
             function reply(comment_id, reply_id){
@@ -492,7 +500,6 @@
                 var appendMsg = e.innerHTML;
                 e.parentNode.parentNode.parentNode.lastElementChild.lastElementChild.previousElementSibling.value += appendMsg;
             }
-
 
         </script>
         {% include 'polls/our_title_info.html' %}

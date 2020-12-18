@@ -694,6 +694,7 @@
   width:960px;
   min-height:400px;
   height:auto;
+  height:680px;
   position: relative;
   top: 42px;
   margin: auto;
@@ -711,7 +712,7 @@
   color: #008cba;
   border: 1px solid rgba(0, 140, 186, .3);
   width: 920px;
-  height: 360px;
+  height: 640px;
   margin: auto;
   border-radius: 7px;
   position: relative;
@@ -726,6 +727,7 @@
 }
 
 .art-msgboard-body {
+    font-size: 18px;
 }
 
 .art-msgboard-body-img {

@@ -223,3 +223,12 @@
 <div id="dm-show">
 </div>
 
+<script type="text/javascript">
+    function send_DM_to_Hhw()
+    {
+        s_v = "该设计怎样的彩蛋好呢~~";
+        $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
+        })
+    }
+    send_DM_to_Hhw();
+</script>

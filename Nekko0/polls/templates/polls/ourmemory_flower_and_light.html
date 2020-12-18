@@ -44,13 +44,6 @@
                 }
             }
 
-            function send_DM_to_Hhw()
-            {
-	            s_v = "该设计怎样的彩蛋好呢~~";
-                $.get("{% url 'polls:sendDM' %}", {'dmValue': s_v}, function(ret){
-                })
-            }
-
             // 自定义转化标签
             function resetValue(e){
                 var replaceCode = e.innerHTML.replace(/lt_cus/g, '<');
@@ -200,9 +193,7 @@
                             m3_e.href = "/msgboard/" + article_id + "/" + m3_n;
                         }
                     }
-                }
-                
-                send_DM_to_Hhw();
+                }    
             }
 
             function reply(comment_id, reply_id){

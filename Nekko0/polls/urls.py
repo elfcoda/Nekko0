@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'^our_flower_and_light$', views.OurFlowerAndLightView.as_view(), name='our_flower_and_light'),
     url(r'^our_i_love_you$', views.OurILoveYouView.as_view(), name='our_i_love_you'),
 
+    url(r'^ourtodo$', views.OurTODOView.as_view(), name='ourtodo'),
+
     url(r'^ourmemory$', views.OurMemoryView.as_view(), name='ourmemory'),
     url(r'^ourstory$', views.OurStoryView.as_view(), name='ourstory'),
     url(r'^ourfuture$', views.OurFutureView.as_view(), name='ourfuture'),

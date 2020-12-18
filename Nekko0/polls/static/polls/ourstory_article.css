@@ -701,6 +701,17 @@
   background:rgba(240, 240, 240, 0.75);
   border-radius:7px;
 }
+.context-article-origin_star_and_afar {
+  width:960px;
+  min-height:400px;
+  height:auto;
+  height:510px;
+  position: relative;
+  top: 42px;
+  margin: auto;
+  background:rgba(240, 240, 240, 0.75);
+  border-radius:7px;
+}
 
 .leave-margin-head {
   height: 52px;
@@ -713,6 +724,20 @@
   border: 1px solid rgba(0, 140, 186, .3);
   width: 920px;
   height: 640px;
+  margin: auto;
+  border-radius: 7px;
+  position: relative;
+  padding: 10px;
+  top: 20px;
+}
+
+.art-msgboard-cont_star_and_afar {
+  background: #e1f8fa;
+  background: rgba(225, 248, 250, .5);
+  color: #008cba;
+  border: 1px solid rgba(0, 140, 186, .3);
+  width: 920px;
+  height: 470px;
   margin: auto;
   border-radius: 7px;
   position: relative;

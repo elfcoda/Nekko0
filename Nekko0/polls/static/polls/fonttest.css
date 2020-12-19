@@ -1,0 +1,22 @@
+@font-face {
+  font-family: happy;
+  src:url('Font/happy_cn.ttf');
+}
+@font-face {
+  font-family: CF;
+  src:url('Font/CF.ttf');
+}
+
+@font-face {
+  font-family: kafei;
+  src:url('Font/KaFei.ttf');
+}
+
+.kafei-font {
+  font-family: "kafei","Arial",'Times New Roman','Microsoft YaHei';
+}
+
+.happy-font {
+  font-family: "happy", "CF","Arial",'Times New Roman','Microsoft YaHei';
+}
+

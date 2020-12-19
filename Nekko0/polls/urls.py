@@ -41,6 +41,7 @@ urlpatterns = [
 
     url(r'^ourtodo$', views.OurTODOView.as_view(), name='ourtodo'),
     url(r'^ourstart$', views.OurStartView.as_view(), name='ourstart'),
+    url(r'^connect$', views.ConnectView.as_view(), name='connect'),
 
     url(r'^ourmemory$', views.OurMemoryView.as_view(), name='ourmemory'),
     url(r'^ourstory$', views.OurStoryView.as_view(), name='ourstory'),

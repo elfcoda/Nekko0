@@ -291,6 +291,12 @@ class OurStartView(DetailView):
     def get_object(self, **kwargs):
         writeLoggerData(self.request, "OurStart")
         return None
+class ConnectView(DetailView):
+    template_name = 'polls/connect.html'
+
+    def get_object(self, **kwargs):
+        writeLoggerData(self.request, "Connect")
+        return None
 class OurFlowerAndLightView(DetailView):
     template_name = 'polls/ourmemory_flower_and_light.html'
 

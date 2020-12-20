@@ -558,6 +558,24 @@
             {% endfor %}
         </div>
         {% include 'polls/ourstory_Nuvole_fixed.html' %}
+
+
+
+        <script type="text/javascript">
+            var sleep = function(time) {
+	        var startTime = new Date().getTime() + parseInt(time, 10);
+	            while(new Date().getTime() < startTime) {}
+            };
+
+            function textColorTransfer() {
+                var x = document.getElementById("id-art-msgboard-cont_i_love_you");
+                for (var c_val = 0.00; c_val <= 1.00; c_val += 0.01) {
+                    x.style.color = "rgba(0, 140, 186, " + c_val + ")";
+                    sleep(20);
+                }
+            }
+            textColorTransfer();
+        </script>
     </body>
 </html>
 

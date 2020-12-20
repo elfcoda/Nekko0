@@ -7,7 +7,6 @@
         -->
         {% load static %}
         <link href="{% static 'polls/ourstory_article.css' %}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="{% static 'polls/smoke/css/style.css' %}">
         <link href="{% static 'polls/Resource/effect/firework/firework.css' %}" rel="stylesheet" />
         <script src="{% static 'polls/Resource/effect/firework/firework.js' %}"></script>
         <script src="https://cdn.bootcss.com/jquery/1.8.3/jquery.min.js"></script>
@@ -559,73 +558,6 @@
             {% endfor %}
         </div>
         {% include 'polls/ourstory_Nuvole_fixed.html' %}
-
-
-
-        <canvas id="myCanvas"></canvas>
-        <script type="text/javascript" src="{% static 'polls/smoke/js/three.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'polls/smoke/js/Stats.js' %}"></script>
-
-
-
-
-        <script type="text/javascript">
-            var camera, scene, renderer,
-                geometry, material, mesh;
-             
-            init();
-            animate();
-             g
-            function init() {
-               clock = new THREE.Clock();
-            
-                renderer = new THREE.WebGLRenderer({
-                    canvas: document.querySelector('#myCanvas')
-                  });
-                renderer.setPixelRatio(window.devicePixelRatio);
-                renderer.setSize( window.innerWidth, window.innerHeight );
-            
-                scene = new THREE.Scene();
-             
-                camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
-                camera.position.z = 1000;
-                scene.add( camera );
-             
-                geometry = new THREE.CubeGeometry( 200, 200, 200 );
-                material = new THREE.MeshLambertMaterial( { color: 0xffffff, wireframe: false } );
-                mesh = new THREE.Mesh( geometry, material );
-                cubeSineDriver = 0;
-             
-                THREE.ImageUtils.crossOrigin = ''; //Need this to pull in crossdomain images from AWS
-             
-                light = new THREE.DirectionalLight(0xffffff,0.5);
-                light.position.set(-1,0,1);
-                scene.add(light);
-              
-                smokeTexture = THREE.ImageUtils.loadTexture("{% static 'polls/smoke/img/Smoke-Element.png' %}");
-                smokeMaterial = new THREE.MeshLambertMaterial({color: 0xffffff, map: smokeTexture, transparent: true});
-                smokeGeo = new THREE.PlaneGeometry(300,300);
-                smokeParticles = [];
-            
-                for (p = 0; p < 150; p++) {
-                    var particle = new THREE.Mesh(smokeGeo,smokeMaterial);
-                    particle.position.set(Math.random()*500-250,Math.random()*500-250,Math.random()*1000-100);
-                    particle.rotation.z = Math.random() * 360;
-                    scene.add(particle);
-                    smokeParticles.push(particle);
-                }
-                document.body.appendChild( renderer.domElement );
-            }
-             
-            function animate() {
-                delta = clock.getDelta();
-                REQUESTANIMATIONFRAME( ANIMATE );
-        </script>
-
-
-
-
-
     </body>
 </html>
 

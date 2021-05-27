@@ -15,4 +15,5 @@ docker attach 3d  (3d is container id)
 
 
 # How to mount data
-
+mysql> use mysql;
+mysql> alter user 'root'@'localhost' identified by '123';

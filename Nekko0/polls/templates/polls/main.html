@@ -414,5 +414,14 @@
     	var v = document.getElementById("footer-blank");
 	v.setAttribute('class', 'footer-blank-mobile');
     }
+
+            // send DM By Content
+	    var s_v = ["Hi, noone~", "Hello, Noone~", "W E L C O M E", "你好呀~", "hhhh", "你来啦~"];
+	    var s_v_len = s_v.length;
+	    var s_v_send = s_v[Math.ceil(Math.random()*s_v_len) - 1];
+	    sendDMByContent(s_v_send);
+	    if (Math.ceil(Math.random()*2) == 1) {
+	        sendDMByContent(s_v_send);
+	    }
     </script>
 </html>

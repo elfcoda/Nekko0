@@ -14,8 +14,5 @@ docker attach 3d  (3d is container id)
 0] ps aux | grep python3 |grep runserver | awk '{print $2}' | xargs | xargs kill -9
 
 
-# How to mount data(MySQL 5.6)  
-mysql> create database nekko;      # 创建数据库  
-mysql> use nekko;                  # 使用已创建的数据库  
-mysql> set names utf8;             # 设置编码  
-mysql> source xxx.sql;             # 导入备份数据库  
+# How to mount data
+

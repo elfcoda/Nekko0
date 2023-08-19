@@ -15,5 +15,7 @@ docker attach 3d  (3d is container id)
 
 
 # How to mount data
+MySQL8.0设置远程访问权限
+https://zhuanlan.zhihu.com/p/587097435
 mysql> use mysql;  
 mysql> alter user 'root'@'localhost' identified by '123';
